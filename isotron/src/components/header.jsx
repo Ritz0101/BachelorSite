@@ -10,16 +10,16 @@ function Header() {
   };
 
   return (
-    <header className="bg-navy p-4 fixed top-0 w-full z-10 shadow">
+    <header className="bg-purple p-4 fixed top-0 w-full z-10 shadow">
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Isotron</span>
-            <IsotronLogo className="h-8 w-auto text-white" />
+            <IsotronLogo className="h-8 w-auto text-custom-black" />
           </a>
         </div>
         <div className="flex lg:hidden">
-          <button type="button" onClick={toggleMenu} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <button type="button" onClick={toggleMenu} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-custom-black">
             <span className="sr-only">Open main menu</span>
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -28,9 +28,9 @@ function Header() {
         </div>
         <div className={`hidden lg:flex lg:gap-x-12 ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="relative">
-            <button type="button" className="flex items-center gap-x-1 text-sm font-semibold text-white" aria-expanded={isMenuOpen} onClick={toggleMenu}>
+            <button type="button" className="flex items-center gap-x-1 text-sm font-semibold text-custom-black" aria-expanded={isMenuOpen} onClick={toggleMenu}>
               ISO27001
-              <svg className="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg className="h-5 w-5 flex-none text-custom-black" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
               </svg>
             </button>
@@ -102,18 +102,18 @@ function Header() {
                   </a>
                   <a href="#" className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold text-gray-900 hover:bg-gray-100">
                     <BugIcon className="h-5 w-5 flex-none text-gray-400" />
-                    Melde feil på siden
+                    Meld feil på siden
                   </a>
                 </div>
               </div>
             </div>
           </div>
-          <a href="#" className="text-sm font-semibold text-white">ISO27001</a>
-          <a href="#" className="text-sm font-semibold text-white">Opplæring</a>
-          <a href="#" className="text-sm font-semibold text-white">Om</a>
+          <a href="#" className="text-sm font-semibold text-custom-black">ISO27001</a>
+          <a href="#" className="text-sm font-semibold text-custom-black">Opplæring</a>
+          <a href="#" className="text-sm font-semibold text-custom-black">Om</a>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold text-white">Søk <span aria-hidden="true">&rarr;</span></a>
+          <a href="#" className="text-sm font-semibold text-custom-black">Søk <span aria-hidden="true">&rarr;</span></a>
         </div>
       </nav>
     </header>
