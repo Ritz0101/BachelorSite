@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BugIcon from './svg/bug.svg?react';
 import IsotronLogo from './svg/isotron.svg?react';
 
@@ -13,10 +14,10 @@ function Header() {
     <header className="bg-purple p-4 fixed top-0 w-full z-10 shadow">
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Isotron</span>
             <IsotronLogo className="h-8 w-auto text-custom-black" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button type="button" onClick={toggleMenu} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-custom-black">
@@ -109,11 +110,11 @@ function Header() {
             </div>
           </div>
           <a href="#" className="text-sm font-semibold text-custom-black">ISO27001</a>
-          <a href="#" className="text-sm font-semibold text-custom-black">Opplæring</a>
-          <a href="#" className="text-sm font-semibold text-custom-black">Om</a>
+          <a href="#" className="text-sm font-semibold text-custom-black">Training</a>
+          <a href="#" className="text-sm font-semibold text-custom-black">About</a>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold text-custom-black">Søk <span aria-hidden="true">&rarr;</span></a>
+          <a href="#" className="text-sm font-semibold text-custom-black">Search <span aria-hidden="true">&rarr;</span></a>
         </div>
       </nav>
     </header>
