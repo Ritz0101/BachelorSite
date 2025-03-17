@@ -111,7 +111,7 @@ function Header() {
           </div>
           <a href="#" className="text-sm font-semibold text-custom-black">ISO27001</a>
           <a href="#" className="text-sm font-semibold text-custom-black">Training</a>
-          <a href="#" className="text-sm font-semibold text-custom-black">About</a>
+          <Link to="/about" className="text-sm font-semibold text-custom-black">About</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold text-custom-black">Search <span aria-hidden="true">&rarr;</span></a>
