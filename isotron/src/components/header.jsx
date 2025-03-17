@@ -110,7 +110,7 @@ function Header() {
             </div>
           </div>
           <a href="#" className="text-sm font-semibold text-custom-black">ISO27001</a>
-          <a href="#" className="text-sm font-semibold text-custom-black">Training</a>
+          <Link to="/training" className="text-sm font-semibold text-custom-black">Training</Link>
           <Link to="/about" className="text-sm font-semibold text-custom-black">About</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
