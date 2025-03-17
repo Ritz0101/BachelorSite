@@ -7,6 +7,7 @@ import About from './components/About.jsx';
 import Layout from './components/Layout.jsx';
 import Training from './components/Training.jsx';
 import ModuleContent from './components/ModuleContent.jsx';
+import ISO27001 from './components/ISO27001.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/about" element={<About />} />
           <Route path="/training" element={<Training />} />
           <Route path="/training/:moduleId" element={<ModuleContent />} />
+          <Route path="/iso27001" element={<ISO27001 />} />
         </Route>
       </Routes>
     </BrowserRouter>

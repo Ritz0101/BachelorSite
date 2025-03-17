@@ -109,7 +109,7 @@ function Header() {
               </div>
             </div>
           </div>
-          <a href="#" className="text-sm font-semibold text-custom-black">ISO27001</a>
+          <Link to="/iso27001" className="text-sm font-semibold text-custom-black">ISO27001</Link>
           <Link to="/training" className="text-sm font-semibold text-custom-black">Training</Link>
           <Link to="/about" className="text-sm font-semibold text-custom-black">About</Link>
         </div>
