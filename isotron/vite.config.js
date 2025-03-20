@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/isotron/', // Dette må samsvare med repo-navnet ditt
+  base: '/isotron/', // Riktig format for GitHub Pages (reponavnet med skråstreker)
 })
