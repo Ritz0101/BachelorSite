@@ -123,7 +123,7 @@ function Guide() {
           </h1>
           
           <div className={`transition-all duration-300 transform ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
-            {!currentQuestions && currentQuestions !== [] ? (
+          {!currentQuestions || currentQuestions.length === 0 ? (
               <div className="space-y-6">
                 <div className="bg-white rounded-lg shadow-md">
                   <button 
