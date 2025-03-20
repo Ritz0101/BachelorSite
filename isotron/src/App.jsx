@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/header';
 import { Link } from 'react-router-dom';
 
 // Innholdsdata
@@ -81,7 +80,6 @@ const InfoSection = ({ title, description, actionText, actionLink, icon }) => (
 function App() {
   return (
     <div className="min-h-screen bg-light-purple text-custom-black">
-      <Header />
       <main className="mt-16">
         <Hero />
         
