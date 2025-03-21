@@ -24,6 +24,7 @@ function Guide() {
   });
   const [isAnimating, setIsAnimating] = useState(false);
   const [isWelcomeExpanded, setIsWelcomeExpanded] = useState(false);
+  const [showReport, setShowReport] = useState(false);
 
   const handleDocumentInfoSubmit = (e) => {
     e.preventDefault();
@@ -40,31 +41,27 @@ function Guide() {
       const currentQuestion = currentQuestions[currentQuestionIndex];
       const newAnswers = { ...answers, [currentQuestion.id]: option.label };
       setAnswers(newAnswers);
-
+  
       if (option.next === 'skipToClassification') {
+        // If we're skipping directly to classification
         setCurrentQuestions([]);
-      } else if (option.next === 'confidentialityQuestions') {
-        setCurrentQuestions(confidentialityQuestions);
-        setCurrentQuestionIndex(0);
-      } else if (option.next === 'integrityQuestions') {
-        setCurrentQuestions(integrityQuestions);
-        setCurrentQuestionIndex(0);
-      } else if (option.next === 'availabilityQuestions') {
-        setCurrentQuestions(availabilityQuestions);
-        setCurrentQuestionIndex(0);
-      } else if (option.next === 'accessControlQuestions') {
-        setCurrentQuestions(accessControlQuestions);
-        setCurrentQuestionIndex(0);
-      } else if (option.next === 'legalRegulationsQuestions') {
-        setCurrentQuestions(legalRegulationsQuestions);
-        setCurrentQuestionIndex(0);
-      } else if (option.next === 'backupQuestions') {
-        setCurrentQuestions(backupQuestions);
+        setShowReport(true); // Set this to true to show the report
+      } else if (option.next === 'confidentialityQuestions' || 
+                 option.next === 'integrityQuestions' || 
+                 option.next === 'availabilityQuestions' || 
+                 option.next === 'accessControlQuestions' || 
+                 option.next === 'legalRegulationsQuestions' || 
+                 option.next === 'backupQuestions') {
+        // If we're changing to a different set of questions
+        setCurrentQuestions(eval(option.next)); // Using the next value to determine which questions to show
         setCurrentQuestionIndex(0);
       } else if (currentQuestionIndex < currentQuestions.length - 1) {
+        // If we're just moving to the next question in the current set
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
+        // If we've reached the end of the questions
         setCurrentQuestions([]);
+        setShowReport(true); // Set this to true to show the report
       }
       
       setIsAnimating(false);
@@ -79,28 +76,53 @@ function Guide() {
       'Classification: Confidential': 'must be encrypted and access-controlled',
       'Classification: Highly Confidential': 'requires strict access control, encryption, and audit logging'
     };
-
+  
+    // First check if we have any document details at all
+    const hasDocumentDetails = documentInfo.name || documentInfo.type || 
+                              documentInfo.owner || documentInfo.department;
+  
+    // Check if we have a description
+    const hasDescription = documentInfo.description && documentInfo.description.trim() !== '';
+  
     return (
       <>
-        <h3 className="text-lg font-semibold mb-2">Document Details</h3>
-        <p className="mb-4 text-gray-700">
-          Document "{documentInfo.name}" ({documentInfo.type}) owned by {documentInfo.owner} 
-          from {documentInfo.department} department.
-        </p>
+        {/* Only show Document Details section if at least one field is filled */}
+        {hasDocumentDetails && (
+          <>
+            <h3 className="text-lg font-semibold mb-2">Document Details</h3>
+            <p className="mb-4 text-gray-700">
+              {/* Build the document details string conditionally */}
+              {documentInfo.name && `Document "${documentInfo.name}"`}
+              {documentInfo.type && documentInfo.name && ` (${documentInfo.type})`}
+              {documentInfo.type && !documentInfo.name && `${documentInfo.type} document`}
+              {documentInfo.owner && (documentInfo.name || documentInfo.type) && ` owned by ${documentInfo.owner}`}
+              {documentInfo.owner && !documentInfo.name && !documentInfo.type && `Owned by ${documentInfo.owner}`}
+              {documentInfo.department && documentInfo.owner && ` from ${documentInfo.department} department`}
+              {documentInfo.department && !documentInfo.owner && `From ${documentInfo.department} department`}
+              {/* Ensure we end with a period */}
+              {hasDocumentDetails && '.'}
+            </p>
+          </>
+        )}
         
-        <h3 className="text-lg font-semibold mb-2">Description</h3>
-        <p className="mb-4 text-gray-700">{documentInfo.description}</p>
-
+        {/* Only show Description section if description exists */}
+        {hasDescription && (
+          <>
+            <h3 className="text-lg font-semibold mb-2">Description</h3>
+            <p className="mb-4 text-gray-700">{documentInfo.description}</p>
+          </>
+        )}
+  
         <h3 className="text-lg font-semibold mb-2">Classification</h3>
         <p className="mb-4 text-gray-700">
           Based on Isotron's assessment, this document is classified as <strong>{classification}</strong>.
         </p>
-
+  
         <h3 className="text-lg font-semibold mb-2">Handling Instructions</h3>
         <p className="mb-4 text-gray-700">
           This document {handlingInstructions[classification]}.
         </p>
-
+  
         <div className="mt-6 p-4 bg-purple/10 rounded-md">
           <h4 className="font-semibold mb-2">Additional Security Measures:</h4>
           <ul className="list-disc list-inside space-y-2 text-gray-700">
@@ -123,7 +145,36 @@ function Guide() {
           </h1>
           
           <div className={`transition-all duration-300 transform ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
-          {!currentQuestions || currentQuestions.length === 0 ? (
+            {showReport ? (
+              // Report view
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-xl font-semibold mb-6">Classification Report</h2>
+                {generateDetailedReport()}
+                <button
+                  onClick={() => {
+                    setIsAnimating(true);
+                    setTimeout(() => {
+                      setCurrentQuestions(null);
+                      setCurrentQuestionIndex(0);
+                      setAnswers({});
+                      setDocumentInfo({
+                        name: '',
+                        type: '',
+                        owner: '',
+                        department: '',
+                        description: ''
+                      });
+                      setShowReport(false); // Reset the report state
+                      setIsAnimating(false);
+                    }, 300);
+                  }}
+                  className="mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
+                >
+                  Start New Classification
+                </button>
+              </div>
+            ) : !currentQuestions || currentQuestions.length === 0 ? (
+              // Welcome and form view
               <div className="space-y-6">
                 <div className="bg-white rounded-lg shadow-md">
                   <button 
@@ -243,7 +294,8 @@ function Guide() {
                   </form>
                 </div>
               </div>
-            ) : currentQuestions?.length > 0 ? (
+            ) : (
+              // Questions view
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold mb-4">
                   {currentQuestions[currentQuestionIndex].text}
@@ -259,32 +311,6 @@ function Guide() {
                     </button>
                   ))}
                 </div>
-              </div>
-            ) : (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold mb-6">Classification Report</h2>
-                {generateDetailedReport()}
-                <button
-                  onClick={() => {
-                    setIsAnimating(true);
-                    setTimeout(() => {
-                      setCurrentQuestions(null);
-                      setCurrentQuestionIndex(0);
-                      setAnswers({});
-                      setDocumentInfo({
-                        name: '',
-                        type: '',
-                        owner: '',
-                        department: '',
-                        description: ''
-                      });
-                      setIsAnimating(false);
-                    }, 300);
-                  }}
-                  className="mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
-                >
-                  Start New Classification
-                </button>
               </div>
             )}
           </div>
