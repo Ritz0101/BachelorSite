@@ -3,8 +3,8 @@ import React from 'react';
 /**
  * Component for selecting multiple data categories
  */
-function CategorySelector({ questions, selectedCategories, setSelectedCategories, onContinue }) {
-  const currentQuestion = questions[0]; // We only use the first question for category selection
+function CategorySelector({ questions, onCategoriesSelected }) {
+  const [selectedCategories, setSelectedCategories] = React.useState([]);
 
   const toggleCategory = (value) => {
     setSelectedCategories(prev => 
@@ -12,6 +12,16 @@ function CategorySelector({ questions, selectedCategories, setSelectedCategories
         ? prev.filter(cat => cat !== value) 
         : [...prev, value]
     );
+  };
+
+  const handleContinue = () => {
+    onCategoriesSelected(selectedCategories);
+  };
+
+  // Ensure we have a valid questions object
+  const currentQuestion = questions || {
+    text: "Select document categories",
+    options: []
   };
 
   return (
@@ -57,7 +67,7 @@ function CategorySelector({ questions, selectedCategories, setSelectedCategories
       )}
       
       <button
-        onClick={onContinue}
+        onClick={handleContinue}
         disabled={selectedCategories.length === 0}
         className={`w-full mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors ${
           selectedCategories.length === 0 ? 'opacity-50 cursor-not-allowed' : ''

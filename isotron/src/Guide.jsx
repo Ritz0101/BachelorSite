@@ -166,7 +166,7 @@ function Guide() {
             ) : currentQuestions && currentQuestions.multiSelect ? (
               // Category selection view
               <CategorySelector 
-                question={currentQuestions}
+                questions={currentQuestions}
                 onCategoriesSelected={handleCategoriesSelected}
               />
             ) : currentQuestions ? (
