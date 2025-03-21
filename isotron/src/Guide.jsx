@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import Header from './components/header';
-import { 
-  questions, 
-  confidentialityQuestions,
-  integrityQuestions,
-  availabilityQuestions,
-  accessControlQuestions,
-  legalRegulationsQuestions,
-  backupQuestions,
-  classificationRules 
-} from './components/Questions';
+import CategorySelector from './components/classification/CategorySelector';
+import QuestionRenderer from './components/classification/QuestionRenderer';
+import ReportGenerator from './components/classification/reportGenerator';
+import { questions } from './components/Questions';
+
 
 function Guide() {
   const [currentQuestions, setCurrentQuestions] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [questionSequence, setQuestionSequence] = useState([]);
+  const [currentSequenceIndex, setCurrentSequenceIndex] = useState(0);
   const [documentInfo, setDocumentInfo] = useState({
     name: '',
     type: '',
@@ -30,7 +28,60 @@ function Guide() {
     e.preventDefault();
     setIsAnimating(true);
     setTimeout(() => {
+      // Start with category selection instead of questions
       setCurrentQuestions(questions);
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handleCategoriesSelected = (categories) => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setSelectedCategories(categories);
+      
+      // Determine question sequences based on selected categories
+      const newQuestionSequence = [];
+      
+      if (categories.includes('pii') || categories.includes('customer')) {
+        newQuestionSequence.push('confidentialityQuestions');
+      }
+      
+      if (categories.includes('financial')) {
+        newQuestionSequence.push('integrityQuestions');
+      }
+      
+      if (categories.includes('credentials')) {
+        newQuestionSequence.push('accessControlQuestions');
+      }
+      
+      if (categories.includes('compliance')) {
+        newQuestionSequence.push('legalRegulationsQuestions');
+      }
+      
+      // Add availability questions for all documents except public
+      if (!categories.includes('public')) {
+        newQuestionSequence.push('availabilityQuestions');
+      }
+      
+      setQuestionSequence(newQuestionSequence);
+      
+      // Start first sequence if we have any
+      if (newQuestionSequence.length > 0) {
+        // This is the correct way to do dynamic imports
+        import(`./components/question-sets/${newQuestionSequence[0]}.js`)
+          .then(module => {
+            setCurrentQuestions(module.default);
+            setCurrentQuestionIndex(0);
+            setCurrentSequenceIndex(0);
+          })
+          .catch(error => {
+            console.error("Failed to load question module:", error);
+          });
+      } else {
+        // If no specific questionnaires needed, go straight to report
+        setShowReport(true);
+      }
+      
       setIsAnimating(false);
     }, 300);
   };
@@ -43,96 +94,55 @@ function Guide() {
       setAnswers(newAnswers);
   
       if (option.next === 'skipToClassification') {
-        // If we're skipping directly to classification
+        // Skip to classification report
         setCurrentQuestions([]);
-        setShowReport(true); // Set this to true to show the report
-      } else if (option.next === 'confidentialityQuestions' || 
-                 option.next === 'integrityQuestions' || 
-                 option.next === 'availabilityQuestions' || 
-                 option.next === 'accessControlQuestions' || 
-                 option.next === 'legalRegulationsQuestions' || 
-                 option.next === 'backupQuestions') {
-        // If we're changing to a different set of questions
-        setCurrentQuestions(eval(option.next)); // Using the next value to determine which questions to show
-        setCurrentQuestionIndex(0);
+        setShowReport(true);
+      } else if (option.next && option.next.includes('Questions')) {
+        // Change to a different set of questions based on the next value
+        import(`./components/question-sets/${option.next}.js`).then(module => {
+          setCurrentQuestions(module.default);
+          setCurrentQuestionIndex(0);
+        });
       } else if (currentQuestionIndex < currentQuestions.length - 1) {
-        // If we're just moving to the next question in the current set
+        // Move to next question in current set
         setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else if (currentSequenceIndex < questionSequence.length - 1) {
+        // Move to next questionnaire in sequence
+        const nextSequenceIndex = currentSequenceIndex + 1;
+        import(`./components/question-sets/${questionSequence[nextSequenceIndex]}.js`).then(module => {
+          setCurrentQuestions(module.default);
+          setCurrentQuestionIndex(0);
+          setCurrentSequenceIndex(nextSequenceIndex);
+        });
       } else {
-        // If we've reached the end of the questions
+        // Finished all questions, show report
         setCurrentQuestions([]);
-        setShowReport(true); // Set this to true to show the report
+        setShowReport(true);
       }
       
       setIsAnimating(false);
     }, 300);
   };
 
-  const generateDetailedReport = () => {
-    const classification = classificationRules(answers);
-    const handlingInstructions = {
-      'Classification: Public': 'can be freely shared and distributed',
-      'Classification: Internal Use Only': 'should only be shared within the organization',
-      'Classification: Confidential': 'must be encrypted and access-controlled',
-      'Classification: Highly Confidential': 'requires strict access control, encryption, and audit logging'
-    };
-  
-    // First check if we have any document details at all
-    const hasDocumentDetails = documentInfo.name || documentInfo.type || 
-                              documentInfo.owner || documentInfo.department;
-  
-    // Check if we have a description
-    const hasDescription = documentInfo.description && documentInfo.description.trim() !== '';
-  
-    return (
-      <>
-        {/* Only show Document Details section if at least one field is filled */}
-        {hasDocumentDetails && (
-          <>
-            <h3 className="text-lg font-semibold mb-2">Document Details</h3>
-            <p className="mb-4 text-gray-700">
-              {/* Build the document details string conditionally */}
-              {documentInfo.name && `Document "${documentInfo.name}"`}
-              {documentInfo.type && documentInfo.name && ` (${documentInfo.type})`}
-              {documentInfo.type && !documentInfo.name && `${documentInfo.type} document`}
-              {documentInfo.owner && (documentInfo.name || documentInfo.type) && ` owned by ${documentInfo.owner}`}
-              {documentInfo.owner && !documentInfo.name && !documentInfo.type && `Owned by ${documentInfo.owner}`}
-              {documentInfo.department && documentInfo.owner && ` from ${documentInfo.department} department`}
-              {documentInfo.department && !documentInfo.owner && `From ${documentInfo.department} department`}
-              {/* Ensure we end with a period */}
-              {hasDocumentDetails && '.'}
-            </p>
-          </>
-        )}
-        
-        {/* Only show Description section if description exists */}
-        {hasDescription && (
-          <>
-            <h3 className="text-lg font-semibold mb-2">Description</h3>
-            <p className="mb-4 text-gray-700">{documentInfo.description}</p>
-          </>
-        )}
-  
-        <h3 className="text-lg font-semibold mb-2">Classification</h3>
-        <p className="mb-4 text-gray-700">
-          Based on Isotron's assessment, this document is classified as <strong>{classification}</strong>.
-        </p>
-  
-        <h3 className="text-lg font-semibold mb-2">Handling Instructions</h3>
-        <p className="mb-4 text-gray-700">
-          This document {handlingInstructions[classification]}.
-        </p>
-  
-        <div className="mt-6 p-4 bg-purple/10 rounded-md">
-          <h4 className="font-semibold mb-2">Additional Security Measures:</h4>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            {answers.q7 === "Yes" && <li>Requires 24/7 availability</li>}
-            {answers.q9 === "Yes" && <li>Restricted access to specific personnel</li>}
-            {answers.q5 === "Yes" && <li>Requires version control and audit trail</li>}
-          </ul>
-        </div>
-      </>
-    );
+  const resetClassification = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentQuestions(null);
+      setCurrentQuestionIndex(0);
+      setAnswers({});
+      setSelectedCategories([]);
+      setQuestionSequence([]);
+      setCurrentSequenceIndex(0);
+      setDocumentInfo({
+        name: '',
+        type: '',
+        owner: '',
+        department: '',
+        description: ''
+      });
+      setShowReport(false);
+      setIsAnimating(false);
+    }, 300);
   };
 
   return (
@@ -147,34 +157,26 @@ function Guide() {
           <div className={`transition-all duration-300 transform ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
             {showReport ? (
               // Report view
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold mb-6">Classification Report</h2>
-                {generateDetailedReport()}
-                <button
-                  onClick={() => {
-                    setIsAnimating(true);
-                    setTimeout(() => {
-                      setCurrentQuestions(null);
-                      setCurrentQuestionIndex(0);
-                      setAnswers({});
-                      setDocumentInfo({
-                        name: '',
-                        type: '',
-                        owner: '',
-                        department: '',
-                        description: ''
-                      });
-                      setShowReport(false); // Reset the report state
-                      setIsAnimating(false);
-                    }, 300);
-                  }}
-                  className="mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
-                >
-                  Start New Classification
-                </button>
-              </div>
-            ) : !currentQuestions || currentQuestions.length === 0 ? (
-              // Welcome and form view
+              <ReportGenerator 
+                documentInfo={documentInfo}
+                answers={answers}
+                selectedCategories={selectedCategories}
+                onReset={resetClassification}
+              />
+            ) : currentQuestions && currentQuestions.multiSelect ? (
+              // Category selection view
+              <CategorySelector 
+                question={currentQuestions}
+                onCategoriesSelected={handleCategoriesSelected}
+              />
+            ) : currentQuestions ? (
+              // Question view
+              <QuestionRenderer 
+                currentQuestion={currentQuestions[currentQuestionIndex]}
+                onAnswer={handleAnswer}
+              />
+            ) : (
+              // Welcome and document info form
               <div className="space-y-6">
                 <div className="bg-white rounded-lg shadow-md">
                   <button 
@@ -207,6 +209,7 @@ function Guide() {
                       <div className="bg-purple/10 rounded-md p-4">
                         <h3 className="font-semibold mb-2">What to expect:</h3>
                         <ul className="list-disc list-inside space-y-1 text-gray-700">
+                          <li>Select all types of sensitive information in your document</li>
                           <li>Answer questions about your document's content and use</li>
                           <li>Receive a classification level based on ISO27001</li>
                           <li>Get specific handling and security instructions</li>
@@ -287,29 +290,11 @@ function Guide() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90"
+                      className="w-full bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
                     >
                       Start Classification
                     </button>
                   </form>
-                </div>
-              </div>
-            ) : (
-              // Questions view
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold mb-4">
-                  {currentQuestions[currentQuestionIndex].text}
-                </h2>
-                <div className="space-y-4">
-                  {currentQuestions[currentQuestionIndex].options.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswer(option)}
-                      className="w-full text-left p-4 rounded-md border border-gray-200 hover:bg-purple hover:border-purple transition-all duration-200 transform hover:scale-[1.01]"
-                    >
-                      {option.label}
-                    </button>
-                  ))}
                 </div>
               </div>
             )}
