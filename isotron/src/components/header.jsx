@@ -62,7 +62,6 @@ function Header() {
         <div className="flex items-center">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center group">
             <IsotronLogo className="h-8 w-auto text-custom-black transition-transform duration-300 group-hover:scale-110" />
-            <span className="ml-2 font-semibold text-gray-800 hidden sm:block">Isotron</span>
           </Link>
           <Link to="/" className={`ml-4 px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/') ? 'bg-purple-200 font-semibold' : ''}`}>
             Home
@@ -110,10 +109,12 @@ function Header() {
                 <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">About</Link>
                 <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">ISO 27001</Link>
                 <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">Contact</Link>
-                <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
-                  <BugIcon className="h-4 w-4 flex-none text-gray-500" />
-                  <span>Meld feil på siden</span>
-                </button>
+                <div className="border-t border-gray-200 mt-1 pt-1">
+                  <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50">
+                    <BugIcon className="h-4 w-4 flex-none text-gray-500" />
+                    <span>Meld feil på siden</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -127,9 +128,24 @@ function Header() {
             aria-expanded={isLanguageOpen}
             aria-haspopup="true"
           >
-            {language === 'en' && <span className="flex items-center">🇬🇧 English</span>}
-            {language === 'no' && <span className="flex items-center">🇳🇴 Norsk</span>}
-            {language === 'pl' && <span className="flex items-center">🇵🇱 Polski</span>}
+            {language === 'en' && (
+              <span className="flex items-center">
+                <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
+                English
+              </span>
+            )}
+            {language === 'no' && (
+              <span className="flex items-center">
+                <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
+                Norsk
+              </span>
+            )}
+            {language === 'pl' && (
+              <span className="flex items-center">
+                <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
+                Polski
+              </span>
+            )}
             <svg 
               className={`ml-1 w-4 h-4 transition-transform duration-200 ${isLanguageOpen ? 'rotate-180' : ''}`} 
               fill="none" 
@@ -153,21 +169,21 @@ function Header() {
                 onClick={() => handleLanguageChange('en')} 
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
-                <span className="mr-2">🇬🇧</span>
+                <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
                 English
               </button>
               <button 
                 onClick={() => handleLanguageChange('no')} 
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
-                <span className="mr-2">🇳🇴</span>
+                <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
                 Norsk
               </button>
               <button 
                 onClick={() => handleLanguageChange('pl')} 
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
-                <span className="mr-2">🇵🇱</span>
+                <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
                 Polski
               </button>
             </div>
