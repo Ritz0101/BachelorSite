@@ -22,6 +22,7 @@ function Guide() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isWelcomeExpanded, setIsWelcomeExpanded] = useState(false);
   const [showReport, setShowReport] = useState(false);
+  const [regulationFlags, setRegulationFlags] = useState({});
 
   const handleDocumentInfoSubmit = (e) => {
     e.preventDefault();
@@ -38,8 +39,29 @@ function Guide() {
     setTimeout(() => {
       setSelectedCategories(categories);
 
+      // Store regulation flags for later use
+      const regulationFlags = {
+        gdpr: categories.includes("pii") || categories.includes("customer"),
+        hipaa: categories.includes("health"),
+        sox: categories.includes("financial"),
+        pciDss: categories.includes("financial") && categories.includes("credentials")
+      };
+      
+      setRegulationFlags(regulationFlags);
+
       // Determine question sequences based on selected categories
       const newQuestionSequence = [];
+
+      // Add legal regulations questions automatically for data types with regulatory implications
+      if (
+        categories.includes("pii") ||
+        categories.includes("customer") ||
+        categories.includes("financial") ||
+        categories.includes("health") ||
+        categories.includes("credentials")
+      ) {
+        newQuestionSequence.push("legalRegulationsQuestions");
+      }
 
       // Always start with confidentiality questions for sensitive data
       if (
@@ -59,15 +81,6 @@ function Guide() {
       // Add access control questions for sensitive credentials
       if (categories.includes("credentials")) {
         newQuestionSequence.push("accessControlQuestions");
-      }
-
-      // Add legal regulations questions for compliance-related categories
-      if (
-        categories.includes("compliance") ||
-        categories.includes("pii") ||
-        categories.includes("financial")
-      ) {
-        newQuestionSequence.push("legalRegulationsQuestions");
       }
 
       // Add availability questions for all documents except public
@@ -210,7 +223,7 @@ function Guide() {
           <h1 className="text-3xl font-bold mb-4 transition-opacity duration-300">
             Document Classification Guide
           </h1>
-
+  
           <div
             className={`transition-all duration-300 transform ${
               isAnimating
@@ -241,14 +254,46 @@ function Guide() {
             ) : (
               // Welcome and document info form
               <div className="space-y-6">
+                {/* Quick intro section - always visible */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <h2 className="text-xl font-semibold mb-4">
+                    Welcome to the Classification Guide
+                  </h2>
+                  <p className="text-gray-700 mb-4">
+                    This guide will help you determine the appropriate
+                    classification level for your document based on ISO27001
+                    standards. Through a series of questions, we'll assess
+                    the sensitivity and security requirements of your information.
+                  </p>
+                  <div className="bg-purple/10 rounded-md p-4">
+                    <h3 className="font-semibold mb-2">What to expect:</h3>
+                    <ul className="list-disc list-inside space-y-1 text-gray-700">
+                      <li>
+                        Select all types of sensitive information in your
+                        document
+                      </li>
+                      <li>
+                        Answer questions about your document's content and
+                        use
+                      </li>
+                      <li>
+                        Receive a classification level based on ISO27001
+                      </li>
+                      <li>
+                        Get specific handling and security instructions
+                      </li>
+                      <li>Estimated time: 2-3 minutes</li>
+                    </ul>
+                  </div>
+                </div>
+  
+                {/* Advanced Options - collapsible */}
                 <div className="bg-white rounded-lg shadow-md">
                   <button
                     onClick={() => setIsWelcomeExpanded(!isWelcomeExpanded)}
                     className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors rounded-lg"
                   >
-                    <h2 className="text-xl font-semibold">
-                      Welcome to the Classification Guide
-                    </h2>
+                    <h2 className="text-xl font-semibold">Advanced Options (Optional)</h2>
                     <svg
                       className={`w-6 h-6 transform transition-transform ${
                         isWelcomeExpanded ? "rotate-180" : ""
@@ -265,168 +310,131 @@ function Guide() {
                       />
                     </svg>
                   </button>
-
+  
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
                       isWelcomeExpanded
-                        ? "max-h-96 opacity-100"
+                        ? "max-h-[800px] opacity-100"
                         : "max-h-0 opacity-0"
                     }`}
                   >
                     <div className="p-6 pt-0">
                       <p className="text-gray-700 mb-4">
-                        This guide will help you determine the appropriate
-                        classification level for your document based on ISO27001
-                        standards. Through a series of questions, we'll assess
-                        the sensitivity and security requirements of your
-                        information.
+                        Providing document details will help generate a more personalized 
+                        classification report with specific handling instructions.
                       </p>
-                      <p className="text-gray-700 mb-4">
-                        You can optionally provide details about your document
-                        below for a more personalized classification report.
-                        These details will help generate specific handling
-                        instructions for your document.
-                      </p>
-                      <div className="bg-purple/10 rounded-md p-4">
-                        <h3 className="font-semibold mb-2">What to expect:</h3>
-                        <ul className="list-disc list-inside space-y-1 text-gray-700">
-                          <li>
-                            Select all types of sensitive information in your
-                            document
-                          </li>
-                          <li>
-                            Answer questions about your document's content and
-                            use
-                          </li>
-                          <li>
-                            Receive a classification level based on ISO27001
-                          </li>
-                          <li>
-                            Get specific handling and security instructions
-                          </li>
-                          <li>Estimated time: 2-3 minutes</li>
-                        </ul>
+  
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Document Name
+                          <span className="text-gray-400 text-xs ml-2">
+                            (optional)
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          value={documentInfo.name}
+                          onChange={(e) =>
+                            setDocumentInfo({
+                              ...documentInfo,
+                              name: e.target.value,
+                            })
+                          }
+                          className="w-full p-2 border rounded-md"
+                          placeholder="e.g., Q4 Financial Report"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          File Type
+                          <span className="text-gray-400 text-xs ml-2">
+                            (optional)
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          value={documentInfo.type}
+                          onChange={(e) =>
+                            setDocumentInfo({
+                              ...documentInfo,
+                              type: e.target.value,
+                            })
+                          }
+                          className="w-full p-2 border rounded-md"
+                          placeholder="e.g., PDF, DOCX, XLSX"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Document Owner
+                          <span className="text-gray-400 text-xs ml-2">
+                            (optional)
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          value={documentInfo.owner}
+                          onChange={(e) =>
+                            setDocumentInfo({
+                              ...documentInfo,
+                              owner: e.target.value,
+                            })
+                          }
+                          className="w-full p-2 border rounded-md"
+                          placeholder="e.g., Ola Nordmann"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Department
+                          <span className="text-gray-400 text-xs ml-2">
+                            (optional)
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          value={documentInfo.department}
+                          onChange={(e) =>
+                            setDocumentInfo({
+                              ...documentInfo,
+                              department: e.target.value,
+                            })
+                          }
+                          className="w-full p-2 border rounded-md"
+                          placeholder="e.g., Finance"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Brief Description
+                          <span className="text-gray-400 text-xs ml-2">
+                            (optional)
+                          </span>
+                        </label>
+                        <textarea
+                          value={documentInfo.description}
+                          onChange={(e) =>
+                            setDocumentInfo({
+                              ...documentInfo,
+                              description: e.target.value,
+                            })
+                          }
+                          className="w-full p-2 border rounded-md"
+                          rows="3"
+                          placeholder="Brief description of the document's content and purpose"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-xl font-semibold mb-4">
-                    Document Information (Optional)
-                  </h2>
-                  <form
-                    onSubmit={handleDocumentInfoSubmit}
-                    className="space-y-4"
-                  >
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Document Name
-                        <span className="text-gray-400 text-xs ml-2">
-                          (optional)
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        value={documentInfo.name}
-                        onChange={(e) =>
-                          setDocumentInfo({
-                            ...documentInfo,
-                            name: e.target.value,
-                          })
-                        }
-                        className="w-full p-2 border rounded-md"
-                        placeholder="e.g., Q4 Financial Report"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        File Type
-                        <span className="text-gray-400 text-xs ml-2">
-                          (optional)
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        value={documentInfo.type}
-                        onChange={(e) =>
-                          setDocumentInfo({
-                            ...documentInfo,
-                            type: e.target.value,
-                          })
-                        }
-                        className="w-full p-2 border rounded-md"
-                        placeholder="e.g., PDF, DOCX, XLSX"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Document Owner
-                        <span className="text-gray-400 text-xs ml-2">
-                          (optional)
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        value={documentInfo.owner}
-                        onChange={(e) =>
-                          setDocumentInfo({
-                            ...documentInfo,
-                            owner: e.target.value,
-                          })
-                        }
-                        className="w-full p-2 border rounded-md"
-                        placeholder="e.g., Ola Nordmann"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Department
-                        <span className="text-gray-400 text-xs ml-2">
-                          (optional)
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        value={documentInfo.department}
-                        onChange={(e) =>
-                          setDocumentInfo({
-                            ...documentInfo,
-                            department: e.target.value,
-                          })
-                        }
-                        className="w-full p-2 border rounded-md"
-                        placeholder="e.g., Finance"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Brief Description
-                        <span className="text-gray-400 text-xs ml-2">
-                          (optional)
-                        </span>
-                      </label>
-                      <textarea
-                        value={documentInfo.description}
-                        onChange={(e) =>
-                          setDocumentInfo({
-                            ...documentInfo,
-                            description: e.target.value,
-                          })
-                        }
-                        className="w-full p-2 border rounded-md"
-                        rows="3"
-                        placeholder="Brief description of the document's content and purpose"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
-                    >
-                      Start Classification
-                    </button>
-                  </form>
-                </div>
+  
+                {/* Start Classification button - outside dropdown */}
+                <button
+                  onClick={handleDocumentInfoSubmit}
+                  className="w-full bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
+                >
+                  Start Classification
+                </button>
               </div>
             )}
           </div>

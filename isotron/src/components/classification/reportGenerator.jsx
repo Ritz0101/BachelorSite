@@ -7,6 +7,9 @@ function ReportGenerator({ documentInfo, answers, selectedCategories, onReset })
     level: "Public",
     reason: "No sensitive information identified"
   });
+  const [showCertificateForm, setShowCertificateForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [certificateSent, setCertificateSent] = useState(false);
 
   // Classification level hierarchy
   const classificationHierarchy = {
@@ -155,6 +158,41 @@ function ReportGenerator({ documentInfo, answers, selectedCategories, onReset })
   // Check if we have a description
   const hasDescription = documentInfo.description && documentInfo.description.trim() !== '';
 
+  // Classification comparison table data
+  const classificationComparison = [
+    {
+      level: "Public",
+      description: "Information intended for public release",
+      examples: "Marketing materials, public announcements, general product info",
+      controls: "No special security controls required"
+    },
+    {
+      level: "Internal Use Only",
+      description: "Non-sensitive information meant only for company use",
+      examples: "Meeting minutes, internal communications, operational docs",
+      controls: "Basic access controls, no distribution outside organization"
+    },
+    {
+      level: "Confidential",
+      description: "Sensitive information with restricted access",
+      examples: "Financial records, customer data, business strategies",
+      controls: "Access controls, encryption, audit logging"
+    },
+    {
+      level: "Highly Confidential",
+      description: "Extremely sensitive information",
+      examples: "Authentication credentials, trade secrets, sensitive IP",
+      controls: "Strict access controls, encryption, MFA, detailed auditing"
+    }
+  ];
+
+  const handleCertificateRequest = (e) => {
+    e.preventDefault();
+    // Here you would implement the actual email sending logic
+    console.log(`Sending certificate to: ${email}`);
+    setCertificateSent(true);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-semibold mb-6">Classification Report</h2>
@@ -231,6 +269,94 @@ function ReportGenerator({ documentInfo, answers, selectedCategories, onReset })
             <li key={index}>{control}</li>
           ))}
         </ul>
+      </div>
+
+      {/* Classification context table */}
+      <div className="mt-8">
+        <h3 className="text-lg font-semibold mb-4">Classification Levels in Context</h3>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Level</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Examples</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Controls</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {classificationComparison.map((item) => (
+                <tr key={item.level} className={item.level === strictestClassification.level ? "bg-purple/10" : ""}>
+                  <td className="px-4 py-3 text-sm">
+                    <span className={`font-medium ${item.level === strictestClassification.level ? "font-bold" : ""}`}>
+                      {item.level}
+                      {item.level === strictestClassification.level && " ← Your Document"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">{item.description}</td>
+                  <td className="px-4 py-3 text-sm">{item.examples}</td>
+                  <td className="px-4 py-3 text-sm">{item.controls}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Training certificate section */}
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <h3 className="text-lg font-semibold mb-2">Document Your Training</h3>
+        
+        {!showCertificateForm && !certificateSent ? (
+          <div>
+            <p className="text-gray-600 mb-4">
+              Would you like to receive a certificate of completion for this classification training?
+            </p>
+            <button
+              onClick={() => setShowCertificateForm(true)}
+              className="bg-purple text-custom-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
+            >
+              Request Certificate
+            </button>
+          </div>
+        ) : certificateSent ? (
+          <div className="p-4 bg-green-100 rounded-md">
+            <p className="text-green-800">
+              Your certificate has been sent! Check your email inbox.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleCertificateRequest} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Your Email Address
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border rounded-md"
+                placeholder="your.email@company.com"
+              />
+            </div>
+            <div className="flex space-x-4">
+              <button
+                type="submit"
+                className="bg-purple text-custom-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
+              >
+                Send Certificate
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowCertificateForm(false)}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
       </div>
 
       {/* Reset Button */}
