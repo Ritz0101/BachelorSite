@@ -1,26 +1,10 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { trainingModules } from './Training/Training';
+import { Link, useNavigate } from 'react-router-dom';
+import { trainingModules } from '../Training';
 
-function ModuleContent() {
-  const { moduleId } = useParams();
-  const module = trainingModules.find(m => m.id.toString() === moduleId);
-
-  if (!module) {
-    return (
-      <div className="min-h-screen bg-light-purple pt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-2xl font-bold text-red-600 mb-4">Module Not Found</h1>
-            <p className="text-gray-600 mb-4">The requested training module could not be found.</p>
-            <Link to="/training" className="text-purple hover:underline">
-              ← Back to Training Modules
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+function ISO27001Fundamentals() {
+  const navigate = useNavigate();
+  const module = trainingModules.find(m => m.id === 2);
 
   return (
     <div className="min-h-screen bg-light-purple pt-24">
@@ -51,8 +35,12 @@ function ModuleContent() {
                   <button 
                     className="bg-purple text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
                     onClick={() => {
-                      // TODO: Implement module completion logic
-                      alert('Module content will be implemented here!');
+                      // Navigate to the specific course
+                      if (subModule.id === "2.1") {
+                        navigate("/training/iso27001-fundamentals/isms-basics");
+                      } else if (subModule.id === "2.2") {
+                        navigate("/training/iso27001-fundamentals/risk-assessment");
+                      }
                     }}
                   >
                     {subModule.completed ? 'Review' : 'Start'}
@@ -67,4 +55,4 @@ function ModuleContent() {
   );
 }
 
-export default ModuleContent; 
+export default ISO27001Fundamentals;

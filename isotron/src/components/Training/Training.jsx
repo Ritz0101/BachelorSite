@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Mock data structure for training modules - can be moved to a separate file later
@@ -87,7 +87,11 @@ function Training() {
   );
 
   const handleModuleSelect = (module) => {
-    navigate(`/training/${module.id}`);
+    if (module.id === 1) {
+      navigate('/training/information-classification-basics');
+    } else if (module.id === 2) {
+      navigate('/training/iso27001-fundamentals');
+    }
   };
 
   return (
