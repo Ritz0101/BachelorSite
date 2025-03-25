@@ -1,8 +1,111 @@
-# React + Vite
+# Isotron - ISO 27001 Information Classification Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Isotron is a web application designed to help organizations implement and maintain ISO 27001 compliance, with a specific focus on data classification and information security management. The platform serves as an interactive guide and educational resource for employees and stakeholders who need to understand how to properly classify, handle, and protect sensitive information according to information security best practices and standards.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Isotron provides:
+
+- An interactive document classification guide that walks users through a series of questions to determine the appropriate security classification level
+- Detailed training modules that educate users on ISO 27001 principles and information security fundamentals
+- Personalized security recommendations based on user inputs and organizational context
+- Multilingual support (English, Norwegian, Polish)
+
+The application is tailored for information security officers, compliance managers, and employees handling sensitive information, especially in organizations implementing or maintaining ISO 27001 compliance.
+
+## Technical Implementation
+
+Isotron is built using a modern web development stack:
+
+- **Frontend Framework**: React (v19.0.0) with React Router DOM (v7.2.0) for client-side routing
+- **Build Tool**: Vite (v6.2.1) for fast development and optimized production builds
+- **Styling**: Tailwind CSS (v3.4.17) for utility-first CSS framework implementation
+- **Code Quality**: ESLint (v9.21.0) with React-specific plugins
+- **SVG Handling**: Vite SVGR plugin for importing SVG files as React components
+
+The application follows a modular component-based architecture with main features including:
+
+- Interactive classification guide with dynamic question flow
+- Training module system with progress tracking
+- ISO 27001 information repository
+- Light/dark theme support
+- Responsive design for various device sizes
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18.0.0 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/isotron.git
+cd isotron
+
+# Install dependencies
+npm install
+```
+
+### Development
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+This will start Vite's development server with hot module replacement at `http://localhost:5173`
+
+### Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+This will generate optimized production files in the `dist` directory.
+
+### Deploying to Firebase Hosting
+
+1. Install Firebase CLI if you haven't already:
+
+```bash
+npm install -g firebase-tools
+```
+
+2. Login to Firebase:
+
+```bash
+firebase login
+```
+
+3. Initialize Firebase in your project:
+
+```bash
+firebase init
+```
+
+4. Select Firebase Hosting and follow the prompts. When asked for your public directory, enter `dist`.
+
+5. Deploy to Firebase:
+
+```bash
+firebase deploy
+```
+
+## Project Structure
+
+The application is organized into several key components:
+
+- **Classification Guide**: Walks users through a decision tree to classify sensitive information
+- **Training Modules**: Provides educational content on information security principles
+- **ISO 27001 Information**: Offers reference materials on the standard's requirements
+- **Multilingual Support**: Accommodates international organizations with language options
+
+## Contributors
+
+This project was developed by **"Brannmurbrigaden"** - A group of 5 Cybersecurity students at Kristiania University College
