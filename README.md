@@ -108,4 +108,33 @@ The application is organized into several key components:
 
 ## Contributors
 
+Contributors
+<div align="center">
+🔥 BRANNMURBRIGADEN 🔥
+The Firewall Brigade - Defending your data one classification at a time
+</div>
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/username1"><img src="https://img.shields.io/badge/👨‍💻-Jørgen%20Stranden-blue" height="50px" width="150px"/></a></td>
+    <td align="center"><a href="https://github.com/username2"><img src="https://img.shields.io/badge/👨‍💻-Ask%20Eigil%20Borg-red" height="50px" width="150px"/></a></td>
+    <td align="center"><a href="https://github.com/username3"><img src="https://img.shields.io/badge/👨‍💻-Jakob%20Storaas-green" height="50px" width="150px"/></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/username4"><img src="https://img.shields.io/badge/👨‍💻-Lauritz%20Pedersen-orange" height="50px" width="150px"/></a></td>
+    <td align="center"><a href="https://github.com/username5"><img src="https://img.shields.io/badge/👨‍💻-Daniel%20Sandsdalen-purple" height="50px" width="150px"/></a></td>
+    <td align="center"><img src="https://img.shields.io/badge/🛡️-Kristiania%20University-yellow" height="50px" width="150px"/></td>
+  </tr>
+</table>
+<div align="center">
+Copy+------------------------+
+|   SECURING YOUR DATA   |
+|   ONE BYTE AT A TIME   |
++------------------------+
+       \   ^__^
+        \  (oo)\_______
+           (__)\       )\/\
+               ||----w |
+               ||     ||
+</div>
+
 This project was developed by **"Brannmurbrigaden"** - A group of 5 Cybersecurity students at Kristiania University College
