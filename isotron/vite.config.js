@@ -14,6 +14,12 @@ import ISO27001 from './components/ISO27001.jsx';
 export default defineConfig({
   plugins: [react()],
   base: '/isotron/', // Hvis du bruker GitHub Pages
+  esbuild: {
+    loader: {
+      '.js': 'jsx', // Aktiverer JSX-syntaks for .js-filer
+      '.jsx': 'jsx', // Sørg for at .jsx-filer også er inkludert
+    },
+  },
 });
 
 createRoot(document.getElementById('root')).render(
