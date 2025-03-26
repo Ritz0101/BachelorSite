@@ -48,6 +48,13 @@ function Header() {
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     setIsLanguageOpen(false);
+    
+    // If Polish is selected, add a class to the body for styling
+    if (lang === 'pl') {
+      document.body.classList.add('polish-mode');
+    } else {
+      document.body.classList.remove('polish-mode');
+    }
   };
   
   // Determine if a link is active
@@ -167,24 +174,24 @@ function Header() {
             <div className="py-1">
               <button 
                 onClick={() => handleLanguageChange('en')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
               >
                 <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
-                English
+                <span className="language-span">English</span>
               </button>
               <button 
                 onClick={() => handleLanguageChange('no')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
               >
                 <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
-                Norsk
+                <span className="language-span">Norsk</span>
               </button>
               <button 
                 onClick={() => handleLanguageChange('pl')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
               >
                 <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
-                Polski
+                <span className="language-span">Polski</span>
               </button>
             </div>
           </div>
