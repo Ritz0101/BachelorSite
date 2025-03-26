@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { trainingModules } from './Training/Training';
+import { trainingModules } from './Training';
 
 function ModuleContent() {
   const { moduleId } = useParams();
