@@ -1,12 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function UnderstandingSecurityLevels() {
+  const [quizAnswers, setQuizAnswers] = useState({
+    scenario1: '',
+    scenario2: '',
+    scenario3: ''
+  });
+
+  const [feedback, setFeedback] = useState({
+    show: false,
+    messages: []
+  });
+
+  const handleAnswerChange = (scenario, level) => {
+    setQuizAnswers(prev => ({
+      ...prev,
+      [scenario]: level
+    }));
+    setFeedback({ show: false, messages: [] });
+  };
+
+  const checkAnswers = () => {
+    const messages = [];
+    let allCorrect = true;
+
+    // Correct answers
+    const correctAnswers = {
+      scenario1: 'internal',
+      scenario2: 'confidential',
+      scenario3: 'highly-confidential'
+    };
+
+    // Check each scenario
+    if (quizAnswers.scenario1 !== correctAnswers.scenario1) {
+      messages.push("Scenario 1: Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption.");
+      allCorrect = false;
+    }
+    if (quizAnswers.scenario2 !== correctAnswers.scenario2) {
+      messages.push("Scenario 2: Customer data contains private information and should be classified as Confidential.");
+      allCorrect = false;
+    }
+    if (quizAnswers.scenario3 !== correctAnswers.scenario3) {
+      messages.push("Scenario 3: Authentication credentials require the highest level of protection - Highly Confidential.");
+      allCorrect = false;
+    }
+
+    setFeedback({
+      show: true,
+      messages: allCorrect 
+        ? ["Excellent! You've correctly classified all scenarios. You understand how to apply different security levels."]
+        : messages
+    });
+  };
+
   return (
     <div className="min-h-screen bg-light-purple pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <Link to="/training/information-classification-basics" className="text-purple hover:underline mb-4 inline-block">
+          <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
             ← Back to Information Classification Basics
           </Link>
           <h1 className="text-3xl font-bold text-custom-black mb-4">Understanding Security Levels</h1>
@@ -80,9 +132,111 @@ function UnderstandingSecurityLevels() {
               </ul>
             </section>
 
+            <section className="mt-8">
+              <h2 className="text-2xl font-semibold text-black mb-3">Classification Practice</h2>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <p className="text-black mb-4">
+                  For each scenario, select the appropriate security classification level:
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="p-4 border border-gray-200 rounded">
+                    <p className="text-black font-medium mb-3">Scenario 1:</p>
+                    <p className="text-black mb-4">
+                      A document describing the company's standard operating procedures for handling customer support tickets.
+                    </p>
+                    <div className="space-y-2">
+                      {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
+                        <label key={level} className="flex items-center space-x-2">
+                          <input 
+                            type="radio" 
+                            name="scenario1"
+                            value={level}
+                            checked={quizAnswers.scenario1 === level}
+                            onChange={() => handleAnswerChange('scenario1', level)}
+                            className="form-radio text-purple h-5 w-5"
+                          />
+                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-gray-200 rounded">
+                    <p className="text-black font-medium mb-3">Scenario 2:</p>
+                    <p className="text-black mb-4">
+                      A spreadsheet containing customer names, addresses, and purchase history.
+                    </p>
+                    <div className="space-y-2">
+                      {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
+                        <label key={level} className="flex items-center space-x-2">
+                          <input 
+                            type="radio" 
+                            name="scenario2"
+                            value={level}
+                            checked={quizAnswers.scenario2 === level}
+                            onChange={() => handleAnswerChange('scenario2', level)}
+                            className="form-radio text-purple h-5 w-5"
+                          />
+                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-gray-200 rounded">
+                    <p className="text-black font-medium mb-3">Scenario 3:</p>
+                    <p className="text-black mb-4">
+                      A file containing database passwords and API keys for the company's main services.
+                    </p>
+                    <div className="space-y-2">
+                      {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
+                        <label key={level} className="flex items-center space-x-2">
+                          <input 
+                            type="radio" 
+                            name="scenario3"
+                            value={level}
+                            checked={quizAnswers.scenario3 === level}
+                            onChange={() => handleAnswerChange('scenario3', level)}
+                            className="form-radio text-purple h-5 w-5"
+                          />
+                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button 
+                    className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
+                    onClick={checkAnswers}
+                  >
+                    Check Answers
+                  </button>
+
+                  {feedback.show && (
+                    <div className={`mt-4 p-4 rounded-md ${
+                      feedback.messages.length === 1 
+                        ? 'bg-green-50 border border-green-200' 
+                        : 'bg-red-50 border border-red-200'
+                    }`}>
+                      {feedback.messages.map((message, index) => (
+                        <p key={index} className={`${
+                          feedback.messages.length === 1 
+                            ? 'text-green-800' 
+                            : 'text-red-800'
+                        } mb-2`}>
+                          • {message}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
             <div className="mt-8 pt-6 border-t border-gray-200">
               <button 
-                className="bg-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity"
+                className="bg-purple text-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity"
                 onClick={() => {
                   // This would typically update the completion status and navigate to the next course or back to the module
                   alert('Course completed! This would be recorded in your progress.');

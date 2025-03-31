@@ -11,7 +11,7 @@ function InformationClassificationBasics() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-6">
-            <Link to="/training" className="text-purple hover:underline mb-4 inline-block">
+            <Link to="/training" className="text-black hover:underline mb-4 inline-block">
               ← Back to Training Modules
             </Link>
             <h1 className="text-3xl font-bold text-custom-black mt-4">{module.title}</h1>
@@ -33,7 +33,7 @@ function InformationClassificationBasics() {
                     {subModule.completed ? 'Completed' : 'Not started'}
                   </span>
                   <button 
-                    className="bg-purple text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
+                    className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
                     onClick={() => {
                       // Navigate to the specific course
                       if (subModule.id === "1.1") {
