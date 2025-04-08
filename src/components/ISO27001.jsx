@@ -121,10 +121,10 @@ function ISO27001() {
             {components.map((component) => (
               <div 
                 key={component.id}
-                className="bg-light-purple rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-light-purple rounded-lg p-4 hover:shadow-md transition-all duration-300 cursor-pointer min-h-[64px]"
                 onClick={() => toggleItem(component.id)}
               >
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center">
                   <h3 className="font-semibold text-gray-800">{component.title}</h3>
                   <span className="text-purple">
                     {expandedItems[component.id] ? '−' : '+'}
