@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTraining } from '../../../context/TrainingContext';
 
 function UnderstandingSecurityLevels() {
+  const navigate = useNavigate();
+  const { markModuleComplete } = useTraining();
   const [quizAnswers, setQuizAnswers] = useState({
     scenario1: '',
     scenario2: '',
@@ -12,6 +15,8 @@ function UnderstandingSecurityLevels() {
     show: false,
     messages: []
   });
+
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   const handleAnswerChange = (scenario, level) => {
     setQuizAnswers(prev => ({
@@ -52,6 +57,17 @@ function UnderstandingSecurityLevels() {
         ? ["Excellent! You've correctly classified all scenarios. You understand how to apply different security levels."]
         : messages
     });
+
+    // Set quiz as completed if all answers are correct
+    if (allCorrect) {
+      setQuizCompleted(true);
+    }
+  };
+
+  const handleCompletion = () => {
+    markModuleComplete('1.1');
+    // Navigate to the next module (Identifying Sensitive Information)
+    navigate('/training/information-classification-basics/identifying-sensitive-information');
   };
 
   return (
@@ -236,14 +252,21 @@ function UnderstandingSecurityLevels() {
 
             <div className="mt-8 pt-6 border-t border-gray-200">
               <button 
-                className="bg-purple text-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity"
-                onClick={() => {
-                  // This would typically update the completion status and navigate to the next course or back to the module
-                  alert('Course completed! This would be recorded in your progress.');
-                }}
+                className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+                  quizCompleted 
+                    ? 'text-black hover:bg-opacity-90 cursor-pointer' 
+                    : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+                }`}
+                onClick={handleCompletion}
+                disabled={!quizCompleted}
               >
                 Mark as Completed
               </button>
+              {!quizCompleted && (
+                <p className="text-sm text-red-600 mt-2">
+                  Complete the quiz successfully to mark this module as completed
+                </p>
+              )}
             </div>
           </div>
         </div>

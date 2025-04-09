@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTraining } from '../../context/TrainingContext';
 
 // Mock data structure for training modules - can be moved to a separate file later
 export const trainingModules = [
@@ -80,11 +81,15 @@ function ProgressBar({ completed, total }) {
 
 function Training() {
   const navigate = useNavigate();
-  const totalModules = trainingModules.reduce((acc, module) => acc + module.modules.length, 0);
-  const completedModules = trainingModules.reduce(
-    (acc, module) => acc + module.modules.filter(m => m.completed).length, 
+  const { completedModules } = useTraining();
+  
+  const totalModules = trainingModules.reduce(
+    (acc, module) => acc + module.modules.length, 
     0
   );
+  
+  const completedCount = Object.values(completedModules)
+    .filter(Boolean).length;
 
   const handleModuleSelect = (module) => {
     if (module.id === 1) {
@@ -99,13 +104,13 @@ function Training() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-custom-black mb-4">Training Modules</h1>
-            <p className="text-gray-600 mb-4">
+            <h1 className="text-3xl font-bold text-black mb-4">Training Modules</h1>
+            <p className="text-black mb-4">
               Enhance your understanding of information security through our interactive training modules.
             </p>
-            <ProgressBar completed={completedModules} total={totalModules} />
-            <p className="text-sm text-gray-500 mt-2">
-              Overall progress: {completedModules} of {totalModules} modules completed
+            <ProgressBar completed={completedCount} total={totalModules} />
+            <p className="text-sm text-black mt-2">
+              Overall progress: {completedCount} of {totalModules} modules completed
             </p>
           </div>
 
@@ -113,7 +118,13 @@ function Training() {
             {trainingModules.map(module => (
               <ModuleCard 
                 key={module.id} 
-                module={module} 
+                module={{
+                  ...module,
+                  modules: module.modules.map(m => ({
+                    ...m,
+                    completed: completedModules[m.id]
+                  }))
+                }}
                 onSelect={handleModuleSelect}
               />
             ))}
