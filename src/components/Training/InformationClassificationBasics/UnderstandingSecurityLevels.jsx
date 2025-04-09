@@ -13,7 +13,8 @@ function UnderstandingSecurityLevels() {
 
   const [feedback, setFeedback] = useState({
     show: false,
-    messages: []
+    messages: [],
+    allCorrect: false
   });
 
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -23,7 +24,7 @@ function UnderstandingSecurityLevels() {
       ...prev,
       [scenario]: level
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const checkAnswers = () => {
@@ -55,7 +56,8 @@ function UnderstandingSecurityLevels() {
       show: true,
       messages: allCorrect 
         ? ["Excellent! You've correctly classified all scenarios. You understand how to apply different security levels."]
-        : messages
+        : messages,
+      allCorrect: allCorrect
     });
 
     // Set quiz as completed if all answers are correct
@@ -231,13 +233,13 @@ function UnderstandingSecurityLevels() {
 
                   {feedback.show && (
                     <div className={`mt-4 p-4 rounded-md ${
-                      feedback.messages.length === 1 
+                      feedback.allCorrect
                         ? 'bg-green-50 border border-green-200' 
                         : 'bg-red-50 border border-red-200'
                     }`}>
                       {feedback.messages.map((message, index) => (
                         <p key={index} className={`${
-                          feedback.messages.length === 1 
+                          feedback.allCorrect
                             ? 'text-green-800' 
                             : 'text-red-800'
                         } mb-2`}>

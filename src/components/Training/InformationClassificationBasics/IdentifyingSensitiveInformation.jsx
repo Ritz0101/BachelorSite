@@ -41,15 +41,20 @@ function IdentifyingSensitiveInformation() {
 
   const [feedback, setFeedback] = useState({
     show: false,
-    messages: []
+    messages: [],
+    allCorrect: false
   });
+
+  const [quizCompleted, setQuizCompleted] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleScenario1Change = (value) => {
     setScenario1Answers(prev => ({
       ...prev,
       [value]: !prev[value]
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const handleScenario2Change = (value) => {
@@ -57,7 +62,7 @@ function IdentifyingSensitiveInformation() {
       ...prev,
       [value]: !prev[value]
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const handleScenario3Change = (value) => {
@@ -65,7 +70,7 @@ function IdentifyingSensitiveInformation() {
       ...prev,
       [value]: !prev[value]
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const handleScenario4Change = (value) => {
@@ -73,7 +78,7 @@ function IdentifyingSensitiveInformation() {
       ...prev,
       [value]: !prev[value]
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const handleScenario5Change = (value) => {
@@ -81,7 +86,7 @@ function IdentifyingSensitiveInformation() {
       ...prev,
       [value]: !prev[value]
     }));
-    setFeedback({ show: false, messages: [] });
+    setFeedback({ show: false, messages: [], allCorrect: false });
   };
 
   const checkAnswers = () => {
@@ -185,13 +190,19 @@ function IdentifyingSensitiveInformation() {
     setFeedback({
       show: true,
       messages: allCorrect 
-        ? ["Utmerket! Du har korrekt identifisert all sensitiv informasjon."]
-        : messages
+        ? ["Excellent! You correctly identified all sensitive information while recognizing what information is not sensitive."]
+        : messages,
+      allCorrect: allCorrect
     });
 
     if (allCorrect) {
       setQuizCompleted(true);
     }
+  };
+
+  const handleCompletion = () => {
+    markModuleComplete('1.2');
+    navigate('/training/information-classification-basics/handling-classified-information');
   };
 
   return (
@@ -547,13 +558,13 @@ function IdentifyingSensitiveInformation() {
 
                   {feedback.show && (
                     <div className={`mt-4 p-4 rounded-md ${
-                      feedback.messages.length === 1 
+                      feedback.allCorrect
                         ? 'bg-green-50 border border-green-200' 
                         : 'bg-red-50 border border-red-200'
                     }`}>
                       {feedback.messages.map((message, index) => (
                         <p key={index} className={`${
-                          feedback.messages.length === 1 
+                          feedback.allCorrect
                             ? 'text-green-800' 
                             : 'text-red-800'
                         } mb-2`}>
@@ -568,13 +579,21 @@ function IdentifyingSensitiveInformation() {
 
             <div className="mt-8 pt-6 border-t border-gray-200">
               <button 
-                className="bg-purple text-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity"
-                onClick={() => {
-                  alert('Course completed! This would be recorded in your progress.');
-                }}
+                className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+                  quizCompleted 
+                    ? 'text-black hover:bg-opacity-90 cursor-pointer' 
+                    : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+                }`}
+                onClick={handleCompletion}
+                disabled={!quizCompleted}
               >
                 Mark as Completed
               </button>
+              {!quizCompleted && (
+                <p className="text-sm text-red-600 mt-2">
+                  Complete the quiz successfully to mark this module as completed
+                </p>
+              )}
             </div>
           </div>
         </div>
