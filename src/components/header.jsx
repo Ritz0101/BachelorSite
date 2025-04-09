@@ -68,10 +68,7 @@ function Header() {
         {/* Logo and Home link */}
         <div className="flex items-center">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center group">
-            <IsotronLogo className="h-8 w-auto text-custom-black transition-transform duration-300 group-hover:scale-110" />
-          </Link>
-          <Link to="/" className={`ml-4 px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/') ? 'bg-purple-200 font-semibold' : ''}`}>
-            Home
+            <IsotronLogo className="h-8 w-auto text-black transition-transform duration-300 group-hover:scale-110 overflow-visible" />
           </Link>
         </div>
         
