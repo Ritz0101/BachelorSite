@@ -15,6 +15,30 @@ function IdentifyingSensitiveInformation() {
     performance: false
   });
 
+  const [scenario3Answers, setScenario3Answers] = useState({
+    images: false,
+    functionality: false,
+    releaseDate: false,
+    targetMarket: false,
+    publicFeatures: false
+  });
+
+  const [scenario4Answers, setScenario4Answers] = useState({
+    mergerTerms: false,
+    timeline: false,
+    financialDetails: false,
+    companyName: false,
+    annualReportInfo: false
+  });
+
+  const [scenario5Answers, setScenario5Answers] = useState({
+    ipAddresses: false,
+    firewallConfig: false,
+    serverLocations: false,
+    websiteUrl: false,
+    softwareNames: false
+  });
+
   const [feedback, setFeedback] = useState({
     show: false,
     messages: []
@@ -30,6 +54,30 @@ function IdentifyingSensitiveInformation() {
 
   const handleScenario2Change = (value) => {
     setScenario2Answers(prev => ({
+      ...prev,
+      [value]: !prev[value]
+    }));
+    setFeedback({ show: false, messages: [] });
+  };
+
+  const handleScenario3Change = (value) => {
+    setScenario3Answers(prev => ({
+      ...prev,
+      [value]: !prev[value]
+    }));
+    setFeedback({ show: false, messages: [] });
+  };
+
+  const handleScenario4Change = (value) => {
+    setScenario4Answers(prev => ({
+      ...prev,
+      [value]: !prev[value]
+    }));
+    setFeedback({ show: false, messages: [] });
+  };
+
+  const handleScenario5Change = (value) => {
+    setScenario5Answers(prev => ({
       ...prev,
       [value]: !prev[value]
     }));
@@ -68,12 +116,82 @@ function IdentifyingSensitiveInformation() {
       allCorrect = false;
     }
 
+    // Scenario 3 feedback
+    if (!scenario3Answers.images) {
+      messages.push("Produktbilder før lansering er sensitiv informasjon som kan skade konkurransefortrinn");
+      allCorrect = false;
+    }
+    if (!scenario3Answers.functionality) {
+      messages.push("Funksjonalitetsbeskrivelser av upubliserte produkter bør holdes konfidensielt");
+      allCorrect = false;
+    }
+    if (!scenario3Answers.releaseDate) {
+      messages.push("Release date is sensitive information as it reveals the timing of a product launch");
+      allCorrect = false;
+    }
+    if (!scenario3Answers.targetMarket) {
+      messages.push("Target market analysis is sensitive information as it reveals the intended market for a product");
+      allCorrect = false;
+    }
+    if (!scenario3Answers.publicFeatures) {
+      messages.push("Publicly announced features are sensitive information as they reveal the planned features of a product");
+      allCorrect = false;
+    }
+
+    // Scenario 4 feedback
+    if (!scenario4Answers.mergerTerms) {
+      messages.push("Detailed merger terms are sensitive information as they reveal the specific terms of a merger");
+      allCorrect = false;
+    }
+    if (!scenario4Answers.timeline) {
+      messages.push("Timeline of the merger is sensitive information as it reveals the timing of a merger");
+      allCorrect = false;
+    }
+    if (!scenario4Answers.financialDetails) {
+      messages.push("Financial details are sensitive information as they reveal confidential financial information");
+      allCorrect = false;
+    }
+    if (!scenario4Answers.companyName) {
+      messages.push("The publicly known name of the company is sensitive information as it reveals the official name of a company");
+      allCorrect = false;
+    }
+    if (!scenario4Answers.annualReportInfo) {
+      messages.push("Information from the public annual report is sensitive information as it reveals publicly available information");
+      allCorrect = false;
+    }
+
+    // Scenario 5 feedback
+    if (!scenario5Answers.ipAddresses) {
+      messages.push("IP-adresser kan brukes til å kartlegge nettverket og er sensitive");
+      allCorrect = false;
+    }
+    if (!scenario5Answers.firewallConfig) {
+      messages.push("Firewall configuration is sensitive information as it reveals the security setup of a company's network");
+      allCorrect = false;
+    }
+    if (!scenario5Answers.serverLocations) {
+      messages.push("Serverplasseringer er sikkerhetssensitiv informasjon");
+      allCorrect = false;
+    }
+    if (!scenario5Answers.websiteUrl) {
+      messages.push("The company's public website URL is sensitive information as it reveals the official website of a company");
+      allCorrect = false;
+    }
+    if (!scenario5Answers.softwareNames) {
+      messages.push("Names of common software programs used are sensitive information as they reveal the software used by a company");
+      allCorrect = false;
+    }
+
     setFeedback({
       show: true,
       messages: allCorrect 
-        ? ["Excellent! You correctly identified all sensitive information. Each piece of information needs proper protection due to its confidential nature."]
+        ? ["Utmerket! Du har korrekt identifisert all sensitiv informasjon."]
         : messages
     });
+
+    if (allCorrect) {
+      setQuizCompleted(true);
+    }
   };
 
   return (
@@ -224,6 +342,198 @@ function IdentifyingSensitiveInformation() {
                           onChange={() => handleScenario2Change('performance')}
                         />
                         <span className="text-black">Performance reviews</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-gray-200 rounded mt-4">
+                    <p className="text-black font-medium mb-3">Scenario 3:</p>
+                    <p className="text-black mb-4">
+                      A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.
+                    </p>
+                    <div className="space-y-2">
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario3"
+                          value="images"
+                          checked={scenario3Answers.images}
+                          onChange={() => handleScenario3Change('images')}
+                        />
+                        <span className="text-black">Unreleased product images</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario3"
+                          value="functionality"
+                          checked={scenario3Answers.functionality}
+                          onChange={() => handleScenario3Change('functionality')}
+                        />
+                        <span className="text-black">Detailed functionality descriptions</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario3"
+                          value="releaseDate"
+                          checked={scenario3Answers.releaseDate}
+                          onChange={() => handleScenario3Change('releaseDate')}
+                        />
+                        <span className="text-black">Publicly announced release date</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario3"
+                          value="targetMarket"
+                          checked={scenario3Answers.targetMarket}
+                          onChange={() => handleScenario3Change('targetMarket')}
+                        />
+                        <span className="text-black">Target market analysis</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario3"
+                          value="publicFeatures"
+                          checked={scenario3Answers.publicFeatures}
+                          onChange={() => handleScenario3Change('publicFeatures')}
+                        />
+                        <span className="text-black">Publicly announced features</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-gray-200 rounded mt-4">
+                    <p className="text-black font-medium mb-3">Scenario 4:</p>
+                    <p className="text-black mb-4">
+                      An email discussing a potential merger with another company, including terms, timeline, financial details, the name of the company, and information that has been mentioned in the annual report.
+                    </p>
+                    <div className="space-y-2">
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario4"
+                          value="mergerTerms"
+                          checked={scenario4Answers.mergerTerms}
+                          onChange={() => handleScenario4Change('mergerTerms')}
+                        />
+                        <span className="text-black">Detailed merger terms</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario4"
+                          value="timeline"
+                          checked={scenario4Answers.timeline}
+                          onChange={() => handleScenario4Change('timeline')}
+                        />
+                        <span className="text-black">Timeline of the merger</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario4"
+                          value="financialDetails"
+                          checked={scenario4Answers.financialDetails}
+                          onChange={() => handleScenario4Change('financialDetails')}
+                        />
+                        <span className="text-black">Financial details</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario4"
+                          value="companyName"
+                          checked={scenario4Answers.companyName}
+                          onChange={() => handleScenario4Change('companyName')}
+                        />
+                        <span className="text-black">The publicly known name of the company</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario4"
+                          value="annualReportInfo"
+                          checked={scenario4Answers.annualReportInfo}
+                          onChange={() => handleScenario4Change('annualReportInfo')}
+                        />
+                        <span className="text-black">Information from the public annual report</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-gray-200 rounded mt-4">
+                    <p className="text-black font-medium mb-3">Scenario 5:</p>
+                    <p className="text-black mb-4">
+                      A document describing the company's network architecture, including IP addresses, firewall configuration, server locations, the company's website URL, and the names of software programs used.
+                    </p>
+                    <div className="space-y-2">
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario5"
+                          value="ipAddresses"
+                          checked={scenario5Answers.ipAddresses}
+                          onChange={() => handleScenario5Change('ipAddresses')}
+                        />
+                        <span className="text-black">Internal IP addresses</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario5"
+                          value="firewallConfig"
+                          checked={scenario5Answers.firewallConfig}
+                          onChange={() => handleScenario5Change('firewallConfig')}
+                        />
+                        <span className="text-black">Firewall configuration</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario5"
+                          value="serverLocations"
+                          checked={scenario5Answers.serverLocations}
+                          onChange={() => handleScenario5Change('serverLocations')}
+                        />
+                        <span className="text-black">Server locations</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario5"
+                          value="websiteUrl"
+                          checked={scenario5Answers.websiteUrl}
+                          onChange={() => handleScenario5Change('websiteUrl')}
+                        />
+                        <span className="text-black">The company's public website URL</span>
+                      </label>
+                      <label className="flex items-center space-x-2">
+                        <input 
+                          type="checkbox" 
+                          className="form-checkbox text-purple h-5 w-5" 
+                          name="scenario5"
+                          value="softwareNames"
+                          checked={scenario5Answers.softwareNames}
+                          onChange={() => handleScenario5Change('softwareNames')}
+                        />
+                        <span className="text-black">Names of common software programs used</span>
                       </label>
                     </div>
                   </div>
