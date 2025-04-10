@@ -314,7 +314,7 @@ function ReportGenerator({ documentInfo, answers, selectedCategories, onReset })
             </p>
             <button
               onClick={() => setShowCertificateForm(true)}
-              className="bg-purple text-custom-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
+              className="bg-dark-purple text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
             >
               Request Certificate
             </button>
@@ -362,7 +362,7 @@ function ReportGenerator({ documentInfo, answers, selectedCategories, onReset })
       {/* Reset Button */}
       <button
         onClick={onReset}
-        className="mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
+        className="mt-6 bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
       >
         Start New Classification
       </button>

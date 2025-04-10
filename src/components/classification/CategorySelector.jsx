@@ -94,7 +94,7 @@ function CategorySelector({ questions, onCategoriesSelected }) {
       <button
         onClick={handleContinue}
         disabled={selectedCategories.length === 0}
-        className={`w-full mt-6 bg-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors ${
+        className={`w-full mt-6 bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors ${
           selectedCategories.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >

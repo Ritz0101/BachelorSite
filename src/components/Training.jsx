@@ -57,7 +57,7 @@ function ModuleCard({ module, onSelect }) {
       <p className="text-gray-600 mb-4">{module.description}</p>
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500">Duration: {module.duration}</span>
-        <span className="text-sm text-purple">
+        <span className="text-sm text-dark-purple">
           {module.modules.filter(m => m.completed).length} / {module.modules.length} completed
         </span>
       </div>

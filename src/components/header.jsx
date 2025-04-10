@@ -91,7 +91,7 @@ function Header() {
               className={`flex items-center px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isMenuOpen ? 'bg-purple-200' : ''}`} 
               onClick={toggleMenu}
             >
-              About 
+              More  
               <svg 
                 className={`ml-1 w-4 h-4 transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`} 
                 fill="none" 
@@ -116,7 +116,7 @@ function Header() {
                 <div className="border-t border-gray-200 mt-1 pt-1">
                   <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50">
                     <BugIcon className="h-4 w-4 flex-none text-gray-500" />
-                    <span>Meld feil på siden</span>
+                    <span>Report an issue/bug</span>
                   </button>
                 </div>
               </div>

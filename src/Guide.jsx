@@ -431,7 +431,7 @@ function Guide() {
                 {/* Start Classification button - outside dropdown */}
                 <button
                   onClick={handleDocumentInfoSubmit}
-                  className="w-full bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
+                  className="w-full bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
                 >
                   Start Classification
                 </button>

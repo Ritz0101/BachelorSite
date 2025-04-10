@@ -8,9 +8,9 @@ function App() {
         {/* Hero section */}
         <div className="text-center py-10">
           <h1 className="text-5xl font-bold mb-4">
-            <span className="inline-block px-1 transition-all duration-300 ease-in-out hover:scale-105">Welcome</span>{" "}
-            <span className="inline-block px-2 transition-all duration-300 ease-in-out hover:scale-105">to</span>{" "}
-            <span className="inline-block px-1 transition-all duration-300 ease-in-out hover:scale-105">Isotron!</span>
+            <span className="inline-block px-1 transition-all duration-300 ease-in-out hover:scale-105 cursor-default">Welcome </span>
+            <span className="inline-block px-2 transition-all duration-300 ease-in-out hover:scale-110 cursor-default">to </span>
+            <span className="inline-block px-1 transition-all duration-300 ease-in-out hover:scale-105 cursor-default">Isotron!</span>
           </h1>
           <p className="text-xl text-gray-600 mb-6">Your guide to secure information handling!</p>
         </div>
@@ -26,7 +26,7 @@ function App() {
                 <p className="text-gray-600 mb-4">
                   Isotron is designed to assist employees in classifying sensitive data according to ISO 27001 standards. By following a decision tree, users can answer a series of questions that lead to a classification report, ensuring compliance and proper handling of information.
                 </p>
-                <Link to="/guide" className="bg-light-purple rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer self-start">
+                <Link to="/guide" className="bg-dark-purple text-white rounded-lg p-4 hover:shadow-lg hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01] cursor-pointer self-start">
                   Start Guide
                 </Link>
               </div>
@@ -38,7 +38,7 @@ function App() {
                 <p className="text-gray-600 mb-4">
                   The training modules are designed to provide comprehensive knowledge about ISO 27001 compliance, helping employees understand the importance of data security and the steps necessary to maintain it. Each module includes quizzes to reinforce learning and ensure retention of key concepts.
                 </p>
-                <Link to="/training" className="bg-light-purple rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer self-start">
+                <Link to="/training" className="bg-dark-purple text-white rounded-lg p-4 hover:shadow-lg hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01] cursor-pointer self-start">
                   Start Training
                 </Link>
               </div>
