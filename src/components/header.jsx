@@ -2,12 +2,15 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import BugIcon from './svg/bug.svg?react';
 import IsotronLogo from './svg/isotron.svg?react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [language, setLanguage] = useState('en'); // Default language
   const location = useLocation();
+  const { t } = useTranslation();
+  const { currentLanguage, changeLanguage, languages } = useLanguage();
   
   const menuRef = useRef(null);
   const langMenuRef = useRef(null);
@@ -46,15 +49,8 @@ function Header() {
   };
 
   const handleLanguageChange = (lang) => {
-    setLanguage(lang);
+    changeLanguage(lang);
     setIsLanguageOpen(false);
-    
-    // If Polish is selected, add a class to the body for styling
-    if (lang === 'pl') {
-      document.body.classList.add('polish-mode');
-    } else {
-      document.body.classList.remove('polish-mode');
-    }
   };
   
   // Determine if a link is active
@@ -68,7 +64,10 @@ function Header() {
         {/* Logo and Home link */}
         <div className="flex items-center">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center group">
-            <IsotronLogo className="h-8 w-auto text-black transition-transform duration-300 group-hover:scale-110 overflow-visible" />
+            <IsotronLogo className="h-8 w-auto text-custom-black transition-transform duration-300 group-hover:scale-110" />
+          </Link>
+          <Link to="/" className={`ml-4 px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/') ? 'bg-purple-200 font-semibold' : ''}`}>
+            {t('navigation.home')}
           </Link>
         </div>
         
@@ -78,20 +77,20 @@ function Header() {
             to="/guide" 
             className={`px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/guide') ? 'bg-purple-200 font-semibold' : ''}`}
           >
-            Classification Guide
+            {t('navigation.guide')}
           </Link>
           <Link 
             to="/training" 
             className={`px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/training') ? 'bg-purple-200 font-semibold' : ''}`}
           >
-            Training
+            {t('navigation.training')}
           </Link>
           <div className="relative" ref={menuRef}>
             <button 
               className={`flex items-center px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isMenuOpen ? 'bg-purple-200' : ''}`} 
               onClick={toggleMenu}
             >
-              More  
+              {t('navigation.about')}
               <svg 
                 className={`ml-1 w-4 h-4 transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`} 
                 fill="none" 
@@ -110,13 +109,13 @@ function Header() {
               }`}
             >
               <div className="py-1">
-                <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">About</Link>
-                <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">ISO 27001</Link>
-                <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">Contact</Link>
+                <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.about')}</Link>
+                <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.iso27001')}</Link>
+                <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.contact')}</Link>
                 <div className="border-t border-gray-200 mt-1 pt-1">
                   <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50">
                     <BugIcon className="h-4 w-4 flex-none text-gray-500" />
-                    <span>Report an issue/bug</span>
+                    <span>{t('navigation.reportBug')}</span>
                   </button>
                 </div>
               </div>
@@ -132,22 +131,22 @@ function Header() {
             aria-expanded={isLanguageOpen}
             aria-haspopup="true"
           >
-            {language === 'en' && (
+            {currentLanguage === 'en' && (
               <span className="flex items-center">
                 <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
-                English
+                {t('language.en')}
               </span>
             )}
-            {language === 'no' && (
+            {currentLanguage === 'no' && (
               <span className="flex items-center">
                 <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
-                Norsk
+                {t('language.no')}
               </span>
             )}
-            {language === 'pl' && (
+            {currentLanguage === 'pl' && (
               <span className="flex items-center">
                 <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
-                Polski
+                {t('language.pl')}
               </span>
             )}
             <svg 
@@ -171,24 +170,24 @@ function Header() {
             <div className="py-1">
               <button 
                 onClick={() => handleLanguageChange('en')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
-                <span className="language-span">English</span>
+                {t('language.en')}
               </button>
               <button 
                 onClick={() => handleLanguageChange('no')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
-                <span className="language-span">Norsk</span>
+                {t('language.no')}
               </button>
               <button 
                 onClick={() => handleLanguageChange('pl')} 
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 language-button"
+                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
-                <span className="language-span">Polski</span>
+                {t('language.pl')}
               </button>
             </div>
           </div>

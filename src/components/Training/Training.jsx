@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useTraining } from '../../context/TrainingContext';
 
 // Mock data structure for training modules - can be moved to a separate file later
 export const trainingModules = [
   {
     id: 1,
-    title: "Information Classification Basics",
-    description: "Learn the fundamentals of classifying sensitive information",
-    duration: "20 min",
+    titleKey: "training.modules.informationClassification.title",
+    descriptionKey: "training.modules.informationClassification.description",
+    duration: "20",
+    route: '/training/information-classification-basics',
     modules: [
       {
         id: "1.1",
@@ -28,9 +31,10 @@ export const trainingModules = [
   },
   {
     id: 2,
-    title: "ISO 27001 Fundamentals",
-    description: "Introduction to ISO 27001 principles and practices",
-    duration: "30 min",
+    titleKey: "training.modules.iso27001.title",
+    descriptionKey: "training.modules.iso27001.description",
+    duration: "30",
+    route: '/training/iso27001-fundamentals',
     modules: [
       {
         id: "2.1",
@@ -48,17 +52,22 @@ export const trainingModules = [
 
 // Reusable module card component
 function ModuleCard({ module, onSelect }) {
+  const { t } = useTranslation();
+  
   return (
     <div 
       onClick={() => onSelect(module)}
       className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
     >
-      <h3 className="text-xl font-semibold text-custom-black mb-2">{module.title}</h3>
-      <p className="text-gray-600 mb-4">{module.description}</p>
+      <h3 className="text-xl font-semibold text-custom-black mb-2">{t(module.titleKey)}</h3>
+      <p className="text-gray-600 mb-4">{t(module.descriptionKey)}</p>
       <div className="flex justify-between items-center">
-        <span className="text-sm text-gray-500">Duration: {module.duration}</span>
-        <span className="text-sm text-dark-purple">
-          {module.modules.filter(m => m.completed).length} / {module.modules.length} completed
+        <span className="text-sm text-black">{t('training.duration', { time: module.duration })}</span>
+        <span className="text-sm text-black">
+          {t('training.progressIndicator', { 
+            completed: module.modules.filter(m => m.completed).length, 
+            total: module.modules.length 
+          })}
         </span>
       </div>
     </div>
@@ -80,14 +89,19 @@ function ProgressBar({ completed, total }) {
 
 function Training() {
   const navigate = useNavigate();
-  const totalModules = trainingModules.reduce((acc, module) => acc + module.modules.length, 0);
-  const completedModules = trainingModules.reduce(
-    (acc, module) => acc + module.modules.filter(m => m.completed).length, 
+  const { t } = useTranslation();
+  const { completedModules } = useTraining();
+  
+  const totalModules = trainingModules.reduce(
+    (acc, module) => acc + module.modules.length, 
     0
   );
+  
+  const completedCount = Object.values(completedModules)
+    .filter(Boolean).length;
 
   const handleModuleSelect = (module) => {
-    navigate(`/training/${module.id}`);
+    navigate(module.route);
   };
 
   return (
@@ -95,13 +109,13 @@ function Training() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-custom-black mb-4">Training Modules</h1>
-            <p className="text-gray-600 mb-4">
-              Enhance your understanding of information security through our interactive training modules.
+            <h1 className="text-3xl font-bold text-black mb-4">{t('training.title')}</h1>
+            <p className="text-black mb-4">
+              {t('training.description')}
             </p>
-            <ProgressBar completed={completedModules} total={totalModules} />
-            <p className="text-sm text-gray-500 mt-2">
-              Overall progress: {completedModules} of {totalModules} modules completed
+            <ProgressBar completed={completedCount} total={totalModules} />
+            <p className="text-sm text-black mt-2">
+              {t('training.overallProgress', { completed: completedCount, total: totalModules })}
             </p>
           </div>
 
@@ -109,7 +123,13 @@ function Training() {
             {trainingModules.map(module => (
               <ModuleCard 
                 key={module.id} 
-                module={module} 
+                module={{
+                  ...module,
+                  modules: module.modules.map(m => ({
+                    ...m,
+                    completed: completedModules[m.id]
+                  }))
+                }}
                 onSelect={handleModuleSelect}
               />
             ))}

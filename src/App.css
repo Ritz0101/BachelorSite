@@ -2,36 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Polish placeholder mode */
-.polish-mode p, 
-.polish-mode h1, 
-.polish-mode h2, 
-.polish-mode h3, 
-.polish-mode h4, 
-.polish-mode h5, 
-.polish-mode h6, 
-.polish-mode button:not(.language-button),
-.polish-mode a:not(.language-link),
-.polish-mode span:not(.language-span),
-.polish-mode li:not(.language-item) {
-  visibility: hidden;
-  position: relative;
-}
-
-.polish-mode p:after, 
-.polish-mode h1:after, 
-.polish-mode h2:after, 
-.polish-mode h3:after, 
-.polish-mode h4:after, 
-.polish-mode h5:after, 
-.polish-mode h6:after, 
-.polish-mode button:not(.language-button):after,
-.polish-mode a:not(.language-link):after,
-.polish-mode span:not(.language-span):after,
-.polish-mode li:not(.language-item):after {
-  content: "Kurwa";  /* Replace with your preferred placeholder word (this is "Hello" in Polish) */
-  visibility: visible;
-  position: absolute;
-  left: 0;
-}

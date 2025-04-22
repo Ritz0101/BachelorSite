@@ -1,0 +1,783 @@
+{
+  "navigation": {
+    "home": "Strona główna",
+    "guide": "Przewodnik",
+    "about": "O nas",
+    "training": "Szkolenie",
+    "iso27001": "ISO 27001",
+    "contact": "Kontakt",
+    "reportBug": "Zgłoś błąd"
+  },
+  "home": {
+    "title": "Witaj w Isotron",
+    "subtitle": "Twój przewodnik po bezpiecznym zarządzaniu informacjami",
+    "getStarted": "Rozpocznij",
+    "guide": {
+      "intro": "Nie wiesz jak postępować z wrażliwymi informacjami? Nasz przewodnik klasyfikacji pomoże Ci podejmować właściwe decyzje dzięki prostej i skutecznej liście kontrolnej.",
+      "details": "Isotron został zaprojektowany, aby pomóc pracownikom w klasyfikowaniu wrażliwych danych zgodnie ze standardami ISO 27001. Postępując według drzewa decyzyjnego, użytkownicy mogą odpowiedzieć na serię pytań, które prowadzą do raportu klasyfikacji, zapewniając zgodność i właściwe postępowanie z informacjami."
+    },
+    "training": {
+      "intro": "Rozpocznij swoją podróż edukacyjną z naszymi interaktywnymi modułami szkoleniowymi i przetestuj swoją wiedzę poprzez specjalnie przygotowane quizy.",
+      "details": "Moduły szkoleniowe zostały zaprojektowane, aby dostarczyć kompleksową wiedzę na temat zgodności z ISO 27001, pomagając pracownikom zrozumieć znaczenie bezpieczeństwa danych i niezbędne kroki do jego utrzymania. Każdy moduł zawiera quizy, które wzmacniają naukę i zapewniają zapamiętanie kluczowych koncepcji."
+    }
+  },
+  "guide": {
+    "title": "Przewodnik klasyfikacji",
+    "subtitle": "Postępuj zgodnie z tymi krokami, aby prawidłowo sklasyfikować swoje informacje",
+    "reset": "Reset",
+    "resetTitle": "Rozpocznij proces klasyfikacji od początku",
+    "startClassification": "Rozpocznij klasyfikację",
+    "advancedOptions": "Opcje zaawansowane (opcjonalne)",
+    "documentInfoHelp": "Podanie szczegółów dokumentu pomoże wygenerować bardziej spersonalizowany raport klasyfikacji ze szczegółowymi instrukcjami obsługi.",
+    "categories": {
+      "defaultQuestion": "Jakie rodzaje danych zawiera dokument? (Wybierz wszystkie, które mają zastosowanie)",
+      "continue": "Kontynuuj",
+      "selectHelp": "Wybierz wszystkie kategorie, które dotyczą Twojego dokumentu."
+    },
+    "sections": {
+      "heating": "Dane osobowe",
+      "lighting": "Dane biznesowe",
+      "appliances": "Dane wrażliwe",
+      "insulation": "Dane poufne"
+    },
+    "welcome": {
+      "title": "Witamy w przewodniku klasyfikacji",
+      "description": "Ten przewodnik pomoże Ci określić odpowiedni poziom klasyfikacji dokumentu w oparciu o standardy ISO27001. Poprzez serię pytań ocenimy wrażliwość i wymagania bezpieczeństwa Twoich informacji.",
+      "expectTitle": "Czego się spodziewać",
+      "expectItem1": "Wybierz wszystkie rodzaje wrażliwych informacji w swoim dokumencie",
+      "expectItem2": "Odpowiedz na pytania dotyczące zawartości i wykorzystania dokumentu",
+      "expectItem3": "Otrzymaj poziom klasyfikacji oparty na ISO27001",
+      "expectItem4": "Uzyskaj szczegółowe instrukcje obsługi i bezpieczeństwa",
+      "expectItem5": "Szacowany czas: 2-3 minuty"
+    },
+    "form": {
+      "documentName": "Nazwa dokumentu",
+      "documentNamePlaceholder": "np. Raport finansowy Q4",
+      "fileType": "Typ pliku",
+      "fileTypePlaceholder": "np. PDF, DOCX, XLSX",
+      "documentOwner": "Właściciel dokumentu",
+      "documentOwnerPlaceholder": "np. Jan Kowalski",
+      "department": "Dział",
+      "departmentPlaceholder": "np. Finanse",
+      "description": "Krótki opis",
+      "descriptionPlaceholder": "Krótki opis zawartości i celu dokumentu"
+    }
+  },
+  "training": {
+    "title": "Moduły szkoleniowe",
+    "subtitle": "Interaktywne lekcje na temat bezpieczeństwa informacji",
+    "description": "Pogłęb swoją wiedzę na temat bezpieczeństwa informacji dzięki naszym interaktywnym modułom szkoleniowym.",
+    "overallProgress": "Ogólny postęp: {{completed}} z {{total}} modułów ukończonych",
+    "duration": "Czas trwania: {{time}} min",
+    "progressIndicator": "{{completed}} / {{total}} ukończonych",
+    "completed": "Ukończone",
+    "markAsCompleted": "Oznacz jako ukończone",
+    "modules": {
+      "informationClassification": {
+        "title": "Podstawy klasyfikacji informacji",
+        "description": "Poznaj podstawy klasyfikacji wrażliwych informacji"
+      },
+      "iso27001": {
+        "title": "Podstawy ISO 27001",
+        "description": "Wprowadzenie do zasad i praktyk ISO 27001",
+        "submodules": {
+          "ismsBasics": {
+            "title": "Podstawy ISMS",
+            "description": "Poznaj systemy zarządzania bezpieczeństwem informacji.",
+            "backToModule": "Powrót do Podstaw ISO 27001",
+            "whatIsISMS": {
+              "title": "Czym jest ISMS?",
+              "description": "System Zarządzania Bezpieczeństwem Informacji (ISMS) to systematyczne podejście do zarządzania wrażliwymi informacjami firmowymi, aby pozostały bezpieczne. Obejmuje ludzi, procesy i technologię.",
+              "definition": "Definicja: ISMS to zestaw polityk i procedur, który obejmuje wszystkie kontrole prawne, fizyczne i techniczne zaangażowane w procesy zarządzania ryzykiem informacyjnym organizacji."
+            },
+            "whyImplement": {
+              "title": "Dlaczego wdrażać ISMS?",
+              "businessBenefits": {
+                "title": "Korzyści biznesowe",
+                "item1": "Ulepszony poziom bezpieczeństwa informacji",
+                "item2": "Przewaga konkurencyjna",
+                "item3": "Zaufanie klientów i interesariuszy",
+                "item4": "Ciągłość biznesowa",
+                "item5": "Obniżone składki ubezpieczenia cybernetycznego"
+              },
+              "riskManagement": {
+                "title": "Zarządzanie ryzykiem",
+                "item1": "Strukturyzowana identyfikacja ryzyk",
+                "item2": "Wdrażanie odpowiednich kontroli",
+                "item3": "Systematyczne zarządzanie zagrożeniami",
+                "item4": "Zmniejszone prawdopodobieństwo naruszeń",
+                "item5": "Zgodność prawna i regulacyjna"
+              }
+            },
+            "isoAndISMS": {
+              "title": "ISO 27001 i ISMS",
+              "description": "ISO 27001 to międzynarodowy standard opisujący najlepsze praktyki dla ISMS. Zapewnia ramy dla ustanawiania, wdrażania, eksploatacji, monitorowania, przeglądu, utrzymania i doskonalenia ISMS.",
+              "pdcaCycle": {
+                "title": "Cykl PDCA w ISMS",
+                "plan": {
+                  "title": "Planuj",
+                  "description": "Ustanowienie polityki ISMS, celów, procesów i procedur"
+                },
+                "do": {
+                  "title": "Wykonaj",
+                  "description": "Wdrożenie i obsługa polityki ISMS, kontroli, procesów i procedur"
+                },
+                "check": {
+                  "title": "Sprawdź",
+                  "description": "Monitorowanie i przegląd ISMS, mierzenie wydajności procesów w odniesieniu do polityki i celów"
+                },
+                "act": {
+                  "title": "Działaj",
+                  "description": "Podejmowanie działań korygujących i zapobiegawczych, na podstawie wyników audytów wewnętrznych, w celu osiągnięcia ciągłego doskonalenia"
+                }
+              }
+            },
+            "keyComponents": {
+              "title": "Kluczowe komponenty ISMS",
+              "policy": {
+                "title": "Polityka bezpieczeństwa informacji",
+                "description": "Określa kierunek i wyraża wsparcie zarządu dla bezpieczeństwa informacji"
+              },
+              "riskAssessment": {
+                "title": "Ocena ryzyka",
+                "description": "Systematyczny proces identyfikacji, analizy i oceny ryzyka bezpieczeństwa informacji"
+              },
+              "controls": {
+                "title": "Kontrole bezpieczeństwa",
+                "description": "Zabezpieczenia lub środki zaradcze służące unikaniu, wykrywaniu, przeciwdziałaniu lub minimalizowaniu ryzyka bezpieczeństwa"
+              },
+              "soa": {
+                "title": "Deklaracja stosowania (SoA)",
+                "description": "Dokument opisujący, które kontrole są istotne i mające zastosowanie do ISMS organizacji"
+              },
+              "audits": {
+                "title": "Audyty wewnętrzne",
+                "description": "Regularne kontrole zapewniające, że ISMS działa zgodnie z oczekiwaniami i identyfikujące możliwości poprawy"
+              },
+              "review": {
+                "title": "Przegląd zarządzania",
+                "description": "Regularny przegląd ISMS przez wyższe kierownictwo w celu zapewnienia jego ciągłej przydatności i skuteczności"
+              }
+            },
+            "quiz": {
+              "title": "Sprawdzian wiedzy",
+              "excellent": "Doskonale! Rozumiesz podstawy Systemu Zarządzania Bezpieczeństwem Informacji (ISMS) i ISO 27001.",
+              "questions": {
+                "ismsDefinition": {
+                  "title": "Pytanie 1: Definicja ISMS",
+                  "question": "1. Czym jest System Zarządzania Bezpieczeństwem Informacji (ISMS)?",
+                  "options": {
+                    "a": "Narzędzie programowe do monitorowania bezpieczeństwa sieci",
+                    "b": "Systematyczne podejście do zarządzania wrażliwymi informacjami i zapewnienia ciągłości działania",
+                    "c": "Rozwiązanie sprzętowe do szyfrowania danych",
+                    "d": "Lista kontrolna najlepszych praktyk bezpieczeństwa IT"
+                  }
+                },
+                "pdcaCycle": {
+                  "title": "Pytanie 2: Cykl PDCA",
+                  "question": "2. Co oznacza cykl PDCA w ISO 27001?",
+                  "options": {
+                    "a": "Planuj, Wykonaj, Sprawdź, Działaj",
+                    "b": "Zapobiegaj, Wykrywaj, Koryguj, Dostosuj",
+                    "c": "Przygotuj, Rozwijaj, Kontroluj, Analizuj",
+                    "d": "Przetwarzaj, Dokumentuj, Konfiguruj, Audytuj"
+                  }
+                },
+                "isoPrinciples": {
+                  "title": "Pytanie 3: Zasady ISO 27001",
+                  "question": "3. Która z poniższych jest fundamentalną zasadą ISO 27001?",
+                  "options": {
+                    "a": "Maksymalizacja produktywności za wszelką cenę",
+                    "b": "Całkowite wyeliminowanie wszystkich ryzyk bezpieczeństwa",
+                    "c": "Podejście oparte na zarządzaniu ryzykiem w bezpieczeństwie informacji",
+                    "d": "Izolowanie wszystkich systemów od połączeń zewnętrznych"
+                  }
+                },
+                "riskAssessment": {
+                  "title": "Pytanie 4: Ocena ryzyka",
+                  "question": "4. Jaką rolę odgrywa ocena ryzyka w ISO 27001?",
+                  "options": {
+                    "a": "Jest opcjonalna i tylko dla organizacji o wysokim poziomie bezpieczeństwa",
+                    "b": "Jest niezbędna do ustanowienia skutecznego ISMS",
+                    "c": "Jest wykonywana tylko raz po wdrożeniu",
+                    "d": "Koncentruje się tylko na zagrożeniach zewnętrznych"
+                  }
+                },
+                "certification": {
+                  "title": "Pytanie 5: Certyfikacja ISO 27001",
+                  "question": "5. Co jest wymagane do uzyskania certyfikacji ISO 27001?",
+                  "options": {
+                    "a": "Wdrożenie wszystkich 114 zabezpieczeń z Załącznika A",
+                    "b": "Posiadanie doskonałego bezpieczeństwa bez żadnych incydentów",
+                    "c": "Korzystanie wyłącznie z dostawców bezpieczeństwa zatwierdzonych przez ISO",
+                    "d": "Wdrożenie ISMS, przeprowadzenie audytów wewnętrznych i przejście audytu zewnętrznego"
+                  }
+                }
+              },
+              "feedback": {
+                "ismsDefinition": "ISMS to systematyczne podejście do zarządzania wrażliwymi informacjami i zapewnienia ciągłości działania.",
+                "pdcaCycle": "Cykl PDCA składa się z faz: Planuj, Wykonaj, Sprawdź, Działaj dla ciągłego doskonalenia.",
+                "isoPrinciples": "ISO 27001 opiera się na podejściu opartym na zarządzaniu ryzykiem w bezpieczeństwie informacji.",
+                "riskAssessment": "Ocena ryzyka jest niezbędnym elementem ustanowienia ISMS.",
+                "certification": "Aby uzyskać certyfikację ISO 27001, organizacja musi wdrożyć ISMS, przeprowadzić audyty wewnętrzne, usunąć niezgodności i przejść audyt zewnętrzny."
+              },
+              "quizCompletionRequired": "Ukończ quiz z powodzeniem, aby oznaczyć ten moduł jako ukończony"
+            }
+          },
+          "riskAssessment": {
+            "title": "Ocena ryzyka",
+            "description": "Poznaj ocenę ryzyka w ISO 27001.",
+            "backToModule": "Powrót do Podstaw ISO 27001",
+            "whatIs": {
+              "title": "Czym jest ocena ryzyka?",
+              "description": "Ocena ryzyka jest kluczowym komponentem ISO 27001 i fundamentem skutecznego systemu zarządzania bezpieczeństwem informacji (ISMS). Obejmuje identyfikację, analizę i ocenę ryzyka dla bezpieczeństwa informacji.",
+              "definition": "Definicja: Ocena ryzyka to ogólny proces identyfikacji ryzyka, analizy ryzyka i ewaluacji ryzyka zgodnie z definicją ISO 27001."
+            },
+            "process": {
+              "title": "Proces zarządzania ryzykiem",
+              "identification": {
+                "title": "1. Identyfikacja ryzyka",
+                "description": "Znajdowanie, rozpoznawanie i opisywanie ryzyka poprzez identyfikację zasobów, zagrożeń, istniejących kontroli, podatności i konsekwencji."
+              },
+              "analysis": {
+                "title": "2. Analiza ryzyka",
+                "description": "Zrozumienie charakteru ryzyka i określenie poziomu ryzyka poprzez przypisanie wartości do prawdopodobieństwa i wpływu."
+              },
+              "evaluation": {
+                "title": "3. Ewaluacja ryzyka",
+                "description": "Porównanie wyników analizy ryzyka z kryteriami ryzyka w celu ustalenia, czy ryzyko jest akceptowalne, czy wymaga działania."
+              },
+              "treatment": {
+                "title": "4. Postępowanie z ryzykiem",
+                "description": "Wybór i wdrożenie opcji postępowania z ryzykiem poprzez modyfikację ryzyka (kontrole), akceptację ryzyka, unikanie ryzyka lub transfer ryzyka."
+              }
+            },
+            "keyComponents": {
+              "title": "Kluczowe komponenty oceny ryzyka",
+              "assets": {
+                "title": "Identyfikacja zasobów",
+                "description": "Identyfikacja i kategoryzacja zasobów informacyjnych jest pierwszym krokiem w ocenie ryzyka.",
+                "item1": "Zasoby informacyjne (bazy danych, pliki, dokumentacja)",
+                "item2": "Zasoby programowe (aplikacje, systemy, narzędzia developerskie)",
+                "item3": "Zasoby fizyczne (komputery, sprzęt sieciowy, nośniki)",
+                "item4": "Usługi (usługi obliczeniowe, komunikacyjne)",
+                "item5": "Ludzie (pracownicy, klienci, użytkownicy) oraz ich kwalifikacje, umiejętności i doświadczenie",
+                "item6": "Wartości niematerialne (reputacja, wizerunek)"
+              },
+              "threats": {
+                "title": "Identyfikacja zagrożeń",
+                "description": "Identyfikacja potencjalnych źródeł zagrożeń i zdarzeń, które mogą zaszkodzić zasobom.",
+                "internal": {
+                  "title": "Zagrożenia wewnętrzne",
+                  "item1": "Błędy ludzkie",
+                  "item2": "Nieuczciwi pracownicy",
+                  "item3": "Awarie systemów",
+                  "item4": "Błędy procesów"
+                },
+                "external": {
+                  "title": "Zagrożenia zewnętrzne",
+                  "item1": "Ataki cybernetyczne",
+                  "item2": "Klęski żywiołowe",
+                  "item3": "Zakłócenia łańcucha dostaw",
+                  "item4": "Zmiany prawne/regulacyjne"
+                }
+              },
+              "vulnerabilities": {
+                "title": "Ocena podatności",
+                "description": "Identyfikacja słabości w zasobach, które mogą być wykorzystane przez zagrożenia.",
+                "item1": "Słabe hasła lub metody uwierzytelniania",
+                "item2": "Niezaktualizowane oprogramowanie",
+                "item3": "Nieodpowiednie zabezpieczenia fizyczne",
+                "item4": "Niewystarczające szkolenie personelu",
+                "item5": "Źle skonfigurowane systemy",
+                "item6": "Nieodpowiednie procedury tworzenia kopii zapasowych"
+              },
+              "analysis": {
+                "title": "Metody analizy ryzyka",
+                "qualitative": {
+                  "title": "Analiza jakościowa",
+                  "description": "Wykorzystuje skale opisowe (Wysoki, Średni, Niski) do opisania prawdopodobieństwa i wpływu ryzyka."
+                },
+                "quantitative": {
+                  "title": "Analiza ilościowa",
+                  "description": "Przypisuje wartości liczbowe do ryzyka, często w kategoriach pieniężnych lub za pomocą konkretnych systemów punktacji."
+                }
+              },
+              "treatment": {
+                "title": "Opcje postępowania z ryzykiem",
+                "modify": {
+                  "title": "Modyfikacja (ograniczenie)",
+                  "description": "Wdrożenie kontroli w celu zmniejszenia prawdopodobieństwa lub wpływu ryzyka."
+                },
+                "accept": {
+                  "title": "Akceptacja",
+                  "description": "Podjęcie świadomej decyzji o zaakceptowaniu ryzyka bez dalszych działań."
+                },
+                "avoid": {
+                  "title": "Unikanie",
+                  "description": "Decyzja o niepodejmowaniu działań, które wprowadzają ryzyko."
+                },
+                "transfer": {
+                  "title": "Transfer",
+                  "description": "Dzielenie ryzyka z inną stroną (np. ubezpieczenie, outsourcing)."
+                }
+              }
+            },
+            "quiz": {
+              "title": "Sprawdzian wiedzy",
+              "excellent": "Doskonale! Rozumiesz zasady oceny ryzyka w kontekście bezpieczeństwa informacji.",
+              "questions": {
+                "riskAssessmentDefinition": {
+                  "title": "Pytanie 1: Definicja oceny ryzyka",
+                  "question": "1. Czym jest ocena ryzyka w kontekście ISO 27001?",
+                  "options": {
+                    "a": "Jednorazowa ocena zagrożeń bezpieczeństwa",
+                    "b": "Techniczna kontrola systemów IT",
+                    "c": "Całościowy proces identyfikacji, analizy i oceny ryzyka dla bezpieczeństwa informacji",
+                    "d": "Inwentaryzacja oprogramowania i sprzętu zabezpieczającego"
+                  }
+                },
+                "riskManagementProcess": {
+                  "title": "Pytanie 2: Proces zarządzania ryzykiem",
+                  "question": "2. Jakie są główne kroki w procesie zarządzania ryzykiem?",
+                  "options": {
+                    "a": "Wykrywanie, Reagowanie, Odzyskiwanie, Raportowanie",
+                    "b": "Identyfikacja, Analiza, Ocena, Postępowanie",
+                    "c": "Planowanie, Testowanie, Wdrażanie, Przegląd",
+                    "d": "Zakup, Instalacja, Konfiguracja, Utrzymanie"
+                  }
+                },
+                "assetIdentification": {
+                  "title": "Pytanie 3: Identyfikacja aktywów",
+                  "question": "3. Który z poniższych NIE jest zwykle brany pod uwagę podczas identyfikacji aktywów?",
+                  "options": {
+                    "a": "Aktywa informacyjne, takie jak bazy danych i pliki",
+                    "b": "Aktywa fizyczne, takie jak serwery i sprzęt sieciowy",
+                    "c": "Aktywa niematerialne, takie jak reputacja i wizerunek firmy",
+                    "d": "Strategie bezpieczeństwa konkurencji"
+                  }
+                },
+                "threatTypes": {
+                  "title": "Pytanie 4: Rodzaje zagrożeń",
+                  "question": "4. Która z poniższych jest kompletną listą typowych rodzajów zagrożeń?",
+                  "options": {
+                    "a": "Błędy ludzkie, awarie techniczne, zdarzenia fizyczne i ataki złośliwe",
+                    "b": "Tylko cyberataki i złośliwe oprogramowanie",
+                    "c": "Tylko fizyczne zagrożenia dla sprzętu",
+                    "d": "Tylko zagrożenia ze strony nieuczciwych pracowników"
+                  }
+                },
+                "riskTreatment": {
+                  "title": "Pytanie 5: Opcje postępowania z ryzykiem",
+                  "question": "5. Jakie są cztery główne opcje postępowania z ryzykiem w ISO 27001?",
+                  "options": {
+                    "a": "Ignorowanie, dokumentowanie, eskalacja, outsourcing",
+                    "b": "Modyfikacja (łagodzenie), akceptacja, unikanie, transfer",
+                    "c": "Raportowanie, rejestrowanie, rozwiązywanie, przegląd",
+                    "d": "Wykrywanie, ochrona, reagowanie, odzyskiwanie"
+                  }
+                }
+              },
+              "feedback": {
+                "riskAssessmentDefinition": "Ocena ryzyka to całościowy proces identyfikacji, analizy i oceny ryzyka dla bezpieczeństwa informacji.",
+                "riskManagementProcess": "Proces zarządzania ryzykiem obejmuje identyfikację, analizę, ocenę i postępowanie z ryzykiem.",
+                "assetIdentification": "Wszystkie aktywa informacyjne powinny być zidentyfikowane i wycenione jako część oceny ryzyka.",
+                "threatTypes": "Typowe zagrożenia obejmują błędy ludzkie, awarie techniczne, zdarzenia fizyczne i ataki złośliwe.",
+                "riskTreatment": "Cztery podstawowe opcje postępowania z ryzykiem to: modyfikacja (łagodzenie), akceptacja, unikanie i transfer."
+              }
+            },
+            "quizCompletionRequired": "Ukończ quiz z powodzeniem, aby oznaczyć ten moduł jako ukończony"
+          }
+        },
+        "backToModules": "Powrót do modułów szkoleniowych"
+      },
+      "understandingSecurity": {
+        "title": "Zrozumienie Poziomów Bezpieczeństwa",
+        "description": "Poznaj różne poziomy klasyfikacji bezpieczeństwa."
+      },
+      "identifyingSensitive": {
+        "title": "Identyfikacja Wrażliwych Informacji",
+        "commonTypes": "Typowe Rodzaje Wrażliwych Informacji",
+        "publicInfo": {
+          "title": "Informacje publiczne",
+          "item1": "Opublikowane raporty roczne",
+          "item2": "Komunikaty prasowe",
+          "item3": "Publiczne materiały marketingowe",
+          "item4": "Informacje kontaktowe (ogólne)",
+          "item5": "Katalogi produktów"
+        },
+        "internalInfo": {
+          "title": "Informacje wewnętrzne",
+          "item1": "Procedury wewnętrzne",
+          "item2": "Katalogi pracowników",
+          "item3": "Wewnętrzne notatki",
+          "item4": "Protokoły ze spotkań",
+          "item5": "Materiały szkoleniowe"
+        },
+        "confidentialInfo": {
+          "title": "Informacje poufne",
+          "item1": "Dokumentacja pracownicza",
+          "item2": "Dane klientów",
+          "item3": "Raporty finansowe",
+          "item4": "Strategie biznesowe",
+          "item5": "Szczegóły kontraktów"
+        },
+        "highlyConfidential": {
+          "title": "Ściśle poufne",
+          "item1": "Tajemnice handlowe",
+          "item2": "Dane uwierzytelniające",
+          "item3": "Informacje o zdrowiu osobistym",
+          "item4": "Strategiczne przejęcia",
+          "item5": "Infrastruktura bezpieczeństwa"
+        },
+        "keyIndicators": {
+          "title": "Kluczowe wskaźniki",
+          "description": "Podczas oceny informacji, rozważ te kluczowe pytania:",
+          "item1": "Czy te informacje byłyby korzystne dla konkurencji?",
+          "item2": "Czy te informacje mogłyby zaszkodzić osobom, gdyby zostały ujawnione?",
+          "item3": "Czy te informacje są chronione przez prawo lub przepisy?",
+          "item4": "Czy ujawnienie zaszkodziłoby reputacji firmy?",
+          "item5": "Czy te informacje są przeznaczone wyłącznie do użytku wewnętrznego?"
+        },
+        "practiceExercise": {
+          "title": "Ćwiczenie praktyczne",
+          "description": "Przejrzyj następujące scenariusze i określ, które informacje powinny być sklasyfikowane jako wrażliwe. Wybierz wszystkie, które mają zastosowanie:",
+          "scenario1": {
+            "title": "Scenariusz 1:",
+            "description": "Email zawierający kwartalne prognozy przychodów firmy, koszty pozyskania klientów i strategię marketingową.",
+            "option1": "Prognozy przychodów",
+            "option2": "Koszty pozyskania klientów",
+            "option3": "Strategia marketingowa"
+          },
+          "scenario2": {
+            "title": "Scenariusz 2:",
+            "description": "Dokument z informacjami kontaktowymi pracowników w nagłych wypadkach, szczegółami wynagrodzeń i ocenami wyników.",
+            "option1": "Informacje kontaktowe w nagłych wypadkach",
+            "option2": "Szczegóły wynagrodzeń",
+            "option3": "Oceny wyników"
+          },
+          "scenario3": {
+            "title": "Scenariusz 3:",
+            "description": "Prezentacja zawierająca informacje o nadchodzącej premierze produktu, w tym zdjęcia produktu, opisy funkcjonalności, datę premiery, analizę rynku docelowego i publicznie ogłoszone funkcje.",
+            "option1": "Niewydane zdjęcia produktu",
+            "option2": "Szczegółowe opisy funkcjonalności",
+            "option3": "Publicznie ogłoszona data premiery",
+            "option4": "Analiza rynku docelowego",
+            "option5": "Publicznie ogłoszone funkcje"
+          },
+          "scenario4": {
+            "title": "Scenariusz 4:",
+            "description": "Dokument przedstawiający szczegóły potencjalnej fuzji z inną firmą, w tym warunki, harmonogram, szczegóły finansowe, nazwę firmy i informacje z publicznego raportu rocznego.",
+            "option1": "Szczegółowe warunki fuzji",
+            "option2": "Harmonogram fuzji",
+            "option3": "Szczegóły finansowe",
+            "option4": "Publicznie znana nazwa firmy",
+            "option5": "Informacje z publicznego raportu rocznego"
+          },
+          "scenario5": {
+            "title": "Scenariusz 5:",
+            "description": "Dokument techniczny ze schematami sieci, wewnętrznymi adresami IP, konfiguracją zapory sieciowej, lokalizacjami serwerów, publicznym adresem URL firmy i nazwami powszechnie używanych programów.",
+            "option1": "Wewnętrzne adresy IP",
+            "option2": "Konfiguracja zapory sieciowej",
+            "option3": "Lokalizacje serwerów",
+            "option4": "Publiczny adres URL firmy",
+            "option5": "Nazwy powszechnie używanych programów"
+          },
+          "feedback": {
+            "correct": "Poprawnie! Te elementy powinny być sklasyfikowane jako wrażliwe.",
+            "incorrect": "Niezupełnie. Proszę przejrzeć te niepoprawne odpowiedzi:",
+            "continue": "Kontynuuj do następnej sekcji",
+            "shouldBeSelected": "powinno być sklasyfikowane jako wrażliwe (należy wybrać).",
+            "shouldNotBeSelected": "NIE powinno być sklasyfikowane jako wrażliwe (nie należy wybierać)."
+          }
+        }
+      },
+      "handlingClassifiedInformation": {
+        "title": "Obsługa informacji klasyfikowanych",
+        "backToModule": "Powrót do podstaw klasyfikacji informacji",
+        "guidelines": {
+          "title": "Wytyczne dotyczące postępowania według poziomu klasyfikacji",
+          "public": {
+            "title": "Informacje publiczne",
+            "item1": "Można je swobodnie udostępniać wewnętrznie i zewnętrznie",
+            "item2": "Nie wymagają specjalnej obsługi",
+            "item3": "Mogą być publikowane na publicznych stronach internetowych",
+            "item4": "Przykłady: Materiały marketingowe, komunikaty prasowe, publiczne raporty roczne"
+          },
+          "internal": {
+            "title": "Informacje wewnętrzne",
+            "item1": "Udostępniaj tylko w ramach organizacji",
+            "item2": "Unikaj udostępniania zewnętrznym podmiotom bez zgody",
+            "item3": "Używaj firmowego e-maila do dystrybucji",
+            "item4": "Przykłady: Procedury wewnętrzne, katalogi pracowników, protokoły ze spotkań"
+          },
+          "confidential": {
+            "title": "Informacje poufne",
+            "item1": "Udostępniaj tylko upoważnionym osobom, które muszą znać te informacje",
+            "item2": "Używaj bezpiecznych metod udostępniania (szyfrowany e-mail, bezpieczne udostępnianie plików)",
+            "item3": "Jeśli to możliwe, zabezpieczaj dokumenty hasłem",
+            "item4": "Nie pozostawiaj wydrukowanych kopii bez nadzoru",
+            "item5": "Przykłady: Dane klientów, raporty finansowe, strategie biznesowe"
+          },
+          "highlyConfidential": {
+            "title": "Informacje ściśle poufne",
+            "item1": "Najściślejsze kontrole dostępu - tylko określone upoważnione osoby",
+            "item2": "Zawsze używaj szyfrowania podczas przechowywania lub przesyłania",
+            "item3": "Śledź cały dostęp i działania podejmowane w odniesieniu do informacji",
+            "item4": "Uzyskaj wyraźną zgodę przed udostępnieniem",
+            "item5": "Korzystaj z bezpiecznych pomieszczeń do rozmów obejmujących te informacje",
+            "item6": "Przykłady: Tajemnice handlowe, dane uwierzytelniające, strategiczne przejęcia"
+          }
+        },
+        "bestPractices": {
+          "title": "Najlepsze praktyki bezpieczeństwa",
+          "physical": {
+            "title": "Bezpieczeństwo fizyczne",
+            "item1": "Stosuj politykę czystego biurka - nie pozostawiaj widocznych poufnych dokumentów",
+            "item2": "Przechowuj poufne informacje pod zamknięciem, gdy nie są używane",
+            "item3": "Niszcz poufne dokumenty podczas utylizacji",
+            "item4": "Zwracaj uwagę na otoczenie podczas omawiania poufnych informacji"
+          },
+          "digital": {
+            "title": "Bezpieczeństwo cyfrowe",
+            "item1": "Używaj silnych haseł i uwierzytelniania wieloskładnikowego",
+            "item2": "Szyfruj poufne pliki i komunikację",
+            "item3": "Zachowaj ostrożność w przypadku załączników i linków e-mail",
+            "item4": "Blokuj komputer, gdy odchodzisz od biurka",
+            "item5": "Używaj tylko zatwierdzonych usług w chmurze dla poufnych danych"
+          },
+          "incident": {
+            "title": "Reagowanie na incydenty",
+            "item1": "Natychmiast zgłaszaj incydenty bezpieczeństwa",
+            "item2": "Wiedz, z kim się skontaktować w przypadku podejrzenia naruszenia",
+            "item3": "Dokumentuj wszelkie potencjalne ujawnienia poufnych informacji",
+            "item4": "Postępuj zgodnie z procedurami firmy dotyczącymi reagowania na incydenty"
+          }
+        },
+        "quiz": {
+          "title": "Sprawdzenie wiedzy",
+          "question1": {
+            "title": "1. Jak należy postępować z dokumentami publicznymi?",
+            "option1": "Zabezpieczyć je hasłem i udostępniać tylko wewnętrznie",
+            "option2": "Zaszyfrować je przed udostępnieniem",
+            "option3": "Udostępniać swobodnie, ponieważ nie zawierają poufnych informacji",
+            "option4": "Nigdy nie udostępniać ich poza działem"
+          },
+          "question2": {
+            "title": "2. Udostępniając dokumenty poufne, należy:",
+            "option1": "Udostępniać je wszystkim, którzy o nie proszą",
+            "option2": "Udostępniać tylko upoważnionym osobom przy użyciu bezpiecznych metod",
+            "option3": "Publikować je publicznie, ale z hasłem",
+            "option4": "Nigdy nie udostępniać ich w żadnych okolicznościach"
+          },
+          "question3": {
+            "title": "3. Dokumenty wewnętrzne powinny być udostępniane:",
+            "option1": "Tylko w ramach organizacji",
+            "option2": "Wszystkim, którzy potrzebują ich do pracy",
+            "option3": "Zaufanym partnerom i klientom",
+            "option4": "Tylko kierownictwu"
+          },
+          "question4": {
+            "title": "4. Pliki ściśle poufne wymagają:",
+            "option1": "Podstawowych środków bezpieczeństwa",
+            "option2": "Tylko ochrony hasłem",
+            "option3": "Standardowej poczty e-mail do dystrybucji",
+            "option4": "Ścisłych kontroli dostępu, szyfrowania i rejestrowania aktywności"
+          },
+          "question5": {
+            "title": "5. Jeśli odkryjesz naruszenie danych obejmujące informacje klasyfikowane, powinieneś:",
+            "option1": "Spróbować naprawić je samodzielnie, nikomu nie mówiąc",
+            "option2": "Natychmiast zgłosić to zespołowi ds. bezpieczeństwa",
+            "option3": "Bezpośrednio poinformować o tym dotkniętych klientów",
+            "option4": "Poczekać i zobaczyć, czy ktoś zauważy"
+          },
+          "checkAnswers": "Sprawdź odpowiedzi",
+          "feedback": {
+            "excellent": "Doskonale! Rozumiesz, jak postępować z informacjami w zależności od ich poziomu klasyfikacji.",
+            "public": "Informacje publiczne można udostępniać otwarcie, ponieważ nie stanowią ryzyka dla bezpieczeństwa.",
+            "confidential": "Dokumenty poufne powinny być udostępniane tylko upoważnionym osobom przy użyciu bezpiecznych metod.",
+            "internal": "Dokumenty wewnętrzne powinny być udostępniane tylko w ramach organizacji.",
+            "highlyConfidential": "Pliki ściśle poufne wymagają ścisłych kontroli dostępu, szyfrowania i rejestrowania aktywności.",
+            "incident": "W przypadku wykrycia naruszenia danych należy natychmiast zgłosić to zespołowi ds. bezpieczeństwa."
+          },
+          "completionRequired": "Ukończ quiz pomyślnie, aby oznaczyć ten moduł jako ukończony"
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "O Isotron",
+    "subtitle": "Kompleksowa platforma do klasyfikacji bezpieczeństwa informacji oparta na standardach ISO 27001",
+    "content": "Ten projekt ma na celu pomoc organizacjom w prawidłowej klasyfikacji i ochronie wrażliwych informacji zgodnie z najlepszymi praktykami bezpieczeństwa informacji.",
+    "projectOverview": "Przegląd projektu licencjackiego",
+    "iso27001": {
+      "title": "Integracja ISO 27001",
+      "description": "Nasz projekt jest zbudowany wokół zasad ISO 27001, międzynarodowego standardu zarządzania bezpieczeństwem informacji. Choć standard ten jest kompleksowy i często postrzegany jako trudny do wdrożenia, nasze narzędzie sprawia, że klasyfikacja dokumentów jest prosta i dostępna. Standard zapewnia ramy dla:",
+      "points": {
+        "isms": "Ustanowienia i utrzymania systemu zarządzania bezpieczeństwem informacji (ISMS)",
+        "approach": "Systematycznego podejścia do zarządzania wrażliwymi informacjami firmowymi",
+        "risk": "Oceny i postępowania z ryzykiem",
+        "security": "Wdrażania kontroli bezpieczeństwa"
+      }
+    },
+    "goals": {
+      "title": "Cele projektu",
+      "classification": {
+        "title": "Intuicyjny przewodnik klasyfikacji",
+        "description": "Opracowanie przyjaznego dla użytkownika przewodnika do prawidłowej klasyfikacji informacji"
+      },
+      "training": {
+        "title": "Interaktywne szkolenie",
+        "description": "Tworzenie angażujących modułów w celu zwiększenia świadomości bezpieczeństwa"
+      },
+      "tools": {
+        "title": "Praktyczne narzędzia",
+        "description": "Wdrażanie codziennych narzędzi do obsługi informacji"
+      },
+      "practices": {
+        "title": "Najlepsze praktyki",
+        "description": "Promowanie i standaryzacja najlepszych praktyk bezpieczeństwa informacji"
+      }
+    },
+    "team": {
+      "title": "Brannmurbrigaden",
+      "description": "Ten program został opracowany przez \"Brannmurbrigaden\" - grupę 5 studentów cyberbezpieczeństwa w Kristiania University College"
+    },
+    "technologies": {
+      "title": "Wykorzystane technologie",
+      "description": "Ta aplikacja jest zbudowana przy użyciu nowoczesnych technologii internetowych, skupiając się na wydajności, dostępności i doświadczeniu użytkownika. Implementacja jest zgodna z najlepszymi praktykami bezpieczeństwa zgodnymi z normami ISO 27001.",
+      "react": "React",
+      "tailwind": "Tailwind CSS",
+      "javascript": "JavaScript",
+      "vite": "Vite",
+      "router": "React Router"
+    }
+  },
+  "common": {
+    "next": "Dalej",
+    "previous": "Wstecz",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "loading": "Ładowanie...",
+    "optional": "opcjonalne",
+    "correct": "poprawne",
+    "checkAnswers": "Sprawdź odpowiedzi"
+  },
+  "language": {
+    "en": "Angielski",
+    "no": "Norweski",
+    "pl": "Polski"
+  },
+  "iso27001Framework": {
+    "title": "Struktura ISO 27001",
+    "subtitle": "Międzynarodowy standard zarządzania bezpieczeństwem informacji, zapewniający systematyczne podejście do zarządzania informacjami i ograniczania ryzyka.",
+    "introduction": {
+      "title": "Wprowadzenie do ISO 27001",
+      "description": "ISO 27001 to międzynarodowy standard zarządzania bezpieczeństwem informacji. Zapewnia strukturę do ustanawiania, wdrażania, utrzymywania i ciągłego doskonalenia systemu zarządzania bezpieczeństwem informacji (ISMS)."
+    },
+    "benefits": {
+      "title": "Korzyści z ISO 27001",
+      "items": {
+        "dataBreaches": "Zapobiega naruszeniom danych, które mogą ujawnić informacje osobiste lub wrażliwe dla biznesu",
+        "legalConsequences": "Pozwala uniknąć konsekwencji prawnych związanych z nieprzestrzeganiem przepisów",
+        "financialLosses": "Zmniejsza straty finansowe spowodowane karami, procesami sądowymi lub utratą reputacji",
+        "operationalContinuity": "Utrzymuje ciągłość operacyjną, chroniąc przed awariami systemów lub cyberatakami"
+      }
+    },
+    "keyComponents": {
+      "title": "Kluczowe Komponenty",
+      "components": {
+        "policies": {
+          "title": "Polityki Bezpieczeństwa Informacji",
+          "description": "Polityki określające podejście do zarządzania bezpieczeństwem informacji w organizacji."
+        },
+        "organization": {
+          "title": "Organizacja Bezpieczeństwa Informacji",
+          "description": "Struktura zarządzania odpowiedzialnościami i procesami bezpieczeństwa informacji."
+        },
+        "assets": {
+          "title": "Zarządzanie Aktywami",
+          "description": "Procesy zarządzania i ochrony aktywów informacyjnych."
+        },
+        "access": {
+          "title": "Kontrola Dostępu",
+          "description": "Mechanizmy zapewniające ograniczenie dostępu do informacji tylko dla autoryzowanych użytkowników."
+        },
+        "crypto": {
+          "title": "Kryptografia",
+          "description": "Wykorzystanie technik kryptograficznych do ochrony poufności, integralności i autentyczności informacji."
+        },
+        "physical": {
+          "title": "Bezpieczeństwo Fizyczne i Środowiskowe",
+          "description": "Środki ochrony obiektów fizycznych i sprzętu przed nieautoryzowanym dostępem i zagrożeniami środowiskowymi."
+        }
+      }
+    },
+    "dataStorage": {
+      "title": "ISO 27001 dla Przechowywania Danych",
+      "annexes": {
+        "annex8": {
+          "title": "Aneks A.8 – Zarządzanie Aktywami",
+          "description": "Zapewnia, że aktywa informacyjne są identyfikowane i zarządzane odpowiednio przez cały cykl życia. Obejmuje to przeprowadzenie dokładnej oceny w celu identyfikacji wszystkich aktywów danych w organizacji i kategoryzację danych według poziomów wrażliwości, aby zastosować odpowiednie środki ochrony."
+        },
+        "annex10": {
+          "title": "Aneks A.10 – Kryptografia",
+          "description": "Wymaga stosowania kontroli kryptograficznych w celu ochrony poufności, integralności i autentyczności danych. Obejmuje to szyfrowanie danych w spoczynku i podczas transmisji oraz opracowywanie solidnych zasad zarządzania kluczami w celu zabezpieczenia kluczy szyfrujących."
+        },
+        "annex11": {
+          "title": "Aneks A.11 – Bezpieczeństwo Fizyczne",
+          "description": "Koncentruje się na zabezpieczaniu fizycznych środowisk przechowywania przed nieautoryzowanym dostępem i zagrożeniami środowiskowymi. Obejmuje to zapewnienie bezpiecznych lokalizacji przechowywania serwerów i dysków twardych oraz wdrażanie środków ochrony obiektów fizycznych i sprzętu."
+        }
+      }
+    },
+    "certification": {
+      "title": "Kroki do Uzyskania Certyfikacji ISO 27001",
+      "steps": {
+        "defineScope": {
+          "title": "Określenie Zakresu",
+          "description": "Zdefiniuj zakres i cele swojego ISMS"
+        },
+        "riskAssessment": {
+          "title": "Ocena Ryzyka",
+          "description": "Przeprowadź kompleksową ocenę ryzyka"
+        },
+        "implementControls": {
+          "title": "Wdrożenie Kontroli",
+          "description": "Wdrażaj kontrole bezpieczeństwa w celu ograniczenia ryzyka"
+        },
+        "trainEmployees": {
+          "title": "Szkolenie Pracowników",
+          "description": "Przeszkol pracowników w zakresie polityk i procedur bezpieczeństwa"
+        },
+        "internalAudit": {
+          "title": "Audyt Wewnętrzny",
+          "description": "Przeprowadzaj audyty wewnętrzne w celu weryfikacji zgodności"
+        },
+        "certification": {
+          "title": "Certyfikacja",
+          "description": "Zaangażuj akredytowaną jednostkę certyfikującą do oceny"
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Chętnie odpowiemy na Twoje pytania! Skontaktuj się z naszym zespołem w sprawie pytań lub zapytań.",
+    "getInTouch": "Skontaktuj się",
+    "description": "Masz pytania dotyczące ISO 27001 lub bezpieczeństwa informacji? Nasz zespół jest tutaj, aby pomóc i doradzić.",
+    "email": "Email",
+    "phone": "Telefon",
+    "address": "Adres",
+    "form": {
+      "name": "Imię i nazwisko",
+      "namePlaceholder": "Twoje pełne imię i nazwisko",
+      "email": "Email",
+      "emailPlaceholder": "twoj.email@przyklad.com",
+      "subject": "Temat",
+      "subjectPlaceholder": "Jak możemy pomóc?",
+      "message": "Wiadomość",
+      "messagePlaceholder": "Szczegóły Twojej wiadomości...",
+      "submit": "Wyślij wiadomość"
+    }
+  }
+} 
