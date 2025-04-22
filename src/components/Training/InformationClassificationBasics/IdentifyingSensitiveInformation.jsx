@@ -1,202 +1,142 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTraining } from '../../../context/TrainingContext';
+import { useTranslation } from 'react-i18next';
 
 function IdentifyingSensitiveInformation() {
-  const [scenario1Answers, setScenario1Answers] = useState({
-    revenue: false,
-    acquisition: false,
-    marketing: false
-  });
-
-  const [scenario2Answers, setScenario2Answers] = useState({
-    emergency: false,
-    salary: false,
-    performance: false
-  });
-
-  const [scenario3Answers, setScenario3Answers] = useState({
-    images: false,
-    functionality: false,
-    releaseDate: false,
-    targetMarket: false,
-    publicFeatures: false
-  });
-
-  const [scenario4Answers, setScenario4Answers] = useState({
-    mergerTerms: false,
-    timeline: false,
-    financialDetails: false,
-    companyName: false,
-    annualReportInfo: false
-  });
-
-  const [scenario5Answers, setScenario5Answers] = useState({
-    ipAddresses: false,
-    firewallConfig: false,
-    serverLocations: false,
-    websiteUrl: false,
-    softwareNames: false
-  });
-
-  const [feedback, setFeedback] = useState({
-    show: false,
-    messages: [],
-    allCorrect: false
-  });
-
-  const [quizCompleted, setQuizCompleted] = useState(false);
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
+  // State for scenario answers - changed to strings for single selection
+  const [scenario1Answer, setScenario1Answer] = useState('');
+  const [scenario2Answer, setScenario2Answer] = useState('');
+  const [scenario3Answer, setScenario3Answer] = useState('');
+  const [scenario4Answer, setScenario4Answer] = useState('');
+  const [scenario5Answer, setScenario5Answer] = useState('');
+
+  const [feedback, setFeedback] = useState({
+    isSubmitted: false,
+    correctAnswers: 0,
+    incorrectAnswers: [],
+    totalQuestions: 5 // Changed to 5 since we have 5 scenarios with 1 answer each
+  });
+
+  // Handle changes for scenario 1
   const handleScenario1Change = (value) => {
-    setScenario1Answers(prev => ({
-      ...prev,
-      [value]: !prev[value]
-    }));
-    setFeedback({ show: false, messages: [], allCorrect: false });
+    setScenario1Answer(value);
   };
 
+  // Handle changes for scenario 2
   const handleScenario2Change = (value) => {
-    setScenario2Answers(prev => ({
-      ...prev,
-      [value]: !prev[value]
-    }));
-    setFeedback({ show: false, messages: [], allCorrect: false });
+    setScenario2Answer(value);
   };
 
+  // Handle changes for scenario 3
   const handleScenario3Change = (value) => {
-    setScenario3Answers(prev => ({
-      ...prev,
-      [value]: !prev[value]
-    }));
-    setFeedback({ show: false, messages: [], allCorrect: false });
+    setScenario3Answer(value);
   };
 
+  // Handle changes for scenario 4
   const handleScenario4Change = (value) => {
-    setScenario4Answers(prev => ({
-      ...prev,
-      [value]: !prev[value]
-    }));
-    setFeedback({ show: false, messages: [], allCorrect: false });
+    setScenario4Answer(value);
   };
 
+  // Handle changes for scenario 5
   const handleScenario5Change = (value) => {
-    setScenario5Answers(prev => ({
-      ...prev,
-      [value]: !prev[value]
-    }));
-    setFeedback({ show: false, messages: [], allCorrect: false });
+    setScenario5Answer(value);
   };
 
+  // Check answers
   const checkAnswers = () => {
-    const messages = [];
-    let allCorrect = true;
+    const correctAnswers = {
+      scenario1: 'acquisition', // Most sensitive option
+      scenario2: 'salary',      // Most sensitive option
+      scenario3: 'functionality', // Most sensitive option
+      scenario4: 'financial',    // Most sensitive option
+      scenario5: 'firewall'      // Most sensitive option
+    };
 
-    // Scenario 1 feedback
-    if (!scenario1Answers.revenue) {
-      messages.push("Revenue projections are sensitive as they contain confidential financial data");
-      allCorrect = false;
-    }
-    if (!scenario1Answers.acquisition) {
-      messages.push("Customer acquisition costs reveal business strategy and financial information");
-      allCorrect = false;
-    }
-    if (!scenario1Answers.marketing) {
-      messages.push("Marketing strategy contains competitive business information");
-      allCorrect = false;
-    }
+    let correct = 0;
+    const incorrect = [];
 
-    // Scenario 2 feedback
-    if (!scenario2Answers.emergency) {
-      messages.push("Emergency contact information contains personal data protected by privacy laws");
-      allCorrect = false;
-    }
-    if (!scenario2Answers.salary) {
-      messages.push("Salary details are highly confidential personal information");
-      allCorrect = false;
-    }
-    if (!scenario2Answers.performance) {
-      messages.push("Performance reviews contain private employee evaluations");
-      allCorrect = false;
+    // Check scenario 1
+    if (scenario1Answer === correctAnswers.scenario1) {
+      correct++;
+    } else {
+      incorrect.push({
+        scenario: 'scenario1',
+        key: scenario1Answer || 'none',
+        expected: correctAnswers.scenario1
+      });
     }
 
-    // Scenario 3 feedback
-    if (!scenario3Answers.images) {
-      messages.push("Produktbilder før lansering er sensitiv informasjon som kan skade konkurransefortrinn");
-      allCorrect = false;
-    }
-    if (!scenario3Answers.functionality) {
-      messages.push("Funksjonalitetsbeskrivelser av upubliserte produkter bør holdes konfidensielt");
-      allCorrect = false;
-    }
-    if (!scenario3Answers.releaseDate) {
-      messages.push("Release date is sensitive information as it reveals the timing of a product launch");
-      allCorrect = false;
-    }
-    if (!scenario3Answers.targetMarket) {
-      messages.push("Target market analysis is sensitive information as it reveals the intended market for a product");
-      allCorrect = false;
-    }
-    if (!scenario3Answers.publicFeatures) {
-      messages.push("Publicly announced features are sensitive information as they reveal the planned features of a product");
-      allCorrect = false;
+    // Check scenario 2
+    if (scenario2Answer === correctAnswers.scenario2) {
+      correct++;
+    } else {
+      incorrect.push({
+        scenario: 'scenario2',
+        key: scenario2Answer || 'none',
+        expected: correctAnswers.scenario2
+      });
     }
 
-    // Scenario 4 feedback
-    if (!scenario4Answers.mergerTerms) {
-      messages.push("Detailed merger terms are sensitive information as they reveal the specific terms of a merger");
-      allCorrect = false;
-    }
-    if (!scenario4Answers.timeline) {
-      messages.push("Timeline of the merger is sensitive information as it reveals the timing of a merger");
-      allCorrect = false;
-    }
-    if (!scenario4Answers.financialDetails) {
-      messages.push("Financial details are sensitive information as they reveal confidential financial information");
-      allCorrect = false;
-    }
-    if (!scenario4Answers.companyName) {
-      messages.push("The publicly known name of the company is sensitive information as it reveals the official name of a company");
-      allCorrect = false;
-    }
-    if (!scenario4Answers.annualReportInfo) {
-      messages.push("Information from the public annual report is sensitive information as it reveals publicly available information");
-      allCorrect = false;
+    // Check scenario 3
+    if (scenario3Answer === correctAnswers.scenario3) {
+      correct++;
+    } else {
+      incorrect.push({
+        scenario: 'scenario3',
+        key: scenario3Answer || 'none',
+        expected: correctAnswers.scenario3
+      });
     }
 
-    // Scenario 5 feedback
-    if (!scenario5Answers.ipAddresses) {
-      messages.push("IP-adresser kan brukes til å kartlegge nettverket og er sensitive");
-      allCorrect = false;
+    // Check scenario 4
+    if (scenario4Answer === correctAnswers.scenario4) {
+      correct++;
+    } else {
+      incorrect.push({
+        scenario: 'scenario4',
+        key: scenario4Answer || 'none',
+        expected: correctAnswers.scenario4
+      });
     }
-    if (!scenario5Answers.firewallConfig) {
-      messages.push("Firewall configuration is sensitive information as it reveals the security setup of a company's network");
-      allCorrect = false;
-    }
-    if (!scenario5Answers.serverLocations) {
-      messages.push("Serverplasseringer er sikkerhetssensitiv informasjon");
-      allCorrect = false;
-    }
-    if (!scenario5Answers.websiteUrl) {
-      messages.push("The company's public website URL is sensitive information as it reveals the official website of a company");
-      allCorrect = false;
-    }
-    if (!scenario5Answers.softwareNames) {
-      messages.push("Names of common software programs used are sensitive information as they reveal the software used by a company");
-      allCorrect = false;
+
+    // Check scenario 5
+    if (scenario5Answer === correctAnswers.scenario5) {
+      correct++;
+    } else {
+      incorrect.push({
+        scenario: 'scenario5',
+        key: scenario5Answer || 'none',
+        expected: correctAnswers.scenario5
+      });
     }
 
     setFeedback({
-      show: true,
-      messages: allCorrect 
-        ? ["Excellent! You correctly identified all sensitive information while recognizing what information is not sensitive."]
-        : messages,
-      allCorrect: allCorrect
+      isSubmitted: true,
+      correctAnswers: correct,
+      incorrectAnswers: incorrect,
+      totalQuestions: 5
     });
 
-    if (allCorrect) {
-      setQuizCompleted(true);
+    // Automatically scroll to feedback
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
+
+  const markModuleComplete = (moduleId) => {
+    // Get completed modules from localStorage
+    const completedModules = localStorage.getItem('completedModules') 
+      ? JSON.parse(localStorage.getItem('completedModules')) 
+      : [];
+    
+    // Add this module if it's not already marked complete
+    if (!completedModules.includes(moduleId)) {
+      completedModules.push(moduleId);
+      localStorage.setItem('completedModules', JSON.stringify(completedModules));
     }
   };
 
@@ -210,391 +150,406 @@ function IdentifyingSensitiveInformation() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
-            ← Back to Information Classification Basics
+            ← {t('training.informationClassification.backToModule')}
           </Link>
-          <h1 className="text-3xl font-bold text-black mb-4">Identifying Sensitive Information</h1>
+          <h1 className="text-3xl font-bold text-black mb-4">{t('training.informationClassification.identifyingSensitive.title')}</h1>
           
           <div className="space-y-8 mt-6">
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Common Types of Sensitive Information</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.identifyingSensitive.commonTypes')}</h2>
               <div className="space-y-4">
                 <div className="bg-gray-50 border-l-4 border-green-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Public Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.publicInfo.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Published annual reports</li>
-                    <li>Press releases</li>
-                    <li>Public marketing materials</li>
-                    <li>Contact information (general)</li>
-                    <li>Product catalogs</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item1')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item2')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item3')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item4')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item5')}</li>
                   </ul>
                 </div>
 
                 <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Internal Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.internalInfo.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Internal procedures</li>
-                    <li>Employee directories</li>
-                    <li>Internal memos</li>
-                    <li>Meeting minutes</li>
-                    <li>Training materials</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item1')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item2')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item3')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item4')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item5')}</li>
                   </ul>
                 </div>
 
                 <div className="bg-gray-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Confidential Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.confidentialInfo.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Employee records</li>
-                    <li>Customer data</li>
-                    <li>Financial reports</li>
-                    <li>Business strategies</li>
-                    <li>Contract details</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item1')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item2')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item3')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item4')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item5')}</li>
                   </ul>
                 </div>
 
                 <div className="bg-gray-50 border-l-4 border-red-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Highly Confidential</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.highlyConfidential.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Trade secrets</li>
-                    <li>Authentication credentials</li>
-                    <li>Personal health information</li>
-                    <li>Strategic acquisitions</li>
-                    <li>Security infrastructure</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item1')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item2')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item3')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item4')}</li>
+                    <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item5')}</li>
                   </ul>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Key Indicators</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.identifyingSensitive.keyIndicators.title')}</h2>
               <p className="text-black mb-4">
-                When evaluating information, consider these key questions:
+                {t('training.informationClassification.identifyingSensitive.keyIndicators.description')}
               </p>
               <ul className="list-disc list-inside text-black space-y-2 ml-4">
-                <li>Would this information benefit competitors?</li>
-                <li>Could this information harm individuals if exposed?</li>
-                <li>Is this information protected by law or regulations?</li>
-                <li>Would disclosure damage the company's reputation?</li>
-                <li>Is this information meant for internal use only?</li>
+                <li>{t('training.informationClassification.identifyingSensitive.keyIndicators.item1')}</li>
+                <li>{t('training.informationClassification.identifyingSensitive.keyIndicators.item2')}</li>
+                <li>{t('training.informationClassification.identifyingSensitive.keyIndicators.item3')}</li>
+                <li>{t('training.informationClassification.identifyingSensitive.keyIndicators.item4')}</li>
+                <li>{t('training.informationClassification.identifyingSensitive.keyIndicators.item5')}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Practice Exercise</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.title')}</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-black mb-4">
-                  Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:
+                  {t('training.informationClassification.identifyingSensitive.practiceExercise.description')}
                 </p>
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded">
-                    <p className="text-black font-medium mb-3">Scenario 1:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario1.title')}</p>
                     <p className="text-black mb-4">
-                      An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.
+                      {t('training.informationClassification.identifyingSensitive.practiceExercise.scenario1.description')}
                     </p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario1Answers.revenue}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario1"
+                          value="revenue"
+                          checked={scenario1Answer === 'revenue'}
                           onChange={() => handleScenario1Change('revenue')}
                         />
-                        <span className="text-black">Revenue projections</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario1.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario1Answers.acquisition}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario1"
+                          value="acquisition"
+                          checked={scenario1Answer === 'acquisition'}
                           onChange={() => handleScenario1Change('acquisition')}
                         />
-                        <span className="text-black">Customer acquisition costs</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario1.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario1Answers.marketing}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario1"
+                          value="marketing"
+                          checked={scenario1Answer === 'marketing'}
                           onChange={() => handleScenario1Change('marketing')}
                         />
-                        <span className="text-black">Marketing strategy</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario1.option3')}</span>
                       </label>
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded">
-                    <p className="text-black font-medium mb-3">Scenario 2:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario2.title')}</p>
                     <p className="text-black mb-4">
-                      A document with employee emergency contact information, salary details, and performance reviews.
+                      {t('training.informationClassification.identifyingSensitive.practiceExercise.scenario2.description')}
                     </p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario2Answers.emergency}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario2"
+                          value="emergency"
+                          checked={scenario2Answer === 'emergency'}
                           onChange={() => handleScenario2Change('emergency')}
                         />
-                        <span className="text-black">Emergency contact information</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario2.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario2Answers.salary}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario2"
+                          value="salary"
+                          checked={scenario2Answer === 'salary'}
                           onChange={() => handleScenario2Change('salary')}
                         />
-                        <span className="text-black">Salary details</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario2.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
-                          checked={scenario2Answers.performance}
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
+                          name="scenario2"
+                          value="performance"
+                          checked={scenario2Answer === 'performance'}
                           onChange={() => handleScenario2Change('performance')}
                         />
-                        <span className="text-black">Performance reviews</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario2.option3')}</span>
                       </label>
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded mt-4">
-                    <p className="text-black font-medium mb-3">Scenario 3:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.title')}</p>
                     <p className="text-black mb-4">
-                      A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.
+                      {t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.description')}
                     </p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario3"
                           value="images"
-                          checked={scenario3Answers.images}
+                          checked={scenario3Answer === 'images'}
                           onChange={() => handleScenario3Change('images')}
                         />
-                        <span className="text-black">Unreleased product images</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario3"
                           value="functionality"
-                          checked={scenario3Answers.functionality}
+                          checked={scenario3Answer === 'functionality'}
                           onChange={() => handleScenario3Change('functionality')}
                         />
-                        <span className="text-black">Detailed functionality descriptions</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario3"
                           value="releaseDate"
-                          checked={scenario3Answers.releaseDate}
+                          checked={scenario3Answer === 'releaseDate'}
                           onChange={() => handleScenario3Change('releaseDate')}
                         />
-                        <span className="text-black">Publicly announced release date</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario3"
                           value="targetMarket"
-                          checked={scenario3Answers.targetMarket}
+                          checked={scenario3Answer === 'targetMarket'}
                           onChange={() => handleScenario3Change('targetMarket')}
                         />
-                        <span className="text-black">Target market analysis</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.option4')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario3"
-                          value="publicFeatures"
-                          checked={scenario3Answers.publicFeatures}
-                          onChange={() => handleScenario3Change('publicFeatures')}
+                          value="features"
+                          checked={scenario3Answer === 'features'}
+                          onChange={() => handleScenario3Change('features')}
                         />
-                        <span className="text-black">Publicly announced features</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario3.option5')}</span>
                       </label>
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded mt-4">
-                    <p className="text-black font-medium mb-3">Scenario 4:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.title')}</p>
                     <p className="text-black mb-4">
-                      An email discussing a potential merger with another company, including terms, timeline, financial details, the name of the company, and information that has been mentioned in the annual report.
+                      {t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.description')}
                     </p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario4"
-                          value="mergerTerms"
-                          checked={scenario4Answers.mergerTerms}
-                          onChange={() => handleScenario4Change('mergerTerms')}
+                          value="terms"
+                          checked={scenario4Answer === 'terms'}
+                          onChange={() => handleScenario4Change('terms')}
                         />
-                        <span className="text-black">Detailed merger terms</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario4"
                           value="timeline"
-                          checked={scenario4Answers.timeline}
+                          checked={scenario4Answer === 'timeline'}
                           onChange={() => handleScenario4Change('timeline')}
                         />
-                        <span className="text-black">Timeline of the merger</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario4"
-                          value="financialDetails"
-                          checked={scenario4Answers.financialDetails}
-                          onChange={() => handleScenario4Change('financialDetails')}
+                          value="financial"
+                          checked={scenario4Answer === 'financial'}
+                          onChange={() => handleScenario4Change('financial')}
                         />
-                        <span className="text-black">Financial details</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario4"
                           value="companyName"
-                          checked={scenario4Answers.companyName}
+                          checked={scenario4Answer === 'companyName'}
                           onChange={() => handleScenario4Change('companyName')}
                         />
-                        <span className="text-black">The publicly known name of the company</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.option4')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario4"
-                          value="annualReportInfo"
-                          checked={scenario4Answers.annualReportInfo}
-                          onChange={() => handleScenario4Change('annualReportInfo')}
+                          value="annualReport"
+                          checked={scenario4Answer === 'annualReport'}
+                          onChange={() => handleScenario4Change('annualReport')}
                         />
-                        <span className="text-black">Information from the public annual report</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario4.option5')}</span>
                       </label>
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded mt-4">
-                    <p className="text-black font-medium mb-3">Scenario 5:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.title')}</p>
                     <p className="text-black mb-4">
-                      A document describing the company's network architecture, including IP addresses, firewall configuration, server locations, the company's website URL, and the names of software programs used.
+                      {t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.description')}
                     </p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario5"
                           value="ipAddresses"
-                          checked={scenario5Answers.ipAddresses}
+                          checked={scenario5Answer === 'ipAddresses'}
                           onChange={() => handleScenario5Change('ipAddresses')}
                         />
-                        <span className="text-black">Internal IP addresses</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario5"
-                          value="firewallConfig"
-                          checked={scenario5Answers.firewallConfig}
-                          onChange={() => handleScenario5Change('firewallConfig')}
+                          value="firewall"
+                          checked={scenario5Answer === 'firewall'}
+                          onChange={() => handleScenario5Change('firewall')}
                         />
-                        <span className="text-black">Firewall configuration</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario5"
                           value="serverLocations"
-                          checked={scenario5Answers.serverLocations}
+                          checked={scenario5Answer === 'serverLocations'}
                           onChange={() => handleScenario5Change('serverLocations')}
                         />
-                        <span className="text-black">Server locations</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario5"
-                          value="websiteUrl"
-                          checked={scenario5Answers.websiteUrl}
-                          onChange={() => handleScenario5Change('websiteUrl')}
+                          value="publicUrl"
+                          checked={scenario5Answer === 'publicUrl'}
+                          onChange={() => handleScenario5Change('publicUrl')}
                         />
-                        <span className="text-black">The company's public website URL</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.option4')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
-                          type="checkbox" 
-                          className="form-checkbox text-purple h-5 w-5" 
+                          type="radio" 
+                          className="form-radio text-purple h-5 w-5 rounded-full" 
                           name="scenario5"
                           value="softwareNames"
-                          checked={scenario5Answers.softwareNames}
+                          checked={scenario5Answer === 'softwareNames'}
                           onChange={() => handleScenario5Change('softwareNames')}
                         />
-                        <span className="text-black">Names of common software programs used</span>
+                        <span className="text-black">{t('training.informationClassification.identifyingSensitive.practiceExercise.scenario5.option5')}</span>
                       </label>
                     </div>
                   </div>
 
                   <button 
-                    className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
                     onClick={checkAnswers}
+                    className="mt-6 bg-purple hover:bg-purple-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                   >
-                    Check Answers
+                    {t('common.checkAnswers')}
                   </button>
-
-                  {feedback.show && (
-                    <div className={`mt-4 p-4 rounded-md ${
-                      feedback.allCorrect
-                        ? 'bg-green-50 border border-green-200' 
-                        : 'bg-red-50 border border-red-200'
-                    }`}>
-                      {feedback.messages.map((message, index) => (
-                        <p key={index} className={`${
-                          feedback.allCorrect
-                            ? 'text-green-800' 
-                            : 'text-red-800'
-                        } mb-2`}>
-                          • {message}
-                        </p>
-                      ))}
-                    </div>
-                  )}
                 </div>
+
+                {feedback.isSubmitted && (
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    {feedback.incorrectAnswers.length === 0 ? (
+                      <div>
+                        <p className="text-green-800 mb-2">
+                          {t('training.informationClassification.identifyingSensitive.practiceExercise.feedback.correct')}
+                        </p>
+                        <button 
+                          onClick={handleCompletion}
+                          className="mt-4 bg-purple hover:bg-purple-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
+                          {t('training.markAsCompleted')}
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <h4 className="font-semibold text-red-800 mb-2">
+                          {t('training.informationClassification.identifyingSensitive.practiceExercise.feedback.incorrect')}
+                        </h4>
+                        {feedback.incorrectAnswers.map((error, index) => (
+                          <div key={index} className="text-red-800 ml-4 mb-3">
+                            <p className="font-medium">
+                              {t(`training.informationClassification.identifyingSensitive.practiceExercise.${error.scenario}.title`)}
+                            </p>
+                            <p className="ml-4">
+                              {t('training.informationClassification.identifyingSensitive.practiceExercise.feedback.shouldSelect')} {t(`training.informationClassification.identifyingSensitive.practiceExercise.${error.scenario}.option${error.expected === 'none' ? '1' : error.expected}`)}
+                            </p>
+                          </div>
+                        ))}
+                        <p className="text-sm text-red-600 mt-2">
+                          {feedback.correctAnswers} / {feedback.totalQuestions} {t('common.correct')}
+                        </p>
+                        <p className="text-sm text-red-600 mt-2">
+                          Complete the quiz successfully to mark this module as completed
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </section>
-
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <button 
-                className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
-                  quizCompleted 
-                    ? 'text-black hover:bg-opacity-90 cursor-pointer' 
-                    : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
-                }`}
-                onClick={handleCompletion}
-                disabled={!quizCompleted}
-              >
-                Mark as Completed
-              </button>
-              {!quizCompleted && (
-                <p className="text-sm text-red-600 mt-2">
-                  Complete the quiz successfully to mark this module as completed
-                </p>
-              )}
-            </div>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTraining } from '../../../context/TrainingContext';
+import { useTranslation } from 'react-i18next';
 
 function HandlingClassifiedInformation() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { markModuleComplete } = useTraining();
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -44,34 +46,34 @@ function HandlingClassifiedInformation() {
     
     // Check each answer
     if (answers.publicDocuments !== correctAnswers.publicDocuments) {
-      messages.push("Question 1: Public information can be shared openly as it poses no security risk.");
+      messages.push(t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.public'));
       allCorrect = false;
     }
     
     if (answers.confidentialDocuments !== correctAnswers.confidentialDocuments) {
-      messages.push("Question 2: Confidential documents should be shared only with authorized individuals using secure methods.");
+      messages.push(t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.confidential'));
       allCorrect = false;
     }
     
     if (answers.internalDocuments !== correctAnswers.internalDocuments) {
-      messages.push("Question 3: Internal documents should be shared only within the organization.");
+      messages.push(t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.internal'));
       allCorrect = false;
     }
     
     if (answers.highlyConfidentialFiles !== correctAnswers.highlyConfidentialFiles) {
-      messages.push("Question 4: Highly confidential files require strict access controls, encryption, and activity logging.");
+      messages.push(t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.highlyConfidential'));
       allCorrect = false;
     }
     
     if (answers.incidentReporting !== correctAnswers.incidentReporting) {
-      messages.push("Question 5: If you discover a data breach, it should be reported immediately to the security team.");
+      messages.push(t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.incident'));
       allCorrect = false;
     }
     
     setFeedback({
       show: true,
       messages: allCorrect 
-        ? ["Excellent! You understand how to properly handle information based on its classification level."]
+        ? [t('training.informationClassification.handlingClassifiedInformation.quiz.feedback.excellent')]
         : messages,
       allCorrect: allCorrect
     });
@@ -92,104 +94,104 @@ function HandlingClassifiedInformation() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
-            ← Back to Information Classification Basics
+            ← {t('training.informationClassification.handlingClassifiedInformation.backToModule')}
           </Link>
-          <h1 className="text-3xl font-bold text-black mb-4">Handling Classified Information</h1>
+          <h1 className="text-3xl font-bold text-black mb-4">{t('training.informationClassification.handlingClassifiedInformation.title')}</h1>
           
           <div className="space-y-8 mt-6">
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Handling Guidelines by Classification Level</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.handlingClassifiedInformation.guidelines.title')}</h2>
               
               <div className="space-y-4 mt-6">
                 <div className="bg-gray-50 border-l-4 border-green-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Public Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
-                    <li>Can be freely shared internally and externally</li>
-                    <li>No special handling required</li>
-                    <li>Can be published on public websites</li>
-                    <li>Examples: Marketing materials, press releases, public annual reports</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item4')}</li>
                   </ul>
                 </div>
                 
                 <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Internal Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
-                    <li>Share only within the organization</li>
-                    <li>Avoid sharing with external parties without approval</li>
-                    <li>Use company email for distribution</li>
-                    <li>Examples: Internal procedures, employee directories, meeting minutes</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.item4')}</li>
                   </ul>
                 </div>
                 
                 <div className="bg-gray-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Confidential Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
-                    <li>Share only with authorized individuals who need to know</li>
-                    <li>Use secure methods for sharing (encrypted email, secure file sharing)</li>
-                    <li>Password-protect documents when possible</li>
-                    <li>Do not leave printed copies unattended</li>
-                    <li>Examples: Customer data, financial reports, business strategies</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item4')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item5')}</li>
                   </ul>
                 </div>
                 
                 <div className="bg-gray-50 border-l-4 border-red-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">Highly Confidential Information</h3>
+                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
-                    <li>Strictest access controls - only specific authorized individuals</li>
-                    <li>Always use encryption when storing or transmitting</li>
-                    <li>Track all access and actions taken on the information</li>
-                    <li>Obtain explicit approval before sharing</li>
-                    <li>Use secure rooms for discussions involving this information</li>
-                    <li>Examples: Trade secrets, authentication credentials, strategic acquisitions</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item4')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item5')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item6')}</li>
                   </ul>
                 </div>
               </div>
             </section>
             
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Security Best Practices</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.handlingClassifiedInformation.bestPractices.title')}</h2>
               
               <div className="mt-4 space-y-4">
                 <div className="bg-white border border-gray-200 p-4 rounded">
-                  <h3 className="text-lg font-medium text-black">Physical Security</h3>
+                  <h3 className="text-lg font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.bestPractices.physical.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Use the clean desk policy - don't leave sensitive documents visible</li>
-                    <li>Lock away sensitive information when not in use</li>
-                    <li>Shred confidential documents when disposing</li>
-                    <li>Be aware of your surroundings when discussing sensitive information</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.physical.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.physical.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.physical.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.physical.item4')}</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white border border-gray-200 p-4 rounded">
-                  <h3 className="text-lg font-medium text-black">Digital Security</h3>
+                  <h3 className="text-lg font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Use strong passwords and multi-factor authentication</li>
-                    <li>Encrypt sensitive files and communications</li>
-                    <li>Be cautious with email attachments and links</li>
-                    <li>Lock your computer when away from your desk</li>
-                    <li>Only use approved cloud services for sensitive data</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.item4')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.digital.item5')}</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white border border-gray-200 p-4 rounded">
-                  <h3 className="text-lg font-medium text-black">Incident Response</h3>
+                  <h3 className="text-lg font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.bestPractices.incident.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2">
-                    <li>Report security incidents immediately</li>
-                    <li>Know who to contact in case of a suspected breach</li>
-                    <li>Document any potential exposure of sensitive information</li>
-                    <li>Follow company procedures for incident response</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.incident.item1')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.incident.item2')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.incident.item3')}</li>
+                    <li>{t('training.informationClassification.handlingClassifiedInformation.bestPractices.incident.item4')}</li>
                   </ul>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">Knowledge Check</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.handlingClassifiedInformation.quiz.title')}</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-6">
                   {/* Question 1 */}
                   <div>
-                    <p className="text-black font-medium mb-2">1. How should you handle public documents?</p>
+                    <p className="text-black font-medium mb-2">{t('training.informationClassification.handlingClassifiedInformation.quiz.question1.title')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -200,7 +202,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('publicDocuments', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Password-protect them and only share internally</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question1.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -211,7 +213,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('publicDocuments', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Encrypt them before sharing</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question1.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -222,7 +224,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('publicDocuments', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Share freely as they contain no sensitive information</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question1.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -233,14 +235,14 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('publicDocuments', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Never share them outside the department</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question1.option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 2 */}
                   <div>
-                    <p className="text-black font-medium mb-2">2. When sharing confidential documents, you should:</p>
+                    <p className="text-black font-medium mb-2">{t('training.informationClassification.handlingClassifiedInformation.quiz.question2.title')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -251,7 +253,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('confidentialDocuments', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Share them with anyone who asks for them</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question2.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -262,7 +264,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('confidentialDocuments', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Share only with authorized individuals using secure methods</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question2.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -273,7 +275,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('confidentialDocuments', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Post them publicly but with a password</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question2.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -284,14 +286,14 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('confidentialDocuments', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Never share them under any circumstances</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question2.option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 3 */}
                   <div>
-                    <p className="text-black font-medium mb-2">3. Internal documents should be shared:</p>
+                    <p className="text-black font-medium mb-2">{t('training.informationClassification.handlingClassifiedInformation.quiz.question3.title')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -302,7 +304,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('internalDocuments', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Only within the organization</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question3.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -313,7 +315,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('internalDocuments', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">With anyone who needs them for their work</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question3.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -324,7 +326,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('internalDocuments', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">With trusted partners and customers</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question3.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -335,14 +337,14 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('internalDocuments', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Only with executives</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question3.option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 4 */}
                   <div>
-                    <p className="text-black font-medium mb-2">4. Highly confidential files require:</p>
+                    <p className="text-black font-medium mb-2">{t('training.informationClassification.handlingClassifiedInformation.quiz.question4.title')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -353,7 +355,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('highlyConfidentialFiles', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Basic security measures</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question4.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -364,7 +366,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('highlyConfidentialFiles', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Password protection only</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question4.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -375,7 +377,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('highlyConfidentialFiles', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Standard email for distribution</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question4.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -386,14 +388,14 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('highlyConfidentialFiles', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Strict access controls, encryption, and activity logging</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question4.option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 5 */}
                   <div>
-                    <p className="text-black font-medium mb-2">5. If you discover a data breach involving classified information, you should:</p>
+                    <p className="text-black font-medium mb-2">{t('training.informationClassification.handlingClassifiedInformation.quiz.question5.title')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -404,7 +406,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('incidentReporting', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Try to fix it yourself without telling anyone</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question5.option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -415,7 +417,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('incidentReporting', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Report it immediately to the security team</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question5.option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -426,7 +428,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('incidentReporting', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Inform the affected customers directly</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question5.option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -437,7 +439,7 @@ function HandlingClassifiedInformation() {
                           onChange={() => handleAnswerChange('incidentReporting', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">Wait and see if anyone notices</span>
+                        <span className="text-black">{t('training.informationClassification.handlingClassifiedInformation.quiz.question5.option4')}</span>
                       </label>
                     </div>
                   </div>
@@ -446,7 +448,7 @@ function HandlingClassifiedInformation() {
                     className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity mt-6"
                     onClick={checkAnswers}
                   >
-                    Check Answers
+                    {t('training.informationClassification.handlingClassifiedInformation.quiz.checkAnswers')}
                   </button>
                   
                   {feedback.show && (
@@ -480,11 +482,11 @@ function HandlingClassifiedInformation() {
                 onClick={handleCompletion}
                 disabled={!quizCompleted}
               >
-                Mark as Completed
+                {t('training.markAsCompleted')}
               </button>
               {!quizCompleted && (
                 <p className="text-sm text-red-600 mt-2">
-                  Complete the quiz successfully to mark this module as completed
+                  {t('training.informationClassification.handlingClassifiedInformation.quiz.completionRequired')}
                 </p>
               )}
             </div>

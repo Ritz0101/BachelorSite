@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTraining } from '../../../context/TrainingContext';
+import { useTranslation } from 'react-i18next';
 
 function UnderstandingSecurityLevels() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { markModuleComplete } = useTraining();
   const [quizAnswers, setQuizAnswers] = useState({
@@ -28,7 +30,11 @@ function UnderstandingSecurityLevels() {
   };
 
   const checkAnswers = () => {
-    const messages = [];
+    const messages = {
+      scenario1: [],
+      scenario2: [],
+      scenario3: []
+    };
     let allCorrect = true;
 
     // Correct answers
@@ -40,27 +46,26 @@ function UnderstandingSecurityLevels() {
 
     // Check each scenario
     if (quizAnswers.scenario1 !== correctAnswers.scenario1) {
-      messages.push("Scenario 1: Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption.");
+      messages.scenario1.push(t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario1.feedback'));
       allCorrect = false;
     }
     if (quizAnswers.scenario2 !== correctAnswers.scenario2) {
-      messages.push("Scenario 2: Customer data contains private information and should be classified as Confidential.");
+      messages.scenario2.push(t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario2.feedback'));
       allCorrect = false;
     }
     if (quizAnswers.scenario3 !== correctAnswers.scenario3) {
-      messages.push("Scenario 3: Authentication credentials require the highest level of protection - Highly Confidential.");
+      messages.scenario3.push(t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario3.feedback'));
       allCorrect = false;
     }
 
     setFeedback({
       show: true,
       messages: allCorrect 
-        ? ["Excellent! You've correctly classified all scenarios. You understand how to apply different security levels."]
+        ? [t('training.informationClassification.understandingSecurity.quiz.excellent')]
         : messages,
       allCorrect: allCorrect
     });
 
-    // Set quiz as completed if all answers are correct
     if (allCorrect) {
       setQuizCompleted(true);
     }
@@ -77,91 +82,85 @@ function UnderstandingSecurityLevels() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
-            ← Back to Information Classification Basics
+            ← {t('training.informationClassification.understandingSecurity.backToModule')}
           </Link>
-          <h1 className="text-3xl font-bold text-custom-black mb-4">Understanding Security Levels</h1>
+          <h1 className="text-3xl font-bold text-custom-black mb-4">{t('training.informationClassification.understandingSecurity.title')}</h1>
           
           <div className="space-y-8 mt-6">
             <section>
-              <h2 className="text-2xl font-semibold text-custom-black mb-3">Course Overview</h2>
+              <h2 className="text-2xl font-semibold text-custom-black mb-3">{t('training.informationClassification.understandingSecurity.courseOverview.title')}</h2>
               <p className="text-gray-600 mb-4">
-                In this course, you will learn about the different security levels used to classify sensitive information.
-                Understanding these levels is crucial for ensuring that information is properly protected according to its 
-                sensitivity and importance.
+                {t('training.informationClassification.understandingSecurity.courseOverview.description')}
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-custom-black mb-3">Learning Objectives</h2>
+              <h2 className="text-2xl font-semibold text-custom-black mb-3">{t('training.informationClassification.understandingSecurity.learningObjectives.title')}</h2>
               <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-                <li>Understand the purpose of security classification levels</li>
-                <li>Identify the common classification levels and their meanings</li>
-                <li>Apply appropriate security levels to different types of information</li>
-                <li>Recognize the responsibilities associated with handling information at each level</li>
+                <li>{t('training.informationClassification.understandingSecurity.learningObjectives.item1')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.learningObjectives.item2')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.learningObjectives.item3')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.learningObjectives.item4')}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-custom-black mb-3">Classification Levels</h2>
+              <h2 className="text-2xl font-semibold text-custom-black mb-3">{t('training.informationClassification.understandingSecurity.classificationLevels.title')}</h2>
               
               <div className="space-y-4 mt-4">
                 <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-green-700">Public</h3>
+                  <h3 className="text-xl font-medium text-green-700">{t('training.informationClassification.understandingSecurity.classificationLevels.public.title')}</h3>
                   <p className="text-gray-600 mt-1">
-                    Information that can be freely shared with the public and poses no risk if disclosed.
-                    Examples include marketing materials, public reports, and general information on company websites.
+                    {t('training.informationClassification.understandingSecurity.classificationLevels.public.description')}
                   </p>
                 </div>
                 
                 <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-blue-700">Internal Use Only</h3>
+                  <h3 className="text-xl font-medium text-blue-700">{t('training.informationClassification.understandingSecurity.classificationLevels.internal.title')}</h3>
                   <p className="text-gray-600 mt-1">
-                    Information meant for employees and contractors only, but would pose minimal risk if disclosed.
-                    Examples include internal newsletters, non-sensitive emails, and general operational documents.
+                    {t('training.informationClassification.understandingSecurity.classificationLevels.internal.description')}
                   </p>
                 </div>
                 
                 <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-yellow-700">Confidential</h3>
+                  <h3 className="text-xl font-medium text-yellow-700">{t('training.informationClassification.understandingSecurity.classificationLevels.confidential.title')}</h3>
                   <p className="text-gray-600 mt-1">
-                    Sensitive information that must be protected and would cause harm to the organization if disclosed.
-                    Examples include financial records, business strategies, and intellectual property.
+                    {t('training.informationClassification.understandingSecurity.classificationLevels.confidential.description')}
                   </p>
                 </div>
                 
                 <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-red-700">Highly Confidential</h3>
+                  <h3 className="text-xl font-medium text-red-700">{t('training.informationClassification.understandingSecurity.classificationLevels.highlyConfidential.title')}</h3>
                   <p className="text-gray-600 mt-1">
-                    Extremely sensitive information that would cause severe damage if disclosed.
-                    Examples include customer PII, authentication credentials, and trade secrets.
+                    {t('training.informationClassification.understandingSecurity.classificationLevels.highlyConfidential.description')}
                   </p>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-custom-black mb-3">Best Practices</h2>
+              <h2 className="text-2xl font-semibold text-custom-black mb-3">{t('training.informationClassification.understandingSecurity.bestPractices.title')}</h2>
               <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-                <li>Always mark documents with their classification level</li>
-                <li>When in doubt, assign a higher level of classification</li>
-                <li>Regularly review and reclassify information as needed</li>
-                <li>Follow appropriate handling procedures for each level</li>
-                <li>Report any potential security breaches immediately</li>
+                <li>{t('training.informationClassification.understandingSecurity.bestPractices.item1')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.bestPractices.item2')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.bestPractices.item3')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.bestPractices.item4')}</li>
+                <li>{t('training.informationClassification.understandingSecurity.bestPractices.item5')}</li>
               </ul>
             </section>
 
             <section className="mt-8">
-              <h2 className="text-2xl font-semibold text-black mb-3">Classification Practice</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.understandingSecurity.quiz.title')}</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-black mb-4">
-                  For each scenario, select the appropriate security classification level:
+                  {t('training.informationClassification.understandingSecurity.quiz.description')}
                 </p>
                 
                 <div className="space-y-6">
                   <div className="p-4 border border-gray-200 rounded">
-                    <p className="text-black font-medium mb-3">Scenario 1:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario1.title')}</p>
                     <p className="text-black mb-4">
-                      A document describing the company's standard operating procedures for handling customer support tickets.
+                      {t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario1.description')}
                     </p>
                     <div className="space-y-2">
                       {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
@@ -172,18 +171,20 @@ function UnderstandingSecurityLevels() {
                             value={level}
                             checked={quizAnswers.scenario1 === level}
                             onChange={() => handleAnswerChange('scenario1', level)}
-                            className="form-radio text-purple h-5 w-5"
+                            className="form-radio text-purple h-5 w-5 rounded-full"
                           />
-                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                          <span className="text-black capitalize">
+                            {t(`training.informationClassification.understandingSecurity.quiz.options.${level.replace('-', '')}`)}
+                          </span>
                         </label>
                       ))}
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded">
-                    <p className="text-black font-medium mb-3">Scenario 2:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario2.title')}</p>
                     <p className="text-black mb-4">
-                      A spreadsheet containing customer names, addresses, and purchase history.
+                      {t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario2.description')}
                     </p>
                     <div className="space-y-2">
                       {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
@@ -194,18 +195,20 @@ function UnderstandingSecurityLevels() {
                             value={level}
                             checked={quizAnswers.scenario2 === level}
                             onChange={() => handleAnswerChange('scenario2', level)}
-                            className="form-radio text-purple h-5 w-5"
+                            className="form-radio text-purple h-5 w-5 rounded-full"
                           />
-                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                          <span className="text-black capitalize">
+                            {t(`training.informationClassification.understandingSecurity.quiz.options.${level.replace('-', '')}`)}
+                          </span>
                         </label>
                       ))}
                     </div>
                   </div>
 
                   <div className="p-4 border border-gray-200 rounded">
-                    <p className="text-black font-medium mb-3">Scenario 3:</p>
+                    <p className="text-black font-medium mb-3">{t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario3.title')}</p>
                     <p className="text-black mb-4">
-                      A file containing database passwords and API keys for the company's main services.
+                      {t('training.informationClassification.understandingSecurity.quiz.scenarios.scenario3.description')}
                     </p>
                     <div className="space-y-2">
                       {['public', 'internal', 'confidential', 'highly-confidential'].map((level) => (
@@ -216,9 +219,11 @@ function UnderstandingSecurityLevels() {
                             value={level}
                             checked={quizAnswers.scenario3 === level}
                             onChange={() => handleAnswerChange('scenario3', level)}
-                            className="form-radio text-purple h-5 w-5"
+                            className="form-radio text-purple h-5 w-5 rounded-full"
                           />
-                          <span className="text-black capitalize">{level.replace('-', ' ')}</span>
+                          <span className="text-black capitalize">
+                            {t(`training.informationClassification.understandingSecurity.quiz.options.${level.replace('-', '')}`)}
+                          </span>
                         </label>
                       ))}
                     </div>
@@ -228,7 +233,7 @@ function UnderstandingSecurityLevels() {
                     className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
                     onClick={checkAnswers}
                   >
-                    Check Answers
+                    {t('training.informationClassification.understandingSecurity.quiz.checkAnswers')}
                   </button>
 
                   {feedback.show && (
@@ -237,15 +242,26 @@ function UnderstandingSecurityLevels() {
                         ? 'bg-green-50 border border-green-200' 
                         : 'bg-red-50 border border-red-200'
                     }`}>
-                      {feedback.messages.map((message, index) => (
-                        <p key={index} className={`${
-                          feedback.allCorrect
-                            ? 'text-green-800' 
-                            : 'text-red-800'
-                        } mb-2`}>
-                          • {message}
+                      {feedback.allCorrect ? (
+                        <p className="text-green-800 mb-2">
+                          • {feedback.messages[0]}
                         </p>
-                      ))}
+                      ) : (
+                        Object.entries(feedback.messages).map(([scenario, messages]) => 
+                          messages.length > 0 && (
+                            <div key={scenario} className="mb-4">
+                              <h4 className="font-semibold text-red-800 mb-2">
+                                {t(`training.informationClassification.understandingSecurity.quiz.scenarios.${scenario}.title`)}
+                              </h4>
+                              {messages.map((message, index) => (
+                                <p key={index} className="text-red-800 ml-4 mb-1">
+                                  • {message}
+                                </p>
+                              ))}
+                            </div>
+                          )
+                        )
+                      )}
                     </div>
                   )}
                 </div>
@@ -262,11 +278,11 @@ function UnderstandingSecurityLevels() {
                 onClick={handleCompletion}
                 disabled={!quizCompleted}
               >
-                Mark as Completed
+                {t('training.markAsCompleted')}
               </button>
               {!quizCompleted && (
                 <p className="text-sm text-red-600 mt-2">
-                  Complete the quiz successfully to mark this module as completed
+                  {t('training.informationClassification.understandingSecurity.quiz.completionRequired')}
                 </p>
               )}
             </div>

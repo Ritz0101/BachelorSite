@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
-function CategorySelector({ questions, onCategoriesSelected }) {
-  const [selectedCategories, setSelectedCategories] = React.useState([]);
-
+function CategorySelector({ questions, onCategoriesSelected, selectedCategories, onCategoryToggle }) {
+  const { t } = useTranslation();
+  
+  // Handle the category toggle
   const toggleCategory = (value) => {
-    setSelectedCategories(prev => 
-      prev.includes(value) 
-        ? prev.filter(cat => cat !== value) 
-        : [...prev, value]
-    );
+    if (onCategoryToggle) {
+      onCategoryToggle(value);
+    }
   };
 
+  // Handle continue button click
   const handleContinue = () => {
-    onCategoriesSelected(selectedCategories);
+    if (selectedCategories.length > 0) {
+      onCategoriesSelected(selectedCategories);
+    }
   };
 
   // Ensure we have a valid questions object
   const currentQuestion = questions || {
-    text: "What types of data does the document contain? (Select all that apply)",
+    text: t('guide.categories.defaultQuestion'),
     options: []
   };
 
@@ -94,15 +97,15 @@ function CategorySelector({ questions, onCategoriesSelected }) {
       <button
         onClick={handleContinue}
         disabled={selectedCategories.length === 0}
-        className={`w-full mt-6 bg-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors ${
+        className={`w-full mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors ${
           selectedCategories.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >
-        Continue
+        {t('guide.categories.continue')}
       </button>
       
       <p className="text-sm text-gray-500 mt-2 text-center">
-        Select all categories that apply to your document.
+        {t('guide.categories.selectHelp')}
       </p>
     </div>
   );
