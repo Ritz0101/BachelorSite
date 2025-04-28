@@ -57,7 +57,7 @@ function ModuleCard({ module, onSelect }) {
   return (
     <div 
       onClick={() => onSelect(module)}
-      className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
+      className="bg-white border-l-4 border-purple rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
     >
       <h3 className="text-xl font-semibold text-custom-black mb-2">{t(module.titleKey)}</h3>
       <p className="text-gray-600 mb-4">{t(module.descriptionKey)}</p>
@@ -80,7 +80,7 @@ function ProgressBar({ completed, total }) {
   return (
     <div className="w-full bg-gray-200 rounded-full h-2.5">
       <div 
-        className="bg-purple h-2.5 rounded-full transition-all duration-300"
+        className="bg-dark-purple h-2.5 rounded-full transition-all duration-300"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>

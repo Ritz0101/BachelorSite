@@ -5,7 +5,7 @@ function Contact() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-light-purple text-custom-black flex items-center justify-center">
+    <div className="min-h-screen bg-light-purple text-custom-black flex items-center justify-center pt-16">
       <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl w-full">
         <h2 className="text-2xl font-bold mb-4">{t("contact.title")}</h2>
         <p className="text-lg text-gray-700 mb-6">{t("contact.subtitle")}</p>

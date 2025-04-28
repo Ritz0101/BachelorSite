@@ -36,6 +36,7 @@ function InformationClassificationBasics() {
   const { t } = useTranslation();
   const module = trainingModules.find((m) => m.id === 1);
   const { completedModules } = useTraining();
+  const linkElement = "block p-4 bg-white border-l-4 border border-purple rounded-lg hover:shadow-md transition-shadow";
 
   return (
     <div className="min-h-screen bg-light-purple pt-24">
@@ -44,7 +45,7 @@ function InformationClassificationBasics() {
           <div className="mb-6">
             <Link
               to="/training"
-              className="text-black hover:underline mb-4 inline-block"
+              className="text-gray-400 hover:underline mb-4 inline-block"
             >
               ← {t("training.modules.iso27001.backToModules")}
             </Link>
@@ -62,7 +63,7 @@ function InformationClassificationBasics() {
           <div className="space-y-6 mt-8">
             <Link
               to="/training/information-classification-basics/understanding-security-levels"
-              className="block p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+              className={linkElement}
             >
               <div className="flex justify-between items-center">
                 <div>
@@ -85,7 +86,7 @@ function InformationClassificationBasics() {
 
             <Link
               to="/training/information-classification-basics/identifying-sensitive-information"
-              className="block p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+              className={linkElement}
             >
               <div className="flex justify-between items-center">
                 <div>
@@ -107,7 +108,7 @@ function InformationClassificationBasics() {
 
             <Link
               to="/training/information-classification-basics/handling-classified-information"
-              className="block p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+              className={linkElement}
             >
               <div className="flex justify-between items-center">
                 <div>

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 function RiskAssessment() {
   const navigate = useNavigate();
   const { markModuleComplete } = useTraining();
-  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(true);
   const { t } = useTranslation();
   
   const [answers, setAnswers] = useState({
@@ -99,7 +99,7 @@ function RiskAssessment() {
     <div className="min-h-screen bg-light-purple pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <Link to="/training/iso27001-fundamentals" className="text-black hover:underline mb-4 inline-block">
+          <Link to="/training/iso27001-fundamentals" className="text-gray-400 hover:underline mb-4 inline-block">
             ← {t('training.modules.iso27001.submodules.riskAssessment.backToModule')}
           </Link>
           <h1 className="text-3xl font-bold text-black mb-4">{t('training.modules.iso27001.submodules.riskAssessment.title')}</h1>
@@ -515,7 +515,7 @@ function RiskAssessment() {
                   </div>
                   
                   <button 
-                    className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity mt-6"
+                    className="bg-dark-purple text-white px-4 py-2 rounded-md hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg transition-all mt-6"
                     onClick={checkAnswers}
                   >
                     {t('common.checkAnswers')}
@@ -559,10 +559,10 @@ function RiskAssessment() {
 
             <div className="mt-8 pt-6 border-t border-gray-200">
               <button 
-                className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+                className={`px-6 py-3 rounded-md transition-all ${
                   quizCompleted 
-                    ? 'text-black hover:bg-opacity-90 cursor-pointer' 
-                    : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+                    ? 'bg-dark-purple text-white font-bold hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg' 
+                    : 'bg-purple text-gray-500 bg-opacity-50 cursor-not-allowed'
                 }`}
                 onClick={handleCompletion}
                 disabled={!quizCompleted}

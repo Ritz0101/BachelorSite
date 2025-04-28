@@ -71,8 +71,8 @@ function ISO27001() {
   ];
 
   return (
-    <div className="min-h-screen bg-light-purple pt-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-light-purple pt-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Header Section with Gradient Background */}
         <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">

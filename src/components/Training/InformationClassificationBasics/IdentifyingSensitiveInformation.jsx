@@ -149,7 +149,7 @@ function IdentifyingSensitiveInformation() {
     <div className="min-h-screen bg-light-purple pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
+          <Link to="/training/information-classification-basics" className="text-gray-400 hover:underline mb-4 inline-block">
             ← {t('training.informationClassification.backToModule')}
           </Link>
           <h1 className="text-3xl font-bold text-black mb-4">{t('training.informationClassification.identifyingSensitive.title')}</h1>
@@ -158,9 +158,9 @@ function IdentifyingSensitiveInformation() {
             <section>
               <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.identifyingSensitive.commonTypes')}</h2>
               <div className="space-y-4">
-                <div className="bg-gray-50 border-l-4 border-green-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.publicInfo.title')}</h3>
-                  <ul className="list-disc list-inside text-black mt-2">
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
+                  <h3 className="text-xl font-medium text-green-700">{t('training.informationClassification.identifyingSensitive.publicInfo.title')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 mt-2">
                     <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item1')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item2')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.publicInfo.item3')}</li>
@@ -169,9 +169,9 @@ function IdentifyingSensitiveInformation() {
                   </ul>
                 </div>
 
-                <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.internalInfo.title')}</h3>
-                  <ul className="list-disc list-inside text-black mt-2">
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md">
+                  <h3 className="text-xl font-medium text-blue-700">{t('training.informationClassification.identifyingSensitive.internalInfo.title')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 mt-2">
                     <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item1')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item2')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.internalInfo.item3')}</li>
@@ -180,9 +180,9 @@ function IdentifyingSensitiveInformation() {
                   </ul>
                 </div>
 
-                <div className="bg-gray-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.confidentialInfo.title')}</h3>
-                  <ul className="list-disc list-inside text-black mt-2">
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md">
+                  <h3 className="text-xl font-medium text-yellow-700">{t('training.informationClassification.identifyingSensitive.confidentialInfo.title')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 mt-2">
                     <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item1')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item2')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.confidentialInfo.item3')}</li>
@@ -191,9 +191,9 @@ function IdentifyingSensitiveInformation() {
                   </ul>
                 </div>
 
-                <div className="bg-gray-50 border-l-4 border-red-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.identifyingSensitive.highlyConfidential.title')}</h3>
-                  <ul className="list-disc list-inside text-black mt-2">
+                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
+                  <h3 className="text-xl font-medium text-red-700">{t('training.informationClassification.identifyingSensitive.highlyConfidential.title')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 mt-2">
                     <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item1')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item2')}</li>
                     <li>{t('training.informationClassification.identifyingSensitive.highlyConfidential.item3')}</li>
@@ -503,7 +503,7 @@ function IdentifyingSensitiveInformation() {
 
                   <button 
                     onClick={checkAnswers}
-                    className="mt-6 bg-purple hover:bg-purple-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                    className="bg-dark-purple text-white px-4 py-2 rounded-md hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg transition-all mt-6"
                   >
                     {t('common.checkAnswers')}
                   </button>
@@ -551,10 +551,10 @@ function IdentifyingSensitiveInformation() {
             <button 
               onClick={handleCompletion}
               disabled={!feedback.isSubmitted || feedback.incorrectAnswers.length > 0}
-              className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+              className={`px-6 py-3 rounded-md transition-all ${
                 feedback.isSubmitted && feedback.incorrectAnswers.length === 0 
-                  ? 'text-black hover:bg-opacity-90 cursor-pointer' 
-                  : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+                  ? 'bg-dark-purple text-white font-bold hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg' 
+                  : 'bg-purple text-gray-500 bg-opacity-50 cursor-not-allowed'
               }`}
             >
               {t('training.markAsCompleted')}

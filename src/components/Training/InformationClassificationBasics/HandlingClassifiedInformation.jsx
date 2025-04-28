@@ -93,7 +93,7 @@ function HandlingClassifiedInformation() {
     <div className="min-h-screen bg-light-purple pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <Link to="/training/information-classification-basics" className="text-black hover:underline mb-4 inline-block">
+          <Link to="/training/information-classification-basics" className="text-gray-400 hover:underline mb-4 inline-block">
             ← {t('training.informationClassification.handlingClassifiedInformation.backToModule')}
           </Link>
           <h1 className="text-3xl font-bold text-black mb-4">{t('training.informationClassification.handlingClassifiedInformation.title')}</h1>
@@ -103,9 +103,9 @@ function HandlingClassifiedInformation() {
               <h2 className="text-2xl font-semibold text-black mb-3">{t('training.informationClassification.handlingClassifiedInformation.guidelines.title')}</h2>
               
               <div className="space-y-4 mt-6">
-                <div className="bg-gray-50 border-l-4 border-green-500 p-4 rounded-r-md">
-                  <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.title')}</h3>
-                  <ul className="list-disc list-inside text-black mt-2 space-y-1">
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-md shadow-md">
+                  <h3 className="text-xl font-medium text-green-700">{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.title')}</h3>
+                  <ul className="list-disc list-inside text-gray-600 mt-2 space-y-1">
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item1')}</li>
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item2')}</li>
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.public.item3')}</li>
@@ -113,7 +113,7 @@ function HandlingClassifiedInformation() {
                   </ul>
                 </div>
                 
-                <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-md">
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md shadow-md">
                   <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.internal.item1')}</li>
@@ -123,7 +123,7 @@ function HandlingClassifiedInformation() {
                   </ul>
                 </div>
                 
-                <div className="bg-gray-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md shadow-md">
                   <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.confidential.item1')}</li>
@@ -134,7 +134,7 @@ function HandlingClassifiedInformation() {
                   </ul>
                 </div>
                 
-                <div className="bg-gray-50 border-l-4 border-red-500 p-4 rounded-r-md">
+                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md shadow-md">
                   <h3 className="text-xl font-medium text-black">{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.title')}</h3>
                   <ul className="list-disc list-inside text-black mt-2 space-y-1">
                     <li>{t('training.informationClassification.handlingClassifiedInformation.guidelines.highlyConfidential.item1')}</li>
@@ -445,7 +445,7 @@ function HandlingClassifiedInformation() {
                   </div>
                   
                   <button 
-                    className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity mt-6"
+                    className="bg-dark-purple text-white px-4 py-2 rounded-md hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg transition-all mt-6"
                     onClick={checkAnswers}
                   >
                     {t('training.informationClassification.handlingClassifiedInformation.quiz.checkAnswers')}
@@ -474,10 +474,10 @@ function HandlingClassifiedInformation() {
 
             <div className="mt-8 pt-6 border-t border-gray-200">
               <button 
-                className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+                className={`px-6 py-3 rounded-md transition-all ${
                   quizCompleted 
-                    ? 'text-black hover:bg-opacity-90 cursor-pointer' 
-                    : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+                    ? 'bg-dark-purple text-white font-bold hover:scale-[1.01] hover:bg-opacity-90 hover:shadow-lg' 
+                    : 'bg-purple text-gray-500 bg-opacity-50 cursor-not-allowed'
                 }`}
                 onClick={handleCompletion}
                 disabled={!quizCompleted}

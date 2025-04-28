@@ -25,13 +25,14 @@ function ISO27001Fundamentals() {
   const module = trainingModules.find(m => m.id === 2);
   const { completedModules } = useTraining();
   const { t } = useTranslation();
+  const linkElement = "block p-4 bg-white border-l-4 border border-purple rounded-lg hover:shadow-md transition-shadow";
 
   return (
     <div className="min-h-screen bg-light-purple pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-6">
-            <Link to="/training" className="text-black hover:underline mb-4 inline-block">
+            <Link to="/training" className="text-gray-400 hover:underline mb-4 inline-block">
               ← {t('training.modules.iso27001.backToModules')}
             </Link>
             <h1 className="text-3xl font-bold text-black mt-4">{t(module.titleKey)}</h1>
@@ -42,7 +43,7 @@ function ISO27001Fundamentals() {
           <div className="space-y-6 mt-8">
             <Link 
               to="/training/iso27001-fundamentals/isms-basics"
-              className="block p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+              className={linkElement}
             >
               <div className="flex justify-between items-center">
                 <div>
@@ -55,7 +56,7 @@ function ISO27001Fundamentals() {
 
             <Link 
               to="/training/iso27001-fundamentals/risk-assessment"
-              className="block p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+              className={linkElement}
             >
               <div className="flex justify-between items-center">
                 <div>

@@ -149,11 +149,20 @@ function About() {
             {t('about.technologies.title')}
           </h2>
           <div className="flex flex-wrap gap-3 mt-4">
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.react')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.tailwind')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.javascript')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.vite')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.router')}</span>
+            {[
+              t('about.technologies.react'),
+              t('about.technologies.tailwind'),
+              t('about.technologies.javascript'),
+              t('about.technologies.vite'),
+              t('about.technologies.router')
+            ].map((tech, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium transition-transform transition-shadow cursor-default hover:scale-[1.02] hover:shadow-md"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
           <p className="mt-4 text-gray-600">
             {t('about.technologies.description')}
