@@ -516,12 +516,6 @@ function IdentifyingSensitiveInformation() {
                         <p className="text-green-800 mb-2">
                           {t('training.informationClassification.identifyingSensitive.practiceExercise.feedback.correct')}
                         </p>
-                        <button 
-                          onClick={handleCompletion}
-                          className="mt-4 bg-purple hover:bg-purple-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        >
-                          {t('training.markAsCompleted')}
-                        </button>
                       </div>
                     ) : (
                       <div>
@@ -550,6 +544,26 @@ function IdentifyingSensitiveInformation() {
                 )}
               </div>
             </section>
+          </div>
+
+          {/* Add Mark as Completed button at the bottom */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <button 
+              onClick={handleCompletion}
+              disabled={!feedback.isSubmitted || feedback.incorrectAnswers.length > 0}
+              className={`bg-purple px-6 py-3 rounded-md transition-opacity ${
+                feedback.isSubmitted && feedback.incorrectAnswers.length === 0 
+                  ? 'text-black hover:bg-opacity-90 cursor-pointer' 
+                  : 'text-gray-500 bg-opacity-50 cursor-not-allowed'
+              }`}
+            >
+              {t('training.markAsCompleted')}
+            </button>
+            {(!feedback.isSubmitted || feedback.incorrectAnswers.length > 0) && (
+              <p className="text-sm text-red-600 mt-2">
+                {t('training.informationClassification.identifyingSensitive.practiceExercise.feedback.completionRequired', 'Complete the quiz successfully to mark this module as completed')}
+              </p>
+            )}
           </div>
         </div>
       </div>
