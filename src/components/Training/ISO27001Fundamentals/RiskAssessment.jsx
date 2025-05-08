@@ -50,36 +50,36 @@ function RiskAssessment() {
       riskTreatment: 'b'
     };
     
-    // Check each answer
+    // Check each answer and use the full feedback keys
     if (answers.riskAssessmentDefinition !== correctAnswers.riskAssessmentDefinition) {
-      messages.riskAssessmentDefinition.push(t('training.modules.iso27001.submodules.riskAssessment.quiz.feedback.riskAssessmentDefinition'));
+      messages.riskAssessmentDefinition.push(t('risk_assessment_quiz_feedback_q1_full'));
       allCorrect = false;
     }
     
     if (answers.riskManagementProcess !== correctAnswers.riskManagementProcess) {
-      messages.riskManagementProcess.push(t('training.modules.iso27001.submodules.riskAssessment.quiz.feedback.riskManagementProcess'));
+      messages.riskManagementProcess.push(t('risk_assessment_quiz_feedback_q2_full'));
       allCorrect = false;
     }
     
     if (answers.assetIdentification !== correctAnswers.assetIdentification) {
-      messages.assetIdentification.push(t('training.modules.iso27001.submodules.riskAssessment.quiz.feedback.assetIdentification'));
+      messages.assetIdentification.push(t('risk_assessment_quiz_feedback_q3_full'));
       allCorrect = false;
     }
     
     if (answers.threatTypes !== correctAnswers.threatTypes) {
-      messages.threatTypes.push(t('training.modules.iso27001.submodules.riskAssessment.quiz.feedback.threatTypes'));
+      messages.threatTypes.push(t('risk_assessment_quiz_feedback_q4_full'));
       allCorrect = false;
     }
     
     if (answers.riskTreatment !== correctAnswers.riskTreatment) {
-      messages.riskTreatment.push(t('training.modules.iso27001.submodules.riskAssessment.quiz.feedback.riskTreatment'));
+      messages.riskTreatment.push(t('risk_assessment_quiz_feedback_q5_full'));
       allCorrect = false;
     }
     
     setFeedback({
       show: true,
       messages: allCorrect 
-        ? [t('training.modules.iso27001.submodules.riskAssessment.quiz.excellent')]
+        ? [t('risk_assessment_quiz_feedback_excellent')]
         : messages,
       allCorrect: allCorrect
     });
@@ -100,155 +100,155 @@ function RiskAssessment() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <Link to="/training/iso27001-fundamentals" className="text-black hover:underline mb-4 inline-block">
-            ← {t('training.modules.iso27001.submodules.riskAssessment.backToModule')}
+            ← {t('isms_back_to_button')}
           </Link>
-          <h1 className="text-3xl font-bold text-black mb-4">{t('training.modules.iso27001.submodules.riskAssessment.title')}</h1>
+          <h1 className="text-3xl font-bold text-black mb-4">{t('risk_assessment_title')}</h1>
           
           <div className="space-y-8 mt-6">
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.modules.iso27001.submodules.riskAssessment.whatIs.title')}</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('risk_assessment_what_is_title')}</h2>
               <p className="text-black mb-4">
-                {t('training.modules.iso27001.submodules.riskAssessment.whatIs.description')}
+                {t('risk_assessment_what_is_description')}
               </p>
               
               <div className="bg-gray-50 p-4 rounded-md border-l-4 border-blue-500">
                 <p className="text-black">
-                  <strong>{t('training.modules.iso27001.submodules.riskAssessment.whatIs.definition')}</strong>
+                  <strong>{t('risk_assessment_what_is_definition')}</strong>
                 </p>
               </div>
             </section>
             
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.modules.iso27001.submodules.riskAssessment.process.title')}</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('risk_managment_process_title')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="bg-white border border-blue-200 p-4 rounded">
-                    <h3 className="text-lg font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.process.identification.title')}</h3>
-                    <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.process.identification.description')}</p>
+                    <h3 className="text-lg font-medium text-black mb-2">{t('risk_identification_title')}</h3>
+                    <p className="text-black">{t('risk_identification_description')}</p>
                   </div>
                   
                   <div className="bg-white border border-blue-200 p-4 rounded">
-                    <h3 className="text-lg font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.process.analysis.title')}</h3>
-                    <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.process.analysis.description')}</p>
+                    <h3 className="text-lg font-medium text-black mb-2">{t('risk_analysis_title')}</h3>
+                    <p className="text-black">{t('risk_analysis_description')}</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-blue-200 p-4 rounded">
-                    <h3 className="text-lg font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.process.evaluation.title')}</h3>
-                    <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.process.evaluation.description')}</p>
+                    <h3 className="text-lg font-medium text-black mb-2">{t('risk_evaluation_title')}</h3>
+                    <p className="text-black">{t('risk_evaluation_description')}</p>
                   </div>
                   
                   <div className="bg-white border border-blue-200 p-4 rounded">
-                    <h3 className="text-lg font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.process.treatment.title')}</h3>
-                    <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.process.treatment.description')}</p>
+                    <h3 className="text-lg font-medium text-black mb-2">{t('risk_treatment_title')}</h3>
+                    <p className="text-black">{t('risk_treatment_description')}</p>
                   </div>
                 </div>
               </div>
             </section>
             
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.title')}</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('risk_key_components_title')}</h2>
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.title')}</h3>
+                  <h3 className="text-xl font-medium text-black mb-2">{t('asset_identification_title')}</h3>
                   <p className="text-black mb-3">
-                    {t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.description')}
+                    {t('assets_identification_description')}
                   </p>
                   <div className="bg-white border border-gray-200 p-4 rounded">
                     <ul className="list-disc list-inside text-black space-y-1">
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item1')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item2')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item3')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item4')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item5')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.assets.item6')}</li>
+                      <li>{t('asset_identification_item1')}</li>
+                      <li>{t('asset_identification_item2')}</li>
+                      <li>{t('asset_identification_item3')}</li>
+                      <li>{t('asset_identification_item4')}</li>
+                      <li>{t('asset_identification_item5')}</li>
+                      <li>{t('asset_identification_item6')}</li>
                     </ul>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.title')}</h3>
+                  <h3 className="text-xl font-medium text-black mb-2">{t('threat_identification_title')}</h3>
                   <p className="text-black mb-3">
-                    {t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.description')}
+                    {t('threat_identification_description')}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.internal.title')}</h4>
+                      <h4 className="font-semibold text-black mb-1">{t('internal_threats_title')}</h4>
                       <ul className="list-disc list-inside text-black space-y-1">
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.internal.item1')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.internal.item2')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.internal.item3')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.internal.item4')}</li>
+                        <li>{t('internal_threats_item1')}</li>
+                        <li>{t('.internal_threats_item2')}</li>
+                        <li>{t('internal_threats_item3')}</li>
+                        <li>{t('internal_threats_item4')}</li>
                       </ul>
                     </div>
                     
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.external.title')}</h4>
+                      <h4 className="font-semibold text-black mb-1">{t('external_threats_title')}</h4>
                       <ul className="list-disc list-inside text-black space-y-1">
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.external.item1')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.external.item2')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.external.item3')}</li>
-                        <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.threats.external.item4')}</li>
+                        <li>{t('external_threats_item1')}</li>
+                        <li>{t('external_threats_item2')}</li>
+                        <li>{t('external_threats_item3')}</li>
+                        <li>{t('external_threats_item4')}</li>
                       </ul>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.title')}</h3>
+                  <h3 className="text-xl font-medium text-black mb-2">{t('vulnerability_assessment_title')}</h3>
                   <p className="text-black mb-3">
-                    {t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.description')}
+                    {t('vulnerability_assessment_description')}
                   </p>
                   <div className="bg-white border border-gray-200 p-4 rounded">
                     <ul className="list-disc list-inside text-black space-y-1">
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item1')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item2')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item3')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item4')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item5')}</li>
-                      <li>{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.vulnerabilities.item6')}</li>
+                      <li>{t('vulnerability_assessment_item1')}</li>
+                      <li>{t('vulnerability_assessment_item2')}</li>
+                      <li>{t('vulnerability_assessment_item3')}</li>
+                      <li>{t('vulnerability_assessment_item4')}</li>
+                      <li>{t('vulnerability_assessment_item5')}</li>
+                      <li>{t('vulnerability_assessment_item6')}</li>
                     </ul>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.analysis.title')}</h3>
+                  <h3 className="text-xl font-medium text-black mb-2">{t('risk_analysis_methods_title')}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.analysis.qualitative.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.analysis.qualitative.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('qualitative_analysis_title')}</h4>
+                      <p className="text-black">{t('qualitative_analysis_description')}</p>
                     </div>
                     
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.analysis.quantitative.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.analysis.quantitative.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('quantitative_analysis_title')}</h4>
+                      <p className="text-black">{t('quantitative_analysis_description')}</p>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-medium text-black mb-2">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.title')}</h3>
+                  <h3 className="text-xl font-medium text-black mb-2">{t('risk_treatment_options_title')}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.modify.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.modify.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('risk_treatment_options_modify')}</h4>
+                      <p className="text-black">{t('risk_treatment_options_modify_description')}</p>
                     </div>
                     
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.accept.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.accept.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('risk_treatment_options_accept')}</h4>
+                      <p className="text-black">{t('risk_treatment_options_accept_description')}</p>
                     </div>
                     
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.avoid.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.avoid.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('risk_treatment_options_avoid')}</h4>
+                      <p className="text-black">{t('risk_treatment_options_avoid_description')}</p>
                     </div>
                     
                     <div className="bg-white border border-gray-200 p-4 rounded">
-                      <h4 className="font-semibold text-black mb-1">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.transfer.title')}</h4>
-                      <p className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.keyComponents.treatment.transfer.description')}</p>
+                      <h4 className="font-semibold text-black mb-1">{t('risk_treatment_options_transfer')}</h4>
+                      <p className="text-black">{t('risk_treatment_options_transfer_description')}</p>
                     </div>
                   </div>
                 </div>
@@ -256,12 +256,12 @@ function RiskAssessment() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-black mb-3">{t('training.modules.iso27001.submodules.riskAssessment.quiz.title')}</h2>
+              <h2 className="text-2xl font-semibold text-black mb-3">{t('knowledge_check_title')}</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-6">
                   {/* Question 1 */}
                   <div>
-                    <p className="text-black font-medium mb-2">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.question')}</p>
+                    <p className="text-black font-medium mb-2">{t('risk_assessment_quiz_q1')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -272,7 +272,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskAssessmentDefinition', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.options.a')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q1_option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -283,7 +283,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskAssessmentDefinition', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.options.b')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q1_option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -294,7 +294,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskAssessmentDefinition', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.options.c')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q1_option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -305,14 +305,14 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskAssessmentDefinition', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.options.d')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q1_option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 2 */}
                   <div>
-                    <p className="text-black font-medium mb-2">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.question')}</p>
+                    <p className="text-black font-medium mb-2">{t('risk_assessment_quiz_q2')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -323,7 +323,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskManagementProcess', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.options.a')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q2_option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -334,7 +334,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskManagementProcess', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.options.b')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q2_option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -345,7 +345,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskManagementProcess', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.options.c')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q2_option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -356,14 +356,14 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskManagementProcess', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.options.d')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q2_option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 3 */}
                   <div>
-                    <p className="text-black font-medium mb-2">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.question')}</p>
+                    <p className="text-black font-medium mb-2">{t('risk_assessment_quiz_q3')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -374,7 +374,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('assetIdentification', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.options.a')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q3_option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -385,7 +385,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('assetIdentification', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.options.b')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q3_option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -396,7 +396,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('assetIdentification', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.options.c')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q3_option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -407,14 +407,14 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('assetIdentification', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.options.d')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q3_option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 4 */}
                   <div>
-                    <p className="text-black font-medium mb-2">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.question')}</p>
+                    <p className="text-black font-medium mb-2">{t('risk_assessment_quiz_q4')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -425,7 +425,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('threatTypes', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.options.a')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q4_option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -436,7 +436,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('threatTypes', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.options.b')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q4_option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -447,7 +447,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('threatTypes', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.options.c')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q4_option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -458,14 +458,14 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('threatTypes', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.options.d')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q3_option4')}</span>
                       </label>
                     </div>
                   </div>
                   
                   {/* Question 5 */}
                   <div>
-                    <p className="text-black font-medium mb-2">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.question')}</p>
+                    <p className="text-black font-medium mb-2">{t('risk_assessment_quiz_q5')}</p>
                     <div className="space-y-2">
                       <label className="flex items-center space-x-2">
                         <input 
@@ -476,7 +476,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskTreatment', 'a')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.options.a')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q5_option1')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -484,10 +484,11 @@ function RiskAssessment() {
                           name="riskTreatment"
                           value="b"
                           checked={answers.riskTreatment === 'b'}
+
                           onChange={() => handleAnswerChange('riskTreatment', 'b')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.options.b')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q5_option2')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -498,7 +499,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskTreatment', 'c')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.options.c')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q5_option3')}</span>
                       </label>
                       <label className="flex items-center space-x-2">
                         <input 
@@ -509,7 +510,7 @@ function RiskAssessment() {
                           onChange={() => handleAnswerChange('riskTreatment', 'd')}
                           className="form-radio h-5 w-5 text-purple"
                         />
-                        <span className="text-black">{t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.options.d')}</span>
+                        <span className="text-black">{t('risk_assessment_quiz_q5_option4')}</span>
                       </label>
                     </div>
                   </div>
@@ -518,7 +519,7 @@ function RiskAssessment() {
                     className="bg-purple text-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity mt-6"
                     onClick={checkAnswers}
                   >
-                    {t('common.checkAnswers')}
+                    {t('common_button_check_answers')}
                   </button>
                   
                   {feedback.show && (
@@ -535,18 +536,20 @@ function RiskAssessment() {
                         Object.entries(feedback.messages).map(([question, messages]) => 
                           messages.length > 0 && (
                             <div key={question} className="mb-4">
-                              <h4 className="font-semibold text-red-800 mb-2">
-                                {question === 'riskAssessmentDefinition' && t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskAssessmentDefinition.title')}
-                                {question === 'riskManagementProcess' && t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskManagementProcess.title')}
-                                {question === 'assetIdentification' && t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.assetIdentification.title')}
-                                {question === 'threatTypes' && t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.threatTypes.title')}
-                                {question === 'riskTreatment' && t('training.modules.iso27001.submodules.riskAssessment.quiz.questions.riskTreatment.title')}
-                              </h4>
-                              {messages.map((message, index) => (
-                                <p key={index} className="text-red-800 ml-4 mb-1">
-                                  • {message}
-                                </p>
-                              ))}
+                              {messages.map((message, index) => {
+                                // Split the message into title and content parts
+                                // Assuming format like "Question 1: Risk Assessment Definition\n• The actual feedback..."
+                                const parts = message.split('\n');
+                                const title = parts[0];
+                                const content = parts.slice(1).join('\n');
+                                
+                                return (
+                                  <div key={index} className="mb-3">
+                                    <h4 className="font-semibold text-red-800 mb-2">{title}</h4>
+                                    <p className="text-red-800 ml-4 whitespace-pre-line">{content}</p>
+                                  </div>
+                                );
+                              })}
                             </div>
                           )
                         )
@@ -567,11 +570,11 @@ function RiskAssessment() {
                 onClick={handleCompletion}
                 disabled={!quizCompleted}
               >
-                {t('training.markAsCompleted')}
+                {t('common_button_mark_as_completed')}
               </button>
               {!quizCompleted && (
                 <p className="text-sm text-red-600 mt-2">
-                  {t('training.modules.iso27001.submodules.riskAssessment.quizCompletionRequired', 'Complete the quiz successfully to mark this module as completed')}
+                  {t('common_message_completion_required')}
                 </p>
               )}
             </div>

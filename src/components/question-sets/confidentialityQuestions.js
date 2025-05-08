@@ -1,42 +1,46 @@
 // Confidentiality questions module
-const confidentialityQuestions = [
-    {
-      id: "q3",
-      text: "Would exposure of this document cause legal or reputational damage?",
-      options: [
-        { label: "Yes", next: "legalRegulationsQuestions" },
-        { label: "No", next: "integrityQuestions" },
-      ],
-    },
-    {
-      id: "q4",
-      text: "Is the document subject to GDPR, HIPAA, or other regulations?",
-      options: [
-        { label: "Yes", next: "legalRegulationsQuestions" },
-        { label: "No", next: "integrityQuestions" },
-      ],
-    },
-    {
-      id: "pii1",
-      text: "What types of personal information does the document contain?",
-      options: [
-        { label: "Names and basic contact information", next: "pii2" },
-        { label: "Financial data (credit card, bank details)", next: "pii2" },
-        { label: "Health information", next: "pii2" },
-        { label: "Biometric data", next: "pii2" },
-        { label: "Location data", next: "pii2" }
-      ]
-    },
-    {
-      id: "pii2",
-      text: "How many individuals' personal data is included in this document?",
-      options: [
-        { label: "Just one person", next: "integrityQuestions" },
-        { label: "A small group (2-10 people)", next: "integrityQuestions" },
-        { label: "A large group (10+ people)", next: "integrityQuestions" },
-        { label: "Mass data (100+ people)", next: "legalRegulationsQuestions" }
-      ]
-    }
-  ];
-  
-  export default confidentialityQuestions;
+// Using textKey and labelKey instead of direct translation calls
+
+export default [
+  {
+    id: "q3",
+    textKey: 'confidentiality_questions_module_q3',
+    fallbackText: "Would exposure of this document cause legal or reputational damage?",
+    options: [
+      { labelKey: 'common_yes', fallbackLabel: "Yes", next: "legalRegulationsQuestions" },
+      { labelKey: 'common_no', fallbackLabel: "No", next: "integrityQuestions" },
+    ],
+  },
+  {
+    id: "q4",
+    textKey: 'confidentiality_questions_module_q4',
+    fallbackText: "Is the document subject to GDPR, HIPAA, or other regulations?",
+    options: [
+      { labelKey: 'common_yes', fallbackLabel: "Yes", next: "legalRegulationsQuestions" },
+      { labelKey: 'common_no', fallbackLabel: "No", next: "integrityQuestions" },
+    ],
+  },
+  {
+    id: "pii1",
+    textKey: 'pii1_question',
+    fallbackText: "What types of personal information does the document contain?",
+    options: [
+      { labelKey: 'pii1_option1', fallbackLabel: "Names and basic contact information", next: "pii2" },
+      { labelKey: 'pii1_option2', fallbackLabel: "Financial data", next: "pii2" },
+      { labelKey: 'pii1_option3', fallbackLabel: "Health information", next: "pii2" },
+      { labelKey: 'pii1_option4', fallbackLabel: "Biometric data", next: "pii2" },
+      { labelKey: 'pii1_option5', fallbackLabel: "Location data", next: "pii2" }
+    ]
+  },
+  {
+    id: "pii2",
+    textKey: 'pii2_question',
+    fallbackText: "How many individuals' personal data is included in this document?",
+    options: [
+      { labelKey: 'pii2_option1', fallbackLabel: "Just one person", next: "integrityQuestions" },
+      { labelKey: 'pii2_option2', fallbackLabel: "A small group (2-10 people)", next: "integrityQuestions" },
+      { labelKey: 'pii2_option3', fallbackLabel: "A large group (10+ people)", next: "integrityQuestions" },
+      { labelKey: 'pii2_option4', fallbackLabel: "Mass data (100+ people)", next: "legalRegulationsQuestions" }
+    ]
+  }
+];

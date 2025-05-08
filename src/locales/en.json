@@ -1,1321 +1,780 @@
 {
-  "navigation": {
-    "home": "Home",
-    "guide": "Guide",
-    "about": "About",
-    "training": "Training",
-    "iso27001": "ISO 27001",
-    "contact": "Contact",
-    "reportBug": "Report a bug"
-  },
-  "home": {
-    "title": "Welcome to Isotron",
-    "subtitle": "Your guide to secure information handling",
-    "getStarted": "Get Started",
-    "guide": {
-      "intro": "Unsure how to handle sensitive information? Our classification guide helps you make the right decisions through a simple and effective checklist.",
-      "details": "Isotron is designed to assist employees in classifying sensitive data according to ISO 27001 standards. By following a decision tree, users can answer a series of questions that lead to a classification report, ensuring compliance and proper handling of information."
-    },
-    "training": {
-      "intro": "Start your learning journey with our interactive training modules and test your knowledge through our tailored quizzes.",
-      "details": "The training modules are designed to provide comprehensive knowledge about ISO 27001 compliance, helping employees understand the importance of data security and the steps necessary to maintain it. Each module includes quizzes to reinforce learning and ensure retention of key concepts."
-    }
-  },
-  "guide": {
-    "title": "Classification Guide",
-    "subtitle": "Follow these steps to properly classify your information",
-    "reset": "Reset",
-    "resetTitle": "Start the classification process from the beginning",
-    "startClassification": "Start Classification",
-    "advancedOptions": "Advanced Options (Optional)",
-    "documentInfoHelp": "Providing document details will help generate a more personalized classification report with specific handling instructions.",
-    "categories": {
-      "defaultQuestion": "What types of data does the document contain? (Select all that apply)",
-      "continue": "Continue",
-      "selectHelp": "Select all categories that apply to your document."
-    },
-    "sections": {
-      "heating": "Personal Data",
-      "lighting": "Business Data",
-      "appliances": "Sensitive Data",
-      "insulation": "Confidential Data"
-    },
-    "welcome": {
-      "title": "Welcome to the Classification Guide",
-      "description": "This guide will help you determine the appropriate classification level for your document based on ISO27001 standards. Through a series of questions, we'll assess the sensitivity and security requirements of your information.",
-      "expectTitle": "What to expect",
-      "expectItem1": "Select all types of sensitive information in your document",
-      "expectItem2": "Answer questions about your document's content and use",
-      "expectItem3": "Receive a classification level based on ISO27001",
-      "expectItem4": "Get specific handling and security instructions",
-      "expectItem5": "Estimated time: 2-3 minutes"
-    },
-    "form": {
-      "documentName": "Document Name",
-      "documentNamePlaceholder": "e.g., Q4 Financial Report",
-      "fileType": "File Type",
-      "fileTypePlaceholder": "e.g., PDF, DOCX, XLSX",
-      "documentOwner": "Document Owner",
-      "documentOwnerPlaceholder": "e.g., John Smith",
+    "nav_guide": "Guide",
+    "nav_training": "Training",
+    "nav_about": "About",
+    "nav_iso27001": "ISO 27001",
+    "nav_contact": "Contact",
+    "nav_report_bug": "Report a bug",
+    
+    "lang_english": "English",
+    "lang_norwegian": "Norwegian",
+    "lang_polish": "Polish",
+
+    "common_button_check_answers": "Check Answers",
+    "common_button_mark_as_completed": "Mark as Completed",
+    "common_message_completion_required": "Complete the quiz successfully to mark this module as completed",
+    "commmon_progress_indicator": "{{completed}} / {{total}} completed",
+    "common_duration": "Duration: {{time}} min",
+    "common_button_reset": "Reset",
+    "common_button_continue": "Continue",
+    "common_button_cancel": "Cancel",
+    "common_button_previous": "Previous",
+    "common_completed": "Completed",
+    "common_optional": "Optional",
+    "common_yes": "Yes",
+    "common_no": "No",
+    "common_button_start_classification": "Start Classification",
+    "classification_guide_title": "Classification Guide",
+    "knowledge_check_title": "Knowledge Check",
+
+    "home_title": "Welcome to Isotron",
+    "home_subtitle": "Your guide to secure information handling",
+    "home_classification_guide_intro": "Unsure how to handle sensitive information? Our classification guide helps you make the right decisions through a simple and effective checklist.",
+    "home_classification_guide_details": "Isotron is designed to assist employees in classifying sensitive data according to ISO 27001 standards. By following a decision tree, users can answer a series of questions leading to a classification report, ensuring compliance and proper information handling.",
+    "home_get_started": "Get Started",
+    "home_training_modules_title": "Training Modules",
+    "home_training_intro": "Start your learning journey with our interactive training modules and test your knowledge through our tailored quizzes.",
+    "home_training_details": "The training modules are designed to provide comprehensive knowledge about ISO 27001 compliance, helping employees understand the importance of data security and the steps necessary to maintain it. Each module includes quizzes to reinforce learning and ensure retention of key concepts.",
+    "home_start_module": "Start Module",
+
+    "classification_guide_welcome_title": "Welcome to the Classification Guide",
+    "classification_guide_welcome_description": "This guide will help you determine the appropriate classification level for your document based on ISO27001 standards. Through a series of questions, we'll assess the sensitivity and security requirements of your information.",
+    "classifcation_guide_what_to_expect": "What to expect",
+    "what_to_expect_item1": "Select all types of sensitive information in your document",
+    "what_to_expect_item2": "Answer questions about your document's content and use",
+    "what_to_expect_item3": "Receive a classification level based on ISO27001",
+    "what_to_expect_item4": "Get specific handling and security instructions",
+    "what_to_expect_item5": "Estimated time: 2-3 minutes",
+    "advanced_options": "Advanced Options (Optional)",
+    "advanced_options_subtext": "Providing document details will help generate a more personalized classification report with specific handling instructions.",
+    "document_name": "Document Name",
+    "document_name_placeholder": "e.g., Q4 Financial Report",
+    "file_type": "File Type",
+    "file_type_placeholder": "e.g., PDF, DOCX, XLSX",
+    "document_owner": "Document Owner",
+    "document_owner_placeholder": "e.g., Jhon Smith",
       "department": "Department",
-      "departmentPlaceholder": "e.g., Finance",
+    "department_placeholder": "e.g., Finance",
       "description": "Brief Description",
-      "descriptionPlaceholder": "Brief description of the document's content and purpose"
-    }
-  },
-  "training": {
-    "title": "Training Modules",
-    "subtitle": "Interactive lessons on information security",
-    "description": "Enhance your understanding of information security through our interactive training modules.",
-    "overallProgress": "Overall progress: {{completed}} of {{total}} modules completed",
-    "duration": "Duration: {{time}} min",
-    "progressIndicator": "{{completed}} / {{total}} completed",
-    "completed": "Completed",
-    "markAsCompleted": "Mark as Completed",
-    "modules": {
-      "informationClassification": {
-        "title": "Information Classification Basics",
-        "description": "Learn the fundamentals of classifying sensitive information",
-        "backToModules": "Back to Training Modules",
-        "understandingSecurity": {
-          "title": "Understanding Security Levels",
-          "description": "Learn about different security classification levels.",
-          "backToModule": "Back to Information Classification Basics",
-          "courseOverview": {
-            "title": "Course Overview",
-            "description": "In this course, you will learn about the different security levels used to classify sensitive information. Understanding these levels is crucial for ensuring that information is properly protected according to its sensitivity and importance."
-          },
-          "learningObjectives": {
-            "title": "Learning Objectives",
-            "item1": "Understand the purpose of security classification levels",
-            "item2": "Identify the common classification levels and their meanings",
-            "item3": "Apply appropriate security levels to different types of information",
-            "item4": "Recognize the responsibilities associated with handling information at each level"
-          },
-          "classificationLevels": {
-            "title": "Classification Levels",
-            "public": {
-              "title": "Public",
-              "description": "Information that can be freely shared with the public and poses no risk if disclosed. Examples include marketing materials, public reports, and general information on company websites."
-            },
-            "internal": {
-              "title": "Internal Use Only",
-              "description": "Information meant for employees and contractors only, but would pose minimal risk if disclosed. Examples include internal newsletters, non-sensitive emails, and general operational documents."
-            },
-            "confidential": {
-              "title": "Confidential",
-              "description": "Sensitive information that must be protected and would cause harm to the organization if disclosed. Examples include financial records, business strategies, and intellectual property."
-            },
-            "highlyConfidential": {
-              "title": "Highly Confidential",
-              "description": "Extremely sensitive information that would cause severe damage if disclosed. Examples include customer PII, authentication credentials, and trade secrets."
-            }
-          },
-          "bestPractices": {
-            "title": "Best Practices",
-            "item1": "Always mark documents with their classification level",
-            "item2": "When in doubt, assign a higher level of classification",
-            "item3": "Regularly review and reclassify information as needed",
-            "item4": "Follow appropriate handling procedures for each level",
-            "item5": "Report any potential security breaches immediately"
-          },
-          "quiz": {
-            "title": "Classification Practice",
-            "description": "For each scenario, select the appropriate security classification level:",
-            "checkAnswers": "Check Answers",
-            "markAsCompleted": "Mark as Completed",
-            "excellent": "Excellent! You've correctly classified all scenarios. You understand how to apply different security levels.",
-            "completionRequired": "Complete the quiz successfully to mark this module as completed",
-            "scenarios": {
-              "scenario1": {
-                "title": "Scenario 1:",
-                "description": "A document describing the company's standard operating procedures for handling customer support tickets.",
-                "feedback": "Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption."
-              },
-              "scenario2": {
-                "title": "Scenario 2:",
-                "description": "A spreadsheet containing customer names, addresses, and purchase history.",
-                "feedback": "Customer data contains private information and should be classified as Confidential."
-              },
-              "scenario3": {
-                "title": "Scenario 3:",
-                "description": "A file containing database passwords and API keys for the company's main services.",
-                "feedback": "Authentication credentials require the highest level of protection - Highly Confidential."
-              }
-            },
-            "options": {
-              "public": "Public",
-              "internal": "Internal",
-              "confidential": "Confidential",
-              "highlyConfidential": "Highly Confidential"
-            }
-          }
-        },
-        "handlingClassifiedInformation": {
-          "title": "Handling Classified Information",
-          "backToModule": "Back to Information Classification Basics",
-          "guidelines": {
-            "title": "Handling Guidelines by Classification Level",
-            "public": {
-              "title": "Public Information",
-              "item1": "Can be freely shared internally and externally",
-              "item2": "No special handling required",
-              "item3": "Can be published on public websites",
-              "item4": "Examples: Marketing materials, press releases, public annual reports"
-            },
-            "internal": {
-              "title": "Internal Information",
-              "item1": "Share only within the organization",
-              "item2": "Avoid sharing with external parties without approval",
-              "item3": "Use company email for distribution",
-              "item4": "Examples: Internal procedures, employee directories, meeting minutes"
-            },
-            "confidential": {
-              "title": "Confidential Information",
-              "item1": "Share only with authorized individuals who need to know",
-              "item2": "Use secure methods for sharing (encrypted email, secure file sharing)",
-              "item3": "Password-protect documents when possible",
-              "item4": "Do not leave printed copies unattended",
-              "item5": "Examples: Customer data, financial reports, business strategies"
-            },
-            "highlyConfidential": {
-              "title": "Highly Confidential Information",
-              "item1": "Strictest access controls - only specific authorized individuals",
-              "item2": "Always use encryption when storing or transmitting",
-              "item3": "Track all access and actions taken on the information",
-              "item4": "Obtain explicit approval before sharing",
-              "item5": "Use secure rooms for discussions involving this information",
-              "item6": "Examples: Trade secrets, authentication credentials, strategic acquisitions"
-            }
-          },
-          "bestPractices": {
-            "title": "Security Best Practices",
-            "physical": {
-              "title": "Physical Security",
-              "item1": "Use the clean desk policy - don't leave sensitive documents visible",
-              "item2": "Lock away sensitive information when not in use",
-              "item3": "Shred confidential documents when disposing",
-              "item4": "Be aware of your surroundings when discussing sensitive information"
-            },
-            "digital": {
-              "title": "Digital Security",
-              "item1": "Use strong passwords and multi-factor authentication",
-              "item2": "Encrypt sensitive files and communications",
-              "item3": "Be cautious with email attachments and links",
-              "item4": "Lock your computer when away from your desk",
-              "item5": "Only use approved cloud services for sensitive data"
-            },
-            "incident": {
-              "title": "Incident Response",
-              "item1": "Report security incidents immediately",
-              "item2": "Know who to contact in case of a suspected breach",
-              "item3": "Document any potential exposure of sensitive information",
-              "item4": "Follow company procedures for incident response"
-            }
-          },
-          "quiz": {
-            "title": "Knowledge Check",
-            "question1": {
-              "title": "1. How should you handle public documents?",
-              "option1": "Password-protect them and only share internally",
-              "option2": "Encrypt them before sharing",
-              "option3": "Share freely as they contain no sensitive information",
-              "option4": "Never share them outside the department"
-            },
-            "question2": {
-              "title": "2. When sharing confidential documents, you should:",
-              "option1": "Share them with anyone who asks for them",
-              "option2": "Share only with authorized individuals using secure methods",
-              "option3": "Post them publicly but with a password",
-              "option4": "Never share them under any circumstances"
-            },
-            "question3": {
-              "title": "3. Internal documents should be shared:",
-              "option1": "Only within the organization",
-              "option2": "With anyone who needs them for their work",
-              "option3": "With trusted partners and customers",
-              "option4": "Only with executives"
-            },
-            "question4": {
-              "title": "4. Highly confidential files require:",
-              "option1": "Basic security measures",
-              "option2": "Password protection only",
-              "option3": "Standard email for distribution",
-              "option4": "Strict access controls, encryption, and activity logging"
-            },
-            "question5": {
-              "title": "5. If you discover a data breach involving classified information, you should:",
-              "option1": "Try to fix it yourself without telling anyone",
-              "option2": "Report it immediately to the security team",
-              "option3": "Inform the affected customers directly",
-              "option4": "Wait and see if anyone notices"
-            },
-            "checkAnswers": "Check Answers",
-            "feedback": {
-              "excellent": "Excellent! You understand how to properly handle information based on its classification level.",
-              "public": "Public information can be shared openly as it poses no security risk.",
-              "confidential": "Confidential documents should be shared only with authorized individuals using secure methods.",
-              "internal": "Internal documents should be shared only within the organization.",
-              "highlyConfidential": "Highly confidential files require strict access controls, encryption, and activity logging.",
-              "incident": "If you discover a data breach, it should be reported immediately to the security team."
-            },
-            "completionRequired": "Complete the quiz successfully to mark this module as completed"
-          }
-        },
-        "identifyingSensitive": {
-          "title": "Identifying Sensitive Information",
-          "commonTypes": "Common Types of Sensitive Information",
-          "publicInfo": {
-            "title": "Public Information",
-            "item1": "Published annual reports",
-            "item2": "Press releases",
-            "item3": "Public marketing materials",
-            "item4": "Contact information (general)",
-            "item5": "Product catalogs"
-          },
-          "internalInfo": {
-            "title": "Internal Information",
-            "item1": "Internal procedures",
-            "item2": "Employee directories",
-            "item3": "Internal memos",
-            "item4": "Meeting minutes",
-            "item5": "Training materials"
-          },
-          "confidentialInfo": {
-            "title": "Confidential Information",
-            "item1": "Employee records",
-            "item2": "Customer data",
-            "item3": "Financial reports",
-            "item4": "Business strategies",
-            "item5": "Contract details"
-          },
-          "highlyConfidential": {
-            "title": "Highly Confidential",
-            "item1": "Trade secrets",
-            "item2": "Authentication credentials",
-            "item3": "Personal health information",
-            "item4": "Strategic acquisitions",
-            "item5": "Security infrastructure"
-          },
-          "keyIndicators": {
-            "title": "Key Indicators",
-            "description": "When evaluating information, consider these key questions:",
-            "item1": "Would this information benefit competitors?",
-            "item2": "Could this information harm individuals if exposed?",
-            "item3": "Is this information protected by law or regulations?",
-            "item4": "Would disclosure damage the company's reputation?",
-            "item5": "Is this information meant for internal use only?"
-          },
-          "practiceExercise": {
-            "title": "Practice Exercise",
-            "description": "Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:",
-            "scenario1": {
-              "title": "Scenario 1:",
-              "description": "An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.",
-              "option1": "Revenue projections",
-              "option2": "Customer acquisition costs",
-              "option3": "Marketing strategy"
-            },
-            "scenario2": {
-              "title": "Scenario 2:",
-              "description": "A document with employee emergency contact information, salary details, and performance reviews.",
-              "option1": "Emergency contact information",
-              "option2": "Salary details",
-              "option3": "Performance reviews"
-            },
-            "scenario3": {
-              "title": "Scenario 3:",
-              "description": "A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.",
-              "option1": "Unreleased product images",
-              "option2": "Detailed functionality descriptions",
-              "option3": "Publicly announced release date",
-              "option4": "Target market analysis",
-              "option5": "Publicly announced features"
-            },
-            "scenario4": {
-              "title": "Scenario 4:",
-              "description": "A document outlining details of a potential merger with another company, including terms, timeline, financial details, company name, and information from the public annual report.",
-              "option1": "Detailed merger terms",
-              "option2": "Timeline of the merger",
-              "option3": "Financial details",
-              "option4": "The publicly known name of the company",
-              "option5": "Information from the public annual report"
-            },
-            "scenario5": {
-              "title": "Scenario 5:",
-              "description": "A technical document with network diagrams, internal IP addresses, firewall configuration, server locations, the company's public website URL, and names of common software programs used.",
-              "option1": "Internal IP addresses",
-              "option2": "Firewall configuration",
-              "option3": "Server locations",
-              "option4": "The company's public website URL",
-              "option5": "Names of common software programs used"
-            },
-            "feedback": {
-              "correct": "Correct! These items should be classified as sensitive.",
-              "incorrect": "Not quite. Please review these incorrect answers:",
-              "continue": "Continue to next section",
-              "shouldBeSelected": "should be classified as sensitive (needs to be selected).",
-              "shouldNotBeSelected": "should NOT be classified as sensitive (should not be selected).",
-              "shouldSelect": "You should select:"
-            }
-          }
-        }
-      },
-      "iso27001": {
-        "title": "ISO 27001 Fundamentals",
-        "description": "Introduction to ISO 27001 principles and practices",
-        "backToModules": "Back to Training Modules",
-        "submodules": {
-          "ismsBasics": {
-            "title": "ISMS Basics",
-            "description": "Learn about information security management systems.",
-            "backToModule": "Back to ISO 27001 Fundamentals",
-            "whatIsISMS": {
-              "title": "What is an ISMS?",
-              "description": "An Information Security Management System (ISMS) is a systematic approach to managing sensitive company information so that it remains secure. It encompasses people, processes, and technology.",
-              "definition": "Definition: An ISMS is a framework of policies and procedures that includes all legal, physical, and technical controls involved in an organization's information risk management processes."
-            },
-            "whyImplement": {
-              "title": "Why implement an ISMS?",
-              "businessBenefits": {
-                "title": "Business Benefits",
-                "item1": "Improved information security posture",
-                "item2": "Competitive advantage",
-                "item3": "Customer and stakeholder confidence",
-                "item4": "Business continuity",
-                "item5": "Reduced cyber insurance premiums"
-              },
-              "riskManagement": {
-                "title": "Risk Management",
-                "item1": "Structured identification of risks",
-                "item2": "Implementation of appropriate controls",
-                "item3": "Systematic handling of threats",
-                "item4": "Reduced likelihood of breaches",
-                "item5": "Legal and regulatory compliance"
-              }
-            },
-            "isoAndISMS": {
-              "title": "ISO 27001 and ISMS",
-              "description": "ISO 27001 is the international standard that describes best practice for an ISMS. It provides a framework for establishing, implementing, operating, monitoring, reviewing, maintaining, and improving an ISMS.",
-              "pdcaCycle": {
-                "title": "The PDCA Cycle in ISMS",
-                "plan": {
-                  "title": "Plan",
-                  "description": "Establish ISMS policy, objectives, processes, and procedures"
-                },
-                "do": {
-                  "title": "Do",
-                  "description": "Implement and operate the ISMS policy, controls, processes, and procedures"
-                },
-                "check": {
-                  "title": "Check",
-                  "description": "Monitor and review the ISMS, measuring process performance against policy and objectives"
-                },
-                "act": {
-                  "title": "Act",
-                  "description": "Take corrective and preventive actions, based on internal audit results, to achieve continual improvement"
-                }
-              }
-            },
-            "keyComponents": {
-              "title": "Key Components of an ISMS",
-              "policy": {
-                "title": "Information Security Policy",
-                "description": "Sets the direction and expresses management support for information security"
-              },
-              "riskAssessment": {
-                "title": "Risk Assessment",
-                "description": "Systematic process to identify, analyze, and evaluate information security risks"
-              },
-              "controls": {
-                "title": "Security Controls",
-                "description": "Safeguards or countermeasures to avoid, detect, counteract, or minimize security risks"
-              },
-              "soa": {
-                "title": "Statement of Applicability (SoA)",
-                "description": "Document describing which controls are relevant and applicable to the organization's ISMS"
-              },
-              "audits": {
-                "title": "Internal Audits",
-                "description": "Regular checks to ensure the ISMS is functioning as expected and identify improvements"
-              },
-              "review": {
-                "title": "Management Review",
-                "description": "Regular assessment of the ISMS by top management to ensure its continued suitability and effectiveness"
-              }
-            },
-            "quiz": {
-              "title": "Knowledge Check",
-              "excellent": "Excellent! You understand the basics of Information Security Management Systems (ISMS) and ISO 27001.",
-              "questions": {
-                "ismsDefinition": {
-                  "title": "Question 1: ISMS Definition",
-                  "question": "1. What is an Information Security Management System (ISMS)?",
-                  "options": {
-                    "a": "A software tool for monitoring network security",
-                    "b": "A systematic approach to managing sensitive information and ensuring business continuity",
-                    "c": "A hardware solution for data encryption",
-                    "d": "A checklist of IT security best practices"
-                  }
-                },
-                "pdcaCycle": {
-                  "title": "Question 2: PDCA Cycle",
-                  "question": "2. What does the PDCA cycle in ISO 27001 stand for?",
-                  "options": {
-                    "a": "Plan, Do, Check, Act",
-                    "b": "Prevent, Detect, Correct, Adjust",
-                    "c": "Prepare, Develop, Control, Analyze",
-                    "d": "Process, Document, Configure, Review"
-                  }
-                },
-                "isoPrinciples": {
-                  "title": "Question 3: ISO 27001 Principles",
-                  "question": "3. Which of the following is a fundamental principle in ISO 27001?",
-                  "options": {
-                    "a": "Maximizing productivity at any cost",
-                    "b": "Completely eliminating all security risks",
-                    "c": "Risk-based approach to information security",
-                    "d": "Isolating all systems from external connections"
-                  }
-                },
-                "riskAssessment": {
-                  "title": "Question 4: Risk Assessment",
-                  "question": "4. What role does risk assessment play in ISO 27001?",
-                  "options": {
-                    "a": "It's optional and only for high-security organizations",
-                    "b": "It's essential for establishing an effective ISMS",
-                    "c": "It's performed only once after implementation",
-                    "d": "It focuses only on external threats"
-                  }
-                },
-                "certification": {
-                  "title": "Question 5: ISO 27001 Certification",
-                  "question": "5. What is required to achieve ISO 27001 certification?",
-                  "options": {
-                    "a": "Implementing all 114 controls in Annex A",
-                    "b": "Having perfect security with no incidents",
-                    "c": "Using only ISO-approved security vendors",
-                    "d": "Implementing an ISMS, conducting internal audits, and passing an external audit"
-                  }
-                }
-              },
-              "feedback": {
-                "ismsDefinition": "An ISMS is a systematic approach to managing sensitive information and ensuring business continuity.",
-                "pdcaCycle": "The PDCA cycle consists of the Plan, Do, Check, Act phases for continuous improvement.",
-                "isoPrinciples": "ISO 27001 is based on a risk-based approach to information security.",
-                "riskAssessment": "Risk assessment is an essential component for establishing an ISMS.",
-                "certification": "To achieve ISO 27001 certification, an organization must implement an ISMS, conduct internal audits, address non-conformities, and pass an external audit."
-              },
-              "quizCompletionRequired": "Complete the quiz successfully to mark this module as completed"
-            },
-            "feedback": {
-              "correct": "Correct! These items should be classified as sensitive.",
-              "incorrect": "Not quite right. Please review these incorrect answers:",
-              "continue": "Continue to next section",
-              "shouldBeSelected": "should be classified as sensitive (needs to be selected).",
-              "shouldNotBeSelected": "should NOT be classified as sensitive (should not be selected)."
-            }
-          },
-          "riskAssessment": {
-            "title": "Risk Assessment",
-            "description": "Learn about risk assessment in ISO 27001.",
-            "backToModule": "Back to ISO 27001 Fundamentals",
-            "whatIs": {
-              "title": "What is Risk Assessment?",
-              "description": "Risk assessment is a critical component in ISO 27001 and the foundation for an effective Information Security Management System (ISMS). It involves identifying, analyzing, and evaluating information security risks.",
-              "definition": "Definition: Risk assessment is the overall process of risk identification, risk analysis, and risk evaluation as defined in ISO 27001."
-            },
-            "process": {
-              "title": "The Risk Management Process",
-              "identification": {
-                "title": "1. Risk Identification",
-                "description": "Finding, recognizing, and describing risks by identifying assets, threats, existing controls, vulnerabilities, and consequences."
-              },
-              "analysis": {
-                "title": "2. Risk Analysis",
-                "description": "Understanding the nature of risk and determining the risk level by assigning values to likelihood and consequence."
-              },
-              "evaluation": {
-                "title": "3. Risk Evaluation",
-                "description": "Comparing risk analysis results with risk criteria to determine if a risk is acceptable or requires treatment."
-              },
-              "treatment": {
-                "title": "4. Risk Treatment",
-                "description": "Selecting and implementing options for addressing risk through risk modification (controls), risk acceptance, risk avoidance, or risk transfer."
-              }
-            },
-            "keyComponents": {
-              "title": "Key Components in Risk Assessment",
-              "assets": {
-                "title": "Asset Identification",
-                "description": "Identifying and categorizing information assets is the first step in risk assessment.",
-                "item1": "Information assets (databases, files, documentation)",
-                "item2": "Software assets (applications, systems, development tools)",
-                "item3": "Physical assets (computers, network equipment, media)",
-                "item4": "Services (computing services, communications)",
-                "item5": "People (staff, customers, users) and their qualifications, skills, and experience",
-                "item6": "Intangible assets (reputation, image)"
-              },
-              "threats": {
-                "title": "Threat Identification",
-                "description": "Identifying potential threat sources and events that could harm assets.",
-                "internal": {
-                  "title": "Internal Threats",
-                  "item1": "Human error",
-                  "item2": "Disgruntled employees",
-                  "item3": "System failures",
-                  "item4": "Process failures"
-                },
-                "external": {
-                  "title": "External Threats",
-                  "item1": "Cyber attacks",
-                  "item2": "Natural disasters",
-                  "item3": "Supply chain disruptions",
-                  "item4": "Legal/regulatory changes"
-                }
-              },
-              "vulnerabilities": {
-                "title": "Vulnerability Assessment",
-                "description": "Identifying weaknesses in assets that could be exploited by threats.",
-                "item1": "Weak passwords or authentication methods",
-                "item2": "Unpatched software",
-                "item3": "Inadequate physical security",
-                "item4": "Insufficient employee training",
-                "item5": "Poorly configured systems",
-                "item6": "Inadequate backup procedures"
-              },
-              "analysis": {
-                "title": "Risk Analysis Methods",
-                "qualitative": {
-                  "title": "Qualitative Analysis",
-                  "description": "Uses descriptive scales (High, Medium, Low) to describe the likelihood and consequence of risks."
-                },
-                "quantitative": {
-                  "title": "Quantitative Analysis",
-                  "description": "Assigns numerical values to risks, often in monetary terms or specific scoring scales."
-                }
-              },
-              "treatment": {
-                "title": "Risk Treatment Options",
-                "modify": {
-                  "title": "Modify (Reduce)",
-                  "description": "Implement controls to reduce risk likelihood or consequence."
-                },
-                "accept": {
-                  "title": "Accept",
-                  "description": "Make an informed decision to accept the risk without further action."
-                },
-                "avoid": {
-                  "title": "Avoid",
-                  "description": "Decide not to proceed with the activity that introduces the risk."
-                },
-                "transfer": {
-                  "title": "Transfer",
-                  "description": "Share the risk with another party (e.g., insurance, outsourcing)."
-                }
-              }
-            },
-            "quiz": {
-              "title": "Knowledge Check",
-              "excellent": "Excellent! You understand the principles of risk assessment in the context of information security.",
-              "questions": {
-                "riskAssessmentDefinition": {
-                  "title": "Question 1: Risk Assessment Definition",
-                  "question": "1. What is risk assessment in the context of ISO 27001?",
-                  "options": {
-                    "a": "A one-time evaluation of security threats",
-                    "b": "A technical audit of IT systems",
-                    "c": "The overall process of identifying, analyzing, and evaluating information security risks",
-                    "d": "An inventory of security software and hardware"
-                  }
-                },
-                "riskManagementProcess": {
-                  "title": "Question 2: Risk Management Process",
-                  "question": "2. What are the main steps in the risk management process?",
-                  "options": {
-                    "a": "Detect, Respond, Recover, Report",
-                    "b": "Identification, Analysis, Evaluation, Treatment",
-                    "c": "Plan, Test, Implement, Review",
-                    "d": "Purchase, Install, Configure, Maintain"
-                  }
-                },
-                "assetIdentification": {
-                  "title": "Question 3: Asset Identification",
-                  "question": "3. Which of the following is typically NOT considered during asset identification?",
-                  "options": {
-                    "a": "Information assets such as databases and files",
-                    "b": "Physical assets such as servers and network equipment",
-                    "c": "Intangible assets such as reputation and company image",
-                    "d": "Competitors' security strategies"
-                  }
-                },
-                "threatTypes": {
-                  "title": "Question 4: Types of Threats",
-                  "question": "4. Which of the following is a complete list of common threat types?",
-                  "options": {
-                    "a": "Human errors, technical failures, physical events, and malicious attacks",
-                    "b": "Only cyber attacks and malware",
-                    "c": "Only physical threats to hardware",
-                    "d": "Only threats from disgruntled employees"
-                  }
-                },
-                "riskTreatment": {
-                  "title": "Question 5: Risk Treatment Options",
-                  "question": "5. What are the four main options for risk treatment in ISO 27001?",
-                  "options": {
-                    "a": "Ignore, document, escalate, outsource",
-                    "b": "Modify (reduce), accept, avoid, transfer",
-                    "c": "Report, record, resolve, review",
-                    "d": "Detect, protect, respond, recover"
-                  }
-                }
-              },
-              "feedback": {
-                "riskAssessmentDefinition": "Risk assessment is the overall process of identifying, analyzing, and evaluating information security risks.",
-                "riskManagementProcess": "The risk management process includes identification, analysis, evaluation, and treatment of risks.",
-                "assetIdentification": "All information assets should be identified and valued as part of a risk assessment.",
-                "threatTypes": "Common threats include human errors, technical failures, physical events, and malicious attacks.",
-                "riskTreatment": "The four primary options for risk treatment are: modify (reduce), accept, avoid, and transfer."
-              }
-            },
-            "quizCompletionRequired": "Complete the quiz successfully to mark this module as completed"
-          }
-        }
-      },
-      "understandingSecurity": {
-        "title": "Understanding Security Levels",
-        "description": "Learn about different security classification levels.",
-        "backToModule": "Back to Information Classification Basics",
-        "courseOverview": {
-          "title": "Course Overview",
-          "description": "In this course, you will learn about the different security levels used to classify sensitive information. Understanding these levels is crucial for ensuring that information is properly protected according to its sensitivity and importance."
-        },
-        "learningObjectives": {
-          "title": "Learning Objectives",
-          "item1": "Understand the purpose of security classification levels",
-          "item2": "Identify the common classification levels and their meanings",
-          "item3": "Apply appropriate security levels to different types of information",
-          "item4": "Recognize the responsibilities associated with handling information at each level"
-        },
-        "classificationLevels": {
-          "title": "Classification Levels",
-          "public": {
-            "title": "Public",
-            "description": "Information that can be freely shared with the public and poses no risk if disclosed. Examples include marketing materials, public reports, and general information on company websites."
-          },
-          "internal": {
-            "title": "Internal Use Only",
-            "description": "Information meant for employees and contractors only, but would pose minimal risk if disclosed. Examples include internal newsletters, non-sensitive emails, and general operational documents."
-          },
-          "confidential": {
-            "title": "Confidential",
-            "description": "Sensitive information that must be protected and would cause harm to the organization if disclosed. Examples include financial records, business strategies, and intellectual property."
-          },
-          "highlyConfidential": {
-            "title": "Highly Confidential",
-            "description": "Extremely sensitive information that would cause severe damage if disclosed. Examples include customer PII, authentication credentials, and trade secrets."
-          }
-        },
-        "bestPractices": {
-          "title": "Best Practices",
-          "item1": "Always mark documents with their classification level",
-          "item2": "When in doubt, assign a higher level of classification",
-          "item3": "Regularly review and reclassify information as needed",
-          "item4": "Follow appropriate handling procedures for each level",
-          "item5": "Report any potential security breaches immediately"
-        },
-        "quiz": {
-          "title": "Classification Practice",
-          "description": "For each scenario, select the appropriate security classification level:",
-          "checkAnswers": "Check Answers",
-          "markAsCompleted": "Mark as Completed",
-          "excellent": "Excellent! You've correctly classified all scenarios. You understand how to apply different security levels.",
-          "completionRequired": "Complete the quiz successfully to mark this module as completed",
-          "scenarios": {
-            "scenario1": {
-              "title": "Scenario 1:",
-              "description": "A document describing the company's standard operating procedures for handling customer support tickets.",
-              "feedback": "Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption."
-            },
-            "scenario2": {
-              "title": "Scenario 2:",
-              "description": "A spreadsheet containing customer names, addresses, and purchase history.",
-              "feedback": "Customer data contains private information and should be classified as Confidential."
-            },
-            "scenario3": {
-              "title": "Scenario 3:",
-              "description": "A file containing database passwords and API keys for the company's main services.",
-              "feedback": "Authentication credentials require the highest level of protection - Highly Confidential."
-            }
-          },
-          "options": {
-            "public": "Public",
-            "internal": "Internal",
-            "confidential": "Confidential",
-            "highlyConfidential": "Highly Confidential"
-          }
-        }
-      },
-      "identifyingSensitive": {
-        "title": "Identifying Sensitive Information",
-        "commonTypes": "Common Types of Sensitive Information",
-        "publicInfo": {
-          "title": "Public Information",
-          "item1": "Published annual reports",
-          "item2": "Press releases",
-          "item3": "Public marketing materials",
-          "item4": "Contact information (general)",
-          "item5": "Product catalogs"
-        },
-        "internalInfo": {
-          "title": "Internal Information",
-          "item1": "Internal procedures",
-          "item2": "Employee directories",
-          "item3": "Internal memos",
-          "item4": "Meeting minutes",
-          "item5": "Training materials"
-        },
-        "confidentialInfo": {
-          "title": "Confidential Information",
-          "item1": "Employee records",
-          "item2": "Customer data",
-          "item3": "Financial reports",
-          "item4": "Business strategies",
-          "item5": "Contract details"
-        },
-        "highlyConfidential": {
-          "title": "Highly Confidential",
-          "item1": "Trade secrets",
-          "item2": "Authentication credentials",
-          "item3": "Personal health information",
-          "item4": "Strategic acquisitions",
-          "item5": "Security infrastructure"
-        },
-        "keyIndicators": {
-          "title": "Key Indicators",
-          "description": "When evaluating information, consider these key questions:",
-          "item1": "Would this information benefit competitors?",
-          "item2": "Could this information harm individuals if exposed?",
-          "item3": "Is this information protected by law or regulations?",
-          "item4": "Would disclosure damage the company's reputation?",
-          "item5": "Is this information meant for internal use only?"
-        },
-        "practiceExercise": {
-          "title": "Practice Exercise",
-          "description": "Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:",
-          "scenario1": {
-            "title": "Scenario 1:",
-            "description": "An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.",
-            "option1": "Revenue projections",
-            "option2": "Customer acquisition costs",
-            "option3": "Marketing strategy"
-          },
-          "scenario2": {
-            "title": "Scenario 2:",
-            "description": "A document with employee emergency contact information, salary details, and performance reviews.",
-            "option1": "Emergency contact information",
-            "option2": "Salary details",
-            "option3": "Performance reviews"
-          },
-          "scenario3": {
-            "title": "Scenario 3:",
-            "description": "A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.",
-            "option1": "Unreleased product images",
-            "option2": "Detailed functionality descriptions",
-            "option3": "Publicly announced release date",
-            "option4": "Target market analysis",
-            "option5": "Publicly announced features"
-          },
-          "scenario4": {
-            "title": "Scenario 4:",
-            "description": "A document outlining details of a potential merger with another company, including terms, timeline, financial details, company name, and information from the public annual report.",
-            "option1": "Detailed merger terms",
-            "option2": "Timeline of the merger",
-            "option3": "Financial details",
-            "option4": "The publicly known name of the company",
-            "option5": "Information from the public annual report"
-          },
-          "scenario5": {
-            "title": "Scenario 5:",
-            "description": "A technical document with network diagrams, internal IP addresses, firewall configuration, server locations, the company's public website URL, and names of common software programs used.",
-            "option1": "Internal IP addresses",
-            "option2": "Firewall configuration",
-            "option3": "Server locations",
-            "option4": "The company's public website URL",
-            "option5": "Names of common software programs used"
-          },
-          "feedback": {
-            "correct": "Correct! These items should be classified as sensitive.",
-            "incorrect": "Not quite. Please review these incorrect answers:",
-            "continue": "Continue to next section",
-            "shouldBeSelected": "should be classified as sensitive (needs to be selected).",
-            "shouldNotBeSelected": "should NOT be classified as sensitive (should not be selected).",
-            "shouldSelect": "You should select:"
-          }
-        }
-      }
-    },
-    "startModule": "Start Module",
-    "informationClassification": {
-      "backToModule": "Back to Information Classification Basics",
-      "understandingSecurity": {
-        "title": "Understanding Security Levels",
-        "description": "Learn about different security classification levels.",
-        "backToModule": "Back to Information Classification Basics",
-        "courseOverview": {
-          "title": "Course Overview",
-          "description": "In this course, you will learn about the different security levels used to classify sensitive information. Understanding these levels is crucial for ensuring that information is properly protected according to its sensitivity and importance."
-        },
-        "learningObjectives": {
-          "title": "Learning Objectives",
-          "item1": "Understand the purpose of security classification levels",
-          "item2": "Identify the common classification levels and their meanings",
-          "item3": "Apply appropriate security levels to different types of information",
-          "item4": "Recognize the responsibilities associated with handling information at each level"
-        },
-        "classificationLevels": {
-          "title": "Classification Levels",
-          "public": {
-            "title": "Public",
-            "description": "Information that can be freely shared with the public and poses no risk if disclosed. Examples include marketing materials, public reports, and general information on company websites."
-          },
-          "internal": {
-            "title": "Internal Use Only",
-            "description": "Information meant for employees and contractors only, but would pose minimal risk if disclosed. Examples include internal newsletters, non-sensitive emails, and general operational documents."
-          },
-          "confidential": {
-            "title": "Confidential",
-            "description": "Sensitive information that must be protected and would cause harm to the organization if disclosed. Examples include financial records, business strategies, and intellectual property."
-          },
-          "highlyConfidential": {
-            "title": "Highly Confidential",
-            "description": "Extremely sensitive information that would cause severe damage if disclosed. Examples include customer PII, authentication credentials, and trade secrets."
-          }
-        },
-        "bestPractices": {
-          "title": "Best Practices",
-          "item1": "Always mark documents with their classification level",
-          "item2": "When in doubt, assign a higher level of classification",
-          "item3": "Regularly review and reclassify information as needed",
-          "item4": "Follow appropriate handling procedures for each level",
-          "item5": "Report any potential security breaches immediately"
-        },
-        "quiz": {
-          "title": "Classification Practice",
-          "description": "For each scenario, select the appropriate security classification level:",
-          "checkAnswers": "Check Answers",
-          "markAsCompleted": "Mark as Completed",
-          "excellent": "Excellent! You've correctly classified all scenarios. You understand how to apply different security levels.",
-          "completionRequired": "Complete the quiz successfully to mark this module as completed",
-          "scenarios": {
-            "scenario1": {
-              "title": "Scenario 1:",
-              "description": "A document describing the company's standard operating procedures for handling customer support tickets.",
-              "feedback": "Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption."
-            },
-            "scenario2": {
-              "title": "Scenario 2:",
-              "description": "A spreadsheet containing customer names, addresses, and purchase history.",
-              "feedback": "Customer data contains private information and should be classified as Confidential."
-            },
-            "scenario3": {
-              "title": "Scenario 3:",
-              "description": "A file containing database passwords and API keys for the company's main services.",
-              "feedback": "Authentication credentials require the highest level of protection - Highly Confidential."
-            }
-          },
-          "options": {
-            "public": "Public",
-            "internal": "Internal",
-            "confidential": "Confidential",
-            "highlyConfidential": "Highly Confidential"
-          }
-        }
-      },
-      "handlingClassifiedInformation": {
-        "title": "Handling Classified Information",
-        "backToModule": "Back to Information Classification Basics",
-        "guidelines": {
-          "title": "Handling Guidelines by Classification Level",
-          "public": {
-            "title": "Public Information",
-            "item1": "Can be freely shared internally and externally",
-            "item2": "No special handling required",
-            "item3": "Can be published on public websites",
-            "item4": "Examples: Marketing materials, press releases, public annual reports"
-          },
-          "internal": {
-            "title": "Internal Information",
-            "item1": "Share only within the organization",
-            "item2": "Avoid sharing with external parties without approval",
-            "item3": "Use company email for distribution",
-            "item4": "Examples: Internal procedures, employee directories, meeting minutes"
-          },
-          "confidential": {
-            "title": "Confidential Information",
-            "item1": "Share only with authorized individuals who need to know",
-            "item2": "Use secure methods for sharing (encrypted email, secure file sharing)",
-            "item3": "Password-protect documents when possible",
-            "item4": "Do not leave printed copies unattended",
-            "item5": "Examples: Customer data, financial reports, business strategies"
-          },
-          "highlyConfidential": {
-            "title": "Highly Confidential Information",
-            "item1": "Strictest access controls - only specific authorized individuals",
-            "item2": "Always use encryption when storing or transmitting",
-            "item3": "Track all access and actions taken on the information",
-            "item4": "Obtain explicit approval before sharing",
-            "item5": "Use secure rooms for discussions involving this information",
-            "item6": "Examples: Trade secrets, authentication credentials, strategic acquisitions"
-          }
-        },
-        "bestPractices": {
-          "title": "Security Best Practices",
-          "physical": {
-            "title": "Physical Security",
-            "item1": "Use the clean desk policy - don't leave sensitive documents visible",
-            "item2": "Lock away sensitive information when not in use",
-            "item3": "Shred confidential documents when disposing",
-            "item4": "Be aware of your surroundings when discussing sensitive information"
-          },
-          "digital": {
-            "title": "Digital Security",
-            "item1": "Use strong passwords and multi-factor authentication",
-            "item2": "Encrypt sensitive files and communications",
-            "item3": "Be cautious with email attachments and links",
-            "item4": "Lock your computer when away from your desk",
-            "item5": "Only use approved cloud services for sensitive data"
-          },
-          "incident": {
-            "title": "Incident Response",
-            "item1": "Report security incidents immediately",
-            "item2": "Know who to contact in case of a suspected breach",
-            "item3": "Document any potential exposure of sensitive information",
-            "item4": "Follow company procedures for incident response"
-          }
-        },
-        "quiz": {
-          "title": "Knowledge Check",
-          "question1": {
-            "title": "1. How should you handle public documents?",
-            "option1": "Password-protect them and only share internally",
-            "option2": "Encrypt them before sharing",
-            "option3": "Share freely as they contain no sensitive information",
-            "option4": "Never share them outside the department"
-          },
-          "question2": {
-            "title": "2. When sharing confidential documents, you should:",
-            "option1": "Share them with anyone who asks for them",
-            "option2": "Share only with authorized individuals using secure methods",
-            "option3": "Post them publicly but with a password",
-            "option4": "Never share them under any circumstances"
-          },
-          "question3": {
-            "title": "3. Internal documents should be shared:",
-            "option1": "Only within the organization",
-            "option2": "With anyone who needs them for their work",
-            "option3": "With trusted partners and customers",
-            "option4": "Only with executives"
-          },
-          "question4": {
-            "title": "4. Highly confidential files require:",
-            "option1": "Basic security measures",
-            "option2": "Password protection only",
-            "option3": "Standard email for distribution",
-            "option4": "Strict access controls, encryption, and activity logging"
-          },
-          "question5": {
-            "title": "5. If you discover a data breach involving classified information, you should:",
-            "option1": "Try to fix it yourself without telling anyone",
-            "option2": "Report it immediately to the security team",
-            "option3": "Inform the affected customers directly",
-            "option4": "Wait and see if anyone notices"
-          },
-          "checkAnswers": "Check Answers",
-          "feedback": {
-            "excellent": "Excellent! You understand how to properly handle information based on its classification level.",
-            "public": "Public information can be shared openly as it poses no security risk.",
-            "confidential": "Confidential documents should be shared only with authorized individuals using secure methods.",
-            "internal": "Internal documents should be shared only within the organization.",
-            "highlyConfidential": "Highly confidential files require strict access controls, encryption, and activity logging.",
-            "incident": "If you discover a data breach, it should be reported immediately to the security team."
-          },
-          "completionRequired": "Complete the quiz successfully to mark this module as completed"
-        }
-      },
-      "identifyingSensitive": {
-        "title": "Identifying Sensitive Information",
-        "commonTypes": "Common Types of Sensitive Information",
-        "publicInfo": {
-          "title": "Public Information",
-          "item1": "Published annual reports",
-          "item2": "Press releases",
-          "item3": "Public marketing materials",
-          "item4": "Contact information (general)",
-          "item5": "Product catalogs"
-        },
-        "internalInfo": {
-          "title": "Internal Information",
-          "item1": "Internal procedures",
-          "item2": "Employee directories",
-          "item3": "Internal memos",
-          "item4": "Meeting minutes",
-          "item5": "Training materials"
-        },
-        "confidentialInfo": {
-          "title": "Confidential Information",
-          "item1": "Employee records",
-          "item2": "Customer data",
-          "item3": "Financial reports",
-          "item4": "Business strategies",
-          "item5": "Contract details"
-        },
-        "highlyConfidential": {
-          "title": "Highly Confidential",
-          "item1": "Trade secrets",
-          "item2": "Authentication credentials",
-          "item3": "Personal health information",
-          "item4": "Strategic acquisitions",
-          "item5": "Security infrastructure"
-        },
-        "keyIndicators": {
-          "title": "Key Indicators",
-          "description": "When evaluating information, consider these key questions:",
-          "item1": "Would this information benefit competitors?",
-          "item2": "Could this information harm individuals if exposed?",
-          "item3": "Is this information protected by law or regulations?",
-          "item4": "Would disclosure damage the company's reputation?",
-          "item5": "Is this information meant for internal use only?"
-        },
-        "practiceExercise": {
-          "title": "Practice Exercise",
-          "description": "Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:",
-          "scenario1": {
-            "title": "Scenario 1:",
-            "description": "An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.",
-            "option1": "Revenue projections",
-            "option2": "Customer acquisition costs",
-            "option3": "Marketing strategy"
-          },
-          "scenario2": {
-            "title": "Scenario 2:",
-            "description": "A document with employee emergency contact information, salary details, and performance reviews.",
-            "option1": "Emergency contact information",
-            "option2": "Salary details",
-            "option3": "Performance reviews"
-          },
-          "scenario3": {
-            "title": "Scenario 3:",
-            "description": "A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.",
-            "option1": "Unreleased product images",
-            "option2": "Detailed functionality descriptions",
-            "option3": "Publicly announced release date",
-            "option4": "Target market analysis",
-            "option5": "Publicly announced features"
-          },
-          "scenario4": {
-            "title": "Scenario 4:",
-            "description": "A document outlining details of a potential merger with another company, including terms, timeline, financial details, company name, and information from the public annual report.",
-            "option1": "Detailed merger terms",
-            "option2": "Timeline of the merger",
-            "option3": "Financial details",
-            "option4": "The publicly known name of the company",
-            "option5": "Information from the public annual report"
-          },
-          "scenario5": {
-            "title": "Scenario 5:",
-            "description": "A technical document with network diagrams, internal IP addresses, firewall configuration, server locations, the company's public website URL, and names of common software programs used.",
-            "option1": "Internal IP addresses",
-            "option2": "Firewall configuration",
-            "option3": "Server locations",
-            "option4": "The company's public website URL",
-            "option5": "Names of common software programs used"
-          },
-          "feedback": {
-            "correct": "Correct! These items should be classified as sensitive.",
-            "incorrect": "Not quite. Please review these incorrect answers:",
-            "continue": "Continue to next section",
-            "shouldBeSelected": "should be classified as sensitive (needs to be selected).",
-            "shouldNotBeSelected": "should NOT be classified as sensitive (should not be selected).",
-            "shouldSelect": "You should select:"
-          }
-        }
-      }
-    }
-  },
-  "about": {
-    "title": "About Isotron",
-    "subtitle": "A comprehensive platform for information security classification based on ISO 27001 standards",
-    "content": "This project aims to help organizations properly classify and protect sensitive information in accordance with information security best practices.",
-    "projectOverview": "Bachelor Project Overview",
-    "iso27001": {
-      "title": "ISO 27001 Integration",
-      "description": "Our project is built around the principles of ISO 27001, the international standard for information security management. While this standard is comprehensive and often perceived as difficult to implement, our tool makes document classification straightforward and accessible. The standard provides a framework for:",
-      "points": {
-        "isms": "Establishing and maintaining an information security management system (ISMS)",
-        "approach": "Systematic approach to managing sensitive company information",
-        "risk": "Risk assessment and treatment",
-        "security": "Security controls implementation"
-      }
-    },
-    "goals": {
-      "title": "Project Goals",
-      "classification": {
-        "title": "Intuitive Classification Guide",
-        "description": "Develop a user-friendly guide for proper information classification"
-      },
-      "training": {
-        "title": "Interactive Training",
-        "description": "Create engaging modules to enhance security awareness"
-      },
-      "tools": {
-        "title": "Practical Tools",
-        "description": "Implement day-to-day information handling utilities"
-      },
-      "practices": {
-        "title": "Best Practices",
-        "description": "Promote and standardize information security best practices"
-      }
-    },
-    "team": {
-      "title": "Brannmurbrigaden",
-      "description": "This program was developed by \"Brannmurbrigaden\" - A group of 5 Cybersecurity students at Kristiania University College"
-    },
-    "technologies": {
-      "title": "Technologies Used",
-      "description": "This application is built using modern web technologies, focusing on performance, accessibility, and user experience. The implementation follows security best practices aligned with ISO 27001 standards.",
-      "react": "React",
-      "tailwind": "Tailwind CSS",
-      "javascript": "JavaScript",
-      "vite": "Vite",
-      "router": "React Router"
-    }
-  },
-  "common": {
-    "next": "Next",
-    "previous": "Previous",
-    "save": "Save",
-    "cancel": "Cancel",
-    "loading": "Loading...",
-    "optional": "optional",
-    "correct": "correct",
-    "checkAnswers": "Check Answers"
-  },
-  "language": {
-    "en": "English",
-    "no": "Norwegian",
-    "pl": "Polish"
-  },
-  "iso27001Framework": {
-    "title": "ISO 27001 Framework",
-    "subtitle": "An international standard for managing information security, providing a systematic approach to information management and risk mitigation.",
-    "introduction": {
-      "title": "Introduction to ISO 27001",
-      "description": "ISO 27001 is an international standard for managing information security. It provides a framework for establishing, implementing, maintaining, and continually improving an information security management system (ISMS)."
-    },
-    "benefits": {
-      "title": "Benefits of ISO 27001",
-      "items": {
-        "dataBreaches": "Prevents data breaches that expose personal or business-sensitive information",
-        "legalConsequences": "Avoids legal consequences due to non-compliance with regulations",
-        "financialLosses": "Reduces financial losses due to fines, lawsuits, or reputational damage",
-        "operationalContinuity": "Maintains operational continuity by protecting against system failures or cyberattacks"
-      }
-    },
-    "keyComponents": {
-      "title": "Key Components",
-      "components": {
-        "policies": {
-          "title": "Information Security Policies",
-          "description": "Policies that define the approach to managing information security within the organization."
-        },
-        "organization": {
-          "title": "Organization of Information Security",
-          "description": "The framework for managing information security responsibilities and processes."
-        },
-        "assets": {
-          "title": "Asset Management",
-          "description": "Processes for managing and protecting information assets."
-        },
-        "access": {
-          "title": "Access Control",
-          "description": "Mechanisms to ensure that access to information is restricted to authorized users."
-        },
-        "crypto": {
-          "title": "Cryptography",
-          "description": "Use of cryptographic techniques to protect the confidentiality, integrity, and authenticity of information."
-        },
-        "physical": {
-          "title": "Physical and Environmental Security",
-          "description": "Measures to protect physical facilities and equipment from unauthorized access and environmental hazards."
-        }
-      }
-    },
-    "dataStorage": {
-      "title": "ISO 27001 for Data Storage",
-      "annexes": {
-        "annex8": {
-          "title": "Annex A.8 – Asset Management",
-          "description": "Ensures that information assets are identified and managed appropriately throughout their lifecycle. This includes conducting a thorough assessment to identify all data assets within the organization and categorizing data based on sensitivity levels to apply appropriate protection measures."
-        },
-        "annex10": {
-          "title": "Annex A.10 – Cryptography",
-          "description": "Requires the use of cryptographic controls to protect data confidentiality, integrity, and authenticity. This involves encrypting data at rest and in transit, and developing robust key management policies to safeguard encryption keys."
-        },
-        "annex11": {
-          "title": "Annex A.11 – Physical Security",
-          "description": "Focuses on securing physical storage environments against unauthorized access and environmental threats. This includes ensuring secure storage locations for servers and hard drives, and implementing measures to protect physical facilities and equipment."
-        }
-      }
-    },
-    "certification": {
-      "title": "Steps to Get ISO 27001 Certified",
-      "steps": {
-        "defineScope": {
-          "title": "Define Scope",
-          "description": "Define the scope and objectives of your ISMS"
-        },
-        "riskAssessment": {
-          "title": "Risk Assessment",
-          "description": "Conduct a comprehensive risk assessment"
-        },
-        "implementControls": {
-          "title": "Implement Controls",
-          "description": "Implement security controls to mitigate risks"
-        },
-        "trainEmployees": {
-          "title": "Train Employees",
-          "description": "Train employees on security policies and procedures"
-        },
-        "internalAudit": {
-          "title": "Internal Audit",
-          "description": "Perform internal audits to verify compliance"
-        },
-        "certification": {
-          "title": "Certification",
-          "description": "Engage an accredited certification body for assessment"
-        }
-      }
-    }
-  },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "We'd love to hear from you! Get in touch with our team for any questions or inquiries.",
-    "getInTouch": "Get in Touch",
-    "description": "Have questions about ISO 27001 or information security? Our team is here to help and provide guidance.",
-    "email": "Email",
-    "phone": "Phone",
-    "address": "Address",
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Your full name",
-      "email": "Email",
-      "emailPlaceholder": "your.email@example.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "How can we help you?",
-      "message": "Message",
-      "messagePlaceholder": "Your message details...",
-      "submit": "Send Message"
-    }
-  }
-} 
+    "description_placeholder": "Brief description of the document's content and purpose",
+
+    "default_questions_categories": "What types of data does the document contain?(Select all that apply)",
+    "personal_identifiable_information": "Personal Identifiable information (PII)",
+    "financial_data": "Financial data",
+    "customer_data": "Customer data",
+    "intellectual_property": "Intellectual property",
+    "hr_personell_information": "HR/Personell information",
+    "business_strategy": "Business strategy",
+    "operation_documents": "Operational documents",
+    "public_information": "Public Information",
+    "passwords_authentication_keys": "Passwords or authentication keys",
+    "guide_select_help": "Select all categories that apply to your document",
+
+    "availability_question_module_q7": "Does this document need to be accessible 24/7?",
+    "availability_question_module_q8": "Should this document have regular backups?",
+    "availability1_question": "What would be the impact if this document was temporarily unavailable?",
+    "availability1_option1": "No significant impact",
+    "availability1_option2": "Minor operational disruption",
+    "availability1_option3": "Significant business disruption",
+    "availability1_option4": "Critical impact on operations",
+    "availability2_question": "Who needs access to this document and when?",
+    "availability2_option1": "Only specific individuals during business hours",
+    "availability2_option2": "Team members during business hours",
+    "availability2_option3": "Multiple teams around the clock",
+    "availability2_option4": "Anyone in the organization anytime",
+
+    "access_control_questions_module_q9": "Should this document be restricted to specific people?",
+    "access_control_questions_module_q10": "Does this document require two-factor authentication (MFA) for access?",
+    "access_control_questions_module_accessControl2": "How should access to this document be managed?",
+    "access_control_questions_module_basic_password": "Basic password protection",
+    "access_control_questions_module_role_based": "Role-based access control",
+    "access_control_questions_module_multi_factor": "Multi-factor authentication",
+    "access_control_questions_module_time_limited": "Time-limited access with auditing",
+    "access_control_questions_module_accessControl3": "Who should be able to modify this document?",
+    "access_control_questions_module_owner_only": "Document owner only",
+    "access_control_questions_module_specific_individuals": "Specific authorized individuals",
+    "access_control_questions_module_team_members": "Team members with appropriate permissions",
+    "access_control_questions_module_read_only": "Read-only for most users",
+    
+    "confidentiality_questions_module_q3": "Would exposure of this document cause legal or reputational damage?",
+    "confidentiality_questions_module_q4": "Is the document subject to GDPR, HIPAA, or other regulations?",
+    "pii1_question": "What types of personal information does the document contain?",
+    "pii1_option1": "Names and basic contact information",
+    "pii1_option2": "Financial data (credit card, bank details)",
+    "pii1_option3": "Health information",
+    "pii1_option4": "Biometric data",
+    "pii1_option5": "Location data",
+    "pii2_question": "How many individuals' personal data is included in this document?",
+    "pii2_option1": "Just one person",
+    "pii2_option2": "A small group (2-10 people)",
+    "pii2_option3": "A large group (10+ people)",
+    "pii2_option4": "Mass data (100+ people)",
+
+    "integrity_questions_module_q5": "Does the document require proof that it has not been altered?",
+    "integrity_questions_module_q6": "Does the document need digital signatures or version tracking?",
+    "financial1_question": "What types of financial information does this document contain?",
+    "financial1_option1": "Budget information",
+    "financial1_option2": "Financial reports",
+    "financial1_option3": "Salary or compensation details",
+    "financial1_option4": "Investment or strategic financial plans",
+    "financial1_option5": "Banking or payment information",
+    "financial2_question": "What is the scope of this financial information?",
+    "financial2_option1": "Individual level",
+    "financial2_option2": "Department level",
+    "financial2_option3": "Organization-wide",
+    "financial2_option4": "Including external partners or clients",
+
+    "intellectual_property_questions_module_1p1": "What type of intellectual property does the document contain?",
+    "1p1_option1": "Trade secrets",
+    "1p1_option2": "Patent information (applications, research)",
+    "ip1_option3": "Copyright materials",
+    "ip1_option4": "Proprietary algorithms or code",
+    "ip1_option5": "Designs or blueprints",
+    "intellectual_property_questions_module_ip2": "What is the development status of this intellectual property?",
+    "ip2_option1": "Early stage/concept",
+    "ip2_option2": "Under active development",
+    "ip2_option3": "Ready for patent/copyright filing",
+    "ip2_option4": "Already protected by legal means",
+    "intellectual_property_questions_module_ip3": "What is the commercial value of this intellectual property?",
+    "ip3_option1": "Core to business operations",
+    "ip3_option2": "Significant competitive advantage",
+    "ip3_option3": "Moderate value",
+    "ip3_option4": "Minimal value but still proprietary",
+
+    "legal_regulations_questions_module_legalReg1": "Which specific regulations apply to this document?",
+    "legalReg1_option1": "GDPR",
+    "legalReg1_option2": "HIPAA",
+    "legalReg1_option3": "SOX (Sarbanes-Oxley)",
+    "legalReg1_option4": "PCI DSS",
+    "legalReg1_option5": "Other specific regulation",
+    "legalReg1_option6": "I don't know",
+    "legalReg1_option7": "No specific regulation",
+    "legal_regulations_questions_module_regulationHelp": "Would you like assistance identifying applicable regulations?",
+    "regulationHelp_option1": "Yes, help me identify regulations",
+    "regulationHelp_option2": "No, proceed with classification",
+    "legal_regulations_questions_module_regulationGuidance": "Based on the information types you selected, these regulations may apply:",
+    "legal_regulations_questions_module_regulationGuidance_infotext": "Documents containing personal data are often subject to GDPR in Europe or various privacy laws. Financial data may be subject to SOX or PCI DSS. Healthcare information falls under HIPAA in the US or similar healthcare privacy laws in other countries ",
+    "regulationGuidance_option1": "Proceed with classification",
+    "regulationGuidance_option2": "I'll consult with our compliance team",
+    "legal_regulations_questions_module_legalReg2": "What is the potential legal or financial impact of non-compliance?",
+    "legalReg2_option1": "Minor penalties",
+    "legalReg2_option2": "Significant fines",
+    "legalReg2_option3": "Potential legal action",
+    "legalReg2_option4": "Severe business disruption",
+
+    "backup_storage_questions_module_q13": "Does this document need to be stored in a fireproof or secure location?",
+    "backup2_question": "How often should this document be backed up?",
+    "backup2_option1": "Real-time/continuous backup",
+    "backup2_option2": "Daily backup",
+    "backup2_option3": "Weekly backup",
+    "backup2_option4": "Monthly backup",
+    "backup3_question": "What is the required retention period for this document",
+    "backup3_option1": "Less than 1 year",
+    "backup3_option2": "1-3 years",
+    "backup3_option3": "3-7 years",
+    "backup3_option4": "7+ years",
+    "backup3_option5": "Indefinite/permanent retention",
+    
+    "report_title": "Classification Report",
+    "report_document_details": "Document Details",
+    "report_description": "Description",
+    "report_classification_determination": "Classification Determination",
+    "report_handling_instructions": "Handling Instructions",
+    "report_security_controls": "Required Security Controls:",
+    "report_classification_context": "Classification Levels in Context",
+    "report_document_training": "Document Your Training",
+    "report_start_new": "Start New Classification",
+    "report_multiple_types": "This document contains multiple types of sensitive information:",
+    "report_strictest_classification": "Because this document contains {category}, which is classified as {level}, the entire document must be handled according to {level} controls.",
+    "report_reason": "Reason: {reason}",
+    "report_single_classification": "This document is classified as {level} because it contains {category}.",
+    "report_strictest_marker": "(Strictest)",
+    "report_table_level": "Level",
+    "report_table_description": "Description",
+    "report_table_examples": "Examples",
+    "report_table_controls": "Controls",
+    "report_your_document": "← Your Document",
+    "report_certificate_question": "Would you like to receive a certificate of completion for this classification training?",
+    "report_certificate_sent": "Your certificate has been sent! Check your email inbox.",
+    "report_request_certificate": "Request Certificate",
+    "report_email_label": "Your Email Address",
+    "report_send_certificate": "Send Certificate",
+    "report_level_public_description": "Information intended for public release",
+    "report_level_public_examples": "Marketing materials, public announcements, general product info",
+    "report_level_public_controls": "No special security controls required",
+
+    "report_level_internal_description": "Non-sensitive information meant only for company use",
+    "report_level_internal_examples": "Meeting minutes, internal communications, operational docs",
+    "report_level_internal_controls": "Basic access controls, no distribution outside organization",
+
+    "report_level_confidential_description": "Sensitive information with restricted access",
+    "report_level_confidential_examples": "Financial records, customer data, business strategies",
+    "report_level_confidential_controls": "Access controls, encryption, audit logging",
+
+    "report_level_highly_confidential_description": "Extremely sensitive information",
+    "report_level_highly_confidential_examples": "Authentication credentials, trade secrets, sensitive IP",
+    "report_level_highly_confidential_controls": "Strict access controls, encryption, MFA, detailed auditing",
+        
+    "report_handling_public": "can be freely shared and distributed",
+    "report_handling_internal": "should only be shared within the organization",
+    "report_handling_confidential": "must be encrypted and access-controlled",
+    "report_handling_highly_confidential": "requires strict access control, encryption, and audit logging",
+        
+    "report_control_encrypt": "Encrypt document when at rest and in transit",
+    "report_control_access": "Implement role-based access control",
+    "report_control_logs": "Maintain access logs",
+    "report_control_mfa": "Implement multi-factor authentication for access",
+    "report_control_reviews": "Perform regular access reviews",
+    "report_control_drm": "Apply digital rights management",
+    "report_control_availability": "Implement high availability measures",
+    "report_control_restrict": "Restrict access to authorized personnel only",
+    "report_control_version": "Implement version control and document integrity checks",
+    "report_control_retention": "Implement retention policies according to legal requirements",
+        
+    "report_category_pii": "Personal Identifiable Information",
+    "report_category_pii_reason": "Contains personal data subject to privacy regulations",
+    "report_category_financial": "Financial Information",
+    "report_category_financial_reason": "Contains sensitive financial data",
+    "report_category_credentials": "Authentication Credentials",
+    "report_category_credentials_reason": "Contains access credentials that could compromise security",
+    "report_category_hr": "HR/Personnel Information",
+    "report_category_hr_reason": "Contains private employee information",
+    "report_category_ip": "Intellectual Property",
+    "report_category_ip_reason": "Contains proprietary business information",
+    "report_category_strategy": "Business Strategy",
+    "report_category_strategy_reason": "Contains sensitive strategic plans",
+    "report_category_operational": "Operational Documents",
+    "report_category_operational_reason": "Contains day-to-day operational information",
+    "report_category_public": "Public Information",
+    "report_category_public_reason": "Contains information intended for public consumption",
+    "report_category_default": "Default",
+    "report_reason_default": "No sensitive information identified",
+
+    "training_modules_title": "Training Modules",
+    "training_modules_description": "Enhance your understanding of information security with our interactive training modules",
+    "training_modules_overall_progress": "Overall progress: {{completed}} of {{total}} modules completed",
+    "back_to_modules_button": "Back to Training Modules",
+    "back_to_information_classification_button": "Back to Information Classification Basics",
+    "isms_back_to_button": "Back to ISO 27001 Fundamentals",
+
+    "information_classification_basics_title": "Information Classification Basics",
+    "information_classification_basics_description": "Learn the fundamentals of classifying sensitive information",
+    "iso_fundementals_title": "ISO 27001 Fundementals",
+    "iso_fundementals_description": "Introduction to ISO 27001 principles and best practices",   
+
+    "identifying_sensitive_information_title": "Identifying Sensitive Information",
+    "identifying_sensitive_information_description": "Learn how to identify and classify sensitive information.",
+    "handling_classified_information_title": "Handling Classified Information",
+    "handling_classified_information_description": "Learn proper procedures for handling classified information.",
+    "isms_basics_title": "ISMS Basics",
+    "isms_basics_description": "Learn about information security managment systems.",
+    "risk_assessment_title": "Risk Assessment",
+    "risk_assessment_description": "Learn about risk assessment in ISO 27011.",
+   
+    "understanding_security_levels_title": "Understanding Security Levels",
+    "understanding_security_levels_description": "Learn about different security classification levels.",
+    "course_overview_title": "Course Overview",
+    "course_overview_description": "In this course, you will learn about the different security levels used to classify sensitive information. Understanding these levels is crucial for ensuring that information is properly protected according to its sensitivity and importance.",
+    
+    "learning_objectives_title": "Learning Objectives",
+    "learning_objectives_item1": "Understand the purpose of security classification levels",
+    "learning_objectives_item2": "Identify the common classification levels and their meanings",
+    "learning_objectives_item3": "Apply appropriate security levels to different types of information",
+    "learning_objectives_item4": "Recognize the responsibilities associated with handling information at each level",
+   
+    "classification_levels_title": "Classification Levels",
+    "classification_levels_public_title": "Public",
+    "classification_levels_public_description": "Information that can be freely shared with the public and poses no risk if disclosed. Examples include marketing materials, public reports, and general information on company websites.",
+    "classification_levels_internal_title": "Internal Use Only",
+    "classification_levels_internal_description": "Information meant for employees and contractors only, but would pose minimal risk if disclosed. Examples include internal newsletters, non-sensitive emails, and general operational documents.",
+    "classification_levels_confidential_title": "Confidential",
+    "classification_levels_confidential_description": "Sensitive information that must be protected and would cause harm to the organization if disclosed. Examples include financial records, business strategies, and intellectual property.",
+    "classification_levels_highly_confidential_title": "Highly Confidential",
+    "classification_levels_highly_confidential_description": "Extremely sensitive information that would cause severe damage if disclosed. Examples include customer PII, authentication credentials, and trade secrets.",
+   
+    "best_practices_title": "Best Practices",
+    "best_practices_item1": "Always mark documents with their classification level",
+    "best_practices_item2": "When in doubt, assign a higher level of classification",
+    "best_practices_item3": "Regularly review and reclassify information as needed",
+    "best_practices_item4": "Follow appropriate handling procedures for each level",
+    "best_practices_item5": "Report any potential security breaches immediately",
+   
+    "classification_practice_title": "Classification Practice",
+    "classification_practice_description": "For each scenario, select the appropriate security classification level:",
+    "security_level_public_title": "Public",
+    "security_level_internal_title": "Internal",
+    "security_level_confidential_title": "Confidential",
+    "security_level_highlyconfidential_title": "Highly Confidential",
+    
+    "classification_practice_scenario1_description": "A document describing the company's standard operating procedures for handling customer support tickets.",
+    "classification_practice_scenario1_feedback": "Internal procedures should be classified as Internal. While not sensitive, they're not meant for public consumption.",
+    "classification_practice_scenario2_description": "A spreadsheet containing customer names, addresses, and purchase history.",
+    "classification_practice_scenario2_feedback": "Customer data contains private information and should be classified as Confidential.",
+    "classification_practice_scenario3_description": "A file containing database passwords and API keys for the company's main services.",
+    "classification_practice_scenario3_feedback": "Authentication credentials require the highest level of protection - Highly Confidential.",
+    "classification_practice_excellent": "Excellent! You've correctly classified all scenarios. You understand how to apply different security levels.",
+
+    "scenario1_title": "Scenario 1:",
+    "scenario2_title": "Scenario 2:",
+    "scenario3_title": "Scenario 3:",
+    "scenario4_title": "Scenario 4:",
+    "scenario5_title": "Scenario 5:",
+    
+    "common_types_title": "Common Types of Sensitive Information",
+    "public_info_title": "Public Information", 
+    "public_info_item1": "Published annual reports",
+    "public_info_item2": "Press releases",
+    "public_info_item3": "Public marketing materials",
+    "public_info_item4": "Contact information (general)",
+    "public_info_item5": "Product catalogs",
+  
+    "internal_info_title": "Internal Information",
+    "internal_info_item1": "Internal procedures",
+    "internal_info_item2": "Employee directories",
+    "internal_info_item3": "Internal memos",
+    "internal_info_item4": "Meeting minutes",
+    "internal_info_item5": "Training materials",
+    
+    "confidential_info_title": "Confidential Information", 
+    "confidential_info_item1": "Employee records",
+    "confidential_info_item2": "Customer data",
+    "confidential_info_item3": "Financial reports",
+    "confidential_info_item4": "Business strategies",
+    "confidential_info_item5": "Contract details",
+    
+    "highly_confidential_info_item1": "Trade secrets",
+    "highly_confidential_info_item2": "Authentication credentials", 
+    "highly_confidential_info_item3": "Personal health information",
+    "highly_confidential_info_item4": "Strategic acquisition",
+    "highly_confidential_info_item5": "Security infrastructure",
+    
+    "key_indicators_title": "Key Indicators",
+    "key_indicators_description": "When evaluating information, consider these key questions:",
+    "key_indicators_item1": "Would this information benefit competitors?",
+    "key_indicators_item2": "Could this information harm individuals if exposed?",
+    "key_indicators_item3": "Is this information protected by law or regulations?",
+    "key_indicators_item4": "Would disclosure damage the company's reputation?",
+    "key_indicators_item5": "Is this information meant for internal use only?",
+    
+    "practice_exercise_title": "Practice Exercise",
+    "practice_exercise_description": "Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:",
+    "practice_exercise_scenario1_description": "An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.",
+    "practice_exercise_scenario1_option1": "Revenue projections",
+    "practice_exercise_scenario1_option2": "Customer acquisition costs",
+    "practice_exercise_scenario1_option3": "Marketing strategy",
+    
+    "practice_exercise_scenario2_description": "A document with employee emergency contact information, salary details, and performance reviews.",
+    "practice_exercise_scenario2_option1": "Emergency contact information",
+    "practice_exercise_scenario2_option2": "Salary details",
+    "practice_exercise_scenario2_option3": "Performance reviews",
+    
+    "practice_exercise_scenario3_description": "A presentation containing information about an upcoming product launch, including product images, functionality descriptions, release date, target market, and publicly announced features.",
+    "practice_exercise_scenario3_option1": "Unreleased product images",
+    "practice_exercise_scenario3_option2": "Detailed functionality descriptions",
+    "practice_exercise_scenario3_option3": "Publicly announced release date",
+    "practice_exercise_scenario3_option4": "Target market analysis",
+    "practice_exercise_scenario3_option5": "Publicly announced features",
+    
+    "practice_exercise_scenario4_description": "A document outlining details of a potential merger with another company, including terms, timeline, financial details, company name, and information from the public annual report.",
+    "practice_exercise_scenario4_option1": "Detailed merger terms",
+    "practice_exercise_scenario4_option2": "Timeline of the merger",
+    "practice_exercise_scenario4_option3": "Financial details",
+    "practice_exercise_scenario4_option4": "The publicly known name of the company",
+    "practice_exercise_scenario4_option5": "Information from the public annual report",
+    
+    "practice_exercise_scenario5_description": "A technical document with network diagrams, internal IP addresses, firewall configuration, server locations, the company's public website URL, and names of common software programs used.",
+    "practice_exercise_scenario5_option1": "Internal IP addresses",
+    "practice_exercise_scenario5_option2": "Firewall configuration",
+    "practice_exercise_scenario5_option3": "Server locations",
+    "practice_exercise_scenario5_option4": "The company's public website URL",
+    "practice_exercise_scenario5_option5": "Names of common software programs used",
+   
+    "practice_exercise_feedback_scenario1_title": "Scenario 1: Email with company information",
+    "practice_exercise_feedback_scenario1": "Information containing acquisition costs, revenue projections and marketing strategy should be classified as sensitive", 
+    "practice_exercise_feedback_scenario2_title": "Scenario 2: Employee information document",
+    "practice_exercise_feedback_scenario2": "Salary and performance reviews should be classified as sensitive",
+    "practice_exercise_feedback_scenario3_title": "Scenario 3: Product launch presentation",
+    "practice_exercise_feedback_scenario3": "Unreleased product images and functionality descriptions should be classified as sensitive",
+    "practice_exercise_feedback_scenario4_title": "Scenario 4: Potential merger document",
+    "practice_exercise_feedback_scenario4": "Detailed merger terms, timeline of the merger and fincancial details should be classified as sensitive",
+    "practice_exercise_feedback_scenario5_title": "Scenario 5: Technical document",
+    "practice_exercise_feedback_scenario5": "Internal IP adresses, firewall configuration and server locations should be classifed as sensitive",
+    "practice_exercise_feedback_correct": "Correct! These items should be classified as sensitive.",
+    
+
+    "handling_classified_information_subtitle": "Handling Guidelines by Classification Level",
+    "handling_classified_information_public_title": "Public Information",
+    "handling_classified_information_public_item1": "Can be freely shared with the public",
+    "handling_classified_information_public_item2": "No special handling required",
+    "handling_classified_information_public_item3": "Can be published on public websites",
+    "handling_classified_information_public_item4": "Examples: Marketing materials, press releases, public annual reports",
+   
+    "handling_classified_information_internal_title": "Internal Information",
+    "handling_classified_information_internal_item1": "Share only within the organization",
+    "handling_classified_information_internal_item2": "Avoid sharing with external parties without approval",
+    "handling_classified_information_internal_item3": "Use company email for distribution",
+    "handling_classified_information_internal_item4": "Examples: Internal procedures, employee directories, meeting minutes",
+   
+    "handling_classified_information_confidential_title": "Confidential Information",
+    "handling_classified_information_confidential_item1": "Share only with authorized individuals who need to know",
+    "handling_classified_information_confidential_item2": "Use secure methods for sharing (encrypted email, secure file sharing)",
+    "handling_classified_information_confidential_item3": "Password-protect documents when possible",
+    "handling_classified_information_confidential_item4": "Do not leave printed copies unattended",
+    "handling_classified_information_confidential_item5": "Examples: Customer data, financial reports, business strategies",
+   
+    "handling_classified_information_highly_confidential_title": "Highly Confidential Information",
+    "handling_classified_information_highly_confidential_item1": "Strictest access controls - only specific authorized individuals",
+    "handling_classified_information_highly_confidential_item2": "Always use encryption when storing or transmitting",
+    "handling_classified_information_highly_confidential_item3": "Track all access and actions taken on the information",
+    "handling_classified_information_highly_confidential_item4": "Obtain explicit approval before sharing",
+    "handling_classified_information_highly_confidential_item5": "Use secure rooms for discussions involving this information",
+    "handling_classified_information_highly_confidential_item6": "Examples: Trade secrets, authentication credentials, strategic acquisitions",
+   
+    "handling_classified_information_best_practices_title": "Security Best Practices",
+    "handling_classified_information_best_practices_physical_title": "Physical Security",
+    "handling_classified_information_best_practices_physical_item1": "Use the clean desk policy - don't leave sensitive documents visible",
+    "handling_classified_information_best_practices_physical_item2": "Lock away sensitive information when not in use",
+    "handling_classified_information_best_practices_physical_item3": "Shred confidential documents when disposing",
+    "handling_classified_information_best_practices_physical_item4": "Be aware of your surroundings when discussing sensitive information",
+   
+    "handling_classified_information_best_practices_digital_title": "Digital Security",
+    "handling_classified_information_best_practices_digital_item1": "Use strong passwords and multi-factor authentication",
+    "handling_classified_information_best_practices_digital_item2": "Encrypt sensitive files and communications",
+    "handling_classified_information_best_practices_digital_item3": "Be cautious with email attachments and links",
+    "handling_classified_information_best_practices_digital_item4": "Lock your computer when away from your desk",
+    "handling_classified_information_best_practices_digital_item5": "Only use approved cloud services for sensitive data",
+   
+    "handling_classified_information_best_practices_incident_title": "Incident Response",
+    "handling_classified_information_best_practices_incident_item1": "Report security incidents immediately",
+    "handling_classified_information_best_practices_incident_item2": "Know who to contact in case of a suspected breach",
+    "handling_classified_information_best_practices_incident_item3": "Document any potential exposure of sensitive information",
+    "handling_classified_information_best_practices_incident_item4": "Follow company procedures for incident response",
+   
+    "handling_classified_information_quiz_q1_title": "1. How should you handle public documents?",   
+    "handling_classified_information_quiz_q1_option1": "Password-protect them and only share internally",
+    "handling_classified_information_quiz_q1_option2": "Encrypt them before sharing",    
+    "handling_classified_information_quiz_q1_option3": "Share freely as they contain no sensitive information",
+    "handling_classified_information_quiz_q1_option4": "Never share them outside the department",
+    
+    "handling_classified_information_quiz_q2_title": "2. When sharing confidential documents, you should:",
+    "handling_classified_information_quiz_q2_option1": "Share them with anyone who asks for them",
+    "handling_classified_information_quiz_q2_option2": "Share only with authorized individuals using secure methods",
+    "handling_classified_information_quiz_q2_option3": "Post them publicly but with a password", 
+    "handling_classified_information_quiz_q2_option4": "Never share them under any circumstances",
+    
+    "handling_classified_information_quiz_q3_title": "3. Internal documents should be shared:",
+    "handling_classified_information_quiz_q3_option1": "Only within the organization",
+    "handling_classified_information_quiz_q3_option2": "With anyone who needs them for their work",
+    "handling_classified_information_quiz_q3_option3": "With trusted partners and customers",
+    "handling_classified_information_quiz_q3_option4": "Only with executives",
+    
+    "handling_classified_information_quiz_q4_title": "4. Highly confidential files require:",
+    "handling_classified_information_quiz_q4_option1": "Basic security measures",
+    "handling_classified_information_quiz_q4_option2": "Password protection only",
+    "handling_classified_information_quiz_q4_option3": "Standard email for distribution",
+    "handling_classified_information_quiz_q4_option4": "Strict access controls, encryption, and activity logging",
+    
+    "handling_classified_information_quiz_q5_title": "5. If you discover a data breach involving classified information, you should:",
+    "handling_classified_information_quiz_q5_option1": "Try to fix it yourself without telling anyone",
+    "handling_classified_information_quiz_q5_option2": "Report it immediately to the security team",
+    "handling_classified_information_quiz_q5_option3": "Inform the affected customers directly",
+    "handling_classified_information_quiz_q5_option4": "Wait and see if anyone notices",
+    
+    "handling_classified_information_quiz_feedback_q1_title": "Question 1: Handling of public documents",
+    "handling_classified_information_quiz_feedback_q1": "Public information can be shared openly as it poses no security risk.",
+    "handling_classified_information_quiz_feedback_q1_full": "Question 1: Handling of public documents\n• Public information can be shared openly as it poses no security risk.",
+    "handling_classified_information_quiz_feedback_q2_title": "Question 2: Sharing of confidential documents",
+    "handling_classified_information_quiz_feedback_q2": "Confidential documents should be shared only with authorized individuals using secure methods.",
+    "handling_classified_information_quiz_feedback_q2_full": "Question 2: Sharing of confidential documents\n• Confidential documents should be shared only with authorized individuals using secure methods.",
+    "handling_classified_information_quiz_feedback_q3_title": "Question 3: Internal documents",
+    "handling_classified_information_quiz_feedback_q3": "Internal documents should be shared only within the organization.",
+    "handling_classified_information_quiz_feedback_q3_full": "Question 3: Internal documents\n• Internal documents should be shared only within the organization.",
+    "handling_classified_information_quiz_feedback_q4_title": "Question 4: Highly confidential files",
+    "handling_classified_information_quiz_feedback_q4": "Highly confidential files require strict access controls, encryption, and activity logging.",
+    "handling_classified_information_quiz_feedback_q4_full": "Question 4: Highly confidential files\n• Highly confidential files require strict access controls, encryption, and activity logging.",
+    "handling_classified_information_quiz_feedback_q5_title": "Question 5: Data breach",
+    "handling_classified_information_quiz_feedback_q5": "If you discover a data breach, it should be reported immediately to the security team.",
+    "handling_classified_information_quiz_feedback_q5_full": "Question 5: Data breach\n• If you discover a data breach, it should be reported immediately to the security team.",
+    "handling_classified_information_quiz_feedback_excellent": "Excellent! You understand how to properly handle information based on its classification level.",
+
+    "isms_what_is_title": "What is an ISMS?",
+    "isms_what_is_description": "An Information Security Management System (ISMS) is a systematic approach to managing sensitive company information so that it remains secure. It encompasses people, processes, and technology.",
+    "isms_what_is_definition": "Definition: An ISMS is a framework of policies and procedures that include all legal, physical, and technical controls involved in an organization's information risk management processes",
+    "isms_why_implement_title": "Why Implement an ISMS?",
+   
+    "isms_business_benefits_title": "Business Benefits",
+    "isms_business_benefits_item1": "Improved information security posture",
+    "isms_business_benefits_item2": "Competitive advantage",
+    "isms_business_benefits_item3": "Customer and stakeholder confidence",
+    "isms_business_benefits_item4": "Business continuity",
+    "isms_business_benefits_item5": "Reduced cyber insurance premiums   ",
+   
+    "isms_risk_management_title": "Risk Management Benefits",    
+    "isms_risk_management_item1": "Structured identification of risks",
+    "isms_risk_management_item2": "Implementation of appropriate controls",
+    "isms_risk_management_item3": "Systematic handling of threats",
+    "isms_risk_management_item4": "Reduced likelihood of breaches",
+    "isms_risk_management_item5": "Legal and regulatory compliance",
+   
+    "iso_and_isms_title": "ISO 27001 and ISMS",
+    "iso_and_isms_description": "ISO 27001 is the international standard that describes best practice for an ISMS. It provides a framework for establishing, implementing, operating, monitoring, reviewing, maintaining, and improving an ISMS.",
+    "isms_pdca_title": "The PDCA Cycle in ISMS",
+    "isms_pdca_plan_title": "Plan",
+    "isms_pdca_plan_description": "Establish ISMS policy, objectives, processes and procedures",
+    "isms_pdca_do_title": "Do", 
+    "isms_pdca_do_description": "Implement and operate the ISMS policy, controls, processes and procedures",
+    "isms_pdca_check_title": "Check",
+    "isms_pdca_check_description": "Monitor and review the ISMS, measuring process performance against policy and objectives",
+    "isms_pdca_act_title": "Act",
+    "isms_pdca_act_description": "Take corrective and preventive actions, based on internal audit results, to achieve continual improvement",
+   
+    "key_components_of_isms_title": "Key Components of an ISMS",
+    "information_security_policy_title": "Information Security Policy",
+    "information_security_policy_description": "Sets the direction and expresses management support for information security",
+    "risk_assessment_policy_description": "Systematic process to identify, analyze, and evaluate information security risks",
+    "security_controls_title": "Security Controls",
+    "security_controls_description": "Safeguards or countermeasures to avoid, detect, counteract, or minimize security risks",
+    "statement_of_applicability_title": "Statement of Applicability (SoA)",
+    "statement_of_applicability_description": "Document describing which controls are relevant and applicable to the organization's ISMS",
+    "internal_audits_title": "Internal Audits",
+    "internal_audits_description": "Regular checks to ensure the ISMS is functioning as expected and identify improvements",
+    "managment_review_title": "Management Review",
+    "management_review_description": "Regular assessment of the ISMS by top management to ensure its continued suitability and effectiveness",
+
+    "isms_quiz_q1": "1. What is an Information Security Management System (ISMS)?",
+    "isms_quiz_q1_option1": "A software tool for monitoring network security",
+    "isms_quiz_q1_option2": "A systematic approach to managing sensitive information and ensuring business continuity",
+    "isms_quiz_q1_option3": "A hardware solution for data encryption",
+    "isms_quiz_q1_option4": "A checklist of IT security best practices",
+
+    "isms_quiz_q2": "2. What does the PDCA cycle stand for in ISO 27001?",
+    "isms_quiz_q2_option1": "Plan-Do-Check-Act",
+    "isms_quiz_q2_option2": "Prevent, Detect, Correct, Adjust",
+    "isms_quiz_q2_option3": "Prepare, Develop, Control, Analyze",
+    "isms_quiz_q2_option4": "Process, Document, Configure, Review",
+
+    "isms_quiz_q3": "3. Which of the following is a fundamental principle in ISO 27001??",
+    "isms_quiz_q3_option1": "Maximizing productivity at any cost",
+    "isms_quiz_q3_option2": "Completely eliminating all security risks",
+    "isms_quiz_q3_option3": "Risk-based approach to information security",
+    "isms_quiz_q3_option4": "Isolating all systems from external connections",
+
+    "isms_quiz_q4": "4. What role does risk assessment play in ISO 27001?",
+    "isms_quiz_q4_option1": "It's optional and only for high-security organizations",
+    "isms_quiz_q4_option2": "It's essential for establishing an effective ISMS",
+    "isms_quiz_q4_option3": "It's performed only once after implementation",
+    "isms_quiz_q4_option4": "It focuses only on external threats",
+
+    "isms_quiz_q5": "5. What is required to achieve ISO 27001 certification?",
+    "isms_quiz_q5_option1": "Implementing all 114 controls in Annex A",
+    "isms_quiz_q5_option2": "Having perfect security with no incidents",
+    "isms_quiz_q5_option3": "Using only ISO-approved security vendors",
+    "isms_quiz_q5_option4": "Implementing an ISMS, conducting internal audits, and passing an external audit",
+
+    "isms_quiz_feedback_q1_title": "Question 1: ISMS Definition",
+    "isms_quiz_feedback_q1_feedback": "An ISMS is a systematic approach to managing sensitive information and ensuring business continuity.",
+    "isms_quiz_feedback_q2_title": "Question 2: PDCA Cycle",
+    "isms_quiz_feedback_q2_feedback": "The PDCA cycle consists of the Plan, Do, Check, Act phases for continuous improvement.",
+    "isms_quiz_feedback_q3_title": "Question 3: ISO 27001 Principles",
+    "isms_quiz_feedback_q3_feedback": "ISO 27001 is based on a risk-based approach to information security.",
+    "isms_quiz_feedback_q4_title": "Question 4: Risk Assessment",
+    "isms_quiz_feedback_q4_feedback": "Risk assessment is an essential component for establishing an ISMS.",
+    "isms_quiz_feedback_q5_title": "Question 5: ISO 27001 Certification",
+    "isms_quiz_feedback_q5_feedback": "To achieve ISO 27001 certification, an organization must implement an ISMS, conduct internal audits, address non-conformities, and pass an external audit.",
+    "isms_quiz_feedback_excellent": "Excellent! You've correctly understood the ISMS concepts.",
+    
+    "risk_assessment_what_is_title": "What is Risk Assessment?",
+    "risk_assessment_what_is_description": "Risk assessment is a critical component in ISO 27001 and the foundation for an effective Information Security Management System (ISMS). It involves identifying, analyzing, and evaluating information security risks.",
+    "risk_assessment_what_is_definition": "Definition: Risk assessment is the overall process of risk identification, risk analysis, and risk evaluation as defined in ISO 27001.",
+    "risk_managment_process_title": "The Risk Managment Process",
+    "risk_identification_title": "1. Risk Identification",
+    "risk_identification_description": "Finding, recognizing, and describing risks by identifying assets, threats, existing controls, vulnerabilities, and consequences.",
+    "risk_analysis_title": "2. Risk Analysis",
+    "risk_analysis_description": "Understanding the nature of risk and determining the risk level by assigning values to likelihood and consequence.",
+    "risk_evaluation_title": "3. Risk Evaluation",
+    "risk_evaluation_description": "Comparing risk analysis results with risk criteria to determine if a risk is acceptable or requires treatment.",
+    "risk_treatment_title": "4. Risk Treatment",
+    "risk_treatment_description": "Selecting and implementing options for addressing risk through risk modification (controls), risk acceptance, risk avoidance, or risk transfer.",
+
+    "risk_key_components_title": "Key Components in Risk Assessment",
+    "asset_identification_title": "Asset Identification",
+    "asset_identification_description": "Identifying and categorizing information assets is the first step in risk assessment.",
+    "asset_identification_item1": "Information assets (databases, files, documentation)",
+    "asset_identification_item2": "Software assets (applications, systems, development tools)",
+    "asset_identification_item3": "Physical assets (computers, network equipment, media)",
+    "asset_identification_item4": "Services (computing services, communications)",
+    "asset_identification_item5": "People (staff, customers, users) and their qualifications, skills, and experience",
+    "asset_identification_item6": "Intangible assets (reputation, image)",
+
+    "threat_identification_title": "Threat Identification",
+    "threat_identification_description": "Identifying potential threat sources and events that could harm assets.",
+    "internal_threats_title": "Internal Threats",
+    "internal_threats_item1": "Human error",
+    "internal_threats_item2": "Disgruntled employees",
+    "internal_threats_item3": "System failures",
+    "internal_threats_item4": "Process failures",
+    "external_threats_title": "External Threats",
+    "external_threats_item1": "Cyber attacks",
+    "external_threats_item2": "Natural disasters",
+    "external_threats_item3": "Supply chain disruptions",
+    "external_threats_item4": "Legal/regulatory changes",
+
+    "vulnerability_assessment_title": "Vulnerability Assessment",
+    "vulnerability_assessment_description": "Identifying weaknesses in assets that could be exploited by threats.",
+    "vulnerability_assessment_item1": "Weak passwords or authentication methods",
+    "vulnerability_assessment_item2": "Unpatched software",
+    "vulnerability_assessment_item3": "Inadequate physical security",
+    "vulnerability_assessment_item4": "Insufficient employee training",
+    "vulnerability_assessment_item5": "Poorly configured systems",
+    "vulnerability_assessment_item6": "Inadequate backup procedures",
+
+    "risk_analysis_methods_title": "Risk Analysis Methods",
+    "qualitative_analysis_title": "Qualitative Analysis",
+    "qualitative_analysis_description": "Uses descriptive scales (High, Medium, Low) to describe the likelihood and consequence of risks.",
+    "quantitative_analysis_title": "Quantitative Analysis",
+    "quantitative_analysis_description": "Assigns numerical values to risks, often in monetary terms or specific scoring scales.",
+
+    "risk_treatment_options_title": "Risk Treatment Options",
+    "risk_treatment_options_modify": "Modify (Reduce)",
+    "risk_treatment_options_modify_description": "Implement controls to reduce risk likelihood or consequence.",
+    "risk_treatment_options_accept": "Accept",
+    "risk_treatment_options_accept_description": "Make an informed decision to accept the risk without further action.",
+    "risk_treatment_options_avoid": "Avoid",
+    "risk_treatment_options_avoid_description": "Decide not to proceed with the activity that introduces the risk.",
+    "risk_treatment_options_transfer": "Transfer",
+    "risk_treatment_options_transfer_description": "Share the risk with another party (e.g., insurance, outsourcing).",
+
+    "risk_assessment_quiz_q1": "1. What is risk assessment in the context of ISO 27001?",
+    "risk_assessment_quiz_q1_option1": "A one-time evaluation of security threats",
+    "risk_assessment_quiz_q1_option2": "A technical audit of IT systems",
+    "risk_assessment_quiz_q1_option3": "The overall process of identifying, analyzing, and evaluating information security risks",
+    "risk_assessment_quiz_q1_option4": "An inventory of security software and hardware",
+
+    "risk_assessment_quiz_q2": "2. What are the main steps in the risk management process?",
+    "risk_assessment_quiz_q2_option1": "Detect, Respond, Recover, Report",
+    "risk_assessment_quiz_q2_option2": "Identification, Analysis, Evaluation, Treatment",
+    "risk_assessment_quiz_q2_option3": "Plan, Test, Implement, Review",
+    "risk_assessment_quiz_q2_option4": "Purchase, Install, Configure, Maintain",
+
+    "risk_assessment_quiz_q3": "3. Which of the following is typically NOT considered during asset identification?",
+    "risk_assessment_quiz_q3_option1": "Information assets such as databases and files",
+    "risk_assessment_quiz_q3_option2": "Physical assets such as servers and network equipment",
+    "risk_assessment_quiz_q3_option3": "Intangible assets such as reputation and company image",
+    "risk_assessment_quiz_q3_option4": "Competitors' security strategies",
+
+    "risk_assessment_quiz_q4": "4. Which of the following is a complete list of common threat types?",
+    "risk_assessment_quiz_q4_option1": "Human errors, technical failures, physical events, and malicious attacks",
+    "risk_assessment_quiz_q4_option2": "Only cyber attacks and malware",
+    "risk_assessment_quiz_q4_option3": "Only physical threats to hardware",
+    "risk_assessment_quiz_q4_option4": "Only threats from disgruntled employees",
+
+    "risk_assessment_quiz_q5": "5. What are the four main options for risk treatment in ISO 27001?",
+    "risk_assessment_quiz_q5_option1": "Ignore, document, escalate, outsource",
+    "risk_assessment_quiz_q5_option2": "Modify (reduce), accept, avoid, transfer",
+    "risk_assessment_quiz_q5_option3": "Report, record, resolve, review",
+    "risk_assessment_quiz_q5_option4": "Detect, protect, respond, recover",
+
+    "risk_assessment_quiz_feedback_q1_full": "Question 1: Risk Assessment Definition\n• Risk assessment is the overall process of identifying, analyzing, and evaluating information security risks.",
+    "risk_assessment_quiz_feedback_q2_full": "Question 2: Risk Management Process\n• The risk management process includes identification, analysis, evaluation, and treatment of risks.",
+    "risk_assessment_quiz_feedback_q3_full": "Question 3: Asset Identification\n• Competitor's security strategies is NOT considered during asset identification.",
+    "risk_assessment_quiz_feedback_q4_full": "Question 4: Types of Threats\n• Common threats include human errors, technical failures, physical events, and malicious attacks.",
+    "risk_assessment_quiz_feedback_q5_full": "Question 5: Risk Treatment Options\n• The four primary options for risk treatment are: modify (reduce), accept, avoid, and transfer.",
+    "risk_assessment_quiz_feedback_excellent": "Excellent! You understand the principles of risk assessment in the context of information security.",
+
+    "about_isotron_title": "About Isotron",
+    "about_isotron_description": "A comprehensive platform for information security classification based on ISO 27001 standards",
+    "bachelor_project_overview_title": "Bachelor Project Overview",
+    "bachelor_project_overview_description": "This project aims to help organizations properly classify and protect sensitive information in accordance with information security best practices",
+    "iso_integration_title": "ISO 27001 Integration",
+    "iso_integration_description": "Our project is built around the principles of ISO 27001, the international standard for information security management. While this standard is comprehensive and often perceived as difficult to implement, our tool makes document classification straightforward and accessible. The standard provides a framework for:",
+    "iso_integration_item1": "Establishing and maintaining an information security management system (ISMS)",
+    "iso_integration_item2": "Systematic approach to managing sensitive company information",
+    "iso_integration_item3": "Risk assessment and treatment",
+    "iso_integration_item4": "Security controls implementation",
+
+    "project_goals_title": "Project Goals",
+    "intuitive_classification_guide_title": "Intuitive Classification Guide",
+    "intuitive_classification_guide_description": "Develop a user-friendly guide for proper information classification",
+    "interactive_training_title": "Interactive Training",
+    "interactive_training_description": "Create engaging modules to enhance security awareness",
+    "practical_tools_title": "Practical Tools",
+    "practical_tools_description": "Implement day-to-day information handling utilities",
+    "best_practices_description": "Promote and standardize information security best practices",
+
+    "brannmurbrigaden_title": "Brannmurbrigaden",
+    "brannmurbrigaden_description": "This program was developed by \"Brannmurbrigaden\" - A group of 5 Cybersecurity students at Kristiania University College",
+    
+    "technologies_used_title": "Technologies Used",
+    "technologies_used_description": "This application is built using modern web technologies, focusing on performance, accessibility, and user experience. The implementation follows security best practices aligned with ISO 27001 standards.",
+    "technologies_react_title": "React",
+    "technologies_tailwind_title": "Tailwind CSS",
+    "technologies_javascript_title": "JavaScript",
+    "technologies_Vite_title": "Vite",
+    "technologies_router_title": "React Router",
+
+    "iso27001_framework_title": "ISO 27001 Framework",
+    "iso27001_framework_description": "An international standard for managing information security, providing a systematic approach to information management and risk mitigation.",
+    "introduction_iso_title": "Introduction to ISO 27001",
+    "introduction_iso_description": "ISO 27001 is an international standard for managing information security. It provides a framework for establishing, implementing, maintaining, and continually improving an information security management system (ISMS).",
+    "iso_benefits_title": "Benefits of ISO 27001",
+    "iso_benefits_description_item1": "Prevents data breaches that expose personal or business-sensitive information",
+    "iso_benefits_description_item2": "Avoids legal consequences due to non-compliance with regulations",
+    "iso_benefits_description_item3": "Reduces financial losses due to fines, lawsuits, or reputational damage",
+    "iso_benefits_description_item4": "Maintains operational continuity by protecting against system failures or cyberattacks",
+    
+    "key_components_title": "Key Components",
+    "key_components_item1": "Information Security Policies",
+    "key_components_item1_description": "Policies that define the approach to managing information security within the organization.",
+    "key_components_item2": "Organization of Information Security",
+    "key_components_item2_description": "The framework for managing information security responsibilities and processes.",
+    "key_components_item3": "Asset Management",
+    "key_components_item3_description": "Processes for managing and protecting information assets.",
+    "key_components_item4": "Access Control",
+    "key_components_item4_description": "Mechanisms to ensure that access to information is restricted to authorized users.",
+    "key_components_item5": "Cryptography",
+    "key_components_item5_description": "Use of cryptographic techniques to protect the confidentiality, integrity, and authenticity of information.",
+    "key_components_item6": "Physical and Environmental Security",
+    "key_components_item6_description": "Measures to protect physical facilities and equipment from unauthorized access and environmental hazards.",
+
+    "iso_data_storage_title": "ISO 27001 for Data Storage",
+    "annex8_title": "Annex A.8 – Asset Management",
+    "annex8_description": "Ensures that information assets are identified and managed appropriately throughout their lifecycle. This includes conducting a thorough assessment to identify all data assets within the organization and categorizing data based on sensitivity levels to apply appropriate protection measures.",
+    "annex10_title": "Annex A.10 – Cryptography",
+    "annex10_description": "Requires the use of cryptographic controls to protect data confidentiality, integrity, and authenticity. This involves encrypting data at rest and in transit, and developing robust key management policies to safeguard encryption keys.",
+    "annex11_title": "Annex A.11 – Physical Security",
+    "annex11_description": "Focuses on securing physical storage environments against unauthorized access and environmental threats. This includes ensuring secure storage locations for servers and hard drives, and implementing measures to protect physical facilities and equipment.",
+
+    "iso_certified_title": "Steps to Get ISO 27001 Certified",
+    "define_scope_title": "Define Scope",
+    "define_scope_description": "Define the scope and objectives of your ISMS",
+    "risk_assessment_description2": "Conduct a comprehensive risk assessment",
+    "implement_control_title": "Implement Controls",
+    "implement_control_description": "Implement security controls to mitigate risks",
+    "train_employees_title": "Train Employees",
+    "train_employees_description": "Train employees on security policies and procedures",
+    "internal_audit_title": "Internal Audit",
+    "internal_audit_description": "Perform internal audits to verify compliance",
+    "certification_title": "Certification",
+    "certification_description": "Engage an accredited certification body for assessment",
+
+    "contact_us_title": "Contact Us",
+    "contact_us_description": "We'd love to hear from you! Get in touch with our team for any questions or inquiries.",
+    "get_in_touch_title": "Get in Touch",
+    "get_in_touch_description": "Have questions about ISO 27001 or information security? Our team is here to help and provide guidance.",
+    "email_title": "Email",
+    "phone_title": "Phone",
+    "address_title": "Address",
+    "name_title": "Name",
+    "subject_title": "Subject",
+    "message_title": "Message",
+    "name_placeholder": "Your full name",
+    "email_placeholder": "your.email@example.com",
+    "subject_placeholder": "How can we help you?",
+    "message_placeholder": "Your message details...",
+    "submit_button": "Send Message"
+    
+    
+    
+
+}
+   

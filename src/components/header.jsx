@@ -66,9 +66,6 @@ function Header() {
           <Link to="/" className="-m-1.5 p-1.5 flex items-center group">
             <IsotronLogo className="h-8 w-auto text-custom-black transition-transform duration-300 group-hover:scale-110" />
           </Link>
-          <Link to="/" className={`ml-4 px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/') ? 'bg-purple-200 font-semibold' : ''}`}>
-            {t('navigation.home')}
-          </Link>
         </div>
         
         {/* Main Navigation */}
@@ -77,20 +74,20 @@ function Header() {
             to="/guide" 
             className={`px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/guide') ? 'bg-purple-200 font-semibold' : ''}`}
           >
-            {t('navigation.guide')}
+            {t('nav_guide')}
           </Link>
           <Link 
             to="/training" 
             className={`px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isActive('/training') ? 'bg-purple-200 font-semibold' : ''}`}
           >
-            {t('navigation.training')}
+            {t('nav_training')}
           </Link>
           <div className="relative" ref={menuRef}>
             <button 
               className={`flex items-center px-3 py-2 rounded-md text-gray-800 font-medium transition-colors duration-200 hover:bg-purple-200 ${isMenuOpen ? 'bg-purple-200' : ''}`} 
               onClick={toggleMenu}
             >
-              {t('navigation.about')}
+              {t('nav_about')}
               <svg 
                 className={`ml-1 w-4 h-4 transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`} 
                 fill="none" 
@@ -109,13 +106,13 @@ function Header() {
               }`}
             >
               <div className="py-1">
-                <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.about')}</Link>
-                <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.iso27001')}</Link>
-                <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('navigation.contact')}</Link>
+                <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('nav_about')}</Link>
+                <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('nav_iso27001')}</Link>
+                <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('nav_contact')}</Link>
                 <div className="border-t border-gray-200 mt-1 pt-1">
                   <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50">
                     <BugIcon className="h-4 w-4 flex-none text-gray-500" />
-                    <span>{t('navigation.reportBug')}</span>
+                    <span>{t('nav_report_bug')}</span>
                   </button>
                 </div>
               </div>
@@ -134,19 +131,19 @@ function Header() {
             {currentLanguage === 'en' && (
               <span className="flex items-center">
                 <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.en')}
+                {t('lang_english')}
               </span>
             )}
             {currentLanguage === 'no' && (
               <span className="flex items-center">
                 <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.no')}
+                {t('lang_norwegian')}
               </span>
             )}
             {currentLanguage === 'pl' && (
               <span className="flex items-center">
                 <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.pl')}
+                {t('lang_polish')}
               </span>
             )}
             <svg 
@@ -173,21 +170,21 @@ function Header() {
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-en.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.en')}
+                {t('lang_english')}
               </button>
               <button 
                 onClick={() => handleLanguageChange('no')} 
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-no.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.no')}
+                {t('lang_norwegian')}
               </button>
               <button 
                 onClick={() => handleLanguageChange('pl')} 
                 className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
               >
                 <img src="/flag-pl.svg" alt="" className="w-5 h-5 mr-2" />
-                {t('language.pl')}
+                {t('lang_polish')}
               </button>
             </div>
           </div>

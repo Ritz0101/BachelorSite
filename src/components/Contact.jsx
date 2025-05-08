@@ -10,9 +10,9 @@ function Contact() {
         
         {/* Header Section with Gradient Background */}
         <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('contact.title')}</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('contact_us_title')}</h1>
           <p className="text-lg text-gray-700">
-            {t('contact.subtitle')}
+            {t('contact_us_description')}
           </p>
         </div>
         
@@ -20,8 +20,8 @@ function Contact() {
         <div className="bg-white rounded-lg shadow-md p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('contact.getInTouch')}</h2>
-              <p className="text-gray-600 mb-6">{t('contact.description')}</p>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('get_in_touch_title')}</h2>
+              <p className="text-gray-600 mb-6">{t('get_in_touch_description')}</p>
               
               <div className="space-y-4">
                 <div className="flex items-start">
@@ -31,7 +31,7 @@ function Contact() {
                     </svg>
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{t('contact.email')}</p>
+                    <p className="text-sm font-medium text-gray-900">{t('email_title')}</p>
                     <p className="text-sm text-gray-500">info@isotron.org</p>
                   </div>
                 </div>
@@ -43,7 +43,7 @@ function Contact() {
                     </svg>
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{t('contact.phone')}</p>
+                    <p className="text-sm font-medium text-gray-900">{t('phone_title')}</p>
                     <p className="text-sm text-gray-500">+47 123 45 678</p>
                   </div>
                 </div>
@@ -56,7 +56,7 @@ function Contact() {
                     </svg>
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{t('contact.address')}</p>
+                    <p className="text-sm font-medium text-gray-900">{t('address_title')}</p>
                     <p className="text-sm text-gray-500">
                       Høyskolen Kristiania<br />
                       Prinsens gate 7-9<br />
@@ -70,42 +70,42 @@ function Contact() {
             <div>
               <form className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">{t('contact.form.name')}</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">{t('name_title')}</label>
                   <input
                     type="text"
                     id="name"
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple focus:ring-purple"
-                    placeholder={t('contact.form.namePlaceholder')}
+                    placeholder={t('name_placeholder')}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">{t('contact.form.email')}</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">{t('email_title')}</label>
                   <input
                     type="email"
                     id="email"
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple focus:ring-purple"
-                    placeholder={t('contact.form.emailPlaceholder')}
+                    placeholder={t('email_placeholder')}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">{t('contact.form.subject')}</label>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">{t('subject_title')}</label>
                   <input
                     type="text"
                     id="subject"
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple focus:ring-purple"
-                    placeholder={t('contact.form.subjectPlaceholder')}
+                    placeholder={t('subject_placeholder')}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">{t('contact.form.message')}</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">{t('message_title')}</label>
                   <textarea
                     id="message"
                     rows="4"
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple focus:ring-purple"
-                    placeholder={t('contact.form.messagePlaceholder')}
+                    placeholder={t('message_placeholder')}
                   ></textarea>
                 </div>
                 
@@ -114,7 +114,7 @@ function Contact() {
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple hover:bg-purple-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
                   >
-                    {t('contact.form.submit')}
+                    {t('submit_button ')}
                   </button>
                 </div>
               </form>

@@ -1,34 +1,34 @@
-// Backup & Storage questions module
-const backupQuestions = [
-    {
-      id: "q13",
-      text: "Does this document need to be stored in a fireproof or secure location?",
-      options: [
-        { label: "Yes", next: "backup2" },
-        { label: "No", next: "backup2" },
-      ],
-    },
-    {
-      id: "backup2",
-      text: "How often should this document be backed up?",
-      options: [
-        { label: "Real-time/continuous backup", next: "backup3" },
-        { label: "Daily backup", next: "backup3" },
-        { label: "Weekly backup", next: "backup3" },
-        { label: "Monthly backup", next: "backup3" }
-      ]
-    },
-    {
-      id: "backup3",
-      text: "What is the required retention period for this document?",
-      options: [
-        { label: "Less than 1 year", next: "skipToClassification" },
-        { label: "1-3 years", next: "skipToClassification" },
-        { label: "3-7 years", next: "skipToClassification" },
-        { label: "7+ years", next: "skipToClassification" },
-        { label: "Indefinite/permanent retention", next: "skipToClassification" }
-      ]
-    }
-  ];
-  
-  export default backupQuestions;
+// Backup questions module
+// Using textKey and labelKey instead of direct translation calls
+
+export default [
+  {
+    id: "q13",
+    textKey: "backup_storage_questions_module_q13",
+    options: [
+      { labelKey: "common_yes", next: "backup2" },
+      { labelKey: "common_no", next: "backup2" },
+    ],
+  },
+  {
+    id: "backup2",
+    textKey: "backup2_question",
+    options: [
+      { labelKey: "backup2_option1", next: "backup3" },
+      { labelKey: "backup2_option2", next: "backup3" },
+      { labelKey: "backup2_option3", next: "backup3" },
+      { labelKey: "backup2_option4", next: "backup3" }
+    ]
+  },
+  {
+    id: "backup3",
+    textKey: "backup3_question",
+    options: [
+      { labelKey: "backup3_option1", next: "skipToClassification" },
+      { labelKey: "backup3_option2", next: "skipToClassification" },
+      { labelKey: "backup3_option3", next: "skipToClassification" },
+      { labelKey: "backup3_option4", next: "skipToClassification" },
+      { labelKey: "backup3_option5", next: "skipToClassification" }
+    ]
+  }
+];

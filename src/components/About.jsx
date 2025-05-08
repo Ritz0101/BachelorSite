@@ -18,9 +18,9 @@ function About() {
         
         {/* Header Section with Gradient Background */}
         <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('about.title')}</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('about_isotron_title')}</h1>
           <p className="text-lg text-gray-700">
-            {t('about.subtitle')}
+            {t('about_isotron_description')}
           </p>
         </div>
         
@@ -32,10 +32,10 @@ function About() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              {t('about.projectOverview')}
+              {t('bachelor_project_overview_title')}
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              {t('about.content')}
+              {t('bachelor_project_overview_description')}
             </p>
           </div>
 
@@ -45,16 +45,16 @@ function About() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
               </svg>
-              {t('about.iso27001.title')}
+              {t('iso_integration_title')}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              {t('about.iso27001.description')}
+              {t('iso_integration_description')}
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-              <li>{t('about.iso27001.points.isms')}</li>
-              <li>{t('about.iso27001.points.approach')}</li>
-              <li>{t('about.iso27001.points.risk')}</li>
-              <li>{t('about.iso27001.points.security')}</li>
+              <li>{t('iso_integration_item1')}</li>
+              <li>{t('iso_integration_item2')}</li>
+              <li>{t('iso_integration_item3')}</li>
+              <li>{t('iso_integration_item4')}</li>
             </ul>
           </div>
         </div>
@@ -65,7 +65,7 @@ function About() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
             </svg>
-            {t('about.goals.title')}
+            {t('project_goals_title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
@@ -75,9 +75,9 @@ function About() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium">{t('about.goals.classification.title')}</span>
+                <span className="text-gray-800 font-medium">{t('intuitive_classification_guide_title')}</span>
               </div>
-              <p className="text-gray-600 pl-10">{t('about.goals.classification.description')}</p>
+              <p className="text-gray-600 pl-10">{t('intuitive_classification_guide_description')}</p>
             </div>
             
             <div className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
@@ -87,9 +87,9 @@ function About() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium">{t('about.goals.training.title')}</span>
+                <span className="text-gray-800 font-medium">{t('interactive_training_title')}</span>
               </div>
-              <p className="text-gray-600 pl-10">{t('about.goals.training.description')}</p>
+              <p className="text-gray-600 pl-10">{t('interactive_training_description')}</p>
             </div>
             
             <div className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
@@ -100,9 +100,9 @@ function About() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium">{t('about.goals.tools.title')}</span>
+                <span className="text-gray-800 font-medium">{t('practical_tools_title')}</span>
               </div>
-              <p className="text-gray-600 pl-10">{t('about.goals.tools.description')}</p>
+              <p className="text-gray-600 pl-10">{t('practical_tools_description')}</p>
             </div>
             
             <div className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
@@ -112,9 +112,9 @@ function About() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium">{t('about.goals.practices.title')}</span>
+                <span className="text-gray-800 font-medium">{t('best_practices_title')}</span>
               </div>
-              <p className="text-gray-600 pl-10">{t('about.goals.practices.description')}</p>
+              <p className="text-gray-600 pl-10">{t('best_practices_description')}</p>
             </div>
           </div>
         </div>
@@ -125,9 +125,9 @@ function About() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
             </svg>
-            {t('about.team.title')}
+            {t('brannmurbrigaden_title')}
           </h2>
-          <p className="text-gray-600 mb-6 ml-8">{t('about.team.description')}</p>
+          <p className="text-gray-600 mb-6 ml-8">{t('brannmurbrigaden_description')}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {teamMembers.map((member, index) => (
               <div key={index} className="bg-light-purple rounded-lg p-4 text-center transform hover:scale-105 transition-all duration-300 hover:shadow-md">
@@ -146,17 +146,17 @@ function About() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
             </svg>
-            {t('about.technologies.title')}
+            {t('technologies_used_title')}
           </h2>
           <div className="flex flex-wrap gap-3 mt-4">
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.react')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.tailwind')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.javascript')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.vite')}</span>
-            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('about.technologies.router')}</span>
+            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('technologies_react_title')}</span>
+            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('technologies_tailwind_title')}</span>
+            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('technologies_javascript_title')}</span>
+            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('technologies_Vite_title')}</span>
+            <span className="px-3 py-1 bg-purple rounded-full text-gray-800 font-medium">{t('technologies_router_title')}</span>
           </div>
           <p className="mt-4 text-gray-600">
-            {t('about.technologies.description')}
+            {t('technologies_used_description')}
           </p>
         </div>
       </div>
