@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function ISO27001() {
+  const { t } = useTranslation();
   const [expandedItems, setExpandedItems] = useState({});
 
   const toggleItem = (id) => {
@@ -13,70 +15,70 @@ function ISO27001() {
   const components = [
     {
       id: 'policies',
-      title: 'Information Security Policies',
-      description: 'Policies that define the approach to managing information security within the organization.'
+      title: t('iso27001Framework.keyComponents.components.policies.title'),
+      description: t('iso27001Framework.keyComponents.components.policies.description')
     },
     {
       id: 'organization',
-      title: 'Organization of Information Security',
-      description: 'The framework for managing information security responsibilities and processes.'
+      title: t('iso27001Framework.keyComponents.components.organization.title'),
+      description: t('iso27001Framework.keyComponents.components.organization.description')
     },
     {
       id: 'assets',
-      title: 'Asset Management',
-      description: 'Processes for managing and protecting information assets.'
+      title: t('iso27001Framework.keyComponents.components.assets.title'),
+      description: t('iso27001Framework.keyComponents.components.assets.description')
     },
     {
       id: 'access',
-      title: 'Access Control',
-      description: 'Mechanisms to ensure that access to information is restricted to authorized users.'
+      title: t('iso27001Framework.keyComponents.components.access.title'),
+      description: t('iso27001Framework.keyComponents.components.access.description')
     },
     {
       id: 'crypto',
-      title: 'Cryptography',
-      description: 'Use of cryptographic techniques to protect the confidentiality, integrity, and authenticity of information.'
+      title: t('iso27001Framework.keyComponents.components.crypto.title'),
+      description: t('iso27001Framework.keyComponents.components.crypto.description')
     },
     {
       id: 'physical',
-      title: 'Physical and Environmental Security',
-      description: 'Measures to protect physical facilities and equipment from unauthorized access and environmental hazards.'
+      title: t('iso27001Framework.keyComponents.components.physical.title'),
+      description: t('iso27001Framework.keyComponents.components.physical.description')
     }
   ];
 
   const annexes = [
     {
       id: 'annex8',
-      title: 'Annex A.8 – Asset Management',
-      description: 'Ensures that information assets are identified and managed appropriately throughout their lifecycle. This includes conducting a thorough assessment to identify all data assets within the organization and categorizing data based on sensitivity levels to apply appropriate protection measures.'
+      title: t('iso27001Framework.dataStorage.annexes.annex8.title'),
+      description: t('iso27001Framework.dataStorage.annexes.annex8.description')
     },
     {
       id: 'annex10',
-      title: 'Annex A.10 – Cryptography',
-      description: 'Requires the use of cryptographic controls to protect data confidentiality, integrity, and authenticity. This involves encrypting data at rest and in transit, and developing robust key management policies to safeguard encryption keys.'
+      title: t('iso27001Framework.dataStorage.annexes.annex10.title'),
+      description: t('iso27001Framework.dataStorage.annexes.annex10.description')
     },
     {
       id: 'annex11',
-      title: 'Annex A.11 – Physical Security',
-      description: 'Focuses on securing physical storage environments against unauthorized access and environmental threats. This includes ensuring secure storage locations for servers and hard drives, and implementing measures to protect physical facilities and equipment.'
+      title: t('iso27001Framework.dataStorage.annexes.annex11.title'),
+      description: t('iso27001Framework.dataStorage.annexes.annex11.description')
     }
   ];
 
   const benefits = [
-    'Prevents data breaches that expose personal or business-sensitive information',
-    'Avoids legal consequences due to non-compliance with regulations',
-    'Reduces financial losses due to fines, lawsuits, or reputational damage',
-    'Maintains operational continuity by protecting against system failures or cyberattacks'
+    t('iso27001Framework.benefits.items.dataBreaches'),
+    t('iso27001Framework.benefits.items.legalConsequences'),
+    t('iso27001Framework.benefits.items.financialLosses'),
+    t('iso27001Framework.benefits.items.operationalContinuity')
   ];
 
   return (
-    <div className="min-h-screen bg-light-purple pt-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-light-purple pt-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Header Section with Gradient Background */}
         <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">ISO 27001 Framework</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('iso27001Framework.title')}</h1>
           <p className="text-lg text-gray-700">
-            An international standard for managing information security, providing a systematic approach to information management and risk mitigation.
+            {t('iso27001Framework.subtitle')}
           </p>
         </div>
         
@@ -87,10 +89,10 @@ function ISO27001() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              Introduction to ISO 27001
+              {t('iso27001Framework.introduction.title')}
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              ISO 27001 is an international standard for managing information security. It provides a framework for establishing, implementing, maintaining, and continually improving an information security management system (ISMS).
+              {t('iso27001Framework.introduction.description')}
             </p>
           </div>
 
@@ -99,7 +101,7 @@ function ISO27001() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              Benefits of ISO 27001
+              {t('iso27001Framework.benefits.title')}
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-600">
               {benefits.map((benefit, idx) => (
@@ -115,7 +117,7 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
             </svg>
-            Key Components
+            {t('iso27001Framework.keyComponents.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {components.map((component) => (
@@ -144,7 +146,7 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
             </svg>
-            ISO 27001 for Data Storage
+            {t('iso27001Framework.dataStorage.title')}
           </h2>
           <div className="space-y-4">
             {annexes.map((annex) => (
@@ -173,16 +175,16 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
             </svg>
-            Steps to Get ISO 27001 Certified
+            {t('iso27001Framework.certification.title')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { step: 1, title: "Define Scope", description: "Define the scope and objectives of your ISMS" },
-              { step: 2, title: "Risk Assessment", description: "Conduct a comprehensive risk assessment" },
-              { step: 3, title: "Implement Controls", description: "Implement security controls to mitigate risks" },
-              { step: 4, title: "Train Employees", description: "Train employees on security policies and procedures" },
-              { step: 5, title: "Internal Audit", description: "Perform internal audits to verify compliance" },
-              { step: 6, title: "Certification", description: "Engage an accredited certification body for assessment" }
+              { step: 1, title: t('iso27001Framework.certification.steps.defineScope.title'), description: t('iso27001Framework.certification.steps.defineScope.description') },
+              { step: 2, title: t('iso27001Framework.certification.steps.riskAssessment.title'), description: t('iso27001Framework.certification.steps.riskAssessment.description') },
+              { step: 3, title: t('iso27001Framework.certification.steps.implementControls.title'), description: t('iso27001Framework.certification.steps.implementControls.description') },
+              { step: 4, title: t('iso27001Framework.certification.steps.trainEmployees.title'), description: t('iso27001Framework.certification.steps.trainEmployees.description') },
+              { step: 5, title: t('iso27001Framework.certification.steps.internalAudit.title'), description: t('iso27001Framework.certification.steps.internalAudit.description') },
+              { step: 6, title: t('iso27001Framework.certification.steps.certification.title'), description: t('iso27001Framework.certification.steps.certification.description') }
             ].map((item) => (
               <div key={item.step} className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
                 <div className="flex items-center mb-2">

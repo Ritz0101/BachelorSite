@@ -2,36 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Polish placeholder mode */
-.polish-mode p, 
-.polish-mode h1, 
-.polish-mode h2, 
-.polish-mode h3, 
-.polish-mode h4, 
-.polish-mode h5, 
-.polish-mode h6, 
-.polish-mode button:not(.language-button),
-.polish-mode a:not(.language-link),
-.polish-mode span:not(.language-span),
-.polish-mode li:not(.language-item) {
-  visibility: hidden;
-  position: relative;
-}
-
-.polish-mode p:after, 
-.polish-mode h1:after, 
-.polish-mode h2:after, 
-.polish-mode h3:after, 
-.polish-mode h4:after, 
-.polish-mode h5:after, 
-.polish-mode h6:after, 
-.polish-mode button:not(.language-button):after,
-.polish-mode a:not(.language-link):after,
-.polish-mode span:not(.language-span):after,
-.polish-mode li:not(.language-item):after {
-  content: "Kurwa";  /* Replace with your preferred placeholder word (this is "Hello" in Polish) */
-  visibility: visible;
-  position: absolute;
-  left: 0;
-}
+@layer components {
+    input[type='radio'] {
+      @apply appearance-none h-5 w-5 border border-gray-500 rounded-full bg-white relative;
+    }
+    input[type='radio']:checked {
+      @apply border-dark-purple;
+    }
+    input[type='radio']:checked::after {
+      content: '';
+      @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-dark-purple rounded-full;
+    }
+  }

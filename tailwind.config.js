@@ -9,6 +9,7 @@ module.exports = {
         navy: '#001f3f',
         'light-purple': '#F7F2FF',
         'purple': '#EADDFF',
+        'dark-purple': '#AD88DA',
       },
     },
   },
