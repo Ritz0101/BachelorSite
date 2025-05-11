@@ -110,10 +110,13 @@ function Header() {
                 <Link to="/iso27001" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('nav_iso27001')}</Link>
                 <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">{t('nav_contact')}</Link>
                 <div className="border-t border-gray-200 mt-1 pt-1">
-                  <button className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50">
+                  <a 
+                    href="mailto:isotron@brannmurbrigaden.no?subject=Bug%20Report%20-%20Isotron&body=Please%20describe%20the%20bug%20you%20encountered%3A%0A%0ASteps%20to%20reproduce%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ABrowser%20and%20system%20information%3A"
+                    className="w-full text-left flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 bg-gray-50"
+                  >
                     <BugIcon className="h-4 w-4 flex-none text-gray-500" />
                     <span>{t('nav_report_bug')}</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
