@@ -360,7 +360,7 @@
     "key_indicators_item5": "Is this information meant for internal use only?",
     
     "practice_exercise_title": "Practice Exercise",
-    "practice_exercise_description": "Review the following scenarios and identify which information should be classified as sensitive. Select all that apply:",
+    "practice_exercise_description": "Review the following scenarios and identify which information should be classified as sensitive. Select the most sensitive items in each scenario:",
     "practice_exercise_scenario1_description": "An email containing the company's quarterly revenue projections, customer acquisition costs, and marketing strategy.",
     "practice_exercise_scenario1_option1": "Revenue projections",
     "practice_exercise_scenario1_option2": "Customer acquisition costs",
