@@ -154,7 +154,7 @@ function RiskAssessment() {
                 <div>
                   <h3 className="text-xl font-medium text-black mb-2">{t('asset_identification_title')}</h3>
                   <p className="text-black mb-3">
-                    {t('assets_identification_description')}
+                    {t('asset_identification_description')}
                   </p>
                   <div className="bg-white border border-gray-200 p-4 rounded">
                     <ul className="list-disc list-inside text-black space-y-1">
@@ -178,7 +178,7 @@ function RiskAssessment() {
                       <h4 className="font-semibold text-black mb-1">{t('internal_threats_title')}</h4>
                       <ul className="list-disc list-inside text-black space-y-1">
                         <li>{t('internal_threats_item1')}</li>
-                        <li>{t('.internal_threats_item2')}</li>
+                        <li>{t('internal_threats_item2')}</li>
                         <li>{t('internal_threats_item3')}</li>
                         <li>{t('internal_threats_item4')}</li>
                       </ul>
