@@ -5,14 +5,18 @@ import Header from "./components/header";
 import CategorySelector from "./components/classification/CategorySelector";
 import QuestionRenderer from "./components/classification/QuestionRenderer";
 import ReportGenerator from "./components/classification/reportGenerator";
-import { questions } from "./components/Questions";
-import useSessionHandling from "./hooks/useSessionHandling";
+import { getQuestions } from "./components/Questions";
+import { QuestionSetLoader } from "./components/QuestionSetLoader";
+import useSessionHandling from "./hooks/useSessionHandling";  // Re-enabled session handling
 
 function Guide() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
-
+  
+  // Get translated questions
+  const questions = getQuestions();
+  
   // Define initial state
   const initialState = {
     currentQuestions: null,
@@ -30,6 +34,8 @@ function Guide() {
     },
     showReport: false,
     regulationFlags: {},
+    // Add loading state for question sets
+    currentlyLoadingModule: null
   };
 
   // Clear session storage when component mounts to ensure fresh start
@@ -42,8 +48,23 @@ function Guide() {
   }, [location.search]);
 
   // Use our custom hook for state management
-  const { state, updateState, navigateTo, goBack, resetState, canGoBack } =
-    useSessionHandling("guide-questionnaire", initialState);
+  const {
+    state,
+    updateState,
+    navigateTo,
+    goBack,
+    resetState,
+    canGoBack
+  } = useSessionHandling('guide-questionnaire', initialState);
+  
+  // Update current questions when language changes
+  useEffect(() => {
+    if (state.currentQuestions === questions && questions) {
+      updateState({
+        currentQuestions: questions
+      });
+    }
+  }, [questions, state.currentQuestions, updateState]);
 
   // Destructure state for easier access
   const {
@@ -56,6 +77,7 @@ function Guide() {
     documentInfo,
     showReport,
     regulationFlags,
+    currentlyLoadingModule
   } = state;
 
   // UI state that doesn't need persistence
@@ -79,6 +101,7 @@ function Guide() {
 
   // Handler for toggling categories
   const handleCategoryToggle = (categoryValue) => {
+    console.log("Toggle category:", categoryValue);
     const newSelectedCategories = selectedCategories.includes(categoryValue)
       ? selectedCategories.filter((cat) => cat !== categoryValue)
       : [...selectedCategories, categoryValue];
@@ -89,88 +112,165 @@ function Guide() {
 
   // Handler for proceeding from category selection
   const handleProceedFromCategories = () => {
+    console.log("Proceeding from categories with:", selectedCategories);
     setIsAnimating(true);
-
+    
+    // Remove any special markers used to force questions
+    const actualCategories = selectedCategories.filter(cat => cat !== "_forceQuestions");
+    
+    // Log for debugging
+    console.log("Categories screen state before transition:", {
+      multiSelect: currentQuestions?.multiSelect,
+      id: currentQuestions?.id,
+      selectedCategories: actualCategories,
+    });
+    
     // Calculate regulation flags
     const newRegulationFlags = {
-      gdpr:
-        selectedCategories.includes("pii") ||
-        selectedCategories.includes("customer"),
-      hipaa: selectedCategories.includes("health"),
-      sox: selectedCategories.includes("financial"),
-      pciDss:
-        selectedCategories.includes("financial") &&
-        selectedCategories.includes("credentials"),
+      gdpr: actualCategories.includes("pii") || actualCategories.includes("customer"),
+      hipaa: actualCategories.includes("health"),
+      sox: actualCategories.includes("financial"),
+      pciDss: actualCategories.includes("financial") && actualCategories.includes("credentials")
     };
-
-    // Determine question sequences
+    
+    // Always show at least one question set - start with an empty array
     const newQuestionSequence = [];
-
-    if (
-      selectedCategories.includes("pii") ||
-      selectedCategories.includes("customer") ||
-      selectedCategories.includes("financial") ||
-      selectedCategories.includes("health") ||
-      selectedCategories.includes("credentials")
-    ) {
-      newQuestionSequence.push("legalRegulationsQuestions");
-    }
-
-    if (
-      selectedCategories.includes("pii") ||
-      selectedCategories.includes("customer") ||
-      selectedCategories.includes("financial") ||
-      selectedCategories.includes("hr")
-    ) {
+    
+    // Only "public" is selected - show confidentiality questions
+    if (actualCategories.length === 1 && actualCategories[0] === "public") {
       newQuestionSequence.push("confidentialityQuestions");
     }
+    // Multiple categories or non-public categories selected
+    else {
+      // Determine question sequence based on selected categories
+      if (
+        actualCategories.includes("pii") ||
+        actualCategories.includes("customer") ||
+        actualCategories.includes("financial") ||
+        actualCategories.includes("health") ||
+        actualCategories.includes("credentials")
+      ) {
+        newQuestionSequence.push("legalRegulationsQuestions");
+      }
 
-    if (selectedCategories.includes("financial")) {
-      newQuestionSequence.push("integrityQuestions");
+      if (
+        actualCategories.includes("pii") ||
+        actualCategories.includes("customer") ||
+        actualCategories.includes("financial") ||
+        actualCategories.includes("hr")
+      ) {
+        newQuestionSequence.push("confidentialityQuestions");
+      }
+
+      if (actualCategories.includes("financial")) {
+        newQuestionSequence.push("integrityQuestions");
+      }
+
+      if (actualCategories.includes("credentials")) {
+        newQuestionSequence.push("accessControlQuestions");
+      }
+
+      if (actualCategories.length > 0) {
+        newQuestionSequence.push("availabilityQuestions");
+      }
+
+      // Fallback: If somehow we still have no questions, add confidentiality
+      if (newQuestionSequence.length === 0) {
+        newQuestionSequence.push("confidentialityQuestions");
+      }
     }
 
-    if (selectedCategories.includes("credentials")) {
-      newQuestionSequence.push("accessControlQuestions");
-    }
+    // Debug log to help troubleshoot
+    console.log("Question sequence:", newQuestionSequence);
+    console.log("Selected categories:", actualCategories);
 
-    if (!selectedCategories.includes("public")) {
-      newQuestionSequence.push("availabilityQuestions");
-    }
-
-    if (newQuestionSequence.length === 0) {
-      newQuestionSequence.push("confidentialityQuestions");
-    }
-
-    // Save current state and update with flags and sequence
-    // Note: selectedCategories is already up-to-date from handleCategoryToggle
+    // Important: Save the current state with categories visible to the navigation stack
+    // This ensures we can go back to categories from the first question
     navigateTo({
       regulationFlags: newRegulationFlags,
       questionSequence: newQuestionSequence,
+      selectedCategories: actualCategories,
+      // Set the first module to load
+      currentlyLoadingModule: newQuestionSequence[0],
+      // Flag to indicate we're transitioning from categories
+      _transitionFromCategories: true
     });
+  };
 
-    // Load first question set
-    import(`./components/question-sets/${newQuestionSequence[0]}.js`)
-      .then((module) => {
-        // Navigate to the first question set
-        navigateTo({
-          currentQuestions: module.default,
-          currentQuestionIndex: 0,
-          currentSequenceIndex: 0,
-        });
-        setIsAnimating(false);
-      })
-      .catch((error) => {
-        console.error("Failed to load first question module:", error);
-        navigateTo({
-          currentQuestions: [],
-          showReport: true,
-        });
-        setIsAnimating(false);
+  // Handler for when a question set is successfully loaded
+  const handleQuestionSetLoaded = (questionSet) => {
+    console.log("Question set loaded:", questionSet);
+    
+    // Determine if this is a direct transition from categories
+    const isFromCategories = state._transitionFromCategories === true;
+    
+    // Stop animating and update state with the loaded questions
+    setIsAnimating(false);
+    
+    // For the transition from categories to first question, use navigateTo
+    // to ensure it's properly tracked in navigation history
+    navigateTo({
+      currentQuestions: questionSet,
+      currentQuestionIndex: 0,
+      currentlyLoadingModule: null,
+      // Clear the transition flag
+      _transitionFromCategories: false
+    });
+    
+    // Log navigation state for debugging
+    console.log("Question set loaded, navigation state:", {
+      isFromCategories,
+      questionSetLength: questionSet.length,
+      firstQuestionId: questionSet[0]?.id,
+      canGoBack
+    });
+  };
+
+  // Handler for errors when loading question sets
+  const handleQuestionSetError = (error) => {
+    console.error("Error loading question set:", error);
+    
+    // If we have more modules in the sequence, try the next one
+    if (currentSequenceIndex < questionSequence.length - 1) {
+      const nextSequenceIndex = currentSequenceIndex + 1;
+      navigateTo({  // Changed from updateState to navigateTo for better tracking
+        currentSequenceIndex: nextSequenceIndex,
+        currentlyLoadingModule: questionSequence[nextSequenceIndex]
       });
+    } else {
+      // If we've tried all modules, show the report
+      console.error("Failed to load any question modules. Moving to report.");
+      navigateTo({
+        currentQuestions: [],
+        showReport: true,
+        currentlyLoadingModule: null
+      });
+      setIsAnimating(false);
+    }
+  };
+
+  // Handler to move to the next question set in the sequence
+  const loadNextQuestionSet = () => {
+    if (currentSequenceIndex < questionSequence.length - 1) {
+      const nextSequenceIndex = currentSequenceIndex + 1;
+      navigateTo({  // Changed from updateState to navigateTo for consistent navigation
+        currentSequenceIndex: nextSequenceIndex,
+        currentlyLoadingModule: questionSequence[nextSequenceIndex]
+      });
+    } else {
+      // If no more question sets, move to report
+      navigateTo({
+        currentQuestions: [],
+        showReport: true,
+        currentlyLoadingModule: null
+      });
+      setIsAnimating(false);
+    }
   };
 
   // Handle answer selection
   const handleAnswer = (option) => {
+    console.log("Handling answer:", option);
     setIsAnimating(true);
 
     try {
@@ -184,6 +284,7 @@ function Guide() {
 
       // Handle different navigation scenarios
       if (option.next === "skipToClassification") {
+        console.log("Skipping to classification report due to skipToClassification");
         navigateTo({
           currentQuestions: [],
           showReport: true,
@@ -192,51 +293,36 @@ function Guide() {
         return;
       }
 
-      if (option.next && option.next.includes("Questions")) {
-        import(`./components/question-sets/${option.next}.js`)
-          .then((module) => {
-            navigateTo({
-              currentQuestions: module.default,
-              currentQuestionIndex: 0,
-            });
-            setIsAnimating(false);
-          })
-          .catch((error) => {
-            console.error(`Failed to load ${option.next}:`, error);
-            navigateTo({
-              currentQuestions: [],
-              showReport: true,
-            });
-            setIsAnimating(false);
-          });
+      // Handle the case where finalQuestions is specified
+      if (option.next === "finalQuestions") {
+        console.log("Moving to final question with option.next =", option.next);
+        navigateTo({
+          currentQuestions: [],
+          showReport: true
+        });
+        setIsAnimating(false);
+        return;
+      } 
+      else if (option.next) {
+        console.log("Moving to specific module with option.next =", option.next);
+        navigateTo({
+          currentSequenceIndex: -1, // Set to -1 because we're not using the sequence logic
+          currentlyLoadingModule: option.next
+        });
         return;
       }
 
-      if (currentQuestionIndex >= currentQuestions.length - 1) {
+      // If we are at the last question in this set
+      if (currentQuestionIndex === currentQuestions.length - 1) {
+        console.log("Last question in current set, currentSequenceIndex =", currentSequenceIndex);
+        
+        // If there are more question sets in the sequence, load the next one
         if (currentSequenceIndex < questionSequence.length - 1) {
-          const nextSequenceIndex = currentSequenceIndex + 1;
-          import(
-            `./components/question-sets/${questionSequence[nextSequenceIndex]}.js`
-          )
-            .then((module) => {
-              navigateTo({
-                currentQuestions: module.default,
-                currentQuestionIndex: 0,
-                currentSequenceIndex: nextSequenceIndex,
-              });
-              setIsAnimating(false);
-            })
-            .catch((error) => {
-              console.error("Failed to load next questionnaire:", error);
-              navigateTo({
-                currentQuestions: [],
-                showReport: true,
-              });
-              setIsAnimating(false);
-            });
+          loadNextQuestionSet();
           return;
         }
 
+        // If this is the last question set, show the report
         navigateTo({
           currentQuestions: [],
           showReport: true,
@@ -245,13 +331,15 @@ function Guide() {
         return;
       }
 
-      // Move to next question in current set
+      // Otherwise, just move to the next question in the current set
       navigateTo({
         currentQuestionIndex: currentQuestionIndex + 1,
       });
+
       setIsAnimating(false);
     } catch (error) {
-      console.error("Error in handleAnswer:", error);
+      console.error("Error handling answer:", error);
+      // Fall back to showing the report in case of errors
       navigateTo({
         currentQuestions: [],
         showReport: true,
@@ -279,311 +367,299 @@ function Guide() {
     }, 300);
   };
 
-  // Handle browser navigation
-  useEffect(() => {
-    // We're specifically handling just the showReport case here
-    // The general navigation is handled by the useSessionHandling hook
-    const handleShowReportBack = (event) => {
-      if (isAnimating || !showReport) return;
-
-      // Prevent further propagation if we're handling this event
-      event.stopPropagation();
-      event.preventDefault();
-
-      setIsAnimating(true);
-
-      // Update state to hide the report and show the last question
-      updateState({
-        showReport: false,
-      });
-
-      if (questionSequence.length > 0) {
-        const lastSetIndex = questionSequence.length - 1;
-        import(
-          `./components/question-sets/${questionSequence[lastSetIndex]}.js`
-        )
-          .then((module) => {
-            updateState({
-              currentQuestions: module.default,
-              currentQuestionIndex: module.default.length - 1,
-              currentSequenceIndex: lastSetIndex,
-            });
-          })
-          .catch((error) => {
-            console.error("Failed to load last question set:", error);
-            updateState({
-              currentQuestions: questions,
-              currentQuestionIndex: 0,
-              currentSequenceIndex: 0,
-            });
-          });
-      }
-
-      setTimeout(() => setIsAnimating(false), 300);
-    };
-
-    // Special case for the report screen which needs custom back handling
-    if (showReport) {
-      window.addEventListener("popstate", handleShowReportBack, {
-        capture: true,
-      });
-      return () =>
-        window.removeEventListener("popstate", handleShowReportBack, {
-          capture: true,
-        });
-    }
-
-    return undefined;
-  }, [showReport, isAnimating, questionSequence, updateState, questions]);
-
-  // Push state to history when moving forward (on major screen transitions)
+  // Modified push state to history approach
   useEffect(() => {
     if (isAnimating) return;
-
-    const currentStep = showReport
-      ? "report"
-      : currentQuestions?.multiSelect
-      ? "categories"
-      : currentQuestions
-      ? "questions"
-      : "info";
-
-    // Only push state on major screen transitions
-    if (location.pathname === "/guide") {
-      window.history.replaceState(
-        {
-          step: currentStep,
-          timestamp: Date.now(),
-          questionIndex: currentQuestionIndex,
-          sequenceIndex: currentSequenceIndex,
-        },
-        "",
-        "/guide"
-      );
-    }
-  }, [location.pathname, showReport, currentQuestions, isAnimating]);
+    
+    // Debug logging
+    console.log("Navigation state updated, current state:", {
+      showReport,
+      currentQuestionsType: currentQuestions?.multiSelect ? "categories" : "questions",
+      currentQuestionIndex,
+      currentSequenceIndex,
+      selectedCategories
+    });
+    
+    // Update title based on current state
+    document.title = showReport 
+      ? `${t('document_classification_report')} | ISOTRON` 
+      : `${t('classification_guide_title')} | ISOTRON`;
+    
+  }, [showReport, currentQuestions, currentlyLoadingModule, isAnimating, currentQuestionIndex, currentSequenceIndex, selectedCategories, questionSequence, canGoBack]);
 
   return (
-    <div className="min-h-screen bg-light-purple text-custom-black">
+    <>
       <Header />
-      <main className="container mx-auto mt-16 p-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="text-3xl font-bold transition-opacity duration-300">
-              {t("guide.title")}
-            </h1>
-            <div className="flex space-x-2">
-              {canGoBack && (
-                <button
-                  onClick={goBack}
-                  className="bg-dark-purple text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200"
-                >
-                  ← {t("common.previous")}
-                </button>
-              )}
-              <button
-                onClick={resetClassification}
-                className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200"
-                title={t("guide.resetTitle")}
-              >
-                {t("guide.reset")}
-              </button>
-            </div>
-          </div>
-
-          <div
-            className={`transition-all duration-300 transform ${
-              isAnimating
-                ? "opacity-0 translate-x-4"
-                : "opacity-100 translate-x-0"
-            }`}
-          >
-            {showReport ? (
-              <ReportGenerator
-                documentInfo={documentInfo}
-                answers={answers}
-                selectedCategories={selectedCategories}
-                onReset={resetClassification}
-              />
-            ) : currentQuestions && currentQuestions.multiSelect ? (
-              <CategorySelector
-                questions={currentQuestions}
-                selectedCategories={selectedCategories}
-                onCategoryToggle={handleCategoryToggle}
-                onCategoriesSelected={handleProceedFromCategories}
-              />
-            ) : currentQuestions ? (
-              <QuestionRenderer
-                currentQuestion={currentQuestions[currentQuestionIndex]}
-                onAnswer={handleAnswer}
-              />
-            ) : (
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-xl font-semibold mb-4">
-                    {t("guide.welcome.title")}
-                  </h2>
-                  <p className="text-gray-700 mb-4">
-                    {t("guide.welcome.description")}
-                  </p>
-                  <div className="bg-purple/10 rounded-md p-4">
-                    <h3 className="font-semibold mb-2">
-                      {t("guide.welcome.expectTitle")}:
-                    </h3>
-                    <ul className="list-disc list-inside space-y-1 text-gray-700">
-                      <li>{t("guide.welcome.expectItem1")}</li>
-                      <li>{t("guide.welcome.expectItem2")}</li>
-                      <li>{t("guide.welcome.expectItem3")}</li>
-                      <li>{t("guide.welcome.expectItem4")}</li>
-                      <li>{t("guide.welcome.expectItem5")}</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-lg shadow-md">
+      <div className={`flex flex-col max-w-4xl mx-auto p-4 ${isAnimating ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}>
+        <div className="mb-6">
+          {/* Header section with title, back and reset buttons */}
+          <div className="container mx-auto mt-4">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-3xl font-bold transition-opacity duration-300">
+                {t('classification_guide_title')}
+              </h1>
+              <div className="flex space-x-2">
+                {canGoBack && (
                   <button
-                    onClick={() => setIsWelcomeExpanded(!isWelcomeExpanded)}
-                    className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors rounded-lg"
+                    onClick={() => {
+                      console.log("Back button clicked, current state:", {
+                        showReport,
+                        currentQuestionsType: currentQuestions?.multiSelect ? "categories" : "questions",
+                        currentQuestionIndex
+                      });
+                      goBack();
+                    }}
+                    className="bg-dark-purple text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200"
                   >
-                    <h2 className="text-xl font-semibold">
-                      {t("guide.advancedOptions")}
-                    </h2>
-                    <svg
-                      className={`w-6 h-6 transform transition-transform ${
-                        isWelcomeExpanded ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+                    ← {t('common_button_previous')}
                   </button>
-
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isWelcomeExpanded
-                        ? "max-h-[800px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <div className="p-6 pt-0">
-                      <p className="text-gray-700 mb-4">
-                        {t("guide.documentInfoHelp")}
-                      </p>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("guide.form.documentName")}
-                          <span className="text-gray-400 text-xs ml-2">
-                            ({t("common.optional")})
-                          </span>
-                        </label>
-                        <input
-                          type="text"
-                          value={documentInfo.name}
-                          onChange={(e) =>
-                            handleDocumentInfoChange("name", e.target.value)
-                          }
-                          className="w-full p-2 border rounded-md"
-                          placeholder={t("guide.form.documentNamePlaceholder")}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("guide.form.fileType")}
-                          <span className="text-gray-400 text-xs ml-2">
-                            ({t("common.optional")})
-                          </span>
-                        </label>
-                        <input
-                          type="text"
-                          value={documentInfo.type}
-                          onChange={(e) =>
-                            handleDocumentInfoChange("type", e.target.value)
-                          }
-                          className="w-full p-2 border rounded-md"
-                          placeholder={t("guide.form.fileTypePlaceholder")}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("guide.form.documentOwner")}
-                          <span className="text-gray-400 text-xs ml-2">
-                            ({t("common.optional")})
-                          </span>
-                        </label>
-                        <input
-                          type="text"
-                          value={documentInfo.owner}
-                          onChange={(e) =>
-                            handleDocumentInfoChange("owner", e.target.value)
-                          }
-                          className="w-full p-2 border rounded-md"
-                          placeholder={t("guide.form.documentOwnerPlaceholder")}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("guide.form.department")}
-                          <span className="text-gray-400 text-xs ml-2">
-                            ({t("common.optional")})
-                          </span>
-                        </label>
-                        <input
-                          type="text"
-                          value={documentInfo.department}
-                          onChange={(e) =>
-                            handleDocumentInfoChange(
-                              "department",
-                              e.target.value
-                            )
-                          }
-                          className="w-full p-2 border rounded-md"
-                          placeholder={t("guide.form.departmentPlaceholder")}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("guide.form.description")}
-                          <span className="text-gray-400 text-xs ml-2">
-                            ({t("common.optional")})
-                          </span>
-                        </label>
-                        <textarea
-                          value={documentInfo.description}
-                          onChange={(e) =>
-                            handleDocumentInfoChange(
-                              "description",
-                              e.target.value
-                            )
-                          }
-                          className="w-full p-2 border rounded-md"
-                          rows="3"
-                          placeholder={t("guide.form.descriptionPlaceholder")}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                )}
                 <button
-                  onClick={handleDocumentInfoSubmit}
-                  className="w-full bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
+                  onClick={resetState}
+                  className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-all duration-200"
+                  title={t("guide.resetTitle")}
                 >
-                  {t("guide.startClassification")}
+                  {t('common_button_reset')}
                 </button>
               </div>
+            </div>
+            
+            {/* Notification when currentlyLoadingModule is set */}
+            {currentlyLoadingModule && (
+              <div className="mt-8 mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md text-center">
+                <p className="text-yellow-800">{t('loading_module')}: {currentlyLoadingModule}</p>
+              </div>
             )}
+
+            <div
+              className={`transition-all duration-300 transform ${
+                isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+              }`}
+            >
+              {/* Initial document info collection form */}
+              {!currentQuestions && !showReport && (
+                <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                  <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-xl font-semibold mb-4">
+                      {t('classification_guide_welcome_title')}
+                    </h2>
+                    <p className="text-gray-700 mb-4">
+                      {t('classification_guide_welcome_description')}
+                    </p>
+                    <div className="bg-purple/10 rounded-md p-4">
+                      <h3 className="font-semibold mb-2">
+                        {t('what_to_expect')}:
+                      </h3>
+                      <ul className="list-disc list-inside space-y-1 text-gray-700">
+                        <li>{t('what_to_expect_item1')}</li>
+                        <li>{t('what_to_expect_item2')}</li>
+                        <li>{t('what_to_expect_item3')}</li>
+                        <li>{t('what_to_expect_item4')}</li>
+                        <li>{t('what_to_expect_item5')}</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <button
+                      onClick={() => setIsWelcomeExpanded(!isWelcomeExpanded)}
+                      className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors rounded-lg"
+                    >
+                      <h2 className="text-xl font-semibold">{t('advanced_options')}</h2>
+                      <svg
+                        className={`w-6 h-6 transform transition-transform ${
+                          isWelcomeExpanded ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+
+                    {isWelcomeExpanded && (
+                      <div className="p-6 pt-0">
+                        <p className="text-gray-700 mb-4">
+                          {t('advanced_options_subtext')}
+                        </p>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('document_name')}
+                            <span className="text-gray-400 text-xs ml-2">
+                              ({t('common_optional')})
+                            </span>
+                          </label>
+                          <input
+                            type="text"
+                            value={documentInfo.name}
+                            onChange={(e) =>
+                              updateState({
+                                documentInfo: {
+                                  ...documentInfo,
+                                  name: e.target.value,
+                                },
+                              })
+                            }
+                            className="w-full p-2 border rounded-md"
+                            placeholder={t('document_name_placeholder')}
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('file_type')}
+                            <span className="text-gray-400 text-xs ml-2">
+                              ({t('common_optional')})
+                            </span>
+                          </label>
+                          <input
+                            type="text"
+                            value={documentInfo.type}
+                            onChange={(e) =>
+                              updateState({
+                                documentInfo: {
+                                  ...documentInfo,
+                                  type: e.target.value,
+                                },
+                              })
+                            }
+                            className="w-full p-2 border rounded-md"
+                            placeholder={t('file_type_placeholder')}
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('document_owner')}
+                            <span className="text-gray-400 text-xs ml-2">
+                              ({t('common_optional')})
+                            </span>
+                          </label>
+                          <input
+                            type="text"
+                            value={documentInfo.owner}
+                            onChange={(e) =>
+                              updateState({
+                                documentInfo: {
+                                  ...documentInfo,
+                                  owner: e.target.value,
+                                },
+                              })
+                            }
+                            className="w-full p-2 border rounded-md"
+                            placeholder={t('document_owner_placeholder')}
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('department')}
+                            <span className="text-gray-400 text-xs ml-2">
+                              ({t('common_optional')})
+                            </span>
+                          </label>
+                          <input
+                            type="text"
+                            value={documentInfo.department}
+                            onChange={(e) =>
+                              updateState({
+                                documentInfo: {
+                                  ...documentInfo,
+                                  department: e.target.value,
+                                },
+                              })
+                            }
+                            className="w-full p-2 border rounded-md"
+                            placeholder={t('department_placeholder')}
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t('description')}
+                            <span className="text-gray-400 text-xs ml-2">
+                              ({t('common_optional')})
+                            </span>
+                          </label>
+                          <textarea
+                            value={documentInfo.description}
+                            onChange={(e) =>
+                              updateState({
+                                documentInfo: {
+                                  ...documentInfo,
+                                  description: e.target.value,
+                                },
+                              })
+                            }
+                            className="w-full p-2 border rounded-md"
+                            rows="3"
+                            placeholder={t('description_placeholder')}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-6">
+                    <button
+                      onClick={handleDocumentInfoSubmit}
+                      className="w-full bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.01]"
+                    >
+                      {t('common_button_start_classification')}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Category selection */}
+              {currentQuestions && currentQuestions.multiSelect && (
+                <CategorySelector
+                  categories={currentQuestions.options}
+                  selectedCategories={selectedCategories}
+                  onToggleCategory={handleCategoryToggle}
+                  onProceed={handleProceedFromCategories}
+                />
+              )}
+
+              {/* Question display */}
+              {currentQuestions && !currentQuestions.multiSelect && !showReport && (
+                <QuestionRenderer
+                  question={currentQuestions[currentQuestionIndex]}
+                  onAnswer={handleAnswer}
+                  inAnimation={isAnimating}
+                  totalQuestions={currentQuestions.length}
+                  currentQuestionIndex={currentQuestionIndex}
+                />
+              )}
+
+              {/* QuestionSetLoader component */}
+              {currentlyLoadingModule && (
+                <QuestionSetLoader 
+                  moduleName={currentlyLoadingModule}
+                  onLoad={handleQuestionSetLoaded}
+                  onError={handleQuestionSetError}
+                />
+              )}
+
+              {/* Report view */}
+              {showReport && (
+                <ReportGenerator
+                  documentInfo={documentInfo}
+                  selectedCategories={selectedCategories}
+                  answers={answers}
+                  onRestart={resetState}
+                  regulationFlags={regulationFlags}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
 

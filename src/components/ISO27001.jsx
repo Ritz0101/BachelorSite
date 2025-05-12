@@ -15,59 +15,59 @@ function ISO27001() {
   const components = [
     {
       id: 'policies',
-      title: t('iso27001Framework.keyComponents.components.policies.title'),
-      description: t('iso27001Framework.keyComponents.components.policies.description')
+      title: t('key_components_item1'),
+      description: t('key_components_item1_description')
     },
     {
       id: 'organization',
-      title: t('iso27001Framework.keyComponents.components.organization.title'),
-      description: t('iso27001Framework.keyComponents.components.organization.description')
+      title: t('key_components_item2'),
+      description: t('key_components_item2_description')
     },
     {
       id: 'assets',
-      title: t('iso27001Framework.keyComponents.components.assets.title'),
-      description: t('iso27001Framework.keyComponents.components.assets.description')
+      title: t('key_components_item3'),
+      description: t('key_components_item3_description')
     },
     {
       id: 'access',
-      title: t('iso27001Framework.keyComponents.components.access.title'),
-      description: t('iso27001Framework.keyComponents.components.access.description')
+      title: t('key_components_item4'),
+      description: t('key_components_item4_description')
     },
     {
       id: 'crypto',
-      title: t('iso27001Framework.keyComponents.components.crypto.title'),
-      description: t('iso27001Framework.keyComponents.components.crypto.description')
+      title: t('key_components_item5'),
+      description: t('key_components_item5_description')
     },
     {
       id: 'physical',
-      title: t('iso27001Framework.keyComponents.components.physical.title'),
-      description: t('iso27001Framework.keyComponents.components.physical.description')
+      title: t('key_components_item6'),
+      description: t('key_components_item6_description')
     }
   ];
 
   const annexes = [
     {
       id: 'annex8',
-      title: t('iso27001Framework.dataStorage.annexes.annex8.title'),
-      description: t('iso27001Framework.dataStorage.annexes.annex8.description')
+      title: t('annex8_title'),
+      description: t('annex8_description')
     },
     {
       id: 'annex10',
-      title: t('iso27001Framework.dataStorage.annexes.annex10.title'),
-      description: t('iso27001Framework.dataStorage.annexes.annex10.description')
+      title: t('annex10_title'),
+      description: t('annex10_description')
     },
     {
       id: 'annex11',
-      title: t('iso27001Framework.dataStorage.annexes.annex11.title'),
-      description: t('iso27001Framework.dataStorage.annexes.annex11.description')
+      title: t('annex11_title'),
+      description: t('annex11_description')
     }
   ];
 
   const benefits = [
-    t('iso27001Framework.benefits.items.dataBreaches'),
-    t('iso27001Framework.benefits.items.legalConsequences'),
-    t('iso27001Framework.benefits.items.financialLosses'),
-    t('iso27001Framework.benefits.items.operationalContinuity')
+    t('iso_benefits_description_item1'),
+    t('iso_benefits_description_item2'),
+    t('iso_benefits_description_item3'),
+    t('iso_benefits_description_item4')
   ];
 
   return (
@@ -76,9 +76,9 @@ function ISO27001() {
         
         {/* Header Section with Gradient Background */}
         <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('iso27001Framework.title')}</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('iso27001_framework_title')}</h1>
           <p className="text-lg text-gray-700">
-            {t('iso27001Framework.subtitle')}
+            {t('iso27001_framework_description')}
           </p>
         </div>
         
@@ -89,10 +89,10 @@ function ISO27001() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              {t('iso27001Framework.introduction.title')}
+              {t('introduction_iso_title')}
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              {t('iso27001Framework.introduction.description')}
+              {t('introduction_iso_description')}
             </p>
           </div>
 
@@ -101,7 +101,7 @@ function ISO27001() {
               <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              {t('iso27001Framework.benefits.title')}
+              {t('iso_benefits_title')}
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-600">
               {benefits.map((benefit, idx) => (
@@ -117,7 +117,7 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
             </svg>
-            {t('iso27001Framework.keyComponents.title')}
+            {t('key_components_title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {components.map((component) => (
@@ -146,7 +146,7 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
             </svg>
-            {t('iso27001Framework.dataStorage.title')}
+            {t('iso_data_storage_title')}
           </h2>
           <div className="space-y-4">
             {annexes.map((annex) => (
@@ -175,16 +175,16 @@ function ISO27001() {
             <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
             </svg>
-            {t('iso27001Framework.certification.title')}
+            {t('iso_data_storage_title')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { step: 1, title: t('iso27001Framework.certification.steps.defineScope.title'), description: t('iso27001Framework.certification.steps.defineScope.description') },
-              { step: 2, title: t('iso27001Framework.certification.steps.riskAssessment.title'), description: t('iso27001Framework.certification.steps.riskAssessment.description') },
-              { step: 3, title: t('iso27001Framework.certification.steps.implementControls.title'), description: t('iso27001Framework.certification.steps.implementControls.description') },
-              { step: 4, title: t('iso27001Framework.certification.steps.trainEmployees.title'), description: t('iso27001Framework.certification.steps.trainEmployees.description') },
-              { step: 5, title: t('iso27001Framework.certification.steps.internalAudit.title'), description: t('iso27001Framework.certification.steps.internalAudit.description') },
-              { step: 6, title: t('iso27001Framework.certification.steps.certification.title'), description: t('iso27001Framework.certification.steps.certification.description') }
+              { step: 1, title: t('define_scope_title'), description: t('define_scope_description') },
+              { step: 2, title: t('risk_assessment_title'), description: t('risk_assessment_description2') },
+              { step: 3, title: t('implement_control_title'), description: t('implement_control_description') },
+              { step: 4, title: t('train_employees_title'), description: t('train_employees_description') },
+              { step: 5, title: t('internal_audit_title'), description: t('internal_audit_description') },
+              { step: 6, title: t('certification_title'), description: t('certification_description') }
             ].map((item) => (
               <div key={item.step} className="bg-light-purple rounded-lg p-4 transform hover:scale-[1.02] transition-all duration-300">
                 <div className="flex items-center mb-2">

@@ -1,410 +1,298 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-// --- DEFINISJON AV KONSTANTER ---
-// Disse er flyttet utenfor komponenten siden de ikke endres og ikke avhenger av komponentens interne state eller props.
-
-// Klassifiseringshierarki som definerer "strengheten" til hvert nivå.
-// Høyere tall betyr strengere klassifisering.
-
-const CLASSIFICATION_HIERARCHY = {
-  Public: 0,
-  "Internal Use Only": 1,
-  Confidential: 2,
-  "Highly Confidential": 3,
-};
-
-// Detaljer for hver datakategori som kan velges av brukeren.
-// Brukes for å automatisk bestemme klassifiseringsnivå og begrunnelse basert på valgte kategorier.
-const CATEGORY_DETAILS = {
-  pii: {
-    category: "Personal Identifiable Information",
-    level: "Confidential",
-    reason: "Contains personal data subject to privacy regulations",
-  },
-  financial: {
-    category: "Financial Information",
-    level: "Confidential",
-    reason: "Contains sensitive financial data",
-  },
-  credentials: {
-    category: "Authentication Credentials",
-    level: "Highly Confidential",
-    reason: "Contains access credentials that could compromise security",
-  },
-  hr: {
-    category: "HR/Personnel Information",
-    level: "Confidential",
-    reason: "Contains private employee information",
-  },
-  ip: {
-    category: "Intellectual Property",
-    level: "Confidential",
-    reason: "Contains proprietary business information",
-  },
-  strategy: {
-    category: "Business Strategy",
-    level: "Confidential",
-    reason: "Contains sensitive strategic plans",
-  },
-  operational: {
-    category: "Operational Documents",
-    level: "Internal Use Only",
-    reason: "Contains day-to-day operational information",
-  },
-  public: {
-    category: "Public Information",
-    level: "Public",
-    reason: "Contains information intended for public consumption",
-  },
-};
-
-// Standard / fallback klassifisering som brukes hvis ingen spesifikke sensitive kategorier er identifisert.
-const DEFAULT_CLASSIFICATION = {
-  category: "Default",
-  level: "Public",
-  reason: "No sensitive information identified",
-};
-
-// Instruksjoner for håndtering av dokumentet, basert på det endelige klassifiseringsnivået.
-const HANDLING_INSTRUCTIONS = {
-  Public: "can be freely shared and distributed",
-  "Internal Use Only": "should only be shared within the organization",
-  Confidential: "must be encrypted and access-controlled",
-  "Highly Confidential":
-    "requires strict access control, encryption, and audit logging",
-};
-
-// Data for sammenligningstabellen som viser alle klassifiseringsnivåer i kontekst.
-const CLASSIFICATION_COMPARISON_DATA = [
-  {
-    level: "Public",
-    description: "Information intended for public release",
-    examples:
-      "Marketing materials, public announcements, general product info",
-    controls: "No special security controls required",
-  },
-  {
-    level: "Internal Use Only",
-    description: "Non-sensitive information meant only for company use",
-    examples: "Meeting minutes, internal communications, operational docs",
-    controls: "Basic access controls, no distribution outside organization",
-  },
-  {
-    level: "Confidential",
-    description: "Sensitive information with restricted access",
-    examples: "Financial records, customer data, business strategies",
-    controls: "Access controls, encryption, audit logging",
-  },
-  {
-    level: "Highly Confidential",
-    description: "Extremely sensitive information",
-    examples: "Authentication credentials, trade secrets, sensitive IP",
-    controls: "Strict access controls, encryption, MFA, detailed auditing",
-  },
-];
-
-
-// --- REACT KOMPONENT: ReportGenerator ---
-function ReportGenerator({
-  documentInfo,         // Informasjon om dokumentet (navn, type, eier, etc.)
-  answers,              // Svar på tilleggsspørsmål som kan påvirke sikkerhetskontroller
-  selectedCategories,   // En liste over kategorier av data som dokumentet inneholder (f.eks. 'pii', 'financial')
-  onReset,              // Funksjon som kalles for å nullstille og starte en ny klassifisering
-}) {
-
-  // State for å lagre de bestemte klassifiseringsnivåene basert på valgte kategorier.
-  // Eksempel: [{ category: "Financial Information", level: "Confidential", reason: "..."}]
+function ReportGenerator({ documentInfo, answers, selectedCategories, onReset }) {
+  const { t } = useTranslation();
   const [classificationLevels, setClassificationLevels] = useState([]);
+  const [strictestClassification, setStrictestClassification] = useState({
+    category: "No sensitive information",
+    level: "Public",
+    reason: "No sensitive information identified"
+  });
+  const [showCertificateForm, setShowCertificateForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [certificateSent, setCertificateSent] = useState(false);
 
-  // State for å lagre den strengeste klassifiseringen som er funnet for dokumentet.
-  // Initialiseres med en standard, lav klassifisering.
-  const [strictestClassification, setStrictestClassification] = useState(DEFAULT_CLASSIFICATION);
+  // Classification level hierarchy
+  const classificationHierarchy = {
+    "Public": 0,
+    "Internal": 1,
+    "Confidential": 2,
+    "Highly Confidential": 3
+  };
 
-  // State for e-postadresse (brukes i 'handleCertificateRequest' nedenfor).
-  const [email, setEmail] = useState(""); // Beholdes for "nøyaktig samme funksjonalitet"
-
-  // State for å indikere om et "sertifikat" er sendt (brukes i 'handleCertificateRequest').
-  const [certificateSent, setCertificateSent] = useState(false); // Beholdes for "nøyaktig samme funksjonalitet"
-
-
-  // useEffect-hook: Kjører når 'selectedCategories' (fra props) endres.
-  // Formål: Å bestemme alle relevante klassifiseringsnivåer basert på de valgte kategoriene,
-  // og deretter identifisere det aller strengeste nivået blant disse.
   useEffect(() => {
-    const determinedLevels = []; // Midlertidig liste for å samle klassifiseringer
-
-    // Gå gjennom hver kategori som er valgt for dokumentet
-    for (const categoryKey of selectedCategories) {
-      // Sjekk om den valgte kategorien (f.eks. 'pii') har en definisjon i vår CATEGORY_DETAILS konstant
-      if (CATEGORY_DETAILS[categoryKey]) {
-        // Hvis ja, legg til detaljene (kategori, nivå, årsak) i listen over bestemte nivåer
-        determinedLevels.push(CATEGORY_DETAILS[categoryKey]);
-      }
+    // Determine classification levels for each selected category
+    const levels = [];
+    
+    if (selectedCategories.includes('pii')) {
+      levels.push({
+        category: "Personal Identifiable Information",
+        level: "Confidential", 
+        reason: "Contains personal data subject to privacy regulations"
+      });
     }
-
-    // Oppdater state 'classificationLevels' med listen over alle identifiserte klassifiseringer
-    setClassificationLevels(determinedLevels);
-
-    // Nå, finn den strengeste klassifiseringen blant de som er funnet
-    let currentStrictest = DEFAULT_CLASSIFICATION; // Start med å anta standard/laveste klassifisering
-
-    if (determinedLevels.length > 0) {
-      // Hvis det faktisk ble funnet noen klassifiseringsnivåer basert på kategoriene:
-      currentStrictest = determinedLevels[0]; // Anta at det første funnet nivået er det strengeste
-
-      // Gå gjennom resten av de funnet nivåene for å se om noen er strengere
-      // Starter på indeks 1 siden vi allerede har satt currentStrictest til elementet på indeks 0
-      for (let i = 1; i < determinedLevels.length; i++) {
-        const classification = determinedLevels[i];
-        // Sammenlign "styrken" (numerisk verdi fra CLASSIFICATION_HIERARCHY)
-        if (
-          CLASSIFICATION_HIERARCHY[classification.level] >
-          CLASSIFICATION_HIERARCHY[currentStrictest.level]
-        ) {
-          // Hvis det nåværende 'classification.level' er strengere, oppdater 'currentStrictest'
-          currentStrictest = classification;
-        }
-      }
+    
+    if (selectedCategories.includes('financial')) {
+      levels.push({
+        category: "Financial Information",
+        level: "Confidential", 
+        reason: "Contains sensitive financial data"
+      });
     }
+    
+    if (selectedCategories.includes('credentials')) {
+      levels.push({
+        category: "Authentication Credentials",
+        level: "Highly Confidential", 
+        reason: "Contains access credentials that could compromise security"
+      });
+    }
+    
+    if (selectedCategories.includes('hr')) {
+      levels.push({
+        category: "HR/Personnel Information",
+        level: "Confidential", 
+        reason: "Contains private employee information"
+      });
+    }
+    
+    if (selectedCategories.includes('ip')) {
+      levels.push({
+        category: "Intellectual Property",
+        level: "Confidential", 
+        reason: "Contains proprietary business information"
+      });
+    }
+    
+    if (selectedCategories.includes('strategy')) {
+      levels.push({
+        category: "Business Strategy",
+        level: "Confidential", 
+        reason: "Contains sensitive strategic plans"
+      });
+    }
+    
+    if (selectedCategories.includes('operational')) {
+      levels.push({
+        category: "Operational Documents",
+        level: "Internal", 
+        reason: "Contains day-to-day operational information"
+      });
+    }
+    
+    if (selectedCategories.includes('public')) {
+      levels.push({
+        category: "Public Information",
+        level: "Public", 
+        reason: "Contains information intended for public consumption"
+      });
+    }
+    
+    // Find strictest classification
+    let strictest = {
+      category: "No sensitive information",
+      level: "Public",
+      reason: "No sensitive information identified"
+    };
+    
+    levels.forEach(classification => {
+      if (classificationHierarchy[classification.level] > 
+          classificationHierarchy[strictest.level]) {
+        strictest = classification;
+      }
+    });
+    
+    setClassificationLevels(levels);
+    setStrictestClassification(strictest);
+  }, [selectedCategories]);
 
-    // Oppdater state 'strictestClassification' med det strengeste nivået som ble funnet (eller default hvis ingen ble funnet)
-    setStrictestClassification(currentStrictest);
+  // Handling instructions based on classification
+  const handlingInstructions = {
+    "Public": t('report_handling_public'),
+    "Internal": t('report_handling_internal'),
+    "Confidential": t('report_handling_confidential'),
+    "Highly Confidential": t('report_handling_highly_confidential')
+  };
 
-  }, [selectedCategories]); // Denne effekten skal kun kjøre på nytt hvis 'selectedCategories' endres.
-
-
-  // Funksjon for å generere en liste over nødvendige sikkerhetskontroller.
-  // Kontrollene baseres både på den strengeste klassifiseringen og svarene på tilleggsspørsmål.
+  // Generate security controls based on classification and answers
   const generateSecurityControls = () => {
-    const controls = []; // Initialiser en tom liste for kontroller
-
-    // Legg til kontroller basert på den strengeste klassifiseringens nivå
-    // Kontroller som gjelder for både Confidential og Highly Confidential
-    if (
-      strictestClassification.level === "Confidential" ||
-      strictestClassification.level === "Highly Confidential"
-    ) {
-      controls.push("Encrypt document when at rest and in transit");
-      controls.push("Implement role-based access control");
-      controls.push("Maintain access logs");
+    const controls = [];
+    
+    // Add classification-based controls
+    if (strictestClassification.level === "Confidential" || 
+        strictestClassification.level === "Highly Confidential") {
+      controls.push(t('report_control_encrypt'));
+      controls.push(t('report_control_access'));
+      controls.push(t('report_control_logs'));
     }
-
-    // Tilleggskontroller som kun gjelder for Highly Confidential
+    
     if (strictestClassification.level === "Highly Confidential") {
-      controls.push("Implement multi-factor authentication for access");
-      controls.push("Perform regular access reviews");
-      controls.push("Apply digital rights management");
+      controls.push(t('report_control_mfa'));
+      controls.push(t('report_control_reviews'));
+      controls.push(t('report_control_drm'));
     }
-
-    // Legg til kontroller basert på spesifikke svar fra brukeren (fra 'answers' prop)
-    if (answers.q7 === "Yes") {
-      controls.push("Implement high availability measures");
+    
+    // Add controls based on specific answers
+    if (answers.q7 === t('common_yes')) {
+      controls.push(t('report_control_availability'));
     }
-
-    if (answers.q9 === "Yes") {
-      controls.push("Restrict access to authorized personnel only");
+    
+    if (answers.q9 === t('common_yes')) {
+      controls.push(t('report_control_restrict'));
     }
-
-    if (answers.q5 === "Yes") {
-      controls.push("Implement version control and document integrity checks");
+    
+    if (answers.q5 === t('common_yes')) {
+      controls.push(t('report_control_version'));
     }
-
-    if (answers.q11 === "Yes") {
-      controls.push(
-        "Implement retention policies according to legal requirements"
-      );
+    
+    if (answers.q11 === t('common_yes')) {
+      controls.push(t('report_control_retention'));
     }
-
-    // Returner den ferdige listen med sikkerhetskontroller
+    
     return controls;
   };
 
+  // First check if we have any document details at all
+  const hasDocumentDetails = documentInfo.name || documentInfo.type || 
+                            documentInfo.owner || documentInfo.department;
 
-  // Hjelpevariabel: Sjekker om det finnes noen dokumentdetaljer å vise.
-  // Brukes for betinget rendering av "Document Details"-seksjonen i JSX.
-  const hasDocumentDetails =
-    documentInfo.name ||
-    documentInfo.type ||
-    documentInfo.owner ||
-    documentInfo.department;
+  // Check if we have a description
+  const hasDescription = documentInfo.description && documentInfo.description.trim() !== '';
 
-  // Hjelpevariabel: Sjekker om dokumentet har en beskrivelse (ikke tom eller bare mellomrom).
-  // Brukes for betinget rendering av "Description"-seksjonen i JSX.
-  const hasDescription =
-    documentInfo.description && documentInfo.description.trim() !== "";
+  // Classification comparison table data
+  const classificationComparison = [
+    {
+      level: "Public",
+      description: t('report_level_public_description'),
+      examples: t('report_level_public_examples'),
+      controls: t('report_level_public_controls')
+    },
+    {
+      level: "Internal",
+      description: t('report_level_internal_description'),
+      examples: t('report_level_internal_examples'),
+      controls: t('report_level_internal_controls')
+    },
+    {
+      level: "Confidential",
+      description: t('report_level_confidential_description'),
+      examples: t('report_level_confidential_examples'),
+      controls: t('report_level_confidential_controls')
+    },
+    {
+      level: "Highly Confidential",
+      description: t('report_level_highly_confidential_description'),
+      examples: t('report_level_highly_confidential_examples'),
+      controls: t('report_level_highly_confidential_controls')
+    }
+  ];
 
-
-  // Funksjon for å håndtere forespørsel om sertifikat.
-  // Denne funksjonen er i den originale koden, men ser ikke ut til å være koblet til noe UI-element for brukerinteraksjon.
-  // Den beholdes for å sikre "nøyaktig samme funksjonalitet".
-  // For øyeblikket logger den bare til konsollen og oppdaterer 'certificateSent' state.
   const handleCertificateRequest = (e) => {
-    e.preventDefault(); // Forhindrer standard skjemainnsending hvis den brukes i et skjema
-    console.log(`Sending certificate to: ${email}`); // Simulerer sending av sertifikat
-    setCertificateSent(true); // Oppdaterer state for å indikere at "sendingen" er utført
+    e.preventDefault();
+    // Here you would implement the actual email sending logic
+    console.log(`Sending certificate to: ${email}`);
+    setCertificateSent(true);
   };
 
-
-  // --- JSX: Rendering av komponenten ---
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold mb-6">Classification Report</h2>
-
-      {/* Seksjon: Dokumentdetaljer */}
-      {/* Denne seksjonen vises kun hvis 'hasDocumentDetails' er true. */}
+      <h2 className="text-xl font-semibold mb-6">{t('report_title')}</h2>
+      
+      {/* Document Details Section */}
       {hasDocumentDetails && (
         <>
-          <h3 className="text-lg font-semibold mb-2">Document Details</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('report_document_details')}</h3>
           <p className="mb-4 text-gray-700">
-            {/* Dynamisk bygging av tekststrengen for dokumentdetaljer */}
-            {documentInfo.name && `Document "${documentInfo.name}"`}
-            {documentInfo.type &&
-              documentInfo.name &&
-              ` (${documentInfo.type})`}
-            {documentInfo.type &&
-              !documentInfo.name &&
-              `${documentInfo.type} document`}
-            {documentInfo.owner &&
-              (documentInfo.name || documentInfo.type) &&
-              ` owned by ${documentInfo.owner}`}
-            {documentInfo.owner &&
-              !documentInfo.name &&
-              !documentInfo.type &&
-              `Owned by ${documentInfo.owner}`}
-            {documentInfo.department &&
-              documentInfo.owner &&
-              ` from ${documentInfo.department} department`}
-            {documentInfo.department &&
-              !documentInfo.owner &&
-              `From ${documentInfo.department} department`}
-            {hasDocumentDetails && "."}
+            {documentInfo.name && `${t('document_name')}: "${documentInfo.name}"`}
+            {documentInfo.type && documentInfo.name && ` (${documentInfo.type})`}
+            {documentInfo.type && !documentInfo.name && `${t('file_type')}: ${documentInfo.type}`}
+            {documentInfo.owner && (documentInfo.name || documentInfo.type) && `, ${t('document_owner')}: ${documentInfo.owner}`}
+            {documentInfo.owner && !documentInfo.name && !documentInfo.type && `${t('document_owner')}: ${documentInfo.owner}`}
+            {documentInfo.department && documentInfo.owner && `, ${t('department')}: ${documentInfo.department}`}
+            {documentInfo.department && !documentInfo.owner && `${t('department')}: ${documentInfo.department}`}
+            {hasDocumentDetails && '.'}
           </p>
         </>
       )}
-
-      {/* Seksjon: Beskrivelse */}
-      {/* Denne seksjonen vises kun hvis 'hasDescription' er true. */}
+      
+      {/* Description Section */}
       {hasDescription && (
         <>
-          <h3 className="text-lg font-semibold mb-2">Description</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('report_description')}</h3>
           <p className="mb-4 text-gray-700">{documentInfo.description}</p>
         </>
       )}
 
-      {/* Seksjon: Klassifiseringsbestemmelse */}
-      <h3 className="text-lg font-semibold mb-2">
-        Classification Determination
-      </h3>
-
-      {/* Logikk for å vise informasjon basert på antall klassifiseringsnivåer som er funnet. */}
-      {/* Bruker en ternary operator (if/else) for å velge mellom to ulike visninger. */}
+      {/* Classification Determination Section */}
+      <h3 className="text-lg font-semibold mb-2">{t('report_classification_determination')}</h3>
+      
       {classificationLevels.length > 1 ? (
-        // TILFELLE 1: Dokumentet har flere typer sensitiv informasjon
         <>
           <p className="mb-2 text-gray-700">
-            This document contains multiple types of sensitive information:
+            {t('report_multiple_types')}
           </p>
           <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
-            {/* Mapper gjennom alle identifiserte klassifiseringsnivåer og lager listeelementer */}
             {classificationLevels.map((classification, index) => (
               <li key={index}>
-                <span className="font-medium">{classification.category}:</span>{" "}
-                {classification.level}
-                {/* Fremhev visuelt hvis dette nivået er det strengeste */}
-                {classification.level === strictestClassification.level && (
-                  <span className="text-red-600 font-semibold">
-                    {" "}
-                    (Strictest)
-                  </span>
-                )}
+                <span className="font-medium">{classification.category}:</span> {classification.level} 
+                {classification.level === strictestClassification.level && 
+                  <span className="text-red-600 font-semibold"> (Strictest)</span>}
               </li>
             ))}
           </ul>
           <p className="mb-4 text-gray-700 font-medium">
-            Because this document contains {strictestClassification.category},
-            which is classified as
-            <span className="font-bold"> {strictestClassification.level}</span>,
-            the entire document must be handled according to{" "}
-            {strictestClassification.level} controls.
+            Because this document contains {strictestClassification.category}, which is classified as {strictestClassification.level}, the entire document must be handled according to {strictestClassification.level} controls.
           </p>
           <p className="mb-4 text-gray-700 italic">
             Reason: {strictestClassification.reason}
           </p>
         </>
       ) : (
-        // TILFELLE 2: Dokumentet har kun én type klassifisering (eller standardklassifiseringen)
         <p className="mb-4 text-gray-700">
-          This document is classified as{" "}
-          <span className="font-bold">{strictestClassification.level}</span>{" "}
-          because it contains {strictestClassification.category.toLowerCase()}.
+          {strictestClassification.category === "No sensitive information" 
+            ? `This document is classified as ${strictestClassification.level} because it contains no sensitive information.` 
+            : `This document is classified as ${strictestClassification.level} because it contains ${strictestClassification.category}.`
+          }
         </p>
       )}
 
-      {/* Seksjon: Håndteringsinstruksjoner */}
-      <h3 className="text-lg font-semibold mb-2">Handling Instructions</h3>
+      {/* Handling Instructions Section */}
+      <h3 className="text-lg font-semibold mb-2">{t('report_handling_instructions')}</h3>
       <p className="mb-4 text-gray-700">
-        This document {HANDLING_INSTRUCTIONS[strictestClassification.level]}.
+        {t('report_handling_instructions')} {handlingInstructions[strictestClassification.level]}.
       </p>
 
-      {/* Seksjon: Nødvendige Sikkerhetskontroller */}
+      {/* Security Controls Section */}
       <div className="mt-6 p-4 bg-purple/10 rounded-md">
-        <h4 className="font-semibold mb-2">Required Security Controls:</h4>
+        <h4 className="font-semibold mb-2">{t('report_security_controls')}</h4>
         <ul className="list-disc list-inside space-y-2 text-gray-700">
-          {/* Genererer listen av sikkerhetskontroller og mapper dem til listeelementer */}
           {generateSecurityControls().map((control, index) => (
             <li key={index}>{control}</li>
           ))}
         </ul>
       </div>
 
-      {/* Seksjon: Klassifiseringsnivåer i Kontekst (Tabell) */}
+      {/* Classification context table */}
       <div className="mt-8">
-        <h3 className="text-lg font-semibold mb-4">
-          Classification Levels in Context
-        </h3>
+        <h3 className="text-lg font-semibold mb-4">{t('report_classification_context')}</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Level
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Description
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Examples
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Controls
-                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('report_table_level')}</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('report_table_description')}</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('report_table_examples')}</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('report_table_controls')}</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {/* Mapper gjennom data for sammenligningstabellen (CLASSIFICATION_COMPARISON_DATA) */}
-              {CLASSIFICATION_COMPARISON_DATA.map((item) => (
-                <tr
-                  key={item.level}
-                  // Fremhev raden visuelt hvis den matcher dokumentets strengeste klassifiseringsnivå
-                  className={
-                    item.level === strictestClassification.level
-                      ? "bg-purple/10" // Bruker TailwindCSS klasse for bakgrunnsfarge
-                      : ""
-                  }
-                >
+              {classificationComparison.map((item) => (
+                <tr key={item.level} className={item.level === strictestClassification.level ? "bg-purple/10" : ""}>
                   <td className="px-4 py-3 text-sm">
-                    <span
-                      className={`font-medium ${
-                        // Gjør teksten fet hvis dette er dokumentets gjeldende nivå
-                        item.level === strictestClassification.level
-                          ? "font-bold"
-                          : ""
-                      }`}
-                    >
+                    <span className={`font-medium ${item.level === strictestClassification.level ? "font-bold" : ""}`}>
                       {item.level}
-                      {/* Legg til en liten indikator for hvilket nivå dokumentet har i tabellen */}
-                      {item.level === strictestClassification.level &&
-                        " ← Your Document"}
+                      {item.level === strictestClassification.level && ` ${t('report_your_document')}`}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-sm">{item.description}</td>
@@ -417,14 +305,69 @@ function ReportGenerator({
         </div>
       </div>
 
-      {/* Seksjon: Tilbakestillingsknapp */}
-      <button
-        onClick={onReset} // Kaller 'onReset'-funksjonen som ble mottatt via props
-        className="mt-6 bg-dark-purple text-white px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
-      >
-        Start New Classification
-      </button>
+      {/* Training certificate section */}
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <h3 className="text-lg font-semibold mb-2">{t('report_document_training')}</h3>
+        
+        {!showCertificateForm && !certificateSent ? (
+          <div>
+            <p className="text-gray-600 mb-4">
+              {t('report_certificate_question')}
+            </p>
+            <button
+              onClick={() => setShowCertificateForm(true)}
+              className="bg-purple text-custom-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
+            >
+              {t('report_request_certificate')}
+            </button>
+          </div>
+        ) : certificateSent ? (
+          <div className="p-4 bg-green-100 rounded-md">
+            <p className="text-green-800">
+              {t('report_certificate_sent')}
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleCertificateRequest} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('report_email_label')}
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border rounded-md"
+                placeholder="your.email@company.com"
+              />
+            </div>
+            <div className="flex space-x-4">
+              <button
+                type="submit"
+                className="bg-purple text-custom-black px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
+              >
+                {t('report_send_certificate')}
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowCertificateForm(false)}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                {t('common_button_cancel')}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
 
+      {/* Reset Button */}
+      <button
+        onClick={onReset}
+        className="mt-6 bg-purple text-custom-black px-6 py-3 rounded-md hover:bg-opacity-90 w-full transition-all duration-200 transform hover:scale-[1.01]"
+      >
+        {t('report_start_new')}
+      </button>
     </div>
   );
 }

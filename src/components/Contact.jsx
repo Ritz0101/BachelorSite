@@ -5,176 +5,152 @@ function Contact() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-light-purple text-custom-black flex items-center justify-center pt-16">
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl w-full">
-        <h2 className="text-2xl font-bold mb-4">{t("contact.title")}</h2>
-        <p className="text-lg text-gray-700 mb-6">{t("contact.subtitle")}</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-bold text-gray-800 mb-4">
-              {t("contact.getInTouch")}
-            </h3>
-            <p className="text-gray-600 mb-6">{t("contact.description")}</p>
-
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <svg
-                    className="h-6 w-6 text-purple"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    ></path>
-                  </svg>
+    <div className="min-h-screen bg-light-purple pt-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Header Section with Gradient Background */}
+        <div className="bg-gradient-to-r from-purple to-light-purple rounded-lg shadow-lg p-8 mb-10 transform hover:scale-[1.01] transition-all duration-300">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('contact_us_title')}</h1>
+          <p className="text-lg text-gray-700">
+            {t('contact_us_description')}
+          </p>
+        </div>
+        
+        {/* Contact Form */}
+        <div className="bg-white rounded-lg shadow-md p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('get_in_touch_title')}</h2>
+              <p className="text-gray-600 mb-6">{t('get_in_touch_description')}</p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="h-6 w-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-900">{t('email_title')}</p>
+                    <p className="text-sm text-gray-500">info@isotron.org</p>
+                  </div>
                 </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">
-                    {t("contact.email")}
-                  </p>
-                  <p className="text-sm text-gray-500">info@isotron.org</p>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="h-6 w-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-900">{t('phone_title')}</p>
+                    <p className="text-sm text-gray-500">+47 123 45 678</p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <svg
-                    className="h-6 w-6 text-purple"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    ></path>
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">
-                    {t("contact.phone")}
-                  </p>
-                  <p className="text-sm text-gray-500">+47 123 45 678</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <svg
-                    className="h-6 w-6 text-purple"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    ></path>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">
-                    {t("contact.address")}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Høyskolen Kristiania
-                    <br />
-                    Prinsens gate 7-9
-                    <br />
-                    0252 Oslo
-                  </p>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="h-6 w-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-900">{t('address_title')}</p>
+                    <p className="text-sm text-gray-500">
+                      Høyskolen Kristiania<br />
+                      Prinsens gate 7-9<br />
+                      0252 Oslo
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+            
+            <div>
+              <form className="space-y-6">
+                <div className="mb-4">
+                  <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">{t('name_title')}</label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder={t('name_placeholder')}
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">{t('email_title')}</label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder={t('email_placeholder')}
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label htmlFor="subject" className="block text-gray-700 text-sm font-bold mb-2">{t('subject_title')}</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder={t('subject_placeholder')}
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">{t('message_title')}</label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder={t('message_placeholder')}
+                  ></textarea>
+                </div>
+                
+                <div>
+                  <button
+                    type="button"
+                    className="bg-dark-purple text-white transition-transform duration-300 hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.02] py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    {t('button_send')}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-
-          <div>
-            <form className="space-y-6">
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="name"
-                >
-                  {t("contact.form.name")}
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="name"
-                  type="text"
-                  placeholder={t("contact.form.namePlaceholder")}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="email"
-                >
-                  {t("contact.form.email")}
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  placeholder={t("contact.form.emailPlaceholder")}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="subject"
-                >
-                  {t("contact.form.subject")}
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="subject"
-                  type="text"
-                  placeholder={t("contact.form.subjectPlaceholder")}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="message"
-                >
-                  {t("contact.form.message")}
-                </label>
-                <textarea
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="message"
-                  placeholder={t("contact.form.messagePlaceholder")}
-                  rows="4"
-                ></textarea>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <button
-                  className="bg-dark-purple text-white transition-transform duration-300 hover:bg-opacity-90 transition-all duration-200 transform hover:scale-[1.02] py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
-                >
-                  {t("contact.form.submit")}
-                </button>
-              </div>
-            </form>
+        </div>
+        
+        {/* FAQ Section */}
+        <div className="bg-white rounded-lg shadow-md p-8 mt-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <svg className="w-6 h-6 mr-2 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            {t('faq_title')}
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="border-b border-gray-200 pb-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('faq_question1')}</h3>
+              <p className="text-gray-600">{t('faq_answer1')}</p>
+            </div>
+            
+            <div className="border-b border-gray-200 pb-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('faq_question2')}</h3>
+              <p className="text-gray-600">{t('faq_answer2')}</p>
+            </div>
+            
+            <div className="border-b border-gray-200 pb-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('faq_question3')}</h3>
+              <p className="text-gray-600">{t('faq_answer3')}</p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('faq_question4')}</h3>
+              <p className="text-gray-600">{t('faq_answer4')}</p>
+            </div>
           </div>
         </div>
       </div>

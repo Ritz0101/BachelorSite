@@ -1,805 +1,775 @@
 {
-  "navigation": {
-    "home": "Hjem",
-    "guide": "Veiledning",
-    "about": "Om",
-    "training": "Opplæring",
-    "iso27001": "ISO 27001",
-    "contact": "Kontakt",
-    "reportBug": "Rapporter feil"
-  },
-  "home": {
-    "title": "Velkommen til Isotron",
-    "subtitle": "Din guide til sikker informasjonshåndtering",
-    "getStarted": "Kom i gang",
-    "guide": {
-      "intro": "Usikker på hvordan du håndterer sensitiv informasjon? Vår klassifiseringsveiledning hjelper deg med å ta de riktige beslutningene gjennom en enkel og effektiv sjekkliste.",
-      "details": "Isotron is designet for å assistere ansatte i klassifisering av sensitiv data i henhold til ISO 27001 standarder. Ved å følge et beslutningstre, kan brukere svare på en serie spørsmål som fører til en klassifiseringsrapport, som sikrer overholdelse og riktig håndtering av informasjon."
-    },
-    "training": {
-      "intro": "Start din læringsprosess med våre interaktive opplæringsmoduler og test kunnskapen din gjennom våre skreddersydde quizer.",
-      "details": "Opplæringsmodulene er designet for å gi omfattende kunnskap om ISO 27001-etterlevelse, og hjelper ansatte med å forstå viktigheten av datasikkerhet og nødvendige tiltak for å opprettholde den. Hver modul inneholder quizer for å forsterke læring og sikre at nøkkelkonsepter huskes."
-    }
-  },
-  "guide": {
-    "title": "Klassifiseringsveiledning",
-    "subtitle": "Følg disse trinnene for å klassifisere informasjonen din riktig",
-    "reset": "Tilbakestill",
-    "resetTitle": "Start klassifiseringsprosessen fra begynnelsen",
-    "startClassification": "Start klassifisering",
-    "advancedOptions": "Avanserte alternativer (valgfritt)",
-    "documentInfoHelp": "Å gi dokumentdetaljer vil hjelpe med å generere en mer personlig klassifiseringsrapport med spesifikke håndteringsinstruksjoner.",
-    "categories": {
-      "defaultQuestion": "Hvilke typer data inneholder dokumentet? (Velg alle som gjelder)",
-      "continue": "Fortsett",
-      "selectHelp": "Velg alle kategorier som gjelder for dokumentet ditt."
-    },
-    "sections": {
-      "heating": "Personopplysninger",
-      "lighting": "Forretningsdata",
-      "appliances": "Sensitiv data",
-      "insulation": "Konfidensiell data"
-    },
-    "welcome": {
-      "title": "Velkommen til klassifiseringsveilederen",
-      "description": "Denne veilederen hjelper deg med å bestemme riktig klassifiseringsnivå for dokumentet ditt basert på ISO27001-standarder. Gjennom en rekke spørsmål vil vi vurdere sensitiviteten og sikkerhetskravene til informasjonen din.",
-      "expectTitle": "Hva du kan forvente",
-      "expectItem1": "Velg alle typer sensitiv informasjon i dokumentet ditt",
-      "expectItem2": "Svar på spørsmål om dokumentets innhold og bruk",
-      "expectItem3": "Motta et klassifiseringsnivå basert på ISO27001",
-      "expectItem4": "Få spesifikke håndterings- og sikkerhetsinstruksjoner",
-      "expectItem5": "Estimert tid: 2-3 minutter"
-    },
-    "form": {
-      "documentName": "Dokumentnavn",
-      "documentNamePlaceholder": "f.eks. Q4 Finansrapport",
-      "fileType": "Filtype",
-      "fileTypePlaceholder": "f.eks. PDF, DOCX, XLSX",
-      "documentOwner": "Dokumenteier",
-      "documentOwnerPlaceholder": "f.eks. Ola Nordmann",
+    "nav_guide": "Guide",
+    "nav_training": "Opplæring",
+    "nav_about": "Om oss",
+    "nav_iso27001": "ISO 27001",
+    "nav_contact": "Kontakt",
+    "nav_report_bug": "Rapporter feil",
+    
+    "lang_english": "Engelsk",
+    "lang_norwegian": "Norsk",
+    "lang_polish": "Polsk",
+
+    "common_button_check_answers": "Sjekk svar",
+    "common_button_mark_as_completed": "Merk som fullført",
+    "common_message_completion_required": "Fullfør quizen for å markere denne modulen som fullført",
+    "commmon_progress_indicator": "{{completed}} / {{total}} fullført",
+    "common_duration": "Varighet: {{time}} min",
+    "common_button_reset": "Nullstill",
+    "common_button_continue": "Fortsett",
+    "common_button_cancel": "Avbryt",
+    "common_button_previous": "Forrige",
+    "common_completed": "Fullført",
+    "common_optional": "Valgfritt",
+    "common_yes": "Ja",
+    "common_no": "Nei",
+    "common_button_start_classification": "Start klassifisering",
+    "classification_guide_title": "Klassifiseringsguide",
+    "knowledge_check_title": "Kunnskapsjekk",
+
+    "home_title": "Velkommen til Isotron",
+    "home_subtitle": "Din guide til sikker informasjonshåndtering",
+    "home_classification_guide_intro": "Usikker på hvordan du skal håndtere sensitiv informasjon? Vår klassifiseringsguide hjelper deg å ta de riktige beslutningene gjennom en enkel og effektiv sjekkliste.",
+    "home_classification_guide_details": "Isotron er designet for å hjelpe ansatte med å klassifisere sensitive data i henhold til ISO 27001-standarder. Ved å følge et beslutningstre kan brukere svare på en rekke spørsmål som fører til en klassifiseringsrapport, som sikrer overholdelse og riktig informasjonshåndtering.",
+    "home_get_started": "Kom i gang",
+    "home_training_modules_title": "Opplæringsmoduler",
+    "home_training_intro": "Start din læringsprosess med våre interaktive opplæringsmoduler og test kunnskapen din gjennom våre skreddersydde quizer.",
+    "home_training_details": "Opplæringsmodulene er designet for å gi omfattende kunnskap om ISO 27001-samsvar, og hjelpe ansatte å forstå viktigheten av datasikkerhet og de nødvendige trinnene for å opprettholde den. Hver modul inkluderer quizer for å forsterke læring og sikre at viktige konsepter huskes.",
+    "home_start_module": "Start modul",
+
+    "classification_guide_welcome_title": "Velkommen til Klassifiseringsguiden",
+    "classification_guide_welcome_description": "Denne guiden vil hjelpe deg med å bestemme passende klassifiseringsnivå for ditt dokument basert på ISO27001-standarder. Gjennom en serie spørsmål vil vi vurdere sensitiviteten og sikkerhetskravene for din informasjon.",
+    "classifcation_guide_what_to_expect": "Hva du kan forvente",
+    "what_to_expect_item1": "Velg alle typer sensitiv informasjon i dokumentet ditt",
+    "what_to_expect_item2": "Svar på spørsmål om dokumentets innhold og bruk",
+    "what_to_expect_item3": "Motta et klassifiseringsnivå basert på ISO27001",
+    "what_to_expect_item4": "Få spesifikke håndterings- og sikkerhetsinstruksjoner",
+    "what_to_expect_item5": "Estimert tid: 2-3 minutter",
+    "advanced_options": "Avanserte alternativer (Valgfritt)",
+    "advanced_options_subtext": "Å gi dokumentdetaljer vil hjelpe med å generere en mer personlig klassifiseringsrapport med spesifikke håndteringsinstruksjoner.",
+    "document_name": "Dokumentnavn",
+    "document_name_placeholder": "f.eks. Finansrapport for 4. kvartal",
+    "file_type": "Filtype",
+    "file_type_placeholder": "f.eks. PDF, DOCX, XLSX",
+    "document_owner": "Dokumenteier",
+    "document_owner_placeholder": "f.eks. Ole Olsen",
       "department": "Avdeling",
-      "departmentPlaceholder": "f.eks. Finans",
+    "department_placeholder": "f.eks. Finans",
       "description": "Kort beskrivelse",
-      "descriptionPlaceholder": "Kort beskrivelse av dokumentets innhold og formål"
-    }
-  },
-  "training": {
-    "title": "Opplæringsmoduler",
-    "subtitle": "Interaktive leksjoner om informasjonssikkerhet",
-    "description": "Forbedre din forståelse av informasjonssikkerhet gjennom våre interaktive opplæringsmoduler.",
-    "overallProgress": "Total fremgang: {{completed}} av {{total}} moduler fullført",
-    "duration": "Varighet: {{time}} min",
-    "progressIndicator": "{{completed}} / {{total}} fullført",
-    "completed": "Fullført",
-    "markAsCompleted": "Marker som fullført",
-    "informationClassification": {
-      "understandingSecurity": {
-        "title": "Forståelse av sikkerhetsnivåer",
-        "description": "Lær om ulike sikkerhetsnivåer for klassifisering."
-      },
-      "identifyingSensitive": {
-        "title": "Identifisere sensitiv informasjon",
-        "description": "Lær hvordan du identifiserer og klassifiserer sensitiv informasjon."
-      },
-      "handlingClassified": {
-        "title": "Håndtering av klassifisert informasjon",
-        "description": "Lær riktige prosedyrer for håndtering av klassifisert informasjon.",
-        "backToModule": "Tilbake til grunnleggende informasjonsklassifisering"
-      }
-    },
-    "modules": {
-      "informationClassification": {
-        "title": "Grunnleggende om informasjonsklassifisering",
-        "description": "Lær det grunnleggende om klassifisering av sensitiv informasjon",
-        "backToModules": "Tilbake til Opplæringsmoduler"
-      },
-      "iso27001": {
-        "title": "ISO 27001 Grunnleggende",
-        "description": "Introduksjon til ISO 27001 prinsipper og praksis",
-        "backToModules": "Tilbake til Opplæringsmoduler",
-        "submodules": {
-          "ismsBasics": {
-            "title": "ISMS Grunnleggende",
-            "description": "Lær om informasjonssikkerhetsstyringssystemer.",
-            "backToModule": "Tilbake til ISO 27001 Grunnleggende",
-            "whatIsISMS": {
-              "title": "Hva er et ISMS?",
-              "description": "Et informasjonssikkerhetsstyringssystem (ISMS) er en systematisk tilnærming til håndtering av sensitiv bedriftsinformasjon slik at den forblir sikker. Det omfatter mennesker, prosesser og teknologi.",
-              "definition": "Definisjon: Et ISMS er et rammeverk av retningslinjer og prosedyrer som inkluderer alle juridiske, fysiske og tekniske kontroller involvert i en organisasjons informasjonsrisikostyringsprosesser."
-            },
-            "whyImplement": {
-              "title": "Hvorfor implementere et ISMS?",
-              "businessBenefits": {
-                "title": "Forretningsfordeler",
-                "item1": "Forbedret informasjonssikkerhetsstilling",
-                "item2": "Konkurransefortrinn",
-                "item3": "Kunders og interessenters tillit",
-                "item4": "Forretningskontinuitet",
-                "item5": "Reduserte cyberforsikringspremier"
-              },
-              "riskManagement": {
-                "title": "Risikostyring",
-                "item1": "Strukturert identifikasjon av risikoer",
-                "item2": "Implementering av passende kontroller",
-                "item3": "Systematisk håndtering av trusler",
-                "item4": "Redusert sannsynlighet for brudd",
-                "item5": "Juridisk og regulatorisk overholdelse"
-              }
-            },
-            "isoAndISMS": {
-              "title": "ISO 27001 og ISMS",
-              "description": "ISO 27001 er den internasjonale standarden som beskriver beste praksis for et ISMS. Den gir et rammeverk for å etablere, implementere, operere, overvåke, gjennomgå, vedlikeholde og forbedre et ISMS.",
-              "pdcaCycle": {
-                "title": "PDCA-syklusen i ISMS",
-                "plan": {
-                  "title": "Planlegge",
-                  "description": "Etablere ISMS-policy, mål, prosesser og prosedyrer"
-                },
-                "do": {
-                  "title": "Utføre",
-                  "description": "Implementere og operere ISMS-policyen, kontrollene, prosessene og prosedyrene"
-                },
-                "check": {
-                  "title": "Kontrollere",
-                  "description": "Overvåke og gjennomgå ISMS, måle prosessytelse mot policy og mål"
-                },
-                "act": {
-                  "title": "Handle",
-                  "description": "Iverksette korrigerende og forebyggende tiltak, basert på interne revisjonsresultater, for å oppnå kontinuerlig forbedring"
-                }
-              }
-            },
-            "keyComponents": {
-              "title": "Nøkkelkomponenter i et ISMS",
-              "policy": {
-                "title": "Informasjonssikkerhetspolicy",
-                "description": "Setter retningen og uttrykker ledelsens støtte for informasjonssikkerhet"
-              },
-              "riskAssessment": {
-                "title": "Risikovurdering",
-                "description": "Systematisk prosess for å identifisere, analysere og evaluere informasjonssikkerhetsrisikoer"
-              },
-              "controls": {
-                "title": "Sikkerhetskontroller",
-                "description": "Beskyttelsestiltak eller mottiltak for å unngå, oppdage, motvirke eller minimere sikkerhetsrisikoer"
-              },
-              "soa": {
-                "title": "Erklæring om anvendelighet (SoA)",
-                "description": "Dokument som beskriver hvilke kontroller som er relevante og anvendelige for organisasjonens ISMS"
-              },
-              "audits": {
-                "title": "Interne revisjoner",
-                "description": "Regelmessige kontroller for å sikre at ISMS fungerer som forventet og identifisere forbedringer"
-              },
-              "review": {
-                "title": "Ledelsesvurdering",
-                "description": "Regelmessig gjennomgang av ISMS av toppledelsen for å sikre dens fortsatte egnethet og effektivitet"
-              }
-            },
-            "quiz": {
-              "title": "Kunnskapssjekk",
-              "excellent": "Utmerket! Du forstår grunnleggende om informasjonssikkerhetsstyringssystemer (ISMS) og ISO 27001.",
-              "questions": {
-                "ismsDefinition": {
-                  "title": "Spørsmål 1: ISMS-definisjon",
-                  "question": "1. Hva er et informasjonssikkerhetsstyringssystem (ISMS)?",
-                  "options": {
-                    "a": "Et programverktøy for overvåking av nettverkssikkerhet",
-                    "b": "En systematisk tilnærming for å håndtere sensitiv informasjon og sikre forretningskontinuitet",
-                    "c": "En maskinvareløsning for datakryptering",
-                    "d": "En sjekkliste over beste praksis for IT-sikkerhet"
-                  }
-                },
-                "pdcaCycle": {
-                  "title": "Spørsmål 2: PDCA-syklusen",
-                  "question": "2. Hva står PDCA-syklusen i ISO 27001 for?",
-                  "options": {
-                    "a": "Planlegge, Utføre, Kontrollere, Handle",
-                    "b": "Forebygge, Oppdage, Korrigere, Justere",
-                    "c": "Forberede, Utvikle, Kontrollere, Analysere",
-                    "d": "Prosessere, Dokumentere, Konfigurere, Revidere"
-                  }
-                },
-                "isoPrinciples": {
-                  "title": "Spørsmål 3: ISO 27001-prinsipper",
-                  "question": "3. Hvilket av følgende er et grunnleggende prinsipp i ISO 27001?",
-                  "options": {
-                    "a": "Maksimere produktivitet for enhver pris",
-                    "b": "Eliminere alle sikkerhetsrisikoer fullstendig",
-                    "c": "Risikobasert tilnærming til informasjonssikkerhet",
-                    "d": "Isolere alle systemer fra eksterne tilkoblinger"
-                  }
-                },
-                "riskAssessment": {
-                  "title": "Spørsmål 4: Risikovurdering",
-                  "question": "4. Hvilken rolle spiller risikovurdering i ISO 27001?",
-                  "options": {
-                    "a": "Det er valgfritt og kun for organisasjoner med høy sikkerhet",
-                    "b": "Det er essensielt for å etablere et effektivt ISMS",
-                    "c": "Det utføres kun én gang etter implementering",
-                    "d": "Det fokuserer kun på eksterne trusler"
-                  }
-                },
-                "certification": {
-                  "title": "Spørsmål 5: ISO 27001-sertifisering",
-                  "question": "5. Hva kreves for å oppnå ISO 27001-sertifisering?",
-                  "options": {
-                    "a": "Implementering av alle 114 kontroller i Vedlegg A",
-                    "b": "Ha perfekt sikkerhet uten noen hendelser",
-                    "c": "Bruke kun ISO-godkjente sikkerhetsleverandører",
-                    "d": "Implementere et ISMS, gjennomføre interne revisjoner og bestå en ekstern revisjon"
-                  }
-                }
-              },
-              "feedback": {
-                "ismsDefinition": "Et ISMS er en systematisk tilnærming for å håndtere sensitiv informasjon og sikre forretningskontinuitet.",
-                "pdcaCycle": "PDCA-syklusen består av fasene Planlegge, Utføre, Kontrollere, Handle for kontinuerlig forbedring.",
-                "isoPrinciples": "ISO 27001 er basert på en risikobasert tilnærming til informasjonssikkerhet.",
-                "riskAssessment": "Risikovurdering er en essensiell komponent for å etablere et ISMS.",
-                "certification": "For å oppnå ISO 27001-sertifisering må en organisasjon implementere et ISMS, gjennomføre interne revisjoner, håndtere avvik, og bestå en ekstern revisjon."
-              },
-              "quizCompletionRequired": "Fullfør quizen med suksess for å markere denne modulen som fullført"
-            },
-            "feedback": {
-              "correct": "Riktig! Disse elementene bør klassifiseres som sensitive.",
-              "incorrect": "Ikke helt riktig. Vennligst gjennomgå disse feilaktige svarene:",
-              "continue": "Fortsett til neste del",
-              "shouldBeSelected": "bør klassifiseres som sensitiv (må velges).",
-              "shouldNotBeSelected": "bør IKKE klassifiseres som sensitiv (bør ikke velges)."
-            }
-          },
-          "riskAssessment": {
-            "title": "Risikovurdering",
-            "description": "Lær om risikovurdering i ISO 27001.",
-            "backToModule": "Tilbake til ISO 27001 Grunnleggende",
-            "whatIs": {
-              "title": "Hva er risikovurdering?",
-              "description": "Risikovurdering er en kritisk komponent i ISO 27001 og grunnlaget for et effektivt informasjonssikkerhetsstyringssystem (ISMS). Det innebærer å identifisere, analysere og evaluere risikoer for informasjonssikkerhet.",
-              "definition": "Definisjon: Risikovurdering er den samlede prosessen med risikoidentifikasjon, risikoanalyse og risikoevaluering som definert i ISO 27001."
-            },
-            "process": {
-              "title": "Risikostyringsprosessen",
-              "identification": {
-                "title": "1. Risikoidentifikasjon",
-                "description": "Finne, gjenkjenne og beskrive risikoer ved å identifisere eiendeler, trusler, eksisterende kontroller, sårbarheter og konsekvenser."
-              },
-              "analysis": {
-                "title": "2. Risikoanalyse",
-                "description": "Forstå risikoens natur og bestemme risikonivået ved å tilordne verdier til sannsynlighet og konsekvens."
-              },
-              "evaluation": {
-                "title": "3. Risikoevaluering",
-                "description": "Sammenligne risikoanalyseresultater med risikokriterier for å avgjøre om en risiko er akseptabel eller krever behandling."
-              },
-              "treatment": {
-                "title": "4. Risikobehandling",
-                "description": "Velge og implementere alternativer for å håndtere risiko gjennom risikomodifikasjon (kontroller), risikoaksept, risikounnvikelse eller risikooverføring."
-              }
-            },
-            "keyComponents": {
-              "title": "Nøkkelkomponenter i risikovurdering",
-              "assets": {
-                "title": "Identifisering av verdier",
-                "description": "Identifisering og kategorisering av informasjonsverdier er det første trinnet i risikovurdering.",
-                "item1": "Informasjonsverdier (databaser, filer, dokumentasjon)",
-                "item2": "Programvareverdier (applikasjoner, systemer, utviklingsverktøy)",
-                "item3": "Fysiske verdier (datamaskiner, nettverksutstyr, medier)",
-                "item4": "Tjenester (datatjenester, kommunikasjon)",
-                "item5": "Mennesker (ansatte, kunder, brukere) og deres kvalifikasjoner, ferdigheter og erfaring",
-                "item6": "Immaterielle verdier (omdømme, image)"
-              },
-              "threats": {
-                "title": "Trusselidentifikasjon",
-                "description": "Identifisere potensielle trusselkilder og hendelser som kan skade verdier.",
-                "internal": {
-                  "title": "Interne trusler",
-                  "item1": "Menneskelige feil",
-                  "item2": "Illojale ansatte",
-                  "item3": "Systemfeil",
-                  "item4": "Prosessfeil"
-                },
-                "external": {
-                  "title": "Eksterne trusler",
-                  "item1": "Cyberangrep",
-                  "item2": "Naturkatastrofer",
-                  "item3": "Forstyrrelser i forsyningskjeden",
-                  "item4": "Juridiske/regulatoriske endringer"
-                }
-              },
-              "vulnerabilities": {
-                "title": "Sårbarhetsvurdering",
-                "description": "Identifisere svakheter i verdier som kan utnyttes av trusler.",
-                "item1": "Svake passord eller autentiseringsmetoder",
-                "item2": "Upatchet programvare",
-                "item3": "Utilstrekkelig fysisk sikkerhet",
-                "item4": "Utilstrekkelig opplæring av ansatte",
-                "item5": "Dårlig konfigurerte systemer",
-                "item6": "Utilstrekkelige backup-prosedyrer"
-              },
-              "analysis": {
-                "title": "Risikoanalysemetoder",
-                "qualitative": {
-                  "title": "Kvalitativ analyse",
-                  "description": "Bruker beskrivende skalaer (Høy, Medium, Lav) for å beskrive sannsynlighet og konsekvens av risikoer."
-                },
-                "quantitative": {
-                  "title": "Kvantitativ analyse",
-                  "description": "Tilordner numeriske verdier til risikoer, ofte i pengeverdier eller spesifikke poengskalaer."
-                }
-              },
-              "treatment": {
-                "title": "Risikobehandlingsalternativer",
-                "modify": {
-                  "title": "Modifisere (redusere)",
-                  "description": "Implementere kontroller for å redusere risikosannsynlighet eller -konsekvens."
-                },
-                "accept": {
-                  "title": "Akseptere",
-                  "description": "Ta en informert beslutning om å akseptere risikoen uten ytterligere tiltak."
-                },
-                "avoid": {
-                  "title": "Unngå",
-                  "description": "Beslutte å ikke fortsette med aktiviteten som introduserer risikoen."
-                },
-                "transfer": {
-                  "title": "Overføre",
-                  "description": "Dele risikoen med en annen part (f.eks. forsikring, utsetting)."
-                }
-              }
-            },
-            "quiz": {
-              "title": "Kunnskapssjekk",
-              "excellent": "Utmerket! Du forstår prinsippene for risikovurdering i sammenheng med informasjonssikkerhet.",
-              "questions": {
-                "riskAssessmentDefinition": {
-                  "title": "Spørsmål 1: Definisjon av risikovurdering",
-                  "question": "1. Hva er risikovurdering i sammenheng med ISO 27001?",
-                  "options": {
-                    "a": "En engangsevaluering av sikkerhetstrusler",
-                    "b": "En teknisk revisjon av IT-systemer",
-                    "c": "Den helhetlige prosessen med å identifisere, analysere og evaluere risikoer for informasjonssikkerhet",
-                    "d": "En inventar av sikkerhetsprogramvare og -maskinvare"
-                  }
-                },
-                "riskManagementProcess": {
-                  "title": "Spørsmål 2: Risikostyringsprosess",
-                  "question": "2. Hva er hovedtrinnene i risikostyringsprosessen?",
-                  "options": {
-                    "a": "Oppdage, Respondere, Gjenopprette, Rapportere",
-                    "b": "Identifikasjon, Analyse, Evaluering, Behandling",
-                    "c": "Planlegge, Teste, Implementere, Gjennomgå",
-                    "d": "Kjøpe, Installere, Konfigurere, Vedlikeholde"
-                  }
-                },
-                "assetIdentification": {
-                  "title": "Spørsmål 3: Eiendelsidentifikasjon",
-                  "question": "3. Hvilken av følgende vurderes vanligvis IKKE under eiendelsidentifikasjon?",
-                  "options": {
-                    "a": "Informasjonseiendeler som databaser og filer",
-                    "b": "Fysiske eiendeler som servere og nettverksutstyr",
-                    "c": "Immaterielle eiendeler som omdømme og firmaimage",
-                    "d": "Konkurrentenes sikkerhetsstrategier"
-                  }
-                },
-                "threatTypes": {
-                  "title": "Spørsmål 4: Typer trusler",
-                  "question": "4. Hvilken av følgende er en komplett liste over vanlige trusseltyper?",
-                  "options": {
-                    "a": "Menneskelige feil, tekniske feil, fysiske hendelser og ondsinnede angrep",
-                    "b": "Kun cyberangrep og skadevare",
-                    "c": "Kun fysiske trusler mot maskinvare",
-                    "d": "Kun trusler fra illojale ansatte"
-                  }
-                },
-                "riskTreatment": {
-                  "title": "Spørsmål 5: Alternativer for risikobehandling",
-                  "question": "5. Hva er de fire hovedalternativene for risikobehandling i ISO 27001?",
-                  "options": {
-                    "a": "Ignorere, dokumentere, eskalere, utkontraktere",
-                    "b": "Modifisere (redusere), akseptere, unngå, overføre",
-                    "c": "Rapportere, registrere, løse, gjennomgå",
-                    "d": "Oppdage, beskytte, respondere, gjenopprette"
-                  }
-                }
-              },
-              "feedback": {
-                "riskAssessmentDefinition": "Risikovurdering er den helhetlige prosessen med å identifisere, analysere og evaluere risikoer for informasjonssikkerhet.",
-                "riskManagementProcess": "Risikostyringsprosessen inkluderer identifikasjon, analyse, evaluering og behandling av risikoer.",
-                "assetIdentification": "Alle informasjonseiendeler bør identifiseres og verdsettes som en del av en risikovurdering.",
-                "threatTypes": "Vanlige trusler inkluderer menneskelige feil, tekniske feil, fysiske hendelser og ondsinnede angrep.",
-                "riskTreatment": "De fire primære alternativene for risikobehandling er: modifisere (redusere), akseptere, unngå og overføre."
-              }
-            },
-            "quizCompletionRequired": "Fullfør quizen med suksess for å markere denne modulen som fullført"
-          }
-        }
-      },
-      "understandingSecurity": {
-        "title": "Forståelse av sikkerhetsnivåer",
-        "description": "Lær om ulike sikkerhetsnivåer for klassifisering."
-      },
-      "handlingClassifiedInformation": {
-        "title": "Håndtering av klassifisert informasjon",
-        "backToModule": "Tilbake til grunnleggende om informasjonsklassifisering",
-        "guidelines": {
-          "title": "Håndteringsretningslinjer etter klassifiseringsnivå",
-          "public": {
-            "title": "Offentlig informasjon",
-            "item1": "Kan deles fritt internt og eksternt",
-            "item2": "Ingen spesiell håndtering nødvendig",
-            "item3": "Kan publiseres på offentlige nettsteder",
-            "item4": "Eksempler: Markedsføringsmaterialer, pressemeldinger, offentlige årsrapporter"
-          },
-          "internal": {
-            "title": "Intern informasjon",
-            "item1": "Del kun innad i organisasjonen",
-            "item2": "Unngå deling med eksterne parter uten godkjenning",
-            "item3": "Bruk bedriftens e-post for distribusjon",
-            "item4": "Eksempler: Interne prosedyrer, ansattkataloger, møtereferater"
-          },
-          "confidential": {
-            "title": "Konfidensiell informasjon",
-            "item1": "Del kun med autoriserte personer som trenger å vite",
-            "item2": "Bruk sikre metoder for deling (kryptert e-post, sikker fildeling)",
-            "item3": "Passordbeskyttelse av dokumenter når det er mulig",
-            "item4": "Ikke la utskrifter ligge uovervåket",
-            "item5": "Eksempler: Kundedata, økonomiske rapporter, forretningsstrategier"
-          },
-          "highlyConfidential": {
-            "title": "Høyt konfidensiell informasjon",
-            "item1": "Strengeste tilgangskontroller - kun spesifikke autoriserte personer",
-            "item2": "Bruk alltid kryptering ved lagring eller overføring",
-            "item3": "Spor all tilgang og handlinger utført på informasjonen",
-            "item4": "Få eksplisitt godkjenning før deling",
-            "item5": "Bruk sikre rom for diskusjoner som involverer denne informasjonen",
-            "item6": "Eksempler: Forretningshemmeligheter, autentiseringslegitimasjon, strategiske oppkjøp"
-          }
-        },
-        "bestPractices": {
-          "title": "Beste sikkerhetspraksis",
-          "physical": {
-            "title": "Fysisk sikkerhet",
-            "item1": "Bruk ryddig skrivebordspolicy - ikke la sensitive dokumenter være synlige",
-            "item2": "Lås bort sensitiv informasjon når den ikke er i bruk",
-            "item3": "Makuler konfidensielle dokumenter ved avhending",
-            "item4": "Vær oppmerksom på omgivelsene dine når du diskuterer sensitiv informasjon"
-          },
-          "digital": {
-            "title": "Digital sikkerhet",
-            "item1": "Bruk sterke passord og flerfaktorautentisering",
-            "item2": "Krypter sensitive filer og kommunikasjon",
-            "item3": "Vær forsiktig med e-postvedlegg og lenker",
-            "item4": "Lås datamaskinen din når du går fra skrivebordet",
-            "item5": "Bruk kun godkjente skytjenester for sensitive data"
-          },
-          "incident": {
-            "title": "Hendelseshåndtering",
-            "item1": "Rapporter sikkerhetshendelser umiddelbart",
-            "item2": "Vit hvem du skal kontakte ved mistanke om brudd",
-            "item3": "Dokumenter enhver potensiell eksponering av sensitiv informasjon",
-            "item4": "Følg selskapets prosedyrer for hendelseshåndtering"
-          }
-        },
-        "quiz": {
-          "title": "Kunnskapssjekk",
-          "question1": {
-            "title": "1. Hvordan bør du håndtere offentlige dokumenter?",
-            "option1": "Passordbeskyttet og del kun internt",
-            "option2": "Krypter dem før deling",
-            "option3": "Del fritt da de ikke inneholder sensitiv informasjon",
-            "option4": "Del aldri utenfor avdelingen"
-          },
-          "question2": {
-            "title": "2. Når du deler konfidensielle dokumenter, bør du:",
-            "option1": "Dele dem med alle som ber om dem",
-            "option2": "Dele kun med autoriserte personer ved bruk av sikre metoder",
-            "option3": "Legge dem ut offentlig, men med passord",
-            "option4": "Aldri dele dem under noen omstendigheter"
-          },
-          "question3": {
-            "title": "3. Interne dokumenter bør deles:",
-            "option1": "Kun innad i organisasjonen",
-            "option2": "Med alle som trenger dem for sitt arbeid",
-            "option3": "Med betrodde partnere og kunder",
-            "option4": "Kun med ledelsen"
-          },
-          "question4": {
-            "title": "4. Høyt konfidensielle filer krever:",
-            "option1": "Grunnleggende sikkerhetstiltak",
-            "option2": "Kun passordbeskyttelse",
-            "option3": "Standard e-post for distribusjon",
-            "option4": "Strenge tilgangskontroller, kryptering og aktivitetslogging"
-          },
-          "question5": {
-            "title": "5. Hvis du oppdager et databrudd som involverer klassifisert informasjon, bør du:",
-            "option1": "Prøve å fikse det selv uten å fortelle noen",
-            "option2": "Rapportere det umiddelbart til sikkerhetsteamet",
-            "option3": "Informere de berørte kundene direkte",
-            "option4": "Vente og se om noen legger merke til det"
-          },
-          "checkAnswers": "Sjekk svar",
-          "feedback": {
-            "excellent": "Utmerket! Du forstår hvordan du skal håndtere informasjon basert på dens klassifiseringsnivå.",
-            "public": "Offentlig informasjon kan deles åpent da den ikke utgjør noen sikkerhetsrisiko.",
-            "confidential": "Konfidensielle dokumenter bør kun deles med autoriserte personer ved bruk av sikre metoder.",
-            "internal": "Interne dokumenter bør kun deles innad i organisasjonen.",
-            "highlyConfidential": "Høyt konfidensielle filer krever strenge tilgangskontroller, kryptering og aktivitetslogging.",
-            "incident": "Hvis du oppdager et databrudd, bør det rapporteres umiddelbart til sikkerhetsteamet."
-          },
-          "completionRequired": "Fullfør quizen for å markere denne modulen som fullført"
-        }
-      },
-      "identifyingSensitive": {
-        "title": "Identifisere sensitiv informasjon",
-        "commonTypes": "Vanlige typer sensitiv informasjon",
-        "publicInfo": {
-          "title": "Offentlig informasjon",
-          "item1": "Publiserte årsrapporter",
-          "item2": "Pressemeldinger",
-          "item3": "Offentlig markedsføringsmateriale",
-          "item4": "Kontaktinformasjon (generell)",
-          "item5": "Produktkataloger"
-        },
-        "internalInfo": {
-          "title": "Intern informasjon",
-          "item1": "Interne prosedyrer",
-          "item2": "Ansattkataloger",
-          "item3": "Interne memoer",
-          "item4": "Møtereferater",
-          "item5": "Opplæringsmateriale"
-        },
-        "confidentialInfo": {
-          "title": "Konfidensiell informasjon",
-          "item1": "Personalopplysninger",
-          "item2": "Kundedata",
-          "item3": "Finansrapporter",
-          "item4": "Forretningsstrategier",
-          "item5": "Kontraktdetaljer"
-        },
-        "highlyConfidential": {
-          "title": "Strengt konfidensiell",
-          "item1": "Forretningshemmeligheter",
-          "item2": "Autentiseringsopplysninger",
-          "item3": "Personlige helseopplysninger",
-          "item4": "Strategiske oppkjøp",
-          "item5": "Sikkerhetsinfrastruktur"
-        },
-        "keyIndicators": {
-          "title": "Nøkkelindikatorer",
-          "description": "Når du evaluerer informasjon, vurder disse nøkkelspørsmålene:",
-          "item1": "Ville denne informasjonen gavne konkurrenter?",
-          "item2": "Kan denne informasjonen skade enkeltpersoner hvis den blir eksponert?",
-          "item3": "Er denne informasjonen beskyttet av lover eller forskrifter?",
-          "item4": "Ville utlevering skade selskapets omdømme?",
-          "item5": "Er denne informasjonen ment kun for intern bruk?"
-        },
-        "practiceExercise": {
-          "title": "Praktisk øvelse",
-          "description": "Gjennomgå følgende scenarier og identifiser hvilken informasjon som bør klassifiseres som sensitiv. Velg alle som gjelder:",
-          "scenario1": {
-            "title": "Scenario 1:",
-            "description": "En e-post som inneholder selskapets kvartalsvise inntektsprognoser, kundeakkvisisjonskostnader og markedsføringsstrategi.",
-            "option1": "Inntektsprognoser",
-            "option2": "Kundeakkvisisjonskostnader",
-            "option3": "Markedsføringsstrategi"
-          },
-          "scenario2": {
-            "title": "Scenario 2:",
-            "description": "Et dokument med ansattes kontaktinformasjon for nødstilfeller, lønnsdetaljer og prestasjonsvurderinger.",
-            "option1": "Kontaktinformasjon for nødstilfeller",
-            "option2": "Lønnsdetaljer",
-            "option3": "Prestasjonsvurderinger"
-          },
-          "scenario3": {
-            "title": "Scenario 3:",
-            "description": "En presentasjon som inneholder informasjon om en kommende produktlansering, inkludert produktbilder, funksjonalitetsbeskrivelser, lanseringsdato, målmarked og offentlig annonserte funksjoner.",
-            "option1": "Ikke utgitte produktbilder",
-            "option2": "Detaljerte funksjonalitetsbeskrivelser",
-            "option3": "Offentlig annonsert lanseringsdato",
-            "option4": "Målmarkedsanalyse",
-            "option5": "Offentlig annonserte funksjoner"
-          },
-          "scenario4": {
-            "title": "Scenario 4:",
-            "description": "Et dokument som skisserer detaljer om en potensiell fusjon med et annet selskap, inkludert vilkår, tidslinje, finansielle detaljer, selskapsnavn og informasjon fra den offentlige årsrapporten.",
-            "option1": "Detaljerte fusjonsvilkår",
-            "option2": "Tidslinjen for fusjonen",
-            "option3": "Finansielle detaljer",
-            "option4": "Det offentlig kjente navnet på selskapet",
-            "option5": "Informasjon fra den offentlige årsrapporten"
-          },
-          "scenario5": {
-            "title": "Scenario 5:",
-            "description": "Et teknisk dokument med nettverksdiagrammer, interne IP-adresser, brannmurkonfigurasjon, serverlokasjoner, selskapets offentlige nettadresse og navn på vanlige programvarer som brukes.",
-            "option1": "Interne IP-adresser",
-            "option2": "Brannmurkonfigurasjon",
-            "option3": "Serverlokasjoner",
-            "option4": "Selskapets offentlige nettadresse",
-            "option5": "Navn på vanlige programvarer som brukes"
-          },
-          "feedback": {
-            "correct": "Riktig! Disse elementene bør klassifiseres som sensitive.",
-            "incorrect": "Ikke helt riktig. Vennligst gjennomgå disse feilaktige svarene:",
-            "continue": "Fortsett til neste del"
-          }
-        }
-      }
-    },
-    "startModule": "Start modul"
-  },
-  "about": {
-    "title": "Om Isotron",
-    "subtitle": "En omfattende plattform for klassifisering av informasjonssikkerhet basert på ISO 27001-standarder",
-    "content": "Dette prosjektet har som mål å hjelpe organisasjoner med å klassifisere og beskytte sensitiv informasjon i samsvar med beste praksis for informasjonssikkerhet.",
-    "projectOverview": "Bachelorprosjekt Oversikt",
-    "iso27001": {
-      "title": "ISO 27001 Integrasjon",
-      "description": "Prosjektet vårt er bygget rundt prinsippene i ISO 27001, den internasjonale standarden for informasjonssikkerhetsstyring. Mens denne standarden er omfattende og ofte oppfattes som vanskelig å implementere, gjør verktøyet vårt dokumentklassifisering enkel og tilgjengelig. Standarden gir et rammeverk for:",
-      "points": {
-        "isms": "Etablering og vedlikehold av et styringssystem for informasjonssikkerhet (ISMS)",
-        "approach": "Systematisk tilnærming til håndtering av sensitiv selskapsinformasjon",
-        "risk": "Risikovurdering og behandling",
-        "security": "Implementering av sikkerhetskontroller"
-      }
-    },
-    "goals": {
-      "title": "Prosjektmål",
-      "classification": {
-        "title": "Intuitiv Klassifiseringsguide",
-        "description": "Utvikle en brukervennlig guide for riktig informasjonsklassifisering"
-      },
-      "training": {
-        "title": "Interaktiv Opplæring",
-        "description": "Lage engasjerende moduler for å øke sikkerhetsbevissthet"
-      },
-      "tools": {
-        "title": "Praktiske Verktøy",
-        "description": "Implementere daglige verktøy for informasjonshåndtering"
-      },
-      "practices": {
-        "title": "Beste Praksis",
-        "description": "Fremme og standardisere beste praksis for informasjonssikkerhet"
-      }
-    },
-    "team": {
-      "title": "Brannmurbrigaden",
-      "description": "Dette programmet ble utviklet av \"Brannmurbrigaden\" - En gruppe med 5 cybersikkerhetsstudenter ved Høyskolen Kristiania"
-    },
-    "technologies": {
-      "title": "Teknologier Brukt",
-      "description": "Denne applikasjonen er bygget med moderne webteknologier, med fokus på ytelse, tilgjengelighet og brukeropplevelse. Implementeringen følger beste praksis for sikkerhet i tråd med ISO 27001-standarder.",
-      "react": "React",
-      "tailwind": "Tailwind CSS",
-      "javascript": "JavaScript",
-      "vite": "Vite",
-      "router": "React Router"
-    }
-  },
-  "common": {
-    "next": "Neste",
-    "previous": "Forrige",
-    "save": "Lagre",
-    "cancel": "Avbryt",
-    "loading": "Laster...",
-    "optional": "valgfritt",
-    "correct": "riktig",
-    "checkAnswers": "Sjekk svar"
-  },
-  "language": {
-    "en": "Engelsk",
-    "no": "Norsk",
-    "pl": "Polski"
-  },
-  "iso27001Framework": {
-    "title": "ISO 27001 Rammeverk",
-    "subtitle": "En internasjonal standard for håndtering av informasjonssikkerhet, som gir en systematisk tilnærming til informasjonshåndtering og risikoreduksjon.",
-    "introduction": {
-      "title": "Introduksjon til ISO 27001",
-      "description": "ISO 27001 er en internasjonal standard for håndtering av informasjonssikkerhet. Den gir et rammeverk for etablering, implementering, vedlikehold og kontinuerlig forbedring av et styringssystem for informasjonssikkerhet (ISMS)."
-    },
-    "benefits": {
-      "title": "Fordeler med ISO 27001",
-      "items": {
-        "dataBreaches": "Forebygger databrudd som eksponerer personlig eller bedriftssensitiv informasjon",
-        "legalConsequences": "Unngår juridiske konsekvenser på grunn av manglende overholdelse av forskrifter",
-        "financialLosses": "Reduserer økonomiske tap på grunn av bøter, søksmål eller omdømmetap",
-        "operationalContinuity": "Opprettholder operasjonell kontinuitet ved å beskytte mot systemfeil eller cyberangrep"
-      }
-    },
-    "keyComponents": {
-      "title": "Nøkkelkomponenter",
-      "components": {
-        "policies": {
-          "title": "Retningslinjer for Informasjonssikkerhet",
-          "description": "Retningslinjer som definerer tilnærmingen til håndtering av informasjonssikkerhet innen organisasjonen."
-        },
-        "organization": {
-          "title": "Organisering av Informasjonssikkerhet",
-          "description": "Rammeverket for å håndtere ansvarsområder og prosesser for informasjonssikkerhet."
-        },
-        "assets": {
-          "title": "Ressursforvaltning",
-          "description": "Prosesser for å håndtere og beskytte informasjonsressurser."
-        },
-        "access": {
-          "title": "Tilgangskontroll",
-          "description": "Mekanismer for å sikre at tilgang til informasjon er begrenset til autoriserte brukere."
-        },
-        "crypto": {
-          "title": "Kryptografi",
-          "description": "Bruk av kryptografiske teknikker for å beskytte konfidensialitet, integritet og autentisitet av informasjon."
-        },
-        "physical": {
-          "title": "Fysisk og Miljømessig Sikkerhet",
-          "description": "Tiltak for å beskytte fysiske anlegg og utstyr mot uautorisert tilgang og miljøfarer."
-        }
-      }
-    },
-    "dataStorage": {
-      "title": "ISO 27001 for Datalagring",
-      "annexes": {
-        "annex8": {
-          "title": "Vedlegg A.8 – Ressursforvaltning",
-          "description": "Sikrer at informasjonsressurser identifiseres og håndteres på en hensiktsmessig måte gjennom hele livssyklusen. Dette inkluderer å gjennomføre en grundig vurdering for å identifisere alle dataressurser innen organisasjonen og kategorisere data basert på sensitivitetsnivåer for å bruke egnede beskyttelsestiltak."
-        },
-        "annex10": {
-          "title": "Vedlegg A.10 – Kryptografi",
-          "description": "Krever bruk av kryptografiske kontroller for å beskytte datakonfidensialitet, integritet og autentisitet. Dette innebærer kryptering av data i ro og under overføring, samt utvikling av robuste nøkkelhåndteringspolicyer for å beskytte krypteringsnøkler."
-        },
-        "annex11": {
-          "title": "Vedlegg A.11 – Fysisk Sikkerhet",
-          "description": "Fokuserer på å sikre fysiske lagringsmiljøer mot uautorisert tilgang og miljøtrusler. Dette inkluderer å sikre sikre lagringsplasser for servere og harddisker, og implementere tiltak for å beskytte fysiske anlegg og utstyr."
-        }
-      }
-    },
-    "certification": {
-      "title": "Trinn for å Få ISO 27001 Sertifisert",
-      "steps": {
-        "defineScope": {
-          "title": "Definer Omfang",
-          "description": "Definer omfanget og målene for ditt ISMS"
-        },
-        "riskAssessment": {
-          "title": "Risikovurdering",
-          "description": "Gjennomfør en omfattende risikovurdering"
-        },
-        "implementControls": {
-          "title": "Implementer Kontroller",
-          "description": "Implementer sikkerhetskontroller for å redusere risiko"
-        },
-        "trainEmployees": {
-          "title": "Tren Ansatte",
-          "description": "Tren ansatte i sikkerhetsretningslinjer og prosedyrer"
-        },
-        "internalAudit": {
-          "title": "Intern Revisjon",
-          "description": "Utfør interne revisjoner for å verifisere samsvar"
-        },
-        "certification": {
-          "title": "Sertifisering",
-          "description": "Engasjer et akkreditert sertifiseringsorgan for vurdering"
-        }
-      }
-    }
-  },
-  "contact": {
-    "title": "Kontakt Oss",
-    "subtitle": "Vi vil gjerne høre fra deg! Ta kontakt med vårt team for spørsmål eller henvendelser.",
-    "getInTouch": "Ta Kontakt",
-    "description": "Har du spørsmål om ISO 27001 eller informasjonssikkerhet? Vårt team er her for å hjelpe og gi veiledning.",
-    "email": "E-post",
-    "phone": "Telefon",
-    "address": "Adresse",
-    "form": {
-      "name": "Navn",
-      "namePlaceholder": "Ditt fulle navn",
-      "email": "E-post",
-      "emailPlaceholder": "din.epost@eksempel.com",
-      "subject": "Emne",
-      "subjectPlaceholder": "Hvordan kan vi hjelpe deg?",
-      "message": "Melding",
-      "messagePlaceholder": "Din meldingsdetaljer...",
-      "submit": "Send Melding"
-    }
-  }
-} 
+    "description_placeholder": "Kort beskrivelse av dokumentets innhold og formål",
+
+    "default_questions_categories": "Hvilke typer data inneholder dokumentet? (Velg alle som gjelder)",
+    "personal_identifiable_information": "Personlig identifiserbar informasjon (PII)",
+    "financial_data": "Finansiell data",
+    "customer_data": "Kundedata",
+    "intellectual_property": "Intellektuell eiendom",
+    "hr_personell_information": "HR/Personell informasjon",
+    "business_strategy": "Forretningsstrategi",
+    "operation_documents": "Operasjonelle dokumenter",
+    "public_information": "Offentlig informasjon",
+    "passwords_authentication_keys": "Passord eller autentiseringsnøkler",
+    "guide_select_help": "Velg alle kategorier som gjelder for dokumentet ditt",
+
+    "availability_question_module_q7": "Må dette dokumentet være tilgjengelig 24/7?",
+    "availability_question_module_q8": "Bør dette dokumentet ha regelmessige sikkerhetskopier?",
+    "availability1_question": "Hva ville være konsekvensen hvis dette dokumentet var midlertidig utilgjengelig?",
+    "availability1_option1": "Ingen vesentlig påvirkning",
+    "availability1_option2": "Mindre operasjonell forstyrrelse",
+    "availability1_option3": "Betydelig forretningsforstyrrelse",
+    "availability1_option4": "Kritisk påvirkning på drift",
+    "availability2_question": "Hvem trenger tilgang til dette dokumentet og når?",
+    "availability2_option1": "Kun spesifikke personer i arbeidstiden",
+    "availability2_option2": "Teammedlemmer i arbeidstiden",
+    "availability2_option3": "Flere team døgnet rundt",
+    "availability2_option4": "Alle i organisasjonen når som helst",
+
+    "access_control_questions_module_q9": "Bør dette dokumentet være begrenset til spesifikke personer?",
+    "access_control_questions_module_q10": "Krever dette dokumentet to-faktor autentisering (MFA) for tilgang?",
+    "access_control_questions_module_accessControl2": "Hvordan bør tilgang til dette dokumentet administreres?",
+    "access_control_questions_module_basic_password": "Grunnleggende passordbeskyttelse",
+    "access_control_questions_module_role_based": "Rollebasert tilgangskontroll",
+    "access_control_questions_module_multi_factor": "Multifaktor-autentisering",
+    "access_control_questions_module_time_limited": "Tidsbegrenset tilgang med revisjon",
+    "access_control_questions_module_accessControl3": "Hvem bør kunne endre dette dokumentet?",
+    "access_control_questions_module_owner_only": "Kun dokumenteier",
+    "access_control_questions_module_specific_individuals": "Spesifikke autoriserte personer",
+    "access_control_questions_module_team_members": "Teammedlemmer med riktige tillatelser",
+    "access_control_questions_module_read_only": "Skrivebeskyttet for de fleste brukere",
+    
+    "confidentiality_questions_module_q3": "Ville eksponering av dette dokumentet forårsake juridisk eller omdømmeskade?",
+    "confidentiality_questions_module_q4": "Er dokumentet underlagt GDPR, HIPAA eller andre forskrifter?",
+    "pii1_question": "Hvilke typer personlig informasjon inneholder dokumentet?",
+    "pii1_option1": "Navn og grunnleggende kontaktinformasjon",
+    "pii1_option2": "Finansiell data (kredittkort, bankdetaljer)",
+    "pii1_option3": "Helseinformasjon",
+    "pii1_option4": "Biometrisk data",
+    "pii1_option5": "Lokasjonsdata",
+    "pii2_question": "Hvor mange personers persondata er inkludert i dette dokumentet?",
+    "pii2_option1": "Bare én person",
+    "pii2_option2": "En liten gruppe (2-10 personer)",
+    "pii2_option3": "En stor gruppe (10+ personer)",
+    "pii2_option4": "Massedata (100+ personer)",
+
+    "integrity_questions_module_q5": "Krever dokumentet bevis på at det ikke har blitt endret?",
+    "integrity_questions_module_q6": "Trenger dokumentet digitale signaturer eller versjonssporing?",
+    "financial1_question": "Hvilke typer finansiell informasjon inneholder dette dokumentet?",
+    "financial1_option1": "Budsjetinformasjon",
+    "financial1_option2": "Finansielle rapporter",
+    "financial1_option3": "Lønn eller kompensasjonsdetaljer",
+    "financial1_option4": "Investerings- eller strategiske finansielle planer",
+    "financial1_option5": "Bank- eller betalingsinformasjon",
+    "financial2_question": "Hva er omfanget av denne finansielle informasjonen?",
+    "financial2_option1": "Individuelt nivå",
+    "financial2_option2": "Avdelingsnivå",
+    "financial2_option3": "Organisasjonsomfattende",
+    "financial2_option4": "Inkluderer eksterne partnere eller klienter",
+
+    "intellectual_property_questions_module_1p1": "Hvilken type intellektuell eiendom inneholder dokumentet?",
+    "1p1_option1": "Forretningshemmeligheter",
+    "1p1_option2": "Patentinformasjon (applikasjoner, forskning)",
+    "ip1_option3": "Opphavsrettsbeskyttet materiale",
+    "ip1_option4": "Proprietære algoritmer eller kode",
+    "ip1_option5": "Design eller tegninger",
+    "intellectual_property_questions_module_ip2": "Hva er utviklingsstatusen for denne intellektuelle eiendommen?",
+    "ip2_option1": "Tidlig fase/konsept",
+    "ip2_option2": "Under aktiv utvikling",
+    "ip2_option3": "Klar for patent/opphavsrett-registrering",
+    "ip2_option4": "Allerede beskyttet av juridiske midler",
+    "intellectual_property_questions_module_ip3": "Hva er den kommersielle verdien av denne intellektuelle eiendommen?",
+    "ip3_option1": "Sentral for forretningsdrift",
+    "ip3_option2": "Betydelig konkurransefortrinn",
+    "ip3_option3": "Moderat verdi",
+    "ip3_option4": "Minimal verdi, men fortsatt proprietær",
+
+    "legal_regulations_questions_module_legalReg1": "Hvilke spesifikke forskrifter gjelder for dette dokumentet?",
+    "legalReg1_option1": "GDPR",
+    "legalReg1_option2": "HIPAA",
+    "legalReg1_option3": "SOX (Sarbanes-Oxley)",
+    "legalReg1_option4": "PCI DSS",
+    "legalReg1_option5": "Annen spesifikk forskrift",
+    "legalReg1_option6": "Jeg vet ikke",
+    "legalReg1_option7": "Ingen spesifikk forskrift",
+    "legal_regulations_questions_module_regulationHelp": "Ønsker du hjelp med å identifisere gjeldende forskrifter?",
+    "regulationHelp_option1": "Ja, hjelp meg med å identifisere forskrifter",
+    "regulationHelp_option2": "Nei, fortsett med klassifisering",
+    "legal_regulations_questions_module_regulationGuidance": "Basert på informasjonstypene du valgte, kan disse forskriftene gjelde:",
+    "legal_regulations_questions_module_regulationGuidance_infotext": "Dokumenter som inneholder persondata er ofte underlagt GDPR i Europa eller ulike personvernlover. Finansiell data kan være underlagt SOX eller PCI DSS. Helseinformasjon faller under HIPAA i USA eller lignende helsepersonvernlover i andre land",
+    "regulationGuidance_option1": "Fortsett med klassifisering",
+    "regulationGuidance_option2": "Jeg vil konsultere med vårt compliance-team",
+    "legal_regulations_questions_module_legalReg2": "Hva er den potensielle juridiske eller finansielle konsekvensen av manglende overholdelse?",
+    "legalReg2_option1": "Mindre straffer",
+    "legalReg2_option2": "Betydelige bøter",
+    "legalReg2_option3": "Potensielle rettslige skritt",
+    "legalReg2_option4": "Alvorlig forretningsforstyrrelse",
+
+    "backup_storage_questions_module_q13": "Må dette dokumentet lagres på et brannsikkert eller sikkert sted?",
+    "backup2_question": "Hvor ofte bør dette dokumentet sikkerhetkopieres?",
+    "backup2_option1": "Sanntids/kontinuerlig sikkerhetskopiering",
+    "backup2_option2": "Daglig sikkerhetskopiering",
+    "backup2_option3": "Ukentlig sikkerhetskopiering",
+    "backup2_option4": "Månedlig sikkerhetskopiering",
+    "backup3_question": "Hva er den nødvendige oppbevaringsperioden for dette dokumentet",
+    "backup3_option1": "Mindre enn 1 år",
+    "backup3_option2": "1-3 år",
+    "backup3_option3": "3-7 år",
+    "backup3_option4": "7+ år",
+    "backup3_option5": "Ubegrenset/permanent oppbevaring",
+    
+    "report_title": "Klassifiseringsrapport",
+    "report_document_details": "Dokumentdetaljer",
+    "report_description": "Beskrivelse",
+    "report_classification_determination": "Klassifiseringsbestemmelse",
+    "report_handling_instructions": "Håndteringsinstruksjoner",
+    "report_security_controls": "Nødvendige sikkerhetskontroller:",
+    "report_classification_context": "Klassifiseringsnivåer i kontekst",
+    "report_document_training": "Dokumenter opplæringen din",
+    "report_start_new": "Start ny klassifisering",
+    "report_multiple_types": "Dette dokumentet inneholder flere typer sensitiv informasjon:",
+    "report_strictest_classification": "Fordi dette dokumentet inneholder {category}, som er klassifisert som {level}, må hele dokumentet håndteres i henhold til {level}-kontroller.",
+    "report_reason": "Årsak: {reason}",
+    "report_single_classification": "Dette dokumentet er klassifisert som {level} fordi det inneholder {category}.",
+    "report_strictest_marker": "(Strengest)",
+    "report_table_level": "Nivå",
+    "report_table_description": "Beskrivelse",
+    "report_table_examples": "Eksempler",
+    "report_table_controls": "Kontroller",
+    "report_your_document": "← Ditt dokument",
+    "report_certificate_question": "Ønsker du å motta et fullføringssertifikat for denne klassifiseringstreningen?",
+    "report_certificate_sent": "Sertifikatet ditt er sendt! Sjekk e-postinnboksen din.",
+    "report_request_certificate": "Be om sertifikat",
+    "report_email_label": "Din e-postadresse",
+    "report_send_certificate": "Send sertifikat",
+    "report_level_public_description": "Informasjon ment for offentlig utgivelse",
+    "report_level_public_examples": "Markedsføringsmaterialer, offentlige kunngjøringer, generell produktinformasjon",
+    "report_level_public_controls": "Ingen spesielle sikkerhetskontroller kreves",
+
+    "report_level_internal_description": "Ikke-sensitiv informasjon kun ment for bedriftsbruk",
+    "report_level_internal_examples": "Møtereferater, intern kommunikasjon, operasjonelle dokumenter",
+    "report_level_internal_controls": "Grunnleggende tilgangskontroll, ingen distribusjon utenfor organisasjonen",
+
+    "report_level_confidential_description": "Sensitiv informasjon med begrenset tilgang",
+    "report_level_confidential_examples": "Finansielle poster, kundedata, forretningsstrategier",
+    "report_level_confidential_controls": "Tilgangskontroller, kryptering, revisjonslogging",
+
+    "report_level_highly_confidential_description": "Ekstremt sensitiv informasjon",
+    "report_level_highly_confidential_examples": "Autentiseringslegitimasjon, forretningshemmeligheter, sensitiv IP",
+    "report_level_highly_confidential_controls": "Strenge tilgangskontroller, kryptering, MFA, detaljert revisjon",
+        
+    "report_handling_public": "kan deles og distribueres fritt",
+    "report_handling_internal": "bør kun deles innen organisasjonen",
+    "report_handling_confidential": "må krypteres og tilgangskontrolleres",
+    "report_handling_highly_confidential": "krever streng tilgangskontroll, kryptering og revisjonslogging",
+        
+    "report_control_encrypt": "Krypter dokumentet både ved lagring og overføring",
+    "report_control_access": "Implementer rollebasert tilgangskontroll",
+    "report_control_logs": "Oppretthold tilgangslogger",
+    "report_control_mfa": "Implementer multifaktor-autentisering for tilgang",
+    "report_control_reviews": "Utfør regelmessige tilgangsgjennomganger",
+    "report_control_drm": "Bruk digital rettighetsadministrasjon",
+    "report_control_availability": "Implementer høy tilgjengelighet",
+    "report_control_restrict": "Begrens tilgang til kun autorisert personell",
+    "report_control_version": "Implementer versjonskontroll og dokumentintegritetskontroller",
+    "report_control_retention": "Implementer oppbevaringspolicyer i henhold til juridiske krav",
+        
+    "report_category_pii": "Personlig identifiserbar informasjon",
+    "report_category_pii_reason": "Inneholder persondata underlagt personvernforskrifter",
+    "report_category_financial": "Finansiell informasjon",
+    "report_category_financial_reason": "Inneholder sensitiv finansiell data",
+    "report_category_credentials": "Autentiseringsinformasjon",
+    "report_category_credentials_reason": "Inneholder tilgangsinformasjon som kan kompromittere sikkerheten",
+    "report_category_hr": "HR/Personellinformasjon",
+    "report_category_hr_reason": "Inneholder privat ansattinformasjon",
+    "report_category_ip": "Intellektuell eiendom",
+    "report_category_ip_reason": "Inneholder proprietær forretningsinformasjon",
+    "report_category_strategy": "Forretningsstrategi",
+    "report_category_strategy_reason": "Inneholder sensitive strategiske planer",
+    "report_category_operational": "Operasjonelle dokumenter",
+    "report_category_operational_reason": "Inneholder daglig operasjonell informasjon",
+    "report_category_public": "Offentlig informasjon",
+    "report_category_public_reason": "Inneholder informasjon ment for offentlig forbruk",
+    "report_category_default": "Standard",
+    "report_reason_default": "Ingen sensitiv informasjon identifisert",
+
+    "training_modules_title": "Opplæringsmoduler",
+    "training_modules_description": "Forbedre din forståelse av informasjonssikkerhet med våre interaktive opplæringsmoduler",
+    "training_modules_overall_progress": "Total fremgang: {{completed}} av {{total}} moduler fullført",
+    "back_to_modules_button": "Tilbake til opplæringsmoduler",
+    "back_to_information_classification_button": "Tilbake til grunnleggende om informasjonsklassifisering",
+    "isms_back_to_button": "Tilbake til ISO 27001 grunnleggende",
+
+    "information_classification_basics_title": "Grunnleggende om informasjonsklassifisering",
+    "information_classification_basics_description": "Lær det grunnleggende om klassifisering av sensitiv informasjon",
+    "iso_fundementals_title": "ISO 27001 grunnleggende",
+    "iso_fundementals_description": "Introduksjon til ISO 27001-prinsipper og beste praksis",   
+
+    "identifying_sensitive_information_title": "Identifisering av sensitiv informasjon",
+    "identifying_sensitive_information_description": "Lær hvordan du identifiserer og klassifiserer sensitiv informasjon.",
+    "handling_classified_information_title": "Håndtering av klassifisert informasjon",
+    "handling_classified_information_description": "Lær riktige prosedyrer for håndtering av klassifisert informasjon.",
+    "isms_basics_title": "ISMS grunnleggende",
+    "isms_basics_description": "Lær om informasjonssikkerhetsstyringssystemer.",
+    "risk_assessment_title": "Risikovurdering",
+    "risk_assessment_description": "Lær om risikovurdering i ISO 27011.",
+   
+    "understanding_security_levels_title": "Forståelse av sikkerhetsnivåer",
+    "understanding_security_levels_description": "Lær om ulike sikkerhetsnivåer for klassifisering.",
+    "course_overview_title": "Kursoversikt",
+    "course_overview_description": "I dette kurset vil du lære om de ulike sikkerhetsnivåene som brukes til å klassifisere sensitiv informasjon. Forståelse av disse nivåene er avgjørende for å sikre at informasjon er riktig beskyttet i henhold til dens sensitivitet og viktighet.",
+    
+    "learning_objectives_title": "Læringsmål",
+    "learning_objectives_item1": "Forstå formålet med sikkerhetsklassifiseringsnivåer",
+    "learning_objectives_item2": "Identifisere de vanlige klassifiseringsnivåene og deres betydning",
+    "learning_objectives_item3": "Anvende passende sikkerhetsnivåer for ulike typer informasjon",
+    "learning_objectives_item4": "Gjenkjenne ansvaret knyttet til håndtering av informasjon på hvert nivå",
+   
+    "classification_levels_title": "Klassifiseringsnivåer",
+    "classification_levels_public_title": "Offentlig",
+    "classification_levels_public_description": "Informasjon som kan deles fritt med publikum og utgjør ingen risiko om den avsløres. Eksempler inkluderer markedsføringsmateriell, offentlige rapporter og generell informasjon på bedriftens nettsider.",
+    "classification_levels_internal_title": "Kun for intern bruk",
+    "classification_levels_internal_description": "Informasjon ment kun for ansatte og kontraktører, men som ville utgjøre minimal risiko om den ble avslørt. Eksempler inkluderer interne nyhetsbrev, ikke-sensitive e-poster og generelle operasjonelle dokumenter.",
+    "classification_levels_confidential_title": "Konfidensiell",
+    "classification_levels_confidential_description": "Sensitiv informasjon som må beskyttes og ville forårsake skade for organisasjonen om den ble avslørt. Eksempler inkluderer finansielle opptak, forretningsstrategier og intellektuell eiendom.",
+    "classification_levels_highly_confidential_title": "Strengt konfidensiell",
+    "classification_levels_highly_confidential_description": "Ekstremt sensitiv informasjon som ville forårsake alvorlig skade om den ble avslørt. Eksempler inkluderer kunde-PII, autentiseringslegitimasjon og forretningshemmeligheter.",
+   
+    "best_practices_title": "Beste praksis",
+    "best_practices_item1": "Merk alltid dokumenter med deres klassifiseringsnivå",
+    "best_practices_item2": "Ved tvil, tildel et høyere klassifiseringsnivå",
+    "best_practices_item3": "Gjennomgå og reklassifiser informasjon regelmessig etter behov",
+    "best_practices_item4": "Følg passende håndteringsprosedyrer for hvert nivå",
+    "best_practices_item5": "Rapporter potensielle sikkerhetsbrudd umiddelbart",
+   
+    "classification_practice_title": "Klassifiseringspraksis",
+    "classification_practice_description": "For hvert scenario, velg passende sikkerhetsklassifiseringsnivå:",
+    "security_level_public_title": "Offentlig",
+    "security_level_internal_title": "Intern",
+    "security_level_confidential_title": "Konfidensiell",
+    "security_level_highlyconfidential_title": "Strengt konfidensiell",
+    
+    "classification_practice_scenario1_description": "Et dokument som beskriver selskapets standardprosedyrer for håndtering av kundesupporthenvendelser.",
+    "classification_practice_scenario1_feedback": "Interne prosedyrer bør klassifiseres som Intern. Selv om de ikke er sensitive, er de ikke ment for offentlig forbruk.",
+    "classification_practice_scenario2_description": "Et regneark som inneholder kundenavn, adresser og kjøpshistorikk.",
+    "classification_practice_scenario2_feedback": "Kundedata inneholder privat informasjon og bør klassifiseres som Konfidensiell.",
+    "classification_practice_scenario3_description": "En fil som inneholder databasepassord og API-nøkler for selskapets hovedtjenester.",
+    "classification_practice_scenario3_feedback": "Autentiseringslegitimasjon krever det høyeste beskyttelsesnivået - Strengt konfidensiell.",
+    "classification_practice_excellent": "Utmerket! Du har korrekt klassifisert alle scenarier. Du forstår hvordan du skal anvende ulike sikkerhetsnivåer.",
+
+    "scenario1_title": "Scenario 1:",
+    "scenario2_title": "Scenario 2:",
+    "scenario3_title": "Scenario 3:",
+    "scenario4_title": "Scenario 4:",
+    "scenario5_title": "Scenario 5:",
+    
+    "common_types_title": "Vanlige typer sensitiv informasjon",
+    "public_info_title": "Offentlig informasjon", 
+    "public_info_item1": "Publiserte årsrapporter",
+    "public_info_item2": "Pressemeldinger",
+    "public_info_item3": "Offentlig markedsføringsmateriell",
+    "public_info_item4": "Kontaktinformasjon (generell)",
+    "public_info_item5": "Produktkataloger",
+  
+    "internal_info_title": "Intern informasjon",
+    "internal_info_item1": "Interne prosedyrer",
+    "internal_info_item2": "Ansattkataloger",
+    "internal_info_item3": "Interne notater",
+    "internal_info_item4": "Møtereferater",
+    "internal_info_item5": "Opplæringsmateriell",
+    
+    "confidential_info_title": "Konfidensiell informasjon", 
+    "confidential_info_item1": "Ansattopptak",
+    "confidential_info_item2": "Kundedata",
+    "confidential_info_item3": "Finansielle rapporter",
+    "confidential_info_item4": "Forretningsstrategier",
+    "confidential_info_item5": "Kontraktdetaljer",
+    
+    "highly_confidential_info_item1": "Forretningshemmeligheter",
+    "highly_confidential_info_item2": "Autentiseringslegitimasjon", 
+    "highly_confidential_info_item3": "Personlig helseinformasjon",
+    "highly_confidential_info_item4": "Strategiske oppkjøp",
+    "highly_confidential_info_item5": "Sikkerhetsinfrastruktur",
+    
+    "key_indicators_title": "Nøkkelindikatorer",
+    "key_indicators_description": "Når du evaluerer informasjon, vurder disse nøkkelspørsmålene:",
+    "key_indicators_item1": "Ville denne informasjonen gagne konkurrenter?",
+    "key_indicators_item2": "Kunne denne informasjonen skade enkeltpersoner hvis den ble eksponert?",
+    "key_indicators_item3": "Er denne informasjonen beskyttet av lov eller forskrifter?",
+    "key_indicators_item4": "Ville avsløring skade selskapets omdømme?",
+    "key_indicators_item5": "Er denne informasjonen ment kun for intern bruk?",
+
+    "practice_exercise_title": "Praktisk øvelse",
+    "practice_exercise_description": "Gjennomgå følgende scenarioer og identifiser hvilken informasjon som bør klassifiseres som sensitiv. Velg alle som gjelder:",
+    "practice_exercise_scenario1_description": "En e-post som inneholder selskapets kvartalsvise inntektsprognoser, kundeanskaffelseskostnader og markedsføringsstrategi.",
+    "practice_exercise_scenario1_option1": "Inntektsprognoser",
+    "practice_exercise_scenario1_option2": "Kundeanskaffelseskostnader",
+    "practice_exercise_scenario1_option3": "Markedsføringsstrategi",
+    
+    "practice_exercise_scenario2_description": "Et dokument med ansattes kontaktinformasjon for nødstilfeller, lønnsdetaljer og ytelsesgjennomganger.",
+    "practice_exercise_scenario2_option1": "Kontaktinformasjon for nødstilfeller",
+    "practice_exercise_scenario2_option2": "Lønnsdetaljer",
+    "practice_exercise_scenario2_option3": "Ytelsesgjennomganger",
+    
+    "practice_exercise_scenario3_description": "En presentasjon som inneholder informasjon om en kommende produktlansering, inkludert produktbilder, funksjonalitetsbeskrivelser, lanseringsdato, målmarked og offentlig annonserte funksjoner.",
+    "practice_exercise_scenario3_option1": "Bilder av ikke-lanserte produkter",
+    "practice_exercise_scenario3_option2": "Detaljerte funksjonalitetsbeskrivelser",
+    "practice_exercise_scenario3_option3": "Offentlig annonsert lanseringsdato",
+    "practice_exercise_scenario3_option4": "Målmarkedsanalyse",
+    "practice_exercise_scenario3_option5": "Offentlig annonserte funksjoner",
+    
+    "practice_exercise_scenario4_description": "Et dokument som skisserer detaljer om en potensiell fusjon med et annet selskap, inkludert vilkår, tidslinje, økonomiske detaljer, firmanavn og informasjon fra den offentlige årsrapporten.",
+    "practice_exercise_scenario4_option1": "Detaljerte fusjonsvilkår",
+    "practice_exercise_scenario4_option2": "Tidslinje for fusjonen",
+    "practice_exercise_scenario4_option3": "Økonomiske detaljer",
+    "practice_exercise_scenario4_option4": "Det offentlig kjente navnet på selskapet",
+    "practice_exercise_scenario4_option5": "Informasjon fra den offentlige årsrapporten",
+    
+    "practice_exercise_scenario5_description": "Et teknisk dokument med nettverksdiagrammer, interne IP-adresser, brannmurkonfigurasjon, serverplasseringer, selskapets offentlige nettadresse og navn på vanlige programvarer som brukes.",
+    "practice_exercise_scenario5_option1": "Interne IP-adresser",
+    "practice_exercise_scenario5_option2": "Brannmurkonfigurasjon",
+    "practice_exercise_scenario5_option3": "Serverplasseringer",
+    "practice_exercise_scenario5_option4": "Selskapets offentlige nettadresse",
+    "practice_exercise_scenario5_option5": "Navn på vanlige programvarer som brukes",
+   
+    "practice_exercise_feedback_scenario1_title": "Scenario 1: E-post med selskapsinformasjon",
+    "practice_exercise_feedback_scenario1": "Informasjon som inneholder anskaffelseskostnader, inntektsprognoser og markedsføringsstrategi bør klassifiseres som sensitiv", 
+    "practice_exercise_feedback_scenario2_title": "Scenario 2: Dokument med ansattinformasjon",
+    "practice_exercise_feedback_scenario2": "Lønn og ytelsesgjennomganger bør klassifiseres som sensitive",
+    "practice_exercise_feedback_scenario3_title": "Scenario 3: Presentasjon av produktlansering",
+    "practice_exercise_feedback_scenario3": "Bilder av ikke-lanserte produkter og funksjonalitetsbeskrivelser bør klassifiseres som sensitive",
+    "practice_exercise_feedback_scenario4_title": "Scenario 4: Dokument om potensiell fusjon",
+    "practice_exercise_feedback_scenario4": "Detaljerte fusjonsvilkår, tidslinje for fusjonen og økonomiske detaljer bør klassifiseres som sensitive",
+    "practice_exercise_feedback_scenario5_title": "Scenario 5: Teknisk dokument",
+    "practice_exercise_feedback_scenario5": "Interne IP-adresser, brannmurkonfigurasjon og serverplasseringer bør klassifiseres som sensitive",
+    "practice_exercise_feedback_correct": "Riktig! Disse elementene bør klassifiseres som sensitive.",
+    
+
+    "handling_classified_information_subtitle": "Retningslinjer for håndtering etter klassifiseringsnivå",
+    "handling_classified_information_public_title": "Offentlig informasjon",
+    "handling_classified_information_public_item1": "Kan deles fritt med offentligheten",
+    "handling_classified_information_public_item2": "Ingen spesiell håndtering kreves",
+    "handling_classified_information_public_item3": "Kan publiseres på offentlige nettsteder",
+    "handling_classified_information_public_item4": "Eksempler: Markedsføringsmateriale, pressemeldinger, offentlige årsrapporter",
+   
+    "handling_classified_information_internal_title": "Intern informasjon",
+    "handling_classified_information_internal_item1": "Del kun innenfor organisasjonen",
+    "handling_classified_information_internal_item2": "Unngå deling med eksterne parter uten godkjenning",
+    "handling_classified_information_internal_item3": "Bruk firmaets e-post for distribusjon",
+    "handling_classified_information_internal_item4": "Eksempler: Interne prosedyrer, ansattkataloger, møtereferater",
+   
+    "handling_classified_information_confidential_title": "Konfidensiell informasjon",
+    "handling_classified_information_confidential_item1": "Del kun med autoriserte personer som trenger å vite",
+    "handling_classified_information_confidential_item2": "Bruk sikre metoder for deling (kryptert e-post, sikker fildeling)",
+    "handling_classified_information_confidential_item3": "Passordbeskyttelse av dokumenter når det er mulig",
+    "handling_classified_information_confidential_item4": "Ikke la utskrifter ligge uovervåket",
+    "handling_classified_information_confidential_item5": "Eksempler: Kundedata, finansrapporter, forretningsstrategier",
+   
+    "handling_classified_information_highly_confidential_title": "Strengt konfidensiell informasjon",
+    "handling_classified_information_highly_confidential_item1": "Strengeste tilgangskontroller - kun spesifikke autoriserte personer",
+    "handling_classified_information_highly_confidential_item2": "Bruk alltid kryptering ved lagring eller overføring",
+    "handling_classified_information_highly_confidential_item3": "Spor all tilgang og handlinger utført på informasjonen",
+    "handling_classified_information_highly_confidential_item4": "Få uttrykkelig godkjenning før deling",
+    "handling_classified_information_highly_confidential_item5": "Bruk sikre rom for diskusjoner som involverer denne informasjonen",
+    "handling_classified_information_highly_confidential_item6": "Eksempler: Forretningshemmeligheter, autentiseringslegitimasjon, strategiske oppkjøp",
+   
+    "handling_classified_information_best_practices_title": "Beste sikkerhetspraksis",
+    "handling_classified_information_best_practices_physical_title": "Fysisk sikkerhet",
+    "handling_classified_information_best_practices_physical_item1": "Bruk politikk for rent skrivebord - ikke la sensitive dokumenter være synlige",
+    "handling_classified_information_best_practices_physical_item2": "Lås bort sensitiv informasjon når den ikke er i bruk",
+    "handling_classified_information_best_practices_physical_item3": "Makuler konfidensielle dokumenter ved avhending",
+    "handling_classified_information_best_practices_physical_item4": "Vær oppmerksom på omgivelsene når du diskuterer sensitiv informasjon",
+   
+    "handling_classified_information_best_practices_digital_title": "Digital sikkerhet",
+    "handling_classified_information_best_practices_digital_item1": "Bruk sterke passord og flerfaktorautentisering",
+    "handling_classified_information_best_practices_digital_item2": "Krypter sensitive filer og kommunikasjon",
+    "handling_classified_information_best_practices_digital_item3": "Vær forsiktig med e-postvedlegg og lenker",
+    "handling_classified_information_best_practices_digital_item4": "Lås datamaskinen når du går fra skrivebordet",
+    "handling_classified_information_best_practices_digital_item5": "Bruk kun godkjente skytjenester for sensitive data",
+   
+    "handling_classified_information_best_practices_incident_title": "Hendelseshåndtering",
+    "handling_classified_information_best_practices_incident_item1": "Rapporter sikkerhetshendelser umiddelbart",
+    "handling_classified_information_best_practices_incident_item2": "Vit hvem du skal kontakte ved mistanke om sikkerhetsbrudd",
+    "handling_classified_information_best_practices_incident_item3": "Dokumenter enhver potensiell eksponering av sensitiv informasjon",
+    "handling_classified_information_best_practices_incident_item4": "Følg selskapets prosedyrer for hendelseshåndtering",
+   
+    "handling_classified_information_quiz_q1_title": "1. Hvordan bør du håndtere offentlige dokumenter?",   
+    "handling_classified_information_quiz_q1_option1": "Passordbeskyttelse dem og del kun internt",
+    "handling_classified_information_quiz_q1_option2": "Krypter dem før deling",    
+    "handling_classified_information_quiz_q1_option3": "Del fritt ettersom de ikke inneholder sensitiv informasjon",
+    "handling_classified_information_quiz_q1_option4": "Del dem aldri utenfor avdelingen",
+    
+    "handling_classified_information_quiz_q2_title": "2. Når du deler konfidensielle dokumenter, bør du:",
+    "handling_classified_information_quiz_q2_option1": "Del dem med alle som ber om dem",
+    "handling_classified_information_quiz_q2_option2": "Del kun med autoriserte personer ved bruk av sikre metoder",
+    "handling_classified_information_quiz_q2_option3": "Publiser dem offentlig, men med passord", 
+    "handling_classified_information_quiz_q2_option4": "Aldri del dem under noen omstendigheter",
+    
+    "handling_classified_information_quiz_q3_title": "3. Interne dokumenter bør deles:",
+    "handling_classified_information_quiz_q3_option1": "Kun innenfor organisasjonen",
+    "handling_classified_information_quiz_q3_option2": "Med alle som trenger dem for sitt arbeid",
+    "handling_classified_information_quiz_q3_option3": "Med betrodde partnere og kunder",
+    "handling_classified_information_quiz_q3_option4": "Kun med ledelsen",
+    
+    "handling_classified_information_quiz_q4_title": "4. Strengt konfidensielle filer krever:",
+    "handling_classified_information_quiz_q4_option1": "Grunnleggende sikkerhetstiltak",
+    "handling_classified_information_quiz_q4_option2": "Kun passordbeskyttelse",
+    "handling_classified_information_quiz_q4_option3": "Standard e-post for distribusjon",
+    "handling_classified_information_quiz_q4_option4": "Strenge tilgangskontroller, kryptering og aktivitetslogging",
+    
+    "handling_classified_information_quiz_q5_title": "5. Hvis du oppdager et databrudd som involverer klassifisert informasjon, bør du:",
+    "handling_classified_information_quiz_q5_option1": "Prøve å fikse det selv uten å fortelle noen",
+    "handling_classified_information_quiz_q5_option2": "Rapportere det umiddelbart til sikkerhetsteamet",
+    "handling_classified_information_quiz_q5_option3": "Informere de berørte kundene direkte",
+    "handling_classified_information_quiz_q5_option4": "Vente og se om noen legger merke til det",
+    
+    "handling_classified_information_quiz_feedback_q1_title": "Spørsmål 1: Håndtering av offentlige dokumenter",
+    "handling_classified_information_quiz_feedback_q1": "Offentlig informasjon kan deles åpent da den ikke utgjør noen sikkerhetsrisiko.",
+    "handling_classified_information_quiz_feedback_q1_full": "Spørsmål 1: Håndtering av offentlige dokumenter\n• Offentlig informasjon kan deles åpent da den ikke utgjør noen sikkerhetsrisiko.",
+    "handling_classified_information_quiz_feedback_q2_title": "Spørsmål 2: Deling av konfidensielle dokumenter",
+    "handling_classified_information_quiz_feedback_q2": "Konfidensielle dokumenter bør kun deles med autoriserte personer ved bruk av sikre metoder.",
+    "handling_classified_information_quiz_feedback_q2_full": "Spørsmål 2: Deling av konfidensielle dokumenter\n• Konfidensielle dokumenter bør kun deles med autoriserte personer ved bruk av sikre metoder.",
+    "handling_classified_information_quiz_feedback_q3_title": "Spørsmål 3: Interne dokumenter",
+    "handling_classified_information_quiz_feedback_q3": "Interne dokumenter bør kun deles innenfor organisasjonen.",
+    "handling_classified_information_quiz_feedback_q3_full": "Spørsmål 3: Interne dokumenter\n• Interne dokumenter bør kun deles innenfor organisasjonen.",
+    "handling_classified_information_quiz_feedback_q4_title": "Spørsmål 4: Strengt konfidensielle filer",
+    "handling_classified_information_quiz_feedback_q4": "Strengt konfidensielle filer krever strenge tilgangskontroller, kryptering og aktivitetslogging.",
+    "handling_classified_information_quiz_feedback_q4_full": "Spørsmål 4: Strengt konfidensielle filer\n• Strengt konfidensielle filer krever strenge tilgangskontroller, kryptering og aktivitetslogging.",
+    "handling_classified_information_quiz_feedback_q5_title": "Spørsmål 5: Databrudd",
+    "handling_classified_information_quiz_feedback_q5": "Hvis du oppdager et databrudd, bør det rapporteres umiddelbart til sikkerhetsteamet.",
+    "handling_classified_information_quiz_feedback_q5_full": "Spørsmål 5: Databrudd\n• Hvis du oppdager et databrudd, bør det rapporteres umiddelbart til sikkerhetsteamet.",
+    "handling_classified_information_quiz_feedback_excellent": "Utmerket! Du forstår hvordan du skal håndtere informasjon basert på dens klassifiseringsnivå.",
+
+    "isms_what_is_title": "Hva er et ISMS?",
+    "isms_what_is_description": "Et informasjonssikkerhetsstyringssystem (ISMS) er en systematisk tilnærming til å håndtere sensitiv selskapsinformasjon slik at den forblir sikker. Det omfatter mennesker, prosesser og teknologi.",
+    "isms_what_is_definition": "Definisjon: Et ISMS er et rammeverk av retningslinjer og prosedyrer som inkluderer alle juridiske, fysiske og tekniske kontroller involvert i en organisasjons prosesser for håndtering av informasjonsrisiko",
+    "isms_why_implement_title": "Hvorfor implementere et ISMS?",
+   
+    "isms_business_benefits_title": "Forretningsmessige fordeler",
+    "isms_business_benefits_item1": "Forbedret informasjonssikkerhetssituasjon",
+    "isms_business_benefits_item2": "Konkurransefortrinn",
+    "isms_business_benefits_item3": "Kunders og interessenters tillit",
+    "isms_business_benefits_item4": "Forretningskontinuitet",
+    "isms_business_benefits_item5": "Reduserte cyberforsikringspremier",
+   
+    "isms_risk_management_title": "Fordeler ved risikostyring",    
+    "isms_risk_management_item1": "Strukturert identifisering av risikoer",
+    "isms_risk_management_item2": "Implementering av passende kontroller",
+    "isms_risk_management_item3": "Systematisk håndtering av trusler",
+    "isms_risk_management_item4": "Redusert sannsynlighet for brudd",
+    "isms_risk_management_item5": "Juridisk og regulatorisk samsvar",
+   
+    "iso_and_isms_title": "ISO 27001 og ISMS",
+    "iso_and_isms_description": "ISO 27001 er den internasjonale standarden som beskriver beste praksis for et ISMS. Den gir et rammeverk for å etablere, implementere, drifte, overvåke, gjennomgå, vedlikeholde og forbedre et ISMS.",
+    "isms_pdca_title": "PDCA-syklusen i ISMS",
+    "isms_pdca_plan_title": "Planlegg",
+    "isms_pdca_plan_description": "Etabler ISMS-policy, mål, prosesser og prosedyrer",
+    "isms_pdca_do_title": "Utfør", 
+    "isms_pdca_do_description": "Implementer og drift ISMS-policy, kontroller, prosesser og prosedyrer",
+    "isms_pdca_check_title": "Kontroller",
+    "isms_pdca_check_description": "Overvåk og gjennomgå ISMS, mål prosessytelse mot policy og mål",
+    "isms_pdca_act_title": "Handling",
+    "isms_pdca_act_description": "Iverksett korrigerende og forebyggende tiltak for å forbedre ISMS",
+    
+    "key_components_of_isms_title": "Nøkkelkomponenter i et ISMS",
+    "information_security_policy_title": "Informasjonssikkerhetspolicy",
+    "information_security_policy_description": "Setter retningen og uttrykker ledelsens støtte for informasjonssikkerhet",
+    "risk_assessment_policy_description": "Systematisk prosess for å identifisere, analysere og evaluere informasjonssikkerhetsrisikoer",
+    "security_controls_title": "Sikkerhetskontroller",
+    "security_controls_description": "Sikkerhetstiltak eller mottiltak for å unngå, oppdage, motvirke eller minimere sikkerhetsrisikoer",
+    "statement_of_applicability_title": "Anvendelighetserklæring (SoA)",
+    "statement_of_applicability_description": "Dokument som beskriver hvilke kontroller som er relevante og gjeldende for organisasjonens ISMS",
+    "internal_audits_title": "Interne revisjoner",
+    "internal_audits_description": "Regelmessige kontroller for å sikre at ISMS fungerer som forventet og identifisere forbedringer",
+    "managment_review_title": "Ledelsesvurdering",
+    "management_review_description": "Regelmessig vurdering av ISMS av toppledelsen for å sikre fortsatt egnethet og effektivitet",
+
+    "isms_quiz_q1": "1. Hva er et informasjonssikkerhetsstyringssystem (ISMS)?",
+    "isms_quiz_q1_option1": "Et programvareverktøy for overvåking av nettverkssikkerhet",
+    "isms_quiz_q1_option2": "En systematisk tilnærming til å håndtere sensitiv informasjon og sikre forretningskontinuitet",
+    "isms_quiz_q1_option3": "En maskinvareløsning for datakryptering",
+    "isms_quiz_q1_option4": "En sjekkliste over beste praksis for IT-sikkerhet",
+
+    "isms_quiz_q2": "2. Hva står PDCA-syklusen for i ISO 27001?",
+    "isms_quiz_q2_option1": "Planlegg-Utfør-Kontroller-Handling",
+    "isms_quiz_q2_option2": "Forebygg, Oppdage, Korriger, Juster",
+    "isms_quiz_q2_option3": "Forbered, Utvikle, Kontroller, Analyser",
+    "isms_quiz_q2_option4": "Prosess, Dokumenter, Konfigurer, Gjennomgå",
+
+    "isms_quiz_q3": "3. Hvilket av følgende er et grunnleggende prinsipp i ISO 27001?",
+    "isms_quiz_q3_option1": "Maksimering av produktivitet for enhver pris",
+    "isms_quiz_q3_option2": "Fullstendig eliminering av alle sikkerhetsrisikoer",
+    "isms_quiz_q3_option3": "Risikobasert tilnærming til informasjonssikkerhet",
+    "isms_quiz_q3_option4": "Isolering av alle systemer fra eksterne tilkoblinger",
+
+    "isms_quiz_q4": "4. Hvilken rolle spiller risikovurdering i ISO 27001?",
+    "isms_quiz_q4_option1": "Det er valgfritt og kun for høysikkerhetsorganisasjoner",
+    "isms_quiz_q4_option2": "Det er essensielt for å etablere et effektivt ISMS",
+    "isms_quiz_q4_option3": "Det utføres kun én gang etter implementering",
+    "isms_quiz_q4_option4": "Det fokuserer kun på eksterne trusler",
+
+    "isms_quiz_q5": "5. Hva kreves for å oppnå ISO 27001-sertifisering?",
+    "isms_quiz_q5_option1": "Implementering av alle 114 kontroller i Annex A",
+    "isms_quiz_q5_option2": "Ha perfekt sikkerhet uten hendelser",
+    "isms_quiz_q5_option3": "Bruke kun ISO-godkjente sikkerhetsleverandører",
+    "isms_quiz_q5_option4": "Implementere et ISMS, gjennomføre interne revisjoner og bestå en ekstern revisjon",
+
+    "isms_quiz_feedback_q1_title": "Spørsmål 1: ISMS-definisjon",
+    "isms_quiz_feedback_q1_feedback": "Et ISMS er en systematisk tilnærming til å håndtere sensitiv informasjon og sikre forretningskontinuitet.",
+    "isms_quiz_feedback_q2_title": "Spørsmål 2: PDCA-syklus",
+    "isms_quiz_feedback_q2_feedback": "PDCA-syklusen består av fasene Planlegg, Utfør, Kontroller, Handling for kontinuerlig forbedring.",
+    "isms_quiz_feedback_q3_title": "Spørsmål 3: ISO 27001-prinsipper",
+    "isms_quiz_feedback_q3_feedback": "ISO 27001 er basert på en risikobasert tilnærming til informasjonssikkerhet.",
+    "isms_quiz_feedback_q4_title": "Spørsmål 4: Risikovurdering",
+    "isms_quiz_feedback_q4_feedback": "Risikovurdering er en essensiell komponent for å etablere et ISMS.",
+    "isms_quiz_feedback_q5_title": "Spørsmål 5: ISO 27001-sertifisering",
+    "isms_quiz_feedback_q5_feedback": "For å oppnå ISO 27001-sertifisering må en organisasjon implementere et ISMS, gjennomføre interne revisjoner, adressere avvik og bestå en ekstern revisjon.",
+    "isms_quiz_feedback_excellent": "Utmerket! Du har forstått ISMS-konseptene riktig.",
+    
+    "risk_assessment_what_is_title": "Hva er risikovurdering?",
+    "risk_assessment_what_is_description": "Risikovurdering er en kritisk komponent i ISO 27001 og grunnlaget for et effektivt informasjonssikkerhetsstyringssystem (ISMS). Det innebærer å identifisere, analysere og evaluere informasjonssikkerhetsrisikoer.",
+    "risk_assessment_what_is_definition": "Definisjon: Risikovurdering er den totale prosessen for risikoidentifisering, risikoanalyse og risikoevaluering som definert i ISO 27001.",
+    "risk_managment_process_title": "Risikostyringsprosessen",
+    "risk_identification_title": "1. Risikoidentifisering",
+    "risk_identification_description": "Finne, gjenkjenne og beskrive risikoer ved å identifisere eiendeler, trusler, eksisterende kontroller, sårbarheter og konsekvenser.",
+    "risk_analysis_title": "2. Risikoanalyse",
+    "risk_analysis_description": "Forstå risikoens natur og bestemme risikonivået ved å tilordne verdier til sannsynlighet og konsekvens.",
+    "risk_evaluation_title": "3. Risikoevaluering",
+    "risk_evaluation_description": "Sammenligne risikoanalyseresultater med risikokriterier for å avgjøre om en risiko er akseptabel eller krever behandling.",
+    "risk_treatment_title": "4. Risikobehandling",
+    "risk_treatment_description": "Velge og implementere alternativer for å håndtere risiko gjennom risikomodifisering (kontroller), risikoaksept, risikounngåelse eller risikooverføring.",
+
+    "risk_key_components_title": "Nøkkelkomponenter i risikovurdering",
+    "asset_identification_title": "Identifisering av eiendeler",
+    "asset_identification_description": "Identifisering og kategorisering av informasjonseiendeler er det første trinnet i risikovurdering.",
+    "asset_identification_item1": "Informasjonseiendeler (databaser, filer, dokumentasjon)",
+    "asset_identification_item2": "Programvareeiendeler (applikasjoner, systemer, utviklingsverktøy)",
+    "asset_identification_item3": "Fysiske eiendeler (datamaskiner, nettverksutstyr, media)",
+    "asset_identification_item4": "Tjenester (datatjenester, kommunikasjon)",
+    "asset_identification_item5": "Personer (ansatte, kunder, brukere) og deres kvalifikasjoner, ferdigheter og erfaring",
+    "asset_identification_item6": "Immaterielle eiendeler (omdømme, image)",
+
+    "threat_identification_title": "Identifisering av trusler",
+    "threat_identification_description": "Identifisere potensielle trusselkilder og hendelser som kan skade eiendeler.",
+    "internal_threats_title": "Interne trusler",
+    "internal_threats_item1": "Menneskelig feil",
+    "internal_threats_item2": "Misfornøyde ansatte",
+    "internal_threats_item3": "Systemfeil",
+    "internal_threats_item4": "Prosessfeil",
+    "external_threats_title": "Eksterne trusler",
+    "external_threats_item1": "Cyberangrep",
+    "external_threats_item2": "Naturkatastrofer",
+    "external_threats_item3": "Forstyrrelser i forsyningskjeden",
+    "external_threats_item4": "Juridiske/regulatoriske endringer",
+
+    "vulnerability_assessment_title": "Sårbarhetssvurdering",
+    "vulnerability_assessment_description": "Identifisere svakheter i eiendeler som kan utnyttes av trusler.",
+    "vulnerability_assessment_item1": "Svake passord eller autentiseringsmetoder",
+    "vulnerability_assessment_item2": "Ikke-oppdatert programvare",
+    "vulnerability_assessment_item3": "Utilstrekkelig fysisk sikkerhet",
+    "vulnerability_assessment_item4": "Utilstrekkelig opplæring av ansatte",
+    "vulnerability_assessment_item5": "Dårlig konfigurerte systemer",
+    "vulnerability_assessment_item6": "Utilstrekkelige sikkerhetskopieringsprosedyrer",
+
+    "risk_analysis_methods_title": "Risikoanalysemetoder",
+    "qualitative_analysis_title": "Kvalitativ analyse",
+    "qualitative_analysis_description": "Bruker beskrivende skalaer (Høy, Medium, Lav) for å beskrive sannsynligheten og konsekvensen av risikoer.",
+    "quantitative_analysis_title": "Kvantitativ analyse",
+    "quantitative_analysis_description": "Tilordner numeriske verdier til risikoer, ofte i monetære termer eller spesifikke poengskalser.",
+
+    "risk_treatment_options_title": "Alternativer for risikobehandling",
+    "risk_treatment_options_modify": "Modifisere (Redusere)",
+    "risk_treatment_options_modify_description": "Implementere kontroller for å redusere risikosannsynlighet eller konsekvens.",
+    "risk_treatment_options_accept": "Akseptere",
+    "risk_treatment_options_accept_description": "Ta en informert beslutning om å akseptere risikoen uten ytterligere tiltak.",
+    "risk_treatment_options_avoid": "Unngå",
+    "risk_treatment_options_avoid_description": "Beslutte å ikke fortsette med aktiviteten som introduserer risikoen.",
+    "risk_treatment_options_transfer": "Overføre",
+    "risk_treatment_options_transfer_description": "Dele risikoen med en annen part (f.eks. forsikring, utkontraktering).",
+
+    "risk_assessment_quiz_q1": "1. Hva er risikovurdering i sammenheng med ISO 27001?",
+    "risk_assessment_quiz_q1_option1": "En engangs evaluering av sikkerhetstrusler",
+    "risk_assessment_quiz_q1_option2": "En teknisk revisjon av IT-systemer",
+    "risk_assessment_quiz_q1_option3": "Den totale prosessen for å identifisere, analysere og evaluere informasjonssikkerhetsrisikoer",
+    "risk_assessment_quiz_q1_option4": "En inventarliste over sikkerhetsprogramvare og maskinvare",
+
+    "risk_assessment_quiz_q2": "2. Hva er hovedtrinnene i risikostyringsprosessen?",
+    "risk_assessment_quiz_q2_option1": "Oppdage, Respondere, Gjenopprette, Rapportere",
+    "risk_assessment_quiz_q2_option2": "Identifisering, Analyse, Evaluering, Behandling",
+    "risk_assessment_quiz_q2_option3": "Planlegge, Teste, Implementere, Gjennomgå",
+    "risk_assessment_quiz_q2_option4": "Kjøpe, Installere, Konfigurere, Vedlikeholde",
+
+    "risk_assessment_quiz_q3": "3. Hvilke av følgende vurderes typisk IKKE under identifisering av eiendeler?",
+    "risk_assessment_quiz_q3_option1": "Informasjonseiendeler som databaser og filer",
+    "risk_assessment_quiz_q3_option2": "Fysiske eiendeler som servere og nettverksutstyr",
+    "risk_assessment_quiz_q3_option3": "Immaterielle eiendeler som omdømme og firmaimage",
+    "risk_assessment_quiz_q3_option4": "Konkurrenters sikkerhetsstrategier",
+
+    "risk_assessment_quiz_q4": "4. Hvilke av følgende er en komplett liste over vanlige trusseltyper?",
+    "risk_assessment_quiz_q4_option1": "Menneskelige feil, tekniske feil, fysiske hendelser og ondsinnede angrep",
+    "risk_assessment_quiz_q4_option2": "Kun cyberangrep og skadevare",
+    "risk_assessment_quiz_q4_option3": "Kun fysiske trusler mot maskinvare",
+    "risk_assessment_quiz_q4_option4": "Kun trusler fra misfornøyde ansatte",
+
+    "risk_assessment_quiz_q5": "5. Hva er de fire hovedalternativene for risikobehandling i ISO 27001?",
+    "risk_assessment_quiz_q5_option1": "Ignorere, dokumentere, eskalere, utkontraktere",
+    "risk_assessment_quiz_q5_option2": "Modifisere (redusere), akseptere, unngå, overføre",
+    "risk_assessment_quiz_q5_option3": "Rapportere, registrere, løse, gjennomgå",
+    "risk_assessment_quiz_q5_option4": "Oppdage, beskytte, respondere, gjenopprette",
+
+    "risk_assessment_quiz_feedback_q1_full": "Spørsmål 1: Definisjon av risikovurdering\n• Risikovurdering er den totale prosessen for å identifisere, analysere og evaluere informasjonssikkerhetsrisikoer.",
+    "risk_assessment_quiz_feedback_q2_full": "Spørsmål 2: Risikostyringsprosess\n• Risikostyringsprosessen inkluderer identifisering, analyse, evaluering og behandling av risikoer.",
+    "risk_assessment_quiz_feedback_q3_full": "Spørsmål 3: Identifisering av eiendeler\n• Konkurrenters sikkerhetsstrategier vurderes IKKE under identifisering av eiendeler.",
+    "risk_assessment_quiz_feedback_q4_full": "Spørsmål 4: Typer trusler\n• Vanlige trusler inkluderer menneskelige feil, tekniske feil, fysiske hendelser og ondsinnede angrep.",
+    "risk_assessment_quiz_feedback_q5_full": "Spørsmål 5: Alternativer for risikobehandling\n• De fire primære alternativene for risikobehandling er: modifisere (redusere), akseptere, unngå og overføre.",
+    "risk_assessment_quiz_feedback_excellent": "Utmerket! Du forstår prinsippene for risikovurdering i sammenheng med informasjonssikkerhet.",
+
+    "about_isotron_title": "Om Isotron",
+    "about_isotron_description": "En omfattende plattform for klassifisering av informasjonssikkerhet basert på ISO 27001-standarder",
+    "bachelor_project_overview_title": "Bachelorprosjekt oversikt",
+    "bachelor_project_overview_description": "Dette prosjektet har som mål å hjelpe organisasjoner med å klassifisere og beskytte sensitiv informasjon i samsvar med beste praksis for informasjonssikkerhet",
+    "iso_integration_title": "ISO 27001 integrasjon",
+    "iso_integration_description": "Prosjektet vårt er bygget rundt prinsippene i ISO 27001, den internasjonale standarden for styring av informasjonssikkerhet. Selv om denne standarden er omfattende og ofte oppfattes som vanskelig å implementere, gjør verktøyet vårt dokumentklassifisering enkel og tilgjengelig. Standarden gir et rammeverk for:",
+    "iso_integration_item1": "Etablering og vedlikehold av et styringssystem for informasjonssikkerhet (ISMS)",
+    "iso_integration_item2": "Systematisk tilnærming til håndtering av sensitiv bedriftsinformasjon",
+    "iso_integration_item3": "Risikovurdering og -behandling",
+    "iso_integration_item4": "Implementering av sikkerhetskontroller",
+
+    "project_goals_title": "Prosjektmål",
+    "intuitive_classification_guide_title": "Intuitiv klassifiseringsguide",
+    "intuitive_classification_guide_description": "Utvikle en brukervennlig guide for riktig informasjonsklassifisering",
+    "interactive_training_title": "Interaktiv opplæring",
+    "interactive_training_description": "Lage engasjerende moduler for å øke sikkerhetsbevissthet",
+    "practical_tools_title": "Praktiske verktøy",
+    "practical_tools_description": "Implementere verktøy for daglig informasjonshåndtering",
+    "best_practices_description": "Fremme og standardisere beste praksis for informasjonssikkerhet",
+
+    "brannmurbrigaden_title": "Brannmurbrigaden",
+    "brannmurbrigaden_description": "Dette programmet ble utviklet av \"Brannmurbrigaden\" - En gruppe med 5 cybersikkerhetsstudenter ved Høyskolen Kristiania",
+    
+    "technologies_used_title": "Teknologier brukt",
+    "technologies_used_description": "Denne applikasjonen er bygget ved hjelp av moderne webteknologier, med fokus på ytelse, tilgjengelighet og brukeropplevelse. Implementeringen følger beste praksis for sikkerhet i samsvar med ISO 27001-standarder.",
+    "technologies_react_title": "React",
+    "technologies_tailwind_title": "Tailwind CSS",
+    "technologies_javascript_title": "JavaScript",
+    "technologies_Vite_title": "Vite",
+    "technologies_router_title": "React Router",
+
+    "iso27001_framework_title": "ISO 27001 rammeverk",
+    "iso27001_framework_description": "En internasjonal standard for styring av informasjonssikkerhet, som gir en systematisk tilnærming til informasjonsstyring og risikoreduksjon.",
+    "introduction_iso_title": "Introduksjon til ISO 27001",
+    "introduction_iso_description": "ISO 27001 er en internasjonal standard for styring av informasjonssikkerhet. Den gir et rammeverk for etablering, implementering, vedlikehold og kontinuerlig forbedring av et styringssystem for informasjonssikkerhet (ISMS).",
+    "iso_benefits_title": "Fordeler med ISO 27001",
+    "iso_benefits_description_item1": "Forhindrer databrudd som eksponerer personlig eller forretningssensitiv informasjon",
+    "iso_benefits_description_item2": "Unngår juridiske konsekvenser på grunn av manglende overholdelse av forskrifter",
+    "iso_benefits_description_item3": "Reduserer økonomiske tap på grunn av bøter, søksmål eller omdømmeskade",
+    "iso_benefits_description_item4": "Opprettholder operasjonell kontinuitet ved å beskytte mot systemfeil eller cyberangrep",
+    
+    "key_components_title": "Nøkkelkomponenter",
+    "key_components_item1": "Informasjonssikkerhetspolitikk",
+    "key_components_item1_description": "Retningslinjer som definerer tilnærmingen til styring av informasjonssikkerhet i organisasjonen.",
+    "key_components_item2": "Organisering av informasjonssikkerhet",
+    "key_components_item2_description": "Rammeverket for å håndtere ansvarsområder og prosesser for informasjonssikkerhet.",
+    "key_components_item3": "Aktivastyring",
+    "key_components_item3_description": "Prosesser for å administrere og beskytte informasjonsaktiva.",
+    "key_components_item4": "Tilgangskontroll",
+    "key_components_item4_description": "Mekanismer for å sikre at tilgang til informasjon er begrenset til autoriserte brukere.",
+    "key_components_item5": "Kryptografi",
+    "key_components_item5_description": "Bruk av kryptografiske teknikker for å beskytte konfidensialiteten, integriteten og autentisiteten til informasjon.",
+    "key_components_item6": "Fysisk og miljømessig sikkerhet",
+    "key_components_item6_description": "Tiltak for å beskytte fysiske anlegg og utstyr mot uautorisert tilgang og miljøfarer.",
+
+    "iso_data_storage_title": "ISO 27001 for datalagring",
+    "annex8_title": "Vedlegg A.8 – Aktivastyring",
+    "annex8_description": "Sikrer at informasjonsaktiva identifiseres og håndteres på en hensiktsmessig måte gjennom hele livssyklusen. Dette inkluderer å gjennomføre en grundig vurdering for å identifisere alle dataaktiva i organisasjonen og kategorisere data basert på sensitivitetsnivåer for å anvende passende beskyttelsestiltak.",
+    "annex10_title": "Vedlegg A.10 – Kryptografi",
+    "annex10_description": "Krever bruk av kryptografiske kontroller for å beskytte dataenes konfidensialitet, integritet og autentisitet. Dette innebærer å kryptere data i hvile og under overføring, samt å utvikle robuste policyer for nøkkelhåndtering for å sikre krypteringsnøkler.",
+    "annex11_title": "Vedlegg A.11 – Fysisk sikkerhet",
+    "annex11_description": "Fokuserer på å sikre fysiske lagringsmiljøer mot uautorisert tilgang og miljøtrusler. Dette inkluderer å sikre trygge lagringsplasser for servere og harddisker, og implementere tiltak for å beskytte fysiske anlegg og utstyr.",
+
+    "iso_certified_title": "Trinn for å bli ISO 27001-sertifisert",
+    "define_scope_title": "Definer omfang",
+    "define_scope_description": "Definer omfanget og målene for ditt ISMS",
+    "risk_assessment_description2": "Gjennomfør en omfattende risikovurdering",
+    "implement_control_title": "Implementer kontroller",
+    "implement_control_description": "Implementer sikkerhetskontroller for å redusere risiko",
+    "train_employees_title": "Lær opp ansatte",
+    "train_employees_description": "Lær opp ansatte i sikkerhetspolicyer og -prosedyrer",
+    "internal_audit_title": "Intern revisjon",
+    "internal_audit_description": "Utfør interne revisjoner for å verifisere samsvar",
+    "certification_title": "Sertifisering",
+    "certification_description": "Engasjer et akkreditert sertifiseringsorgan for vurdering",
+
+    "contact_us_title": "Kontakt oss",
+    "contact_us_description": "Vi vil gjerne høre fra deg! Ta kontakt med vårt team for spørsmål eller henvendelser.",
+    "get_in_touch_title": "Ta kontakt",
+    "get_in_touch_description": "Har du spørsmål om ISO 27001 eller informasjonssikkerhet? Vårt team er her for å hjelpe og gi veiledning.",
+    "email_title": "E-post",
+    "phone_title": "Telefon",
+    "address_title": "Adresse",
+    "name_title": "Navn",
+    "subject_title": "Emne",
+    "message_title": "Melding",
+    "name_placeholder": "Ditt fulle navn",
+    "email_placeholder": "din.epost@eksempel.com",
+    "subject_placeholder": "Hvordan kan vi hjelpe deg?",
+    "message_placeholder": "Detaljene i meldingen din...",
+    "submit_button": "Send melding"
+}
