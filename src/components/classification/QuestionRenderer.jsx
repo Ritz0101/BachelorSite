@@ -1,13 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function QuestionRenderer({ currentQuestion, onAnswer }) {
+function QuestionRenderer({ currentQuestion, onAnswer, inAnimation, totalQuestions, currentQuestionIndex }) {
     const { t } = useTranslation();
+    
+    // Guard against undefined question
+    if (!currentQuestion) {
+      console.error("Question is undefined in QuestionRenderer");
+      return (
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-red-100 p-4 rounded-md text-red-800">
+            Error: Question data is missing. Please try reloading the page.
+          </div>
+        </div>
+      );
+    }
     
     // Process question text to look for translation keys
     const questionText = currentQuestion.translationKey 
       ? t(currentQuestion.translationKey) 
-      : currentQuestion.text;
+      : (currentQuestion.text || "Missing question text");
       
     return (
       <div className="bg-white rounded-lg shadow-md p-6">
@@ -21,11 +33,14 @@ function QuestionRenderer({ currentQuestion, onAnswer }) {
               : currentQuestion.infoText}
           </div>
         )}
+        
         <div className="space-y-4">
-          {currentQuestion.options.map((option, index) => {
+          {Array.isArray(currentQuestion.options) ? currentQuestion.options.map((option, index) => {
+            if (!option) return null; // Skip invalid options
+            
             const optionLabel = option.translationKey 
               ? t(option.translationKey) 
-              : option.label;
+              : (option.label || `Option ${index + 1}`);
               
             return (
               <button
@@ -55,7 +70,11 @@ function QuestionRenderer({ currentQuestion, onAnswer }) {
                 </svg>
               </button>
             );
-          })}
+          }) : (
+            <div className="bg-red-100 p-4 rounded-md text-red-800">
+              Error: No options available for this question.
+            </div>
+          )}
         </div>
       </div>
     );

@@ -14,15 +14,29 @@ export function useQuestionSetLoader(moduleName) {
 
   // Step 1: Load the question structure from the module
   useEffect(() => {
+    if (!moduleName) {
+      setError(new Error('No module name provided'));
+      setLoading(false);
+      return;
+    }
+    
     const loadQuestionStructure = async () => {
       try {
         setLoading(true);
         setError(null);
         
         console.log(`Loading question set module: ${moduleName}`);
-        const module = await import(`./question-sets/${moduleName}.js`);
         
-        if (!module.default) {
+        // Safely try to import the module
+        let module;
+        try {
+          module = await import(`./question-sets/${moduleName}.js`);
+        } catch (importError) {
+          console.error(`Failed to import module ${moduleName}:`, importError);
+          throw new Error(`Module ${moduleName} could not be loaded: ${importError.message}`);
+        }
+        
+        if (!module || !module.default) {
           throw new Error(`Module ${moduleName} has no default export`);
         }
         
@@ -38,8 +52,16 @@ export function useQuestionSetLoader(moduleName) {
           }
         }
         
+        if (!structure) {
+          throw new Error(`Question set from ${moduleName} is null or undefined`);
+        }
+        
         if (!Array.isArray(structure)) {
           throw new Error(`Question set from ${moduleName} is not an array`);
+        }
+        
+        if (structure.length === 0) {
+          console.warn(`Question set from ${moduleName} is empty`);
         }
         
         console.log(`Successfully loaded structure for ${moduleName}`);
@@ -47,6 +69,7 @@ export function useQuestionSetLoader(moduleName) {
       } catch (err) {
         console.error(`Error loading question structure for ${moduleName}:`, err);
         setError(err);
+        setQuestionStructure([]);  // Set empty array to prevent null issues
       } finally {
         setLoading(false);
       }
@@ -59,7 +82,7 @@ export function useQuestionSetLoader(moduleName) {
   const translatedQuestions = useTranslatedQuestionSet(questionStructure);
 
   return { 
-    questions: translatedQuestions, 
+    questions: translatedQuestions || [], // Ensure we always return an array 
     loading, 
     error,
     questionStructure 

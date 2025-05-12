@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-function CategorySelector({ questions, onCategoriesSelected, selectedCategories, onCategoryToggle }) {
+function CategorySelector({ categories, selectedCategories, onToggleCategory, onProceed }) {
   const { t } = useTranslation();
   
   // Add logging when component renders
   useEffect(() => {
-    console.log("CategorySelector rendered with questions:", questions);
+    console.log("CategorySelector rendered with categories:", categories);
     console.log("Initial selectedCategories:", selectedCategories);
     
     // Verify the options exist and have expected structure
-    if (questions && questions.options) {
-      console.log("Options count:", questions.options.length);
-      questions.options.forEach((option, index) => {
-        console.log(`Option ${index}:`, option);
+    if (categories && categories.length > 0) {
+      console.log("Categories count:", categories.length);
+      categories.forEach((option, index) => {
+        console.log(`Category ${index}:`, option);
         if (!option.value) {
-          console.warn(`Option ${index} is missing 'value' property:`, option);
+          console.warn(`Category ${index} is missing 'value' property:`, option);
         }
       });
     } else {
-      console.error("Questions or questions.options is missing:", questions);
+      console.error("Categories is missing or empty:", categories);
     }
-  }, [questions, selectedCategories]);
+  }, [categories, selectedCategories]);
   
   // Handle the category toggle
   const toggleCategory = (value) => {
     console.log(`Toggle category called with value: ${value}`);
     
-    if (onCategoryToggle) {
-      onCategoryToggle(value);
+    if (onToggleCategory) {
+      onToggleCategory(value);
     } else {
-      console.error("onCategoryToggle function is not provided to CategorySelector");
+      console.error("onToggleCategory function is not provided to CategorySelector");
     }
   };
 
@@ -48,19 +48,19 @@ function CategorySelector({ questions, onCategoriesSelected, selectedCategories,
         const augmentedCategories = [...selectedCategories, "_forceQuestions"];
         console.log("Augmented categories:", augmentedCategories);
         
-        if (onCategoriesSelected) {
-          onCategoriesSelected(augmentedCategories);
+        if (onProceed) {
+          onProceed(augmentedCategories);
         } else {
-          console.error("onCategoriesSelected function is not provided");
+          console.error("onProceed function is not provided");
         }
       } else {
         // Proceed with the selected categories as is
         console.log("Multiple categories selected, proceeding normally");
         
-        if (onCategoriesSelected) {
-          onCategoriesSelected(selectedCategories);
+        if (onProceed) {
+          onProceed(selectedCategories);
         } else {
-          console.error("onCategoriesSelected function is not provided");
+          console.error("onProceed function is not provided");
         }
       }
     } else {
@@ -68,10 +68,10 @@ function CategorySelector({ questions, onCategoriesSelected, selectedCategories,
     }
   };
 
-  // Ensure we have a valid questions object
-  const currentQuestion = questions || {
+  // Construct a question object structure from categories
+  const currentQuestion = {
     text: t('default_questions_categories'),
-    options: []
+    options: categories || []
   };
   
   // Log the final question object before rendering

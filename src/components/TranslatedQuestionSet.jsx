@@ -13,19 +13,39 @@ export function useTranslatedQuestionSet(questionStructure) {
   
   // Transform the question structure with translations
   const translatedQuestions = React.useMemo(() => {
-    if (!questionStructure || !Array.isArray(questionStructure)) {
+    if (!questionStructure) {
       console.error('Invalid question structure provided', questionStructure);
       return [];
     }
     
-    return questionStructure.map(question => ({
-      ...question,
-      text: question.textKey ? t(question.textKey, question.fallbackText || question.id) : question.text,
-      options: Array.isArray(question.options) ? question.options.map(option => ({
-        ...option,
-        label: option.labelKey ? t(option.labelKey, option.fallbackLabel || 'Option') : option.label,
-      })) : []
-    }));
+    if (!Array.isArray(questionStructure)) {
+      console.error('Question structure is not an array', questionStructure);
+      return [];
+    }
+    
+    return questionStructure.map(question => {
+      if (!question) {
+        console.error('Null or undefined question in structure');
+        return {
+          id: 'error',
+          text: 'Error: Missing question data',
+          options: []
+        };
+      }
+      
+      return {
+        ...question,
+        text: question.textKey ? t(question.textKey) : question.text,
+        options: Array.isArray(question.options) ? question.options.map(option => {
+          if (!option) return null;
+          
+          return {
+            ...option,
+            label: option.labelKey ? t(option.labelKey) : option.label,
+          };
+        }).filter(Boolean) : []
+      };
+    });
   }, [questionStructure, t]);
   
   return translatedQuestions;

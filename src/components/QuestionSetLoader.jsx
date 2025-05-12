@@ -14,9 +14,15 @@ export function QuestionSetLoader({ moduleName, onLoad, onError }) {
   const { questions, loading, error } = useQuestionSetLoader(moduleName);
   
   useEffect(() => {
-    if (questions && !loading && questions.length > 0) {
-      console.log(`Providing ${questions.length} translated questions for ${moduleName} to parent`);
-      onLoad(questions);
+    // Only call onLoad if we have valid questions
+    if (!loading && Array.isArray(questions)) {
+      if (questions.length > 0) {
+        console.log(`Providing ${questions.length} translated questions for ${moduleName} to parent`);
+        onLoad(questions);
+      } else {
+        console.error(`Loaded empty question array for ${moduleName}`);
+        onError(new Error(`No questions loaded for module ${moduleName}`));
+      }
     }
     
     if (error && !loading) {
