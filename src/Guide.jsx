@@ -207,6 +207,24 @@ function Guide() {
       return;
     }
     
+    // Validate question set structure
+    if (!Array.isArray(questionSet) || questionSet.length === 0) {
+      console.error("Invalid question set format:", questionSet);
+      handleQuestionSetError(new Error("Invalid question set format"));
+      return;
+    }
+    
+    // Validate each question has required properties
+    const hasInvalidQuestions = questionSet.some(q => 
+      !q || !q.id || !Array.isArray(q.options) || q.options.length === 0
+    );
+    
+    if (hasInvalidQuestions) {
+      console.error("Question set contains invalid questions");
+      handleQuestionSetError(new Error("Question set contains invalid questions"));
+      return;
+    }
+    
     // Determine if this is a direct transition from categories
     const isFromCategories = state._transitionFromCategories === true;
     
@@ -250,12 +268,18 @@ function Guide() {
   const loadNextQuestionSet = () => {
     if (currentSequenceIndex < questionSequence.length - 1) {
       const nextSequenceIndex = currentSequenceIndex + 1;
-      navigateTo({  // Changed from updateState to navigateTo for consistent navigation
+      console.log(`Loading next question set: ${questionSequence[nextSequenceIndex]} (${nextSequenceIndex + 1} of ${questionSequence.length})`);
+      
+      // Clear current questions when loading a new set to avoid display issues
+      navigateTo({
+        currentQuestions: null,
+        currentQuestionIndex: 0, // Reset question index
         currentSequenceIndex: nextSequenceIndex,
         currentlyLoadingModule: questionSequence[nextSequenceIndex]
       });
     } else {
       // If no more question sets, move to report
+      console.log("No more question sets in sequence, showing report");
       navigateTo({
         currentQuestions: [],
         showReport: true,
@@ -274,6 +298,26 @@ function Guide() {
     setTimeout(() => {
       try {
         const currentQuestion = currentQuestions[currentQuestionIndex];
+        
+        // Make sure we have a valid question before proceeding
+        if (!currentQuestion) {
+          console.error("Current question is undefined. Reverting to report view.");
+          navigateTo({
+            currentQuestions: [],
+            showReport: true,
+          });
+          setIsAnimating(false);
+          return;
+        }
+        
+        console.log("Answering question:", {
+          questionId: currentQuestion.id,
+          questionIndex: currentQuestionIndex,
+          totalQuestions: currentQuestions.length,
+          option: option.label,
+          nextDirection: option.next
+        });
+        
         const newAnswers = { ...answers, [currentQuestion.id]: option.label };
 
         // Save current state and update answers
@@ -303,25 +347,52 @@ function Guide() {
           return;
         } 
         else if (option.next) {
+          // Check if the next ID exists in the current question set first
+          const nextQuestionIndex = currentQuestions.findIndex(q => q.id === option.next);
+          
+          if (nextQuestionIndex !== -1) {
+            // If the next question ID exists in the current set, just navigate to that question
+            console.log(`Found question ID "${option.next}" in current question set at index ${nextQuestionIndex}`);
+            navigateTo({
+              currentQuestionIndex: nextQuestionIndex
+            });
+            setIsAnimating(false);
+            return;
+          }
+          
+          // If it's not in the current set, treat it as a module name
           console.log("Moving to specific module with option.next =", option.next);
+          // Clear any existing question state before loading a new module
           navigateTo({
             currentSequenceIndex: -1, // Set to -1 because we're not using the sequence logic
+            currentQuestionIndex: 0, // Reset question index
+            currentQuestions: null, // Clear current questions
             currentlyLoadingModule: option.next
           });
           return;
         }
 
         // If we are at the last question in this set
-        if (currentQuestionIndex === currentQuestions.length - 1) {
+        const isLastQuestion = currentQuestionIndex >= currentQuestions.length - 1;
+        if (isLastQuestion) {
           console.log("Last question in current set, currentSequenceIndex =", currentSequenceIndex);
           
           // If there are more question sets in the sequence, load the next one
           if (currentSequenceIndex < questionSequence.length - 1) {
-            loadNextQuestionSet();
+            console.log(`Moving to next question set in sequence (${currentSequenceIndex + 1} of ${questionSequence.length})`);
+            
+            // Clear current questions before loading the next set
+            navigateTo({
+              currentQuestions: null,
+              currentQuestionIndex: 0, // Reset question index
+              currentSequenceIndex: currentSequenceIndex + 1,
+              currentlyLoadingModule: questionSequence[currentSequenceIndex + 1]
+            });
             return;
           }
 
           // If this is the last question set, show the report
+          console.log("Last question in last set, showing report");
           navigateTo({
             currentQuestions: [],
             showReport: true,
@@ -331,6 +402,7 @@ function Guide() {
         }
 
         // Otherwise, just move to the next question in the current set
+        console.log(`Moving to next question (${currentQuestionIndex + 1} of ${currentQuestions.length})`);
         navigateTo({
           currentQuestionIndex: currentQuestionIndex + 1,
         });
@@ -404,13 +476,43 @@ function Guide() {
                       onClick={() => {
                         console.log("Back button clicked, current state:", {
                           showReport,
-                          currentQuestions,
-                          currentlyLoadingModule
+                          hasQuestions: Boolean(currentQuestions),
+                          questionsLength: currentQuestions ? currentQuestions.length : 0,
+                          currentQuestionIndex,
+                          currentlyLoadingModule,
+                          canGoBack
                         });
+                        
                         if (!isAnimating) {
                           setIsAnimating(true);
+                          
+                          try {
+                            // Call goBack and handle the result
+                            const result = goBack();
+                            
+                            if (!result) {
+                              console.error("Navigation back failed");
+                              // If navigation failed, show a fallback UI or recovery options
+                              if (currentlyLoadingModule) {
+                                // If we're currently loading a module, stay in that state
+                                console.log("Already loading a module, will stay in this state");
+                              } else if (currentQuestions && currentQuestionIndex > 0) {
+                                // If we're in a question set, at least try to go to previous question
+                                console.log("Falling back to previous question in current set");
+                                updateState({
+                                  currentQuestionIndex: currentQuestionIndex - 1
+                                });
+                              } else {
+                                // If all else fails, consider resetting to a stable state
+                                console.log("No recovery path available, staying on current screen");
+                              }
+                            }
+                          } catch (error) {
+                            console.error("Error during back navigation:", error);
+                          }
+                          
+                          // Always end animation
                           setTimeout(() => {
-                            goBack();
                             setIsAnimating(false);
                           }, 300);
                         }

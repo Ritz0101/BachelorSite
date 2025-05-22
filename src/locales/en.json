@@ -774,7 +774,7 @@
     "email_placeholder": "your.email@example.com",
     "subject_placeholder": "How can we help you?",
     "message_placeholder": "Your message details...",
-    "submit_button": "Send Message"
+    "button_send": "Send Message"
     
     
     

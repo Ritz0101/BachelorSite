@@ -1,6 +1,41 @@
 import { useState, useEffect, useCallback } from 'react';
 
 /**
+ * Deep clone an object while handling circular references and complex types
+ * @param {*} obj - Object to clone
+ * @returns {*} - Cloned object
+ */
+const deepClone = (obj) => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // Handle array
+  if (Array.isArray(obj)) {
+    return obj.map(item => deepClone(item));
+  }
+
+  // Handle Date
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+
+  // Create a new object
+  const clonedObj = {};
+  
+  // Copy all properties
+  Object.keys(obj).forEach(key => {
+    // Skip functions
+    if (typeof obj[key] === 'function') {
+      return;
+    }
+    clonedObj[key] = deepClone(obj[key]);
+  });
+  
+  return clonedObj;
+};
+
+/**
  * Custom hook for managing questionnaire state with persistence
  * @param {string} storageKey - Unique key for this questionnaire in storage
  * @param {object} initialState - Initial state for the questionnaire
@@ -32,7 +67,14 @@ const useSessionHandling = (storageKey, initialState) => {
   // Save state to storage whenever it changes
   useEffect(() => {
     try {
-      sessionStorage.setItem(storageKey, JSON.stringify(state));
+      // Create a safe-to-serialize version of the state
+      const serializableState = {
+        ...state,
+        // Ensure currentQuestions is properly serialized if it exists
+        currentQuestions: state.currentQuestions ? deepClone(state.currentQuestions) : null,
+      };
+      
+      sessionStorage.setItem(storageKey, JSON.stringify(serializableState));
     } catch (error) {
       console.error('Error saving state to storage:', error);
     }
@@ -41,7 +83,14 @@ const useSessionHandling = (storageKey, initialState) => {
   // Save navigation stack to storage whenever it changes
   useEffect(() => {
     try {
-      sessionStorage.setItem(`${storageKey}_stack`, JSON.stringify(navigationStack));
+      // Create a safe-to-serialize version of the navigation stack
+      const serializableStack = navigationStack.map(stackState => ({
+        ...stackState,
+        // Ensure currentQuestions is properly serialized if it exists
+        currentQuestions: stackState.currentQuestions ? deepClone(stackState.currentQuestions) : null,
+      }));
+      
+      sessionStorage.setItem(`${storageKey}_stack`, JSON.stringify(serializableStack));
     } catch (error) {
       console.error('Error saving navigation stack:', error);
     }
@@ -106,6 +155,16 @@ const useSessionHandling = (storageKey, initialState) => {
           }
         }
         
+        // Handle case where previous state has currentlyLoadingModule but no currentQuestions
+        if (previousState.currentlyLoadingModule && !previousState.currentQuestions) {
+          console.log('Previous state has a loading module but no questions - this might be a serialization issue');
+          
+          // Try to reload the question set if needed
+          if (!previousState._needsReload) {
+            previousState._needsReload = true;
+          }
+        }
+        
         // Special handling for report screen: we want to go back to the last question
         if (state.showReport) {
           console.log('Back from report screen to previous questions');
@@ -160,12 +219,26 @@ const useSessionHandling = (storageKey, initialState) => {
                           updates.hasOwnProperty('currentQuestions') ||
                           updates.hasOwnProperty('currentlyLoadingModule');
     
+    // Check if this is a new question set or just moving within the same set
+    const isNewQuestionSet = updates.currentlyLoadingModule !== state.currentlyLoadingModule;
+    const isJustMovingToNextQuestion = updates.hasOwnProperty('currentQuestionIndex') && 
+                                      !isScreenChange && 
+                                      !isNewQuestionSet;
+    
+    // Always track navigation between questions even within the same set
+    const shouldTrackNavigation = isScreenChange || isNewQuestionSet || 
+                                  (updates.hasOwnProperty('currentQuestionIndex') && 
+                                   updates.currentQuestionIndex !== state.currentQuestionIndex);
+    
     // Log navigation for debugging
     console.log('Navigating to new state:', {
       currentStateKeys: Object.keys(state),
       updateKeys: Object.keys(updates),
       isGoingToReport,
       isScreenChange,
+      isNewQuestionSet,
+      isJustMovingToNextQuestion,
+      shouldTrackNavigation,
       stackSizeBefore: navigationStack.length,
       fromScreen: state.showReport ? 'report' : 
                  state.currentlyLoadingModule ? 'loading' :
@@ -177,30 +250,37 @@ const useSessionHandling = (storageKey, initialState) => {
                updates.currentQuestions ? 'questions' : 'welcome',
     });
     
-    // Save current state to navigation stack
-    setNavigationStack(prevStack => [...prevStack, state]);
+    // Modified: Track all question navigation for better back button support
+    if (shouldTrackNavigation) {
+      // Create a deep clone of the current state to avoid reference issues
+      const stateToSave = deepClone(state);
+      
+      // Save current state to navigation stack
+      setNavigationStack(prevStack => [...prevStack, stateToSave]);
+      
+      // Push a new state to the browser history - use a unique key to ensure history entries are distinct
+      window.history.pushState(
+        { 
+          stackPosition: Date.now(),
+          isReport: isGoingToReport,
+          isScreenChange,
+          isQuestionSet: updates.currentQuestions !== undefined,
+          isNewQuestionSet,
+          fromScreen: state.showReport ? 'report' : 
+                     state.currentlyLoadingModule ? 'loading' :
+                     state.currentQuestions?.multiSelect ? 'categories' :
+                     state.currentQuestions ? 'questions' : 'welcome'
+        },
+        '',
+        window.location.pathname
+      );
+    }
     
     // Update state
     setState(prevState => ({
       ...prevState,
       ...updates
     }));
-    
-    // Push a new state to the browser history - use a unique key to ensure history entries are distinct
-    window.history.pushState(
-      { 
-        stackPosition: Date.now(),
-        isReport: isGoingToReport,
-        isScreenChange,
-        isQuestionSet: updates.currentQuestions !== undefined,
-        fromScreen: state.showReport ? 'report' : 
-                   state.currentlyLoadingModule ? 'loading' :
-                   state.currentQuestions?.multiSelect ? 'categories' :
-                   state.currentQuestions ? 'questions' : 'welcome'
-      },
-      '',
-      window.location.pathname
-    );
   }, [state, navigationStack.length]);
 
   // Go back to previous state with enhanced handling
@@ -212,12 +292,35 @@ const useSessionHandling = (storageKey, initialState) => {
     
     console.log('Going back with stack size:', navigationStack.length);
     
-    // Use history.back() to trigger the popstate event
-    // Our popstate handler will take care of restoring the previous state
+    // Modified: Get the previous state directly
+    const previousState = navigationStack[navigationStack.length - 1];
+    
+    // Check if previous state has valid question data
+    if (previousState.currentQuestions === null && !previousState.showReport && !previousState.currentlyLoadingModule) {
+      console.warn('Previous state has null question data, trying to recover');
+      
+      // Try to recover by setting a loading state that will trigger the question loader
+      if (previousState.questionSequence && previousState.currentSequenceIndex >= 0) {
+        const moduleToLoad = previousState.questionSequence[previousState.currentSequenceIndex];
+        if (moduleToLoad) {
+          console.log(`Recovering by setting current module to: ${moduleToLoad}`);
+          previousState.currentlyLoadingModule = moduleToLoad;
+          previousState.currentQuestions = null;
+        }
+      }
+    }
+    
+    // Update navigation stack
+    setNavigationStack(prevStack => prevStack.slice(0, -1));
+    
+    // Apply the previous state
+    setState(previousState);
+    
+    // Ensure history state is also updated
     window.history.back();
     
     return true;
-  }, [navigationStack.length]);
+  }, [navigationStack]);
 
   // Reset state to initial values
   const resetState = useCallback(() => {

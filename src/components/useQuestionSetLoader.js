@@ -27,10 +27,17 @@ export function useQuestionSetLoader(moduleName) {
         
         console.log(`Loading question set module: ${moduleName}`);
         
+        // Check if this is trying to load a specific question ID rather than a module
+        if (moduleName.includes('Reg') && !moduleName.includes('Questions')) {
+          throw new Error(`"${moduleName}" appears to be a question ID, not a module name. Use the full module name ending with "Questions".`);
+        }
+        
         // Safely try to import the module
         let module;
         try {
-          module = await import(`./question-sets/${moduleName}.js`);
+          // Ensure the path includes the correct file extension
+          const modulePath = moduleName.endsWith('.js') ? moduleName : `./question-sets/${moduleName}.js`;
+          module = await import(modulePath);
         } catch (importError) {
           console.error(`Failed to import module ${moduleName}:`, importError);
           throw new Error(`Module ${moduleName} could not be loaded: ${importError.message}`);

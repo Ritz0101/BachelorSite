@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuestionSetLoader } from './useQuestionSetLoader';
 
 /**
@@ -12,6 +12,21 @@ import { useQuestionSetLoader } from './useQuestionSetLoader';
  */
 export function QuestionSetLoader({ moduleName, onLoad, onError }) {
   const { questions, loading, error } = useQuestionSetLoader(moduleName);
+  const [loadAttempts, setLoadAttempts] = useState(0);
+  
+  // Add a safety timeout to prevent getting stuck in loading state
+  useEffect(() => {
+    // If we're loading, set a timeout to fail after 5 seconds
+    if (loading && loadAttempts < 3) {
+      const timeoutId = setTimeout(() => {
+        console.error(`Loading timeout for module ${moduleName} after 5 seconds`);
+        setLoadAttempts(prev => prev + 1);
+        onError(new Error(`Loading timeout for module ${moduleName}`));
+      }, 5000); // 5 second timeout
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, [loading, moduleName, onError, loadAttempts]);
   
   useEffect(() => {
     // Only call onLoad if we have valid questions
